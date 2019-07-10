@@ -2,6 +2,10 @@
     background: black;  
 }
 
+body {
+    font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .markdown-section {
     color: white;
 }
