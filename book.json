@@ -1,5 +1,5 @@
  {
-    "plugins": ["theme-default"],
+    "plugins": ["theme-default", "-lunr", "-search", "search-plus"],
     "pluginsConfig": {
         "fontsettings": {
             "theme":  "night",
@@ -7,7 +7,6 @@
         }
     },
     "links": {
-
         "sharing": {
             "google": false,
             "facebook": false,
@@ -18,7 +17,6 @@
     },
     "pdf": {
         "pageNumbers": false,
-
         "fontSize": 12,
         "paperSize": "a4",
         "margin": {
