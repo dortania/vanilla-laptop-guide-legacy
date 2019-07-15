@@ -1,1 +1,4 @@
+# Hardware compatibility
+
 empty
+
