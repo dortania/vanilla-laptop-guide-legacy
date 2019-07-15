@@ -10,9 +10,9 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
 3. **_[CRUCIAL]_** **KNOW YOUR HARDWARE**
   * Your CPU name, generation
   * Your RAM size \(and slots used if needed\)
-  * Your GPUs \(All of them, Intel, AMD, Nvidia. Laptop users, you may have 2 GPUs, only the intel one will work, no questions asked\)
+  * Your GPUs \(All of them, Intel, AMD, Nvidia. You may have 2 GPUs, only the intel one will work, no questions asked\)
   * Your Storage Devices \(HDD/SSD, SATA/M.2, NVME/AHCI/RAID/IDE configuration. Note: Only NVME and AHCI/M.2 or AHCI/SATA will work. Other configurations may be harder to get by. RST users need to disable it, it can be named Intel Rapid Storage, RST or RAID\)
-  * Your screen resolution \(for laptops essentially\)
+  * Your screen resolution
   * Your Audio codec
   * Your Motherboard Model OR your Laptop Model
   * Your **LAN or Ethernet chipset**
