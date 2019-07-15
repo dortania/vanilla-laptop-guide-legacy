@@ -1,0 +1,16 @@
+/*
+.book-body {
+    background: #220036;  
+}
+
+.markdown-section {
+    color: #17154D;
+}
+*/
+body {
+    font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.gitbook-link {
+    display: none !important
+}
