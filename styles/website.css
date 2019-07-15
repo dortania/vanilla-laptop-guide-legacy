@@ -16,6 +16,8 @@
 .color-theme-2 .search-results-item {
     color: #bdcadb !important;
 } */
+@import "https://www.apple.com/wss/fonts?family=SF+Pro&amp;v=2";
+@import "https://www.apple.com/wss/fonts?family=SF+Mono&v=2";
 
 .color-theme-2 .dropdown-menu {
     background-color: #222225;
@@ -55,8 +57,16 @@
     background: #222225;
 }
 
-body {
-    font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+.book.font-family-1, .book.font-family-1 .book-summary {
+    font-family: "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.book.font-family-1 h1, .book.font-family-1 h2, .book.font-family-1 h3 {
+    font-family: "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.markdown-section code, .markdown-section pre {
+    font-family: "SF Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 .gitbook-link {
