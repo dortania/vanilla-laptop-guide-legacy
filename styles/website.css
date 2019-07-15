@@ -17,6 +17,44 @@
     color: #bdcadb !important;
 } */
 
+.color-theme-2 .dropdown-menu {
+    background-color: #222225;
+}
+
+.color-theme-2 .dropdown-menu .dropdown-caret .caret-inner {
+    border-bottom: 9px solid #222225;
+}
+
+.book.color-theme-2 .book-body {
+    color: #ccc;
+    background: #151519;
+}
+
+.book.color-theme-2 .book-body .page-wrapper .page-inner section {
+    background: #151519;
+}
+
+.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal {
+    color: #ccc;
+}
+
+.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code {
+    background: #222225;
+    border-color: #222225;
+}
+
+.book.color-theme-2 .book-body .page-wrapper .page-inner section.normal table tr {
+    background-color: #222225;
+}
+
+.book.color-theme-2 .book-header h1 {
+    color: #ccc;
+}
+
+.book.color-theme-2 .book-summary {
+    background: #222225;
+}
+
 body {
     font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
