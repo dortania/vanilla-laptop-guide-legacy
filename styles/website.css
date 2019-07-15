@@ -1,5 +1,5 @@
 .book-body {
-    background: black;  
+    background: #220036;  
 }
 
 body {
@@ -7,7 +7,7 @@ body {
 }
 
 .markdown-section {
-    color: white;
+    color: #17154D;
 }
 /*
 .gitbook-link {
