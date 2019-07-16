@@ -1,9 +1,12 @@
  {
-    "plugins": ["theme-default", "-lunr", "-search", "search-plus"],
+    "plugins": ["theme-default", "-lunr", "-search", "search-plus", "addcssjs"],
     "pluginsConfig": {
         "fontsettings": {
             "theme":  "night",
             "family": "sans"
+        },
+        "addcssjs": {
+            "css": ["styles/fonts.css"]
         }
     },
     "links": {
