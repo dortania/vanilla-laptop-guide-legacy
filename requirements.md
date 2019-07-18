@@ -6,19 +6,19 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
 
 1. _**\[CRUCIAL\]**_ A functioning brain
 2. _**\[CRUCIAL\]**_ Time and patience.
-   * Don't start working on this if you have deadlines or important work. We are not responsible of the waste of time and the data lost during the process
+   * Don't start working on this if you have deadlines or important work. We are not responsible of the waste of time and any data lost during this process.
 3. _**\[CRUCIAL\]**_ **KNOW YOUR HARDWARE**
    * Your CPU name, generation
    * Your RAM size \(and slots used if needed\)
-   * Your GPUs \(All of them, Intel, AMD, Nvidia. You may have 2 GPUs, only the intel one will work, no questions asked\)
-   * Your Storage Devices \(HDD/SSD, SATA/M.2, NVME/AHCI/RAID/IDE configuration. Note: Only NVME and AHCI/M.2 or AHCI/SATA will work. Other configurations may be harder to get by. RST users need to disable it, it can be named Intel Rapid Storage, RST or RAID\)
+   * Your GPUs \(All of them, Intel, AMD, Nvidia. You may have 2 GPUs, only the Intel one will work, no questions asked\)
+   * Your storage devices \(HDD/SSD, SATA/M.2, NVME/AHCI/RAID/IDE configuration. Note: Only NVME and AHCI/M.2 or AHCI/SATA will work. Other configurations may be harder to get by. RST users need to disable it, it can be named Intel Rapid Storage, RST or RAID\)
    * Your screen resolution
-   * Your Audio codec
-   * Your Motherboard Model OR your Laptop Model
+   * Your audio codec
+   * Your laptop model
    * Your **LAN or Ethernet chipset**
    * Your WLAN/BT chipset
 4. _**\[CRUCIAL\]**_ **A BASIC KNOWLEDGE ON COMMAND LINES AND HOW TO USE A TERMINAL/COMMAND PROMPT**
-   * This is not just \[CRUCIAL\], this is the basis of this whole guide. Dont come crying at me because you dont know how to cd to directory or delete a file.
+   * This is not just \[CRUCIAL\], this is the basis of this whole guide. Dont come crying at me because you dont know how to `cd` to a directory or delete a file.
 5. _**\[CRUCIAL\]**_ A machine that is compatible as seen in the _**Compatibilty**_ section.
 6. _**\[CRUCIAL\]**_ A minimum of:
    * 8GB USB if you're going to follow the offline method
