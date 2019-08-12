@@ -1,4 +1,4 @@
 # Terminology
 
-empty
+Clover: a bootloader for macOS
 
