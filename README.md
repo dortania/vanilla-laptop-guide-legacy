@@ -4,7 +4,7 @@ description: page description
 
 # Overview
 
-![https://travis-ci.com/hackintosh-guides/vanilla-laptop-guide](https://img.shields.io/travis/com/hackintosh-guides/vanilla-laptop-guide.svg?label=Travis%20CI&logo=travis&style=flat-square)
+[![Travis CI](https://img.shields.io/travis/com/hackintosh-guides/vanilla-laptop-guide.svg?label=Travis%20CI&logo=travis&style=flat-square)](https://travis-ci.com/hackintosh-guides/vanilla-laptop-guide)
 
 So you want to hackintosh a laptop? Can't wrap your head around RehabMan's confusing guides? Well, here's the vanila laptop guide for you. This guide will explain everything you need to know to hackintosh a laptop. For Windows and Linux we will use the internet install method, and for macOS we will use `createinstallmedia` (offline install).
 
