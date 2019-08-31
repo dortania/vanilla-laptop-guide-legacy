@@ -2,7 +2,7 @@
 description: page description
 ---
 
-# Introduction
+# Overview
 
 [![Travis CI](https://img.shields.io/travis/com/hackintosh-guides/vanilla-laptop-guide.svg?label=Travis%20CI&logo=travis&style=flat-square)](https://travis-ci.com/hackintosh-guides/vanilla-laptop-guide) [![GitHub Repo](https://img.shields.io/badge/GitHub-vanilla--laptop--guide-blue?style=flat-square&logo=github)](https://github.com/hackintosh-guides/vanilla-laptop-guide)
 

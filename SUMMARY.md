@@ -1,17 +1,20 @@
 # Table of contents
 
+* [Introduction](README.md)
+
 ## Introduction
 
-* [Overview](README.md)
-* [What to expect](what-to-expect.md)
-* [macOS limitations](macos-limits.md)
-* [Hardware compatibility](compatibility.md)
-* [How does it go?](process-overview.md)
-* [Disclaimer](disclaimer.md)
-* [Requirements](requirements.md)
-* [Terminology](terminology.md)
-* [page](page/README.md)
-  * [page under it](page/page-under-it.md)
+* [Overview](introduction/readme.md)
+* [What to expect](introduction/what-to-expect.md)
+* [macOS limitations](introduction/macos-limits.md)
+* [Hardware compatibility](introduction/compatibility.md)
+* [How does it go?](introduction/process-overview.md)
+* [Disclaimer](introduction/disclaimer.md)
+* [Requirements](introduction/requirements.md)
+* [Terminology](introduction/terminology.md)
+* [page](introduction/page/README.md)
+  * [page under it](introduction/page/page-under-it.md)
+* [Multiboot](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
 
 ## New group
 

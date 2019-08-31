@@ -29,7 +29,7 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
    * You must either have a physical lan port, or a compatible macOS ethernet dongle/adapter, or in case your have a compatible wifi card, it's also good but not recommended \(unless it's the only way to go\)
    * For people who can't use ethernet but have an android phone, you can connect your android phone to WiFi and then tether it using USB.
    * For iOS users: _\(taken from_ [_Carcraftz_](https://github.com/Carcraftz)_\)_
-     * iOS users can do this as well but you need the Tetherme tweak on a jailbroken iPhone. Unfortnunately if you are not on the right version (any ios version up to 12.1.2) this is not possible. :/
+     * iOS users can do this as well but you need the Tetherme tweak on a jailbroken iPhone. Unfortnunately if you are not on the right version \(any ios version up to 12.1.2\) this is not possible. :/
 8. A **fast internet connection**
    * Users have complained of slow or locked up downloads, that's mainly due to slow or unstable internet.
    * This is crucial for the online method, offline can get away with it.
