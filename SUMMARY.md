@@ -10,6 +10,7 @@
 * [Disclaimer](disclaimer.md)
 * [Requirements](requirements.md)
 * [Terminology](terminology.md)
+* [Multiboot](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
 * [page](page/README.md)
   * [page under it](page/page-under-it.md)
 
