@@ -13,7 +13,7 @@ With laptops, there are several limitations regarding hardware that will not wor
         * No CPU power management, so battery life will be bad
         * Non-native support, requiring kernel patches, resulting in delayed updates
         * No support for AMD integrated graphics (Radeon R5, R7, etc.)
-* Most WiFi cards (or say Intel?)
+* Most WiFi cards
     * Most WiFi cards that come with laptops are not supported as they are usually Intel/Qualcomm.
-    * If you are lucky, you may have a supported Atheros card, but support only runs up to Mojave.
+    * If you are lucky, you may have a supported Atheros card, but support only runs up to High Sierra (Mojave works with AirportAtheros40 from High Sierra, but not with Catalina).
     * The best option is getting a Broadcom card; see MykolaG's [WiFi buyer's guide](https://khronokernel-7.gitbook.io/wireless-buyers-guide/) for recommendations.

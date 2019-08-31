@@ -5,7 +5,7 @@
 3. Install Clover and configure kexts, config.plist and drivers
 4. Boot the installer
 5. Install
-6. Boot the (drive? idk what to call it)
+6. Boot the macOS partition
 7. More install
 8. Postinstall
 
