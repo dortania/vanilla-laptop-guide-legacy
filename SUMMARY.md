@@ -1,5 +1,7 @@
 # Table of contents
 
+## Introduction
+
 * [Overview](README.md)
 * [What to expect](what-to-expect.md)
 * [macOS limitations](macos-limits.md)
