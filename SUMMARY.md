@@ -18,4 +18,3 @@
 * [1](new-group/1.md)
 * [2](new-group/2.md)
 * [3](new-group/3.md)
-

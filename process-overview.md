@@ -8,4 +8,3 @@
 6. Boot the macOS partition
 7. More install
 8. Postinstall
-

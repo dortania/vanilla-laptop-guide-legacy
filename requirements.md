@@ -71,4 +71,3 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
   * if you have git on windows use it to clone the repo
   * if you don't, press `Clone or Download` button and download as Zip, extract it somewhere
 * Other software requirements will be downloaded thorough the guide \(OS specific\)
-
