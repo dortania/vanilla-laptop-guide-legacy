@@ -10,7 +10,7 @@ description: page description
 
 So you want to hackintosh a laptop? Can't wrap your head around RehabMan's confusing guides? Well, here's the vanila laptop guide for you. This guide will explain everything you need to know to hackintosh a laptop. For Windows and Linux we will use the internet install method, and for macOS we will use `createinstallmedia` (offline install).
 
-### Before you begin
+## Before you begin
 
 **KNOW YOUR HARDWARE**
 
