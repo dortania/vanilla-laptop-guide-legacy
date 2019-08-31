@@ -18,7 +18,7 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
    * Your **LAN or Ethernet chipset**
    * Your WLAN/BT chipset
 4. _**\[CRUCIAL\]**_ **A BASIC KNOWLEDGE ON COMMAND LINES AND HOW TO USE A TERMINAL/COMMAND PROMPT**
-   * This is not just \[CRUCIAL\], this is the basis of this whole guide. Dont come crying at me because you dont know how to `cd` to a directory or delete a file.
+   * This is not just \[CRUCIAL\], this is the basis of this whole guide. Don't come crying at me because you don't know how to `cd` to a directory or delete a file.
 5. _**\[CRUCIAL\]**_ A machine that is compatible as seen in the _**Compatibilty**_ section.
 6. _**\[CRUCIAL\]**_ A minimum of:
    * 8GB USB if you're going to follow the offline method
@@ -54,7 +54,7 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
 * **Python** 2.7 or greater \(you already have that on macOS\)
 * **ProperTree** \[Recommended\]: a simple tool to edit plist files, from /u/corpnewt [https://github.com/corpnewt/ProperTree](https://github.com/corpnewt/ProperTree)
   * Or text editor: Notepad++, Sublime Text, VSCode...
-    * Note: on October/fall 2018 Windows Update, the native notepad can work too. Older versions of windows must use a 3rd party text editor. If you dont know what this is, get a one of the text editors above.
+    * Note: on October/fall 2018 Windows Update, the native notepad can work too. Older versions of windows must use a 3rd party text editor. If you don't know what this is, get a one of the text editors above.
 
 ### For online installer
 
@@ -62,13 +62,13 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
   * For Windows, get it from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and make sure you enable "add to PATH" in the install
     * NOTE: There seem to be a bug in 1903 release of Windows, if the `.bat` file doesn't load for you, just open a new PS/CMD window \(as admin\), and run `python <file.py>` from the guide.
     * **DO NOT** use the python release in the Microsoft Store, get it from the official website.
-  * For linux users, install it if you dont have it following your distro's tools
+  * For linux users, install it if you don't have it following your distro's tools
   * For macOS users, you already have 2.7+ version installed, no need for extra tools
 * **ProperTree** \[Recommended\]: a simple tool to edit plist files, from /u/corpnewt [https://github.com/corpnewt/ProperTree](https://github.com/corpnewt/ProperTree)
   * Or text editor: Notepad++, Sublime Text, VSCode...
-    * Note: on October/fall 2018 Windows Update, the native notepad can work too. Older versions of windows must use a 3rd party text editor. If you dont know what this is, get a one of the text editors above.
+    * Note: on October/fall 2018 Windows Update, the native notepad can work too. Older versions of windows must use a 3rd party text editor. If you don't know what this is, get a one of the text editors above.
 * **gibMacOS**: a sweet tool from /u/corpnewt [https://github.com/corpnewt/gibMacOS](https://github.com/corpnewt/gibMacOS)
   * if you have git on windows use it to clone the repo
-  * if you dont, press `Clone or Download` button and download as Zip, extract it somewhere
+  * if you don't, press `Clone or Download` button and download as Zip, extract it somewhere
 * Other software requirements will be downloaded thorough the guide \(OS specific\)
 
