@@ -3,19 +3,18 @@
 ## Introduction
 
 * [Overview](README.md)
-* [What to expect](what-to-expect.md)
-* [macOS limitations](macos-limits.md)
-* [Hardware compatibility](compatibility.md)
-* [How does it go?](process-overview.md)
-* [Disclaimer](disclaimer.md)
-* [Requirements](requirements.md)
-* [Terminology](terminology.md)
+
+## Overview
+
+* [What to expect](overview/what-to-expect.md)
+* [macOS limitations](overview/macos-limits.md)
+* [Hardware compatibility](overview/compatibility.md)
+* [How does it go?](overview/process-overview.md)
+* [Disclaimer](overview/disclaimer.md)
+* [Requirements](overview/requirements.md)
+* [Terminology](overview/terminology.md)
+
+## Preparations
+
+* [Overview](preparations/overview.md)
 * [Multiboot](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
-* [page](page/README.md)
-  * [page under it](page/page-under-it.md)
-
-## New group
-
-* [1](new-group/1.md)
-* [2](new-group/2.md)
-* [3](new-group/3.md)
