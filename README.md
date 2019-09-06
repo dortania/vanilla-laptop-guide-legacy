@@ -2,6 +2,8 @@
 description: page description
 ---
 
+# Please note this guide is currently far from finished
+
 # Overview
 
 [![Travis CI](https://img.shields.io/travis/com/hackintosh-guides/vanilla-laptop-guide.svg?label=Travis%20CI&logo=travis&style=flat-square)](https://travis-ci.com/hackintosh-guides/vanilla-laptop-guide)
