@@ -20,6 +20,7 @@ With laptops, there are several limitations regarding hardware that will not wor
 * Samsung PM981 NVMe SSDs
   * These SSDs are not compatible (causing kernel panics) and they need updated firmware for a fix; however, since it is a OEM SSD Samsung does not release firmware to end users and no OEM has been found shipping firmware with a fix.
   * On a related note, Samsung 970 EVO Plus NVMe SSDs also had the same problem but it was fixed in a firmware update; get the update (Windows via Samsung Magician or bootable ISO) [here](https://www.samsung.com/semiconductor/minisite/ssd/download/tools/).
+   * Also to note, laptops that use [Intel Optane Memory](https://www.intel.com/content/www/us/en/architecture-and-technology/optane-memory.html) or [Micron 3D XPoint](https://www.micron.com/products/advanced-solutions/3d-xpoint-technology) for HDD acceleration are unsupported in macOS. These drives MUST be removed or else macOS won't boot at all.
 * Thunderbolt USB C ports
   * (Hackintosh) Thunderbolt support is currently still iffy in macOS, even more so with Alpine Ridge controllers, which most current laptops have. There have been attempts to keep the controller powered on, which allows Thunderbolt and USB C hotplug to work, but it comes at the cost of kernel panics and/or USB C breaking after sleep. If you want to use the USB C side of the port and be able to sleep, you must plug it in at boot and keep it plugged in.
   * Note: This does not apply to USB C only ports - only Thunderbolt 3 and USB C combined ports.
