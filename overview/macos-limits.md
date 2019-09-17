@@ -24,3 +24,8 @@ With laptops, there are several limitations regarding hardware that will not wor
 * Thunderbolt USB C ports
   * (Hackintosh) Thunderbolt support is currently still iffy in macOS, even more so with Alpine Ridge controllers, which most current laptops have. There have been attempts to keep the controller powered on, which allows Thunderbolt and USB C hotplug to work, but it comes at the cost of kernel panics and/or USB C breaking after sleep. If you want to use the USB C side of the port and be able to sleep, you must plug it in at boot and keep it plugged in.
   * Note: This does not apply to USB C only ports - only Thunderbolt 3 and USB C combined ports.
+* Windows Hello Face Recognition
+  * Some laptops come with WHFR that is I2C connected (and used through your iGPU), those will not work.
+  * Some laptops come with WHFR that is USB connected, if you're lucky, you may get the camera functionality, but nothing else.
+* Headphone Jack Combo
+  * Some laptops with a combo headphone jack may not get Audio Input through them and will have to either use the built-in microphone or an external Audio Input device through USB.

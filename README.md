@@ -20,3 +20,8 @@ We can't stress this enough. If you don't know your hardware and don't know how 
 ### **READ TWICE AND CAREFULLY BEFORE ASKING**
 
 This is not a very welcoming community for people who do not want to do some self-study and learn from other's findings and instead wait for someone to spoon-feed them information and make things work for them. Read The Fucking Manual and work your way through it and do some intense googling.
+
+
+If you're ready, get to the next step.
+
+Good Luck! 🎊

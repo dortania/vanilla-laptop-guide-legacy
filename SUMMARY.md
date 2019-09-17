@@ -6,9 +6,9 @@
 
 ## Overview
 
-* [What to expect](overview/what-to-expect.md)
-* [macOS limitations](overview/macos-limits.md)
+* [What is this](overview/whatdis.md)
 * [Hardware compatibility](overview/compatibility.md)
+* [macOS limitations](overview/macos-limits.md)
 * [How does it go?](overview/process-overview.md)
 * [Disclaimer](overview/disclaimer.md)
 * [Requirements](overview/requirements.md)
