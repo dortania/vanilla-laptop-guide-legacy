@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>What to expect · GitBook</title>
+        <title>What is this · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -64,7 +64,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="macos-limits.html" />
+    <link rel="next" href="compatibility.html" />
     
     
     <link rel="prev" href="../" />
@@ -118,12 +118,12 @@
         
         
     
-        <li class="chapter active" data-level="2.1" data-path="what-to-expect.html">
+        <li class="chapter active" data-level="2.1" data-path="whatdis.html">
             
-                <a href="what-to-expect.html">
+                <a href="whatdis.html">
             
                     
-                    What to expect
+                    What is this
             
                 </a>
             
@@ -131,25 +131,25 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="macos-limits.html">
-            
-                <a href="macos-limits.html">
-            
-                    
-                    macOS limitations
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="compatibility.html">
+        <li class="chapter " data-level="2.2" data-path="compatibility.html">
             
                 <a href="compatibility.html">
             
                     
                     Hardware compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="macos-limits.html">
+            
+                <a href="macos-limits.html">
+            
+                    
+                    macOS limitations
             
                 </a>
             
@@ -272,7 +272,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >What to expect</a>
+        <a href=".." >What is this</a>
     </h1>
 </div>
 
@@ -287,11 +287,38 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="what-to-expect">What to expect</h1>
-<p>This guide will get your hackintoshed laptop up and running, from creating the installer to some suggested postinstall steps. This guide will not cover:</p>
-<ul>
-<li>Advanced ACPI patching</li>
-</ul>
+                                <h1 id="what-is-this-whole-mess">What is this whole mess?</h1>
+<p>Glad you asked! As you may know, real Macs run <strong>macOS</strong> (if you say iOS, you can just close this tab/window and go back), and that OS is crafted specifically for those devices. However, some of us may have been an old Mac user or uses Mac-specific applications or is used to using macOS for various reasons, but don&apos;t want to spend $$$$ on a laptop that is expensive and may break and there is no way to get data back once it&apos;s messed up <em>cough</em> MBP13,x+ <em>cough</em>. With this guide, you&apos;ll be taught how to install macOS on your intel powered laptop, and it will include the following:</p>
+<h2 id="overview">Overview</h2>
+<ol>
+<li>Will it work on your hardware?</li>
+<li>What&apos;s the limitations?</li>
+<li>Guide Overview</li>
+<li>Disclaimer (yes, we wont be held responsible for your actions basically)</li>
+<li>Requirements</li>
+<li>Terminology</li>
+</ol>
+<h2 id="preparation">Preparation</h2>
+<ol>
+<li>Preparing the destination computer</li>
+<li>Overview on the installer making guide</li>
+<li>Making the installer</li>
+<li>Configuring the Boot Manager</li>
+</ol>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Installation process</li>
+</ol>
+<h2 id="post-installation">Post Installation</h2>
+<ol>
+<li>Installing the rest</li>
+<li>Fixes</li>
+<li>Basic ACPI patches</li>
+<li>Power Management tweaks</li>
+<li>VoodooI2C troubleshooting</li>
+<li>Beatify your booting OS</li>
+<li>Useful Links</li>
+</ol>
 
                                 
                                 </section>
@@ -324,7 +351,7 @@
                 </a>
                 
                 
-                <a href="macos-limits.html" class="navigation navigation-next " aria-label="Next page: macOS limitations">
+                <a href="compatibility.html" class="navigation navigation-next " aria-label="Next page: Hardware compatibility">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -335,7 +362,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"What to expect","level":"2.1","depth":1,"next":{"title":"macOS limitations","level":"2.2","depth":1,"path":"overview/macos-limits.md","ref":"overview/macos-limits.md","articles":[]},"previous":{"title":"Overview","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"addcssjs":{"css":["styles/fonts.css"],"js":[]},"search-plus":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/what-to-expect.md","mtime":"2019-09-13T03:22:30.737Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-13T03:23:25.401Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"What is this","level":"2.1","depth":1,"next":{"title":"Hardware compatibility","level":"2.2","depth":1,"path":"overview/compatibility.md","ref":"overview/compatibility.md","articles":[]},"previous":{"title":"Overview","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"addcssjs":{"css":["styles/fonts.css"],"js":[]},"search-plus":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/whatdis.md","mtime":"2019-09-17T16:59:57.270Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-17T17:00:49.480Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

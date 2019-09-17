@@ -118,12 +118,12 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="what-to-expect.html">
+        <li class="chapter " data-level="2.1" data-path="whatdis.html">
             
-                <a href="what-to-expect.html">
+                <a href="whatdis.html">
             
                     
-                    What to expect
+                    What is this
             
                 </a>
             
@@ -131,25 +131,25 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="macos-limits.html">
-            
-                <a href="macos-limits.html">
-            
-                    
-                    macOS limitations
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="compatibility.html">
+        <li class="chapter " data-level="2.2" data-path="compatibility.html">
             
                 <a href="compatibility.html">
             
                     
                     Hardware compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="macos-limits.html">
+            
+                <a href="macos-limits.html">
+            
+                    
+                    macOS limitations
             
                 </a>
             
@@ -288,9 +288,29 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="terminology">Terminology</h1>
-<p>macOS: the operating system from Apple intended for use with Macs</p>
-<p>Clover: a bootloader for macOS that we will use to boot macOS on our laptops</p>
-<p>Kext: a KErnel eXTension, basically macOS&apos;s version of drivers</p>
+<ul>
+<li><strong>macOS</strong>: Apple&apos;s own OS used for Mac machines and &quot;What makes a Mac a Mac&quot;.</li>
+<li><strong>Windows</strong>: Microsoft&apos;s proprietary OS that is used and supported on a wide range of devices (stay with this OS if you don&apos;t want headaches)</li>
+<li><strong>Linux</strong>: is a family of open source Unix-like operating systems based on the Linux kernel, an operating system kernel first released on September 17, 1991, by Linus Torvalds. Linux is typically packaged in a Linux distribution. (sauce: trusty Wikipedia)</li>
+<li><strong>Distros</strong>: short for Distributions, although it&apos;s not something that is bad, Linux distros are how linux is distributed, however when it comes to macOS, it&apos;s a mixed macOS installer with a bunch of tools that are not from Apple, <strong>do not use macOS Distros</strong></li>
+<li><strong>Hackintosh</strong>: the process of installing macOS onto a PC, note that <strong>hackintosh IS NOT the OS</strong>, it is also refered to the machine that was &quot;hacked&quot; to get macOS running on it. EG: <em>I installed macOS on this Windows machine, therfore I made a hackintosh. But I did NOT install &quot;hackintosh&quot;.</em></li>
+<li><strong>Bootloader</strong>: a piece of software that loads an OS, usually made by the OS creators. Clover <strong>IS NOT</strong> a bootloader per se (explanation down bellow).</li>
+<li><strong>Boot Manager</strong>: a piece of software that manages bootloaders, and we have many of those: Clover, Systemd-boot, OpenCore, rEFInd, rEFIt...</li>
+<li><strong>CLOVER</strong>: a piece of software made by the <a href="https://sourceforge.net/projects/cloverefiboot/" target="_blank">Clover team</a> that have a lot of features like patching and/or booting macOS/OS X/Mac OS X, Windows and Unix/Linux OSes and many other features. It is the go-to <strong>boot manager</strong> for hackintoshing.</li>
+<li><strong>OpenCore</strong>: the new hotness on the hackintosh scene, made with security in mind by the <a href="https://github.com/acidanthera" target="_blank">Acidanthera team</a>, has faster booting and lighter weight than Clover. It is a lot more involved but also supports many Mac features a lot more natively than Clover (like Hibernation, FileVault2, Boot HotKeys...).</li>
+<li><strong>ACPI</strong>: the Advanced Configuration and Power Interface (ACPI) provides an open standard that operating systems can use to discover and configure computer hardware components, to perform power management by (for example) putting unused components to sleep, and to perform status monitoring. (sauce: trusty Wikipedia)</li>
+<li><strong>Kexts</strong>: also known as <strong>K</strong>ernel <strong>Ext</strong>ensions, it&apos;s macOS&apos;s drivers. They&apos;re used to perform different tasks like device drivers or for a different purpose (in hackintoshing) like patching the OS or injecting information or running tasks. Kexts are not the only playing factor in a good hackintosh, they&apos;re sometimes paired with ACPI patches and fixes.</li>
+<li><strong>BIOS</strong>: Basic Input/Output System, is firmware used to perform hardware initialization during the booting process (power-on startup), and to provide runtime services for operating systems and programs. The BIOS firmware comes pre-installed on a personal computer&apos;s system board, and it is the first software to run when powered on. (sauce: trusty Wikipedia) It&apos;s a Legacy piece of software that was made back in the 70s and still used to this day due to its maturity.</li>
+<li><strong>UEFI</strong>: The Unified Extensible Firmware Interface (UEFI) is a specification that defines a software interface between an operating system and platform firmware. UEFI replaces the legacy Basic Input/Output System (BIOS) firmware interface originally present in all IBM PC-compatible personal computers, with most UEFI firmware implementations providing support for legacy BIOS services. UEFI can support remote diagnostics and repair of computers, even with no operating system installed. (sauce: trusty Wikipedia)</li>
+<li><strong>UEFI Drivers</strong>: Like any other OS, UEFI have drivers and they&apos;re loaded by Clover or OpenCore, they&apos;re also meant to load devices or perform other tasks like patching macOS&apos;s <code>boot.efi</code> and so on. You may find them as <code>Clover Driver</code> or <code>OpenCore Drivers</code>, they&apos;re all UEFI drivers. (Note: use the drivers that are meant for that specific boot manager).</li>
+<li><strong>EFI</strong>: It can denote two things:<ul>
+<li>Mac&apos;s firmware, which the same as UEFI, but pretty modified for Macs only, so not so &quot;Universal&quot;</li>
+<li>The partition on your hard drive that stores software read by the UEFI to load OSes (like windows bootloader) or UEFI Applications (like Clover), it&apos;s FAT32 formatted and has an ID type of EF00 (in hex). Can be named ESP or SYSTEM partition, and it&apos;s sized from 100MB to 400MB usually but the size doesn&apos;t reflect the function of it (it all depends on the OEMs and OS choices when installing.)</li>
+</ul>
+</li>
+<li><strong>MBR</strong>: Master Boot Record is a special type of boot sector at the very beginning of partitioned computer mass storage devices like fixed disks or removable drives intended for use with IBM PC-compatible systems and beyond. The concept of MBRs was publicly introduced in 1983 with PC DOS 2.0. The MBR holds the information on how the logical partitions, containing file systems, are organized on that medium. The MBR also contains executable code to function as a loader for the installed operating system&#x2014;usually by passing control over to the loader&apos;s second stage, or in conjunction with each partition&apos;s volume boot record (VBR). This MBR code is usually referred to as a boot loader. (sauce: trusty Wikipedia) This format is used on BIOS/Legacy setups. The MBT format supports a maximum of 2TiB of size and a max of 4 Primary partitions.</li>
+<li><strong>GPT</strong>: GUID Partition Table (GPT) is a standard for the layout of partition tables of a physical computer storage device, such as a hard disk drive or solid-state drive, using universally unique identifiers, which are also known as globally unique identifiers (GUIDs). Forming a part of the Unified Extensible Firmware Interface (UEFI) standard (Unified EFI Forum-proposed replacement for the PC BIOS), it is nevertheless also used for some BIOS systems, because of the limitations of master boot record (MBR) partition tables, which use 32 bits for logical block addressing (LBA) of traditional 512-byte disk sectors. (sauce: trusty Wikipedia) Usually this is the disk format you want to use on a UEFI system.</li>
+</ul>
 
                                 
                                 </section>
@@ -334,7 +354,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Terminology","level":"2.7","depth":1,"next":{"title":"Overview","level":"3.1","depth":1,"path":"preparations/overview.md","ref":"preparations/overview.md","articles":[]},"previous":{"title":"Requirements","level":"2.6","depth":1,"path":"overview/requirements.md","ref":"overview/requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"addcssjs":{"css":["styles/fonts.css"],"js":[]},"search-plus":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/terminology.md","mtime":"2019-09-13T03:22:30.737Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-13T03:23:25.401Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Terminology","level":"2.7","depth":1,"next":{"title":"Overview","level":"3.1","depth":1,"path":"preparations/overview.md","ref":"preparations/overview.md","articles":[]},"previous":{"title":"Requirements","level":"2.6","depth":1,"path":"overview/requirements.md","ref":"overview/requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"addcssjs":{"css":["styles/fonts.css"],"js":[]},"search-plus":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/terminology.md","mtime":"2019-09-17T16:59:57.270Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-09-17T17:00:49.480Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
