@@ -27,5 +27,7 @@ With laptops, there are several limitations regarding hardware that will not wor
 * Windows Hello Face Recognition
   * Some laptops come with WHFR that is I2C connected (and used through your iGPU), those will not work.
   * Some laptops come with WHFR that is USB connected, if you're lucky, you may get the camera functionality, but nothing else.
+* Intel Smart Sound Technology
+  * Laptops with Intel SST will not have anything connected through them (usually internal mic) work, as it is not supported. You can check with Device Manager on Windows.
 * Headphone Jack Combo
   * Some laptops with a combo headphone jack may not get Audio Input through them and will have to either use the built-in microphone or an external Audio Input device through USB.
