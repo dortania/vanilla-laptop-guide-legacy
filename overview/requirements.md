@@ -60,7 +60,6 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
 
 * **Python** 2.7 or greater:
   * For Windows, get it from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and make sure you enable "add to PATH" in the install
-    * NOTE: There seem to be a bug in 1903 release of Windows, if the `.bat` file doesn't load for you, just open a new PS/CMD window \(as admin\), and run `python <file.py>` from the guide.
     * **DO NOT** use the python release in the Microsoft Store, get it from the official website.
   * For linux users, install it if you don't have it following your distro's tools
   * For macOS users, you already have 2.7+ version installed, no need for extra tools
