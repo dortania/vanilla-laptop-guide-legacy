@@ -44,7 +44,7 @@ def hi:
 >
 > quote
 
-{% page-ref page="page/page-under-it.md" %}
+{% page-ref page="new-group/1.md" %}
 
 {% api-method method="get" host="https://apuiwebsite" path="apipath" %}
 {% api-method-summary %}
