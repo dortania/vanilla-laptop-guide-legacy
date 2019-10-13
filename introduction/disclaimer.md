@@ -2,6 +2,8 @@
 
 We are not responsible for bricked devices, dead hard drives, thermonuclear war, or you getting fired because you got a kernel panic and didn't save your work. You are responsible for reading everything carefully before you do anything. Do your research and ask for support if you have any questions or issues before trying random things on the internet because "it's the internet". If you do, YOU are choosing to follow random things on the internet, and if YOU point the finger at us for messing up your device, WE will laugh at you.
 
+ok so so far the only thing that didn't work is code-tabs
+
 {% hint style="info" %}
 hint info
 {% endhint %}
@@ -18,24 +20,15 @@ hint danger
 hint check
 {% endhint %}
 
-{% code-tabs %}
-
-{% code-tabs-item title="filename" %}
-```java
+{% codetabs name="filename, type="java" %}
 public static void main(String[] args) {
     System.out.println("test");
 }
-```
-{% endcode-tabs-item %}
-
-{% code-tabs-item title="file2" %}
-```python
+{% language title="file2", type="python" %}
 def hi:
-    print("hello there)
+    print("hello there")
     x = 2
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endcodetabs %}
 
 | table title | table title | table title |
 | :--- | :---: | :--- |
