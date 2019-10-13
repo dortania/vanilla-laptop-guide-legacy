@@ -20,16 +20,6 @@ hint danger
 hint check
 {% endhint %}
 
-{% codetabs name="filename, type="java" %}
-public static void main(String[] args) {
-    System.out.println("test");
-}
-{% language title="file2", type="python" %}
-def hi:
-    print("hello there")
-    x = 2
-{% endcodetabs %}
-
 | table title | table title | table title |
 | :--- | :---: | :--- |
 | content | content centered | content |
