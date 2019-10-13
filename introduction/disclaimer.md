@@ -18,7 +18,8 @@ hint danger
 hint check
 {% endhint %}
 
-<!-- {% code-tabs %}
+{% code-tabs %}
+
 {% code-tabs-item title="filename" %}
 ```java
 public static void main(String[] args) {
@@ -34,7 +35,7 @@ def hi:
     x = 2
 ```
 {% endcode-tabs-item %}
-{% endcode-tabs %} -->
+{% endcode-tabs %}
 
 | table title | table title | table title |
 | :--- | :---: | :--- |
