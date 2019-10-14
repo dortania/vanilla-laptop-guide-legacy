@@ -2,7 +2,7 @@
 
 We are not responsible for bricked devices, dead hard drives, thermonuclear war, or you getting fired because you got a kernel panic and didn't save your work. You are responsible for reading everything carefully before you do anything. Do your research and ask for support if you have any questions or issues before trying random things on the internet because "it's the internet". If you do, YOU are choosing to follow random things on the internet, and if YOU point the finger at us for messing up your device, WE will laugh at you.
 
-ok so so far the only thing that didn't work is code-tabs and api and simpletabs and math and some hints
+ok so so far the only thing that didn't work is code-tabs and api and simpletabs and math and some hints and page ref
 
 {% hint style="info" %}
 hint info
@@ -27,8 +27,6 @@ hint check
 > quote
 >
 > quote
-
-{% page-ref page="new-group/1.md" %}
 
 {% api "List App Pages", method="GET", url="https://www.magloft.com/api/portal/v1/app_pages/:app_id/page/:page" %}
 
