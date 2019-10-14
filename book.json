@@ -1,5 +1,5 @@
  {
-    "plugins": ["theme-default", "-lunr", "-search", "search-plus", "addcssjs", "hints", "codetabs", "api", "page-ref"],
+    "plugins": ["theme-default", "-lunr", "-search", "search-plus", "addcssjs", "hints", "codetabs", "api", "page-ref", "tabs"],
     "pluginsConfig": {
         "fontsettings": {
             "theme":  "night",
