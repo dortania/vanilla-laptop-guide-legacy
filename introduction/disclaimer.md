@@ -2,7 +2,7 @@
 
 We are not responsible for bricked devices, dead hard drives, thermonuclear war, or you getting fired because you got a kernel panic and didn't save your work. You are responsible for reading everything carefully before you do anything. Do your research and ask for support if you have any questions or issues before trying random things on the internet because "it's the internet". If you do, YOU are choosing to follow random things on the internet, and if YOU point the finger at us for messing up your device, WE will laugh at you.
 
-ok so so far the only thing that didn't work is code-tabs and api
+ok so so far the only thing that didn't work is code-tabs and api and simpletabs
 
 {% hint style="info" %}
 hint info
@@ -56,8 +56,8 @@ This endpoint **returns** a list of all `app pages` that belong to the magazine
 
 {% endapi %}
 
-{% tabs %}
-{% tab title="First Tab" %}
+{% tabs ree="First Tab", beep="second", eee="3rd" %}
+{% content "ree" %}
 ```text
 code
 ```
@@ -65,14 +65,7 @@ code
 $$
 a = b
 $$
-{% endtab %}
-
-{% tab title="second" %}
-
-{% endtab %}
-
-{% tab title="3rd" %}
-
-{% endtab %}
+{% content "beep" %}
+{% content "eee" %}
 {% endtabs %}
 
