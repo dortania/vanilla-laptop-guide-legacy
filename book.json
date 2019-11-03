@@ -4,9 +4,6 @@
         "fontsettings": {
             "theme":  "night",
             "family": "sans"
-        },
-        "addcssjs": {
-            "css": ["styles/fonts.css"]
         }
     },
     "links": {

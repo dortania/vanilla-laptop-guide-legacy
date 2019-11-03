@@ -18,3 +18,6 @@
 
 * [Overview](preparations/overview.md)
 * [Multiboot](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
+* [Installer creation](preparations/installer-overview.md)
+* [Preparing an offline installer (macOS only)](preparations/offline-installer.md)
+* [Preparing an online installer](preparations/online-installer.md)
