@@ -3,6 +3,7 @@
 What you need:
 
 * A macOS installer.app, from the App Store
-* Clover installer
-  * [from Dids's repo](https://github.com/Dids/clover-builder/releases) (recommended, comes with needed EFI drivers)
-  * [from the Clover repo](https://github.com/CloverHackyColor/CloverBootloader/releases) (not recommended, may have to download EFI drivers separately)
+* OpenCorePkg
+  * You can download a [prebuilt release](https://github.com/acidanthera/OpenCorePkg/releases) (recommended, comes with needed EFI drivers)
+  * Or build it manually with `./macbuild.tool`
+  * You want the DBG (debug) build, as it makes it easier to debug issues. Afterwards, you can switch to a REL (release) build.
