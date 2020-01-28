@@ -10,7 +10,6 @@ deploy:
   provider: pages
   skip_cleanup: true
   name: Travis Build Bot
-  fqdn: laptop.hackintosh-guides.ml
   keep_history: true
   on:
     branch: master
