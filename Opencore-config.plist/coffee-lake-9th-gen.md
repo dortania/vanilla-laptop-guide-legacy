@@ -29,11 +29,11 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
    * So true 300 series motherboards(non-Z370) don't declare the FW chip as MMIO in ACPI and so XNU ignores the MMIO region declared by the UEFI memory map. This SSDT brings back NVRAM support and uses the scope `PCI0.LPCB`, this is the most common scope so a pre-made can be found here: [SSDT-PMC.aml](https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extra-files/SSDT-PMC.aml)
 * [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
    * Adds brightness control support
-* [SSDT-XOSI]()
+* [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)
    * Used for enabling Windows features in macOS, mainly needed for I2C controllers
-* [SSDT-GPIO]()
+* [SSDT-GPIO](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml)
    * Creates a stub so VoodooI2C can connect
-   
+
 For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the [**Getting started with ACPI**](../extras/acpi.md) **page.** Compiled SSDTs have a **.aml** extension\(Assembled\) and will go into the `EFI/OC/ACPI` folder and **must** be specified in your config under `ACPI -> Add` as well.
 
 **Block**
@@ -42,18 +42,28 @@ This drops certain ACPI tabes from loading, for us we can ignore this
 
 **Patch**:
 
-This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. Most PCs do not ACPI patches, so in the majority of the cases, you need to do nothing here. For those who need DSDT patches for things like XHC controllers, use SSDTs or similar Device Property patching like what's seen with Framebuffer patching.
+This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. For us, we'll need a couple:
 
-* **Comment** 
-  * Name of patch
-* **Count** 
-  * How many time the patch is applied, `0` will apply to all instances
-* **Enabled** 
-  * Self-explanatory, enables or disables the patch
-* **Find**
-  * The original name in ACPI
-* **Replace** 
-  * The new name in ACPI, the length must match original
+* EC Rename
+   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide]() on how to determine what EC you have and apply the appropriate patches
+* OSI rename
+   * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT
+   
+   | Comment | String | Change XXXX to EC |
+   | :--- | :--- | :--- |
+   | Enabled | String | YES |
+   | Count | Number | 0 |
+   | Limit | Nuber | 0 |
+   | Find | Data | xxxxxxxx |
+   | Replace | Data | 45435f5f |
+   
+   | Comment | String | Change _OSI to XOSI |
+   | :--- | :--- | :--- |
+   | Enabled | String | YES |
+   | Count | Number | 0 |
+   | Limit | Nuber | 0 |
+   | Find | Data | 5f4f5349 |
+   | Replace | Data | 584f5349 |
 
 **Quirk**: Settings for ACPI.
 
