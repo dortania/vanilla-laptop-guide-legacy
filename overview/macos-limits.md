@@ -2,6 +2,8 @@
 
 With laptops, there are several limitations regarding hardware that will not work.
 
+* Low End iGPUs
+   * With macOS, support for iGPUs start at the [GT2 tier](https://en.wikipedia.org/wiki/Intel_Graphics_Technology), this means many low end iGPUs found on Celerons and Pentiums will not work. For a full list, see the [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
 * Fingerprint sensors
   * There is no way to emulate the Touch ID sensor as of currently, so fingerprint sensors will not work.
 * Discrete GPUs
