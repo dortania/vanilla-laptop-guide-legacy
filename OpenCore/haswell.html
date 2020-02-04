@@ -404,19 +404,6 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2.8" data-path="comet-lake.html">
-            
-                <a href="comet-lake.html">
-            
-                    
-                    Comet Lake
-            
-                </a>
-            
-
-            
-        </li>
-    
 
             </ul>
             
@@ -684,14 +671,10 @@
 <p><strong>Add</strong>: Sets device properties from a map.</p>
 <p>This section is set up via Headkaze&apos;s <a href="https://www.insanelymac.com/forum/topic/334899-intel-framebuffer-patching-using-whatevergreen/?tab=comments#comment-2626271" target="_blank"><em>Intel Framebuffer Patching Guide</em></a> and applies only one actual property to begin, which is the <em>ig-platform-id</em>. The way we get the proper value for this is to look at the ig-platform-id we intend to use, then swap the pairs of hex bytes.</p>
 <p>If we think of our ig-plat as <code>0xAABBCCDD</code>, our swapped version would look like <code>DDCCBBAA</code></p>
-<p>The two ig-platform-id&apos;s we use are as follows:</p>
+<p>An example of an ig-platform-id&apos;s we use are as follows:</p>
 <ul>
-<li><code>0x0D220003</code> - this is used when the iGPU is used to drive a display<ul>
-<li><code>0300220D</code> when hex-swapped</li>
-</ul>
-</li>
-<li><code>0x04120004</code> - this is used when the iGPU is only used for computing tasks and doesn&apos;t drive a display<ul>
-<li><code>04001204</code> when hex-swapped</li>
+<li><code>0x0a260005</code> -  this is the standard hex for the DeviceID<ul>
+<li><code>0500260a</code> when hex-swapped, this will be our <code>AAPL,ig-platform-id</code></li>
 </ul>
 </li>
 </ul>
@@ -699,9 +682,23 @@
 <p>For this - we follow a similar procedure as our above ig-platform-id hex swapping - but this time, we only work with the first two pairs of hex bytes. If we think of our device id as <code>0xAABB0000</code>, our swapped version would look like <code>0xBBAA0000</code>. We don&apos;t do anything with the last 2 pairs of hex bytes.</p>
 <p>The device-id fake is set up like so:</p>
 <ul>
-<li><code>0x04120000</code> - this is the device id for HD 4600 which does have support in macOS<ul>
+<li><p><code>0x04120000</code> - this is the device id for HD 4600 which does have support in macOS</p>
+<ul>
 <li><code>12040000</code> when hex swapped</li>
 </ul>
+<p>We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB.</p>
+<p>See the table and match up as best as possible to your iGPU. Intel ARK can help with extra iGPU info</p>
+<p>| iGPU | device-id | ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Intel HD Graphics 4400 | 0a16000c | 0c00160a | 3 | 64MB | 34MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 5000** | 0a260005 | 0500260a | 3 | 32MB | 19MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 5000 | 0a260006 | 0600260a | 3 | 32MB | 19MB | 1536MB | LVDS1 DP2 |
+| Intel Iris Graphics 5100 | 0a2e0008 | 08002e0a | 3 | 64MB | 34MB | 1536MB | LVDS1 DP2 |
+| Intel Iris Pro Graphics 5200 | 0d260007 | 0700260d | 4 | 64MB | 34MB | 1536MB | LVDS1 DP2 HDMI1 |
+| Intel Iris Pro Graphics 5200 | 0d260009 | 0900260d | 1 | 64MB | 34MB | 1536MB | LVDS1 |
+| Intel Iris Pro Graphics 5200 | 0d26000e | 0e00260d | 4 | 96MB | 34MB | 1536MB | LVDS1 DP2 HDMI1 |
+| Intel Iris Pro Graphics 5200 | 0d26000f | 0f00260d | 1 | 96MB | 34MB | 1536MB | LVDS1 |</p>
+<p>Source: <a href="https://fewtarius.gitbook.io/laptopguide/prepare-install-macos/display-configuration" target="_blank">Fewt</a></p>
 </li>
 </ul>
 <p><code>PciRoot(0x0)/Pci(0x1f,0x3)</code> -&gt; <code>Layout-id</code></p>
@@ -986,7 +983,9 @@
 <p>For setting up the SMBIOS info, we&apos;ll use CorpNewt&apos;s <a href="https://github.com/corpnewt/GenSMBIOS" target="_blank">GenSMBIOS</a> application. </p>
 <p>For this Haswell example, we chose the MacBookPro11,1 SMBIOS. The typical breakdown is as follows:</p>
 <ul>
-<li><code>MacBookPro11,1</code> - 15w Dual core</li>
+<li><code>MacBookAir6,1</code> - 15w Dual core(Low End, 11&quot;)</li>
+<li><code>MacBookAir6,2</code> - 15w Dual core(Low End, 13&quot;)</li>
+<li><code>MacBookPro11,1</code> - 15w Dual core(High End)</li>
 <li><code>MacBookPro11,2</code> - 45w Quad core(High End, iGPU)</li>
 <li><code>MacBookPro11,3</code> - 45w Quad core(High End, Nvidia dGPU)</li>
 <li><code>MacBookPro11,4</code> - 45w Quad core(High End, iGPU)</li>
@@ -1238,7 +1237,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"4.2.2","depth":2,"next":{"title":"Broadwell","level":"4.2.3","depth":2,"path":"OpenCore/broadwell.md","ref":"OpenCore/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"4.2.1","depth":2,"path":"OpenCore/ivy-bridge.md","ref":"OpenCore/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/haswell.md","mtime":"2020-02-04T05:46:42.052Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T05:47:27.968Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"4.2.2","depth":2,"next":{"title":"Broadwell","level":"4.2.3","depth":2,"path":"OpenCore/broadwell.md","ref":"OpenCore/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"4.2.1","depth":2,"path":"OpenCore/ivy-bridge.md","ref":"OpenCore/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/haswell.md","mtime":"2020-02-04T17:40:58.295Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T17:41:42.009Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -404,19 +404,6 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2.8" data-path="comet-lake.html">
-            
-                <a href="comet-lake.html">
-            
-                    
-                    Comet Lake
-            
-                </a>
-            
-
-            
-        </li>
-    
 
             </ul>
             
@@ -702,14 +689,97 @@
 <p><strong>Add</strong>: Sets device properties from a map.</p>
 <p>This section is set up via Headkaze&apos;s <a href="https://www.insanelymac.com/forum/topic/334899-intel-framebuffer-patching-using-whatevergreen/?tab=comments#comment-2626271" target="_blank"><em>Intel Framebuffer Patching Guide</em></a> and applies only one actual property to begin, which is the <em>ig-platform-id</em>. The way we get the proper value for this is to look at the ig-platform-id we intend to use, then swap the pairs of hex bytes.</p>
 <p>If we think of our ig-plat as <code>0xAABBCCDD</code>, our swapped version would look like <code>DDCCBBAA</code></p>
-<p>The two ig-platform-id&apos;s we use are as follows:</p>
+<p>An example of an ig-platform-id&apos;s we use are as follows:</p>
 <ul>
-<li><code>0x0166000A</code> - this is the standard hex for the ig-plat<ul>
-<li><code>0A006601</code> when hex-swapped</li>
+<li><code>0x0166000A</code> - this is the standard hex for the DeviceID<ul>
+<li><code>01660003</code> when hex-swapped, this will be our <code>AAPL,ig-platform-id</code></li>
 </ul>
 </li>
 </ul>
-<p>We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB. This is usually unnecessary, as this can be configured in BIOS.</p>
+<p>We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB.</p>
+<p>See the table and match up as best as possible to your iGPU. Intel ARK can help with extra iGPU info</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">iGPU</th>
+<th style="text-align:left">device-id</th>
+<th style="text-align:left">ig-platform-id</th>
+<th style="text-align:left">Port Count</th>
+<th style="text-align:left">Stolen Memory</th>
+<th style="text-align:left">Framebuffer Memory</th>
+<th style="text-align:left">Video RAM</th>
+<th style="text-align:left">Connectors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Intel HD Graphics 4000</td>
+<td style="text-align:left">01660001</td>
+<td style="text-align:left">01006601</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">96MB</td>
+<td style="text-align:left">24MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 HDMI1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 4000</td>
+<td style="text-align:left">01660002</td>
+<td style="text-align:left">02006601</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">24MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 4000*</td>
+<td style="text-align:left">01660003</td>
+<td style="text-align:left">03006601</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">16MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP3</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 4000</td>
+<td style="text-align:left">01660004</td>
+<td style="text-align:left">04006601</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">32MB</td>
+<td style="text-align:left">16MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 4000</td>
+<td style="text-align:left">01660008</td>
+<td style="text-align:left">08006601</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">16MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 4000</td>
+<td style="text-align:left">01660009</td>
+<td style="text-align:left">09006601</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">16MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>01660003 for 1366x768 display laptops</li>
+<li>01660004 for 1600x900 display laptops or higher</li>
+<li>01660009 for laptops with eDP internal display</li>
+</ul>
+<p>Source: <a href="https://fewtarius.gitbook.io/laptopguide/prepare-install-macos/display-configuration" target="_blank">Fewt</a></p>
 <p><code>PciRoot(0x0)/Pci(0x1f,0x3)</code> -&gt; <code>Layout-id</code></p>
 <ul>
 <li>Applies AppleALC audio injection, you&apos;ll need to do your own research on which codec your motherboard has and match it with AppleALC&apos;s layout. <a href="https://github.com/acidanthera/AppleALC/wiki/Supported-codecs" target="_blank">AppleALC Supported Codecs</a>.</li>
@@ -992,8 +1062,10 @@
 <p>For setting up the SMBIOS info, we&apos;ll use CorpNewt&apos;s <a href="https://github.com/corpnewt/GenSMBIOS" target="_blank">GenSMBIOS</a> application. </p>
 <p>For this Ivy Bridge example, we&apos;ll choose the MacBookPro10,1 SMBIOS. The typical breakdown is as follows:</p>
 <ul>
+<li><code>MacBookAir5,1</code> - 15w Dual core(Low End, 11&quot;)</li>
+<li><code>MacBookAir5,2</code> - 15w Dual core(Low End, 13&quot;)</li>
 <li><code>MacBookPro10,1</code> - 45w Quad core </li>
-<li><code>MacBookPro10,2</code> - 15w Dual core</li>
+<li><code>MacBookPro10,2</code> - 15w Dual core(High End)</li>
 </ul>
 <p>Run GenSMBIOS, pick option 1. for downloading MacSerial and Option 3. for selecting out SMBIOS.  This will give us an output similar to the following:</p>
 <pre><code class="lang-text">  #######################################################
@@ -1242,7 +1314,7 @@ SmUUID:       AA043F8D-33B6-4A1A-94F7-46972AAD0607
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"4.2.1","depth":2,"next":{"title":"Haswell","level":"4.2.2","depth":2,"path":"OpenCore/haswell.md","ref":"OpenCore/haswell.md","articles":[]},"previous":{"title":"OpenCore config","level":"4.2","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.2.1","depth":2,"path":"OpenCore/ivy-bridge.md","ref":"OpenCore/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.2.2","depth":2,"path":"OpenCore/haswell.md","ref":"OpenCore/haswell.md","articles":[]},{"title":"Broadwell","level":"4.2.3","depth":2,"path":"OpenCore/broadwell.md","ref":"OpenCore/broadwell.md","articles":[]},{"title":"Skylake","level":"4.2.4","depth":2,"path":"OpenCore/skylake.md","ref":"OpenCore/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.2.5","depth":2,"path":"OpenCore/kaby-lake.md","ref":"OpenCore/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.2.6","depth":2,"path":"OpenCore/coffee-lake-8th-gen.md","ref":"OpenCore/coffee-lake-8th-gen.md","articles":[]},{"title":"Coffee Lake(9th Gen)","level":"4.2.7","depth":2,"path":"OpenCore/coffee-lake-9th-gen.md","ref":"OpenCore/coffee-lake-9th-gen.md","articles":[]},{"title":"Comet Lake","level":"4.2.8","depth":2,"path":"OpenCore/comet-lake.md","ref":"OpenCore/comet-lake.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ivy-bridge.md","mtime":"2020-02-04T05:46:42.052Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T05:47:27.968Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"4.2.1","depth":2,"next":{"title":"Haswell","level":"4.2.2","depth":2,"path":"OpenCore/haswell.md","ref":"OpenCore/haswell.md","articles":[]},"previous":{"title":"OpenCore config","level":"4.2","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.2.1","depth":2,"path":"OpenCore/ivy-bridge.md","ref":"OpenCore/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.2.2","depth":2,"path":"OpenCore/haswell.md","ref":"OpenCore/haswell.md","articles":[]},{"title":"Broadwell","level":"4.2.3","depth":2,"path":"OpenCore/broadwell.md","ref":"OpenCore/broadwell.md","articles":[]},{"title":"Skylake","level":"4.2.4","depth":2,"path":"OpenCore/skylake.md","ref":"OpenCore/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.2.5","depth":2,"path":"OpenCore/kaby-lake.md","ref":"OpenCore/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.2.6","depth":2,"path":"OpenCore/coffee-lake-8th-gen.md","ref":"OpenCore/coffee-lake-8th-gen.md","articles":[]},{"title":"Coffee Lake(9th Gen)","level":"4.2.7","depth":2,"path":"OpenCore/coffee-lake-9th-gen.md","ref":"OpenCore/coffee-lake-9th-gen.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ivy-bridge.md","mtime":"2020-02-04T17:40:58.295Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T17:41:42.009Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

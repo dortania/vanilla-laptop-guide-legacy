@@ -404,19 +404,6 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2.8" data-path="comet-lake.html">
-            
-                <a href="comet-lake.html">
-            
-                    
-                    Comet Lake
-            
-                </a>
-            
-
-            
-        </li>
-    
 
             </ul>
             
@@ -684,30 +671,141 @@
 <p><strong>Add</strong>: Sets device properties from a map.</p>
 <p>This section is set up via Headkaze&apos;s <a href="https://www.insanelymac.com/forum/topic/334899-intel-framebuffer-patching-using-whatevergreen/?tab=comments#comment-2626271" target="_blank">Intel Framebuffer Patching Guide</a> and applies only one actual property to begin, which is the ig-platform-id. The way we get the proper value for this is to look at the ig-platform-id we intend to use, then swap the pairs of hex bytes.</p>
 <p>If we think of our ig-plat as <code>0xAABBCCDD</code>, our swapped version would look like <code>DDCCBBAA</code></p>
-<p>The two ig-platform-id&apos;s we use are as follows:</p>
+<p>An example of an ig-platform-id&apos;s we use are as follows:</p>
 <ul>
-<li><code>0x3E9B0007</code> - this is used when the iGPU is used to drive a display<ul>
-<li><code>07009B3E</code> when hex-swapped</li>
-</ul>
-</li>
-<li><code>0x3E920003</code> - this is used when the iGPU is only used for computing tasks and doesn&apos;t drive a display<ul>
-<li><code>0300923E</code> when hex-swapped</li>
+<li><code>0x3E000000</code> - this is the standard hex for the DeviceID<ul>
+<li><code>0000003E</code> when hex-swapped, this will be our <code>AAPL,ig-platform-id</code></li>
 </ul>
 </li>
 </ul>
-<p>Worth noting that for 10.12 -&gt; 10.13.5, you would need to fake the iGPU to the same values in the Kaby Lake guide, as this was before native Coffee Lake iGPU showed up.</p>
-<p>We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB. This is usually unnecessary, as this can be configured in BIOS.</p>
-<p>I added another section as well that shows a fake <code>device-id</code> for the i3-8100&apos;s UHD 630. This has a different device id than the UHD 630 found on the 8700k, for instance, (<code>3e918086</code> vs <code>3e928086</code> ).</p>
-<p>For this - we follow a similar procedure as our above ig-platform-id hex swapping - but this time, we only work with the first two pairs of hex bytes. If we think of our device id as 0xAABB0000, our swapped version would look like 0xBBAA0000. We don&apos;t do anything with the last 2 pairs of hex bytes.</p>
-<p>The device-id fake is set up like so:</p>
-<ul>
-<li><code>0x3e920000</code> - this is the device id for the UHD 630 found on an 8700k<ul>
-<li><code>923e0000</code> when hex swapped</li>
-</ul>
-</li>
-</ul>
-<p>Note: FakeID is only required for High Sierra, Mojave doesn&apos;t require this</p>
-<p>For users with black screen issues after verbose on B360, B365, H310, H370, Z390, please see the <a href="../extras/gpu-patches.md#iGPU-BusID-Patching">BusID iGPU patching</a> page</p>
+<p>We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB.</p>
+<p>See the table and match up as best as possible to your iGPU. Intel ARK can help with extra iGPU info</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">iGPU</th>
+<th style="text-align:left">device-id</th>
+<th style="text-align:left">ig-platform-id</th>
+<th style="text-align:left">Port Count</th>
+<th style="text-align:left">Stolen Memory</th>
+<th style="text-align:left">Framebuffer Memory</th>
+<th style="text-align:left">Video RAM</th>
+<th style="text-align:left">Connectors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Intel UHD Graphics 630</td>
+<td style="text-align:left">3E000000</td>
+<td style="text-align:left">0000003E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel UHD Graphics 630</td>
+<td style="text-align:left">3E920000</td>
+<td style="text-align:left">0000923E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel UHD Graphics 630</td>
+<td style="text-align:left">3E920009</td>
+<td style="text-align:left">0900923E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DUMMY2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel UHD Graphics 630</td>
+<td style="text-align:left">3E9B0000</td>
+<td style="text-align:left">00009B3E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel UHD Graphics 630</td>
+<td style="text-align:left">3E9B0006</td>
+<td style="text-align:left">06009B3E</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">38MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DUMMY2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel UHD Graphics 630</td>
+<td style="text-align:left">3E9B0009</td>
+<td style="text-align:left">09009B3E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Plus Graphics 655</td>
+<td style="text-align:left">3EA50000</td>
+<td style="text-align:left">0000A53E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Plus Graphics 655</td>
+<td style="text-align:left">3EA50004</td>
+<td style="text-align:left">0400A53E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel UHD Graphics 630</td>
+<td style="text-align:left">3EA50005</td>
+<td style="text-align:left">0500A53E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Plus Graphics 655*</td>
+<td style="text-align:left">3EA50009</td>
+<td style="text-align:left">0900A53E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Unlisted iGPU</td>
+<td style="text-align:left">3EA60005</td>
+<td style="text-align:left">0500A63E</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">57MB</td>
+<td style="text-align:left">0MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+</tbody>
+</table>
 <p><code>PciRoot(0x0)/Pci(0x1f,0x3)</code> -&gt; <code>Layout-id</code></p>
 <ul>
 <li>Applies AppleALC audio injection, you&apos;ll need to do your own research on which codec your motherboard has and match it with AppleALC&apos;s layout. <a href="https://github.com/acidanthera/AppleALC/wiki/Supported-codecs" target="_blank">AppleALC Supported Codecs</a>.</li>
@@ -1233,7 +1331,7 @@ SmUUID:       AA043F8D-33B6-4A1A-94F7-46972AAD0607
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Coffee Lake(8th Gen)","level":"4.2.6","depth":2,"next":{"title":"Coffee Lake(9th Gen)","level":"4.2.7","depth":2,"path":"OpenCore/coffee-lake-9th-gen.md","ref":"OpenCore/coffee-lake-9th-gen.md","articles":[]},"previous":{"title":"Kaby Lake","level":"4.2.5","depth":2,"path":"OpenCore/kaby-lake.md","ref":"OpenCore/kaby-lake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/coffee-lake-8th-gen.md","mtime":"2020-02-04T05:46:42.052Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T05:47:27.968Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Coffee Lake(8th Gen)","level":"4.2.6","depth":2,"next":{"title":"Coffee Lake(9th Gen)","level":"4.2.7","depth":2,"path":"OpenCore/coffee-lake-9th-gen.md","ref":"OpenCore/coffee-lake-9th-gen.md","articles":[]},"previous":{"title":"Kaby Lake","level":"4.2.5","depth":2,"path":"OpenCore/kaby-lake.md","ref":"OpenCore/kaby-lake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/coffee-lake-8th-gen.md","mtime":"2020-02-04T17:40:58.295Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T17:41:42.009Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

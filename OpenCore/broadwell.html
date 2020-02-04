@@ -404,19 +404,6 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2.8" data-path="comet-lake.html">
-            
-                <a href="comet-lake.html">
-            
-                    
-                    Comet Lake
-            
-                </a>
-            
-
-            
-        </li>
-    
 
             </ul>
             
@@ -684,26 +671,131 @@
 <p><strong>Add</strong>: Sets device properties from a map.</p>
 <p>This section is set up via Headkaze&apos;s <a href="https://www.insanelymac.com/forum/topic/334899-intel-framebuffer-patching-using-whatevergreen/?tab=comments#comment-2626271" target="_blank"><em>Intel Framebuffer Patching Guide</em></a> and applies only one actual property to begin, which is the <em>ig-platform-id</em>. The way we get the proper value for this is to look at the ig-platform-id we intend to use, then swap the pairs of hex bytes.</p>
 <p>If we think of our ig-plat as <code>0xAABBCCDD</code>, our swapped version would look like <code>DDCCBBAA</code></p>
-<p>The two ig-platform-id&apos;s we use are as follows:</p>
+<p>An example of an ig-platform-id&apos;s we use are as follows:</p>
 <ul>
-<li><code>0x0D220003</code> - this is used when the iGPU is used to drive a display<ul>
-<li><code>0300220D</code> when hex-swapped</li>
-</ul>
-</li>
-<li><code>0x04120004</code> - this is used when the iGPU is only used for computing tasks and doesn&apos;t drive a display<ul>
-<li><code>04001204</code> when hex-swapped</li>
+<li><code>0x16120003</code> - this is the standard hex for the DeviceID<ul>
+<li><code>03001216</code> when hex-swapped, this will be our <code>AAPL,ig-platform-id</code></li>
 </ul>
 </li>
 </ul>
-<p>I added another portion as well that shows a <code>device-id</code> fake in case you have an HD 4400 which is unsupported in macOS.</p>
-<p>For this - we follow a similar procedure as our above ig-platform-id hex swapping - but this time, we only work with the first two pairs of hex bytes. If we think of our device id as <code>0xAABB0000</code>, our swapped version would look like <code>0xBBAA0000</code>. We don&apos;t do anything with the last 2 pairs of hex bytes.</p>
-<p>The device-id fake is set up like so:</p>
-<ul>
-<li><code>0x04120000</code> - this is the device id for HD 4600 which does have support in macOS<ul>
-<li><code>12040000</code> when hex swapped</li>
-</ul>
-</li>
-</ul>
+<p>We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB.</p>
+<p>See the table and match up as best as possible to your iGPU. Intel ARK can help with extra iGPU info</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">iGPU</th>
+<th style="text-align:left">device-id</th>
+<th style="text-align:left">ig-platform-id</th>
+<th style="text-align:left">Port Count</th>
+<th style="text-align:left">Stolen Memory</th>
+<th style="text-align:left">Framebuffer Memory</th>
+<th style="text-align:left">Video RAM</th>
+<th style="text-align:left">Connectors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Unlisted iGPU</td>
+<td style="text-align:left">16060002</td>
+<td style="text-align:left">02000616</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Unlisted iGPU</td>
+<td style="text-align:left">160e0001</td>
+<td style="text-align:left">01000e16</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 5600</td>
+<td style="text-align:left">16120003</td>
+<td style="text-align:left">03001216</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2 HDMI1</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 5500</td>
+<td style="text-align:left">16160002</td>
+<td style="text-align:left">02001616</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 5300</td>
+<td style="text-align:left">161e0001</td>
+<td style="text-align:left">01001e16</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">38MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Pro Graphics 6200</td>
+<td style="text-align:left">16220002</td>
+<td style="text-align:left">02002216</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 6000</td>
+<td style="text-align:left">16260002</td>
+<td style="text-align:left">02002616</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 6000</td>
+<td style="text-align:left">16260005</td>
+<td style="text-align:left">05002616</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 6000*</td>
+<td style="text-align:left">16260006</td>
+<td style="text-align:left">06002616</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Graphics 6100</td>
+<td style="text-align:left">162b0002</td>
+<td style="text-align:left">02002b16</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">21MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+</tbody>
+</table>
 <p><code>PciRoot(0x0)/Pci(0x1f,0x3)</code> -&gt; <code>Layout-id</code></p>
 <ul>
 <li>Applies AppleALC audio injection, you&apos;ll need to do your own research on which codec your motherboard has and match it with AppleALC&apos;s layout. <a href="https://github.com/acidanthera/AppleALC/wiki/Supported-codecs" target="_blank">AppleALC Supported Codecs</a>.</li>
@@ -986,7 +1078,10 @@
 <p>For setting up the SMBIOS info, we&apos;ll use CorpNewt&apos;s <a href="https://github.com/corpnewt/GenSMBIOS" target="_blank">GenSMBIOS</a> application. </p>
 <p>For this Broadwell example, we chose the MacBookPro12,1 SMBIOS. Note there were no Quad core Broadwell MacBooks so the typical breakdown is as follows:</p>
 <ul>
-<li><code>MacBookPro12,1</code> - 15w Dual core</li>
+<li><code>MacBook8,1</code> - 7w Dual Core</li>
+<li><code>MacBookAir7,1</code> - 15w Dual core(Low End, 11&quot;)</li>
+<li><code>MacBookAir7,2</code> - 15w Dual core(Low End, 13&quot;)</li>
+<li><code>MacBookPro12,1</code> - 15w Dual core(High End)</li>
 <li><code>MacBookPro11,2</code> - 45w Quad core(High End, iGPU)</li>
 <li><code>MacBookPro11,3</code> - 45w Quad core(High End, Nvidia dGPU)</li>
 <li><code>MacBookPro11,4</code> - 45w Quad core(High End, iGPU)</li>
@@ -1238,7 +1333,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Broadwell","level":"4.2.3","depth":2,"next":{"title":"Skylake","level":"4.2.4","depth":2,"path":"OpenCore/skylake.md","ref":"OpenCore/skylake.md","articles":[]},"previous":{"title":"Haswell","level":"4.2.2","depth":2,"path":"OpenCore/haswell.md","ref":"OpenCore/haswell.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/broadwell.md","mtime":"2020-02-04T05:46:42.052Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T05:47:27.968Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Broadwell","level":"4.2.3","depth":2,"next":{"title":"Skylake","level":"4.2.4","depth":2,"path":"OpenCore/skylake.md","ref":"OpenCore/skylake.md","articles":[]},"previous":{"title":"Haswell","level":"4.2.2","depth":2,"path":"OpenCore/haswell.md","ref":"OpenCore/haswell.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/broadwell.md","mtime":"2020-02-04T17:40:58.295Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T17:41:42.009Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
