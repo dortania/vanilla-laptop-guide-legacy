@@ -123,21 +123,28 @@ This section is set up via Headkaze's [_Intel Framebuffer Patching Guide_](https
 
 If we think of our ig-plat as `0xAABBCCDD`, our swapped version would look like `DDCCBBAA`
 
-The two ig-platform-id's we use are as follows:
+An example of an ig-platform-id's we use are as follows:
 
-* `0x0D220003` - this is used when the iGPU is used to drive a display
-  * `0300220D` when hex-swapped
-* `0x04120004` - this is used when the iGPU is only used for computing tasks and doesn't drive a display
-  * `04001204` when hex-swapped
+* `0x16120003` - this is the standard hex for the DeviceID
+  * `03001216` when hex-swapped, this will be our `AAPL,ig-platform-id`
 
-I added another portion as well that shows a `device-id` fake in case you have an HD 4400 which is unsupported in macOS.
 
-For this - we follow a similar procedure as our above ig-platform-id hex swapping - but this time, we only work with the first two pairs of hex bytes. If we think of our device id as `0xAABB0000`, our swapped version would look like `0xBBAA0000`. We don't do anything with the last 2 pairs of hex bytes.
+We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB.
 
-The device-id fake is set up like so:
+See the table and match up as best as possible to your iGPU. Intel ARK can help with extra iGPU info
 
-* `0x04120000` - this is the device id for HD 4600 which does have support in macOS
-  * `12040000` when hex swapped
+| iGPU | device-id | ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Unlisted iGPU | 16060002 | 02000616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Unlisted iGPU | 160e0001 | 01000e16 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 5600 | 16120003 | 03001216 | 4 | 34MB | 21MB | 1536MB | LVDS1 DP2 HDMI1 |
+| Intel HD Graphics 5500 | 16160002 | 02001616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 5300 | 161e0001 | 01001e16 | 3 | 38MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel Iris Pro Graphics 6200 | 16220002 | 02002216 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 6000 | 16260002 | 02002616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 6000 | 16260005 | 05002616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 6000\* | 16260006 | 06002616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel Iris Graphics 6100 | 162b0002 | 02002b16 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -&gt; `Layout-id`
 
@@ -345,7 +352,10 @@ For setting up the SMBIOS info, we'll use CorpNewt's [GenSMBIOS](https://github.
 
 For this Broadwell example, we chose the MacBookPro12,1 SMBIOS. Note there were no Quad core Broadwell MacBooks so the typical breakdown is as follows:
 
-* `MacBookPro12,1` - 15w Dual core
+* `MacBook8,1` - 7w Dual Core
+* `MacBookAir7,1` - 15w Dual core(Low End, 11")
+* `MacBookAir7,2` - 15w Dual core(Low End, 13")
+* `MacBookPro12,1` - 15w Dual core(High End)
 * `MacBookPro11,2` - 45w Quad core(High End, iGPU)
 * `MacBookPro11,3` - 45w Quad core(High End, Nvidia dGPU)
 * `MacBookPro11,4` - 45w Quad core(High End, iGPU)

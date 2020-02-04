@@ -33,5 +33,4 @@
    * [Kaby Lake](/OpenCore/kaby-lake.md)
    * [Coffee Lake(8th Gen)](/OpenCore/coffee-lake-8th-gen.md)
    * [Coffee Lake(9th Gen)](/OpenCore/coffee-lake-9th-gen.md)
-   * [Comet Lake](/OpenCore/comet-lake.md)
 * [Getting started with ACPI](/OpenCore/acpi.md)

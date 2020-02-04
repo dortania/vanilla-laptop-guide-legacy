@@ -123,12 +123,10 @@ This section is set up via Headkaze's [_Intel Framebuffer Patching Guide_](https
 
 If we think of our ig-plat as `0xAABBCCDD`, our swapped version would look like `DDCCBBAA`
 
-The two ig-platform-id's we use are as follows:
+An example of an ig-platform-id's we use are as follows:
 
-* `0x0D220003` - this is used when the iGPU is used to drive a display
-  * `0300220D` when hex-swapped
-* `0x04120004` - this is used when the iGPU is only used for computing tasks and doesn't drive a display
-  * `04001204` when hex-swapped
+* `0x0a260005` -  this is the standard hex for the DeviceID
+  * `0500260a` when hex-swapped, this will be our `AAPL,ig-platform-id`
 
 I added another portion as well that shows a `device-id` fake in case you have an HD 4400 which is unsupported in macOS.
 
@@ -138,6 +136,23 @@ The device-id fake is set up like so:
 
 * `0x04120000` - this is the device id for HD 4600 which does have support in macOS
   * `12040000` when hex swapped
+  
+  We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB.
+
+  See the table and match up as best as possible to your iGPU. Intel ARK can help with extra iGPU info
+
+  | iGPU | device-id | ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
+  | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+  | Intel HD Graphics 4400 | 0a16000c | 0c00160a | 3 | 64MB | 34MB | 1536MB | LVDS1 DP2 |
+  | Intel HD Graphics 5000\*\* | 0a260005 | 0500260a | 3 | 32MB | 19MB | 1536MB | LVDS1 DP2 |
+  | Intel HD Graphics 5000 | 0a260006 | 0600260a | 3 | 32MB | 19MB | 1536MB | LVDS1 DP2 |
+  | Intel Iris Graphics 5100 | 0a2e0008 | 08002e0a | 3 | 64MB | 34MB | 1536MB | LVDS1 DP2 |
+  | Intel Iris Pro Graphics 5200 | 0d260007 | 0700260d | 4 | 64MB | 34MB | 1536MB | LVDS1 DP2 HDMI1 |
+  | Intel Iris Pro Graphics 5200 | 0d260009 | 0900260d | 1 | 64MB | 34MB | 1536MB | LVDS1 |
+  | Intel Iris Pro Graphics 5200 | 0d26000e | 0e00260d | 4 | 96MB | 34MB | 1536MB | LVDS1 DP2 HDMI1 |
+  | Intel Iris Pro Graphics 5200 | 0d26000f | 0f00260d | 1 | 96MB | 34MB | 1536MB | LVDS1 |
+
+  Source: [Fewt](https://fewtarius.gitbook.io/laptopguide/prepare-install-macos/display-configuration)
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -&gt; `Layout-id`
 
@@ -346,7 +361,9 @@ For setting up the SMBIOS info, we'll use CorpNewt's [GenSMBIOS](https://github.
 
 For this Haswell example, we chose the MacBookPro11,1 SMBIOS. The typical breakdown is as follows:
 
-* `MacBookPro11,1` - 15w Dual core
+* `MacBookAir6,1` - 15w Dual core(Low End, 11")
+* `MacBookAir6,2` - 15w Dual core(Low End, 13")
+* `MacBookPro11,1` - 15w Dual core(High End)
 * `MacBookPro11,2` - 45w Quad core(High End, iGPU)
 * `MacBookPro11,3` - 45w Quad core(High End, Nvidia dGPU)
 * `MacBookPro11,4` - 45w Quad core(High End, iGPU)

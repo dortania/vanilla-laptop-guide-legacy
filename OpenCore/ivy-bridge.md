@@ -135,12 +135,29 @@ This section is set up via Headkaze's [_Intel Framebuffer Patching Guide_](https
 
 If we think of our ig-plat as `0xAABBCCDD`, our swapped version would look like `DDCCBBAA`
 
-The two ig-platform-id's we use are as follows:
+An example of an ig-platform-id's we use are as follows:
 
-* `0x0166000A` - this is the standard hex for the ig-plat
-  * `0A006601` when hex-swapped
+* `0x0166000A` - this is the standard hex for the DeviceID
+  * `01660003` when hex-swapped, this will be our `AAPL,ig-platform-id`
 
-We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB. This is usually unnecessary, as this can be configured in BIOS.
+We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB.
+
+See the table and match up as best as possible to your iGPU. Intel ARK can help with extra iGPU info
+
+| iGPU | device-id | ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Intel HD Graphics 4000 | 01660001 | 01006601 | 4 | 96MB | 24MB | 1536MB | LVDS1 HDMI1 DP2 |
+| Intel HD Graphics 4000 | 01660002 | 02006601 | 1 | 64MB | 24MB | 1536MB | LVDS1 |
+| Intel HD Graphics 4000\* | 01660003 | 03006601 | 4 | 64MB | 16MB | 1536MB | LVDS1 DP3 |
+| Intel HD Graphics 4000 | 01660004 | 04006601 | 1 | 32MB | 16MB | 1536MB | LVDS1 |
+| Intel HD Graphics 4000 | 01660008 | 08006601 | 3 | 64MB | 16MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 4000 | 01660009 | 09006601 | 3 | 64MB | 16MB | 1536MB | LVDS1 DP2 |
+
+* 01660003 for 1366x768 display laptops
+* 01660004 for 1600x900 display laptops or higher
+* 01660009 for laptops with eDP internal display
+
+Source: [Fewt](https://fewtarius.gitbook.io/laptopguide/prepare-install-macos/display-configuration)
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -&gt; `Layout-id`
 
@@ -350,8 +367,10 @@ For setting up the SMBIOS info, we'll use CorpNewt's [GenSMBIOS](https://github.
 
 For this Ivy Bridge example, we'll choose the MacBookPro10,1 SMBIOS. The typical breakdown is as follows:
 
+* `MacBookAir5,1` - 15w Dual core(Low End, 11")
+* `MacBookAir5,2` - 15w Dual core(Low End, 13")
 * `MacBookPro10,1` - 45w Quad core 
-* `MacBookPro10,2` - 15w Dual core
+* `MacBookPro10,2` - 15w Dual core(High End)
 
 Run GenSMBIOS, pick option 1. for downloading MacSerial and Option 3. for selecting out SMBIOS.  This will give us an output similar to the following:
 
