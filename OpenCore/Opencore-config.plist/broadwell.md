@@ -1,4 +1,4 @@
-# Ivy Bridge
+# Broadwell
 
 [Blame Slav for issues](https://github.com/khronokernel)
 
@@ -13,7 +13,7 @@ Users of ProperTree will also get the benefit of running the Snapshot function w
 
 ## ACPI
 
-![ACPI](https://i.imgur.com/QFsl9R1.png)
+![ACPI](https://i.imgur.com/2T0ubhy.png)
 
 **Add:**
 
@@ -21,8 +21,8 @@ This is where you'll add SSDT patches for your system, these are most useful for
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
 
-* [CPU-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-   * Needed for proper CPU power management, you will need to run Pike's ssdtPRGen.sh script to generate this file. This will be run in post install.
+* [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
+  * Allows for native CPU power management, Clover alternative would be under `Acpi -> GenerateOptions -> PluginType`. Do note that this SSDT is made for systems where `AppleACPICPU` attaches `CPU0`, though some ACPI tables have theirs starting at `PR00` so adjust accordingly. Seeing what device has AppleACPICPU connected first in [IORegistryExplorer](https://github.com/toleda/audio_ALCInjection/raw/master/IORegistryExplorer_v2.1.zip) can also give you a hint
 * [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
    * Adds brightness control support
 * [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)
@@ -34,44 +34,32 @@ For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs,
 
 **Block**
 
-This drops certain ACPI tabes from loading, for use we need to block both `CpuPm` and `Cpu0Ist`:
-
-* `CpuPm`:
-   * OemTableId: `437075506d000000`
-   * TableLength: `0`
-   * TableSignature: `53534454`
-   * Enabled: `YES`
-
-* `Cpu0Ist`:
-   * OemTableId: `4370753049737400`
-   * TableLength: `0`
-   * TableSignature: `53534454`
-   * Enabled: `YES`
+This drops certain ACPI tabes from loading, for us we can ignore this
 
 **Patch**:
 
 This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. For us, we'll need a couple:
 
 * EC Rename
-   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide]() on how to determine what EC you have and apply the appropriate patches
+   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://khronokernel.github.io/EC-fix-guide/) on how to determine what EC you have and apply the appropriate patches
 * OSI rename
    * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT
    
-   | Comment | String | Change XXXX to EC |
-   | :--- | :--- | :--- |
-   | Enabled | String | YES |
-   | Count | Number | 0 |
-   | Limit | Nuber | 0 |
-   | Find | Data | xxxxxxxx |
-   | Replace | Data | 45435f5f |
+| Comment | String | Change XXXX to EC |
+| :--- | :--- | :--- |
+| Enabled | String | YES |
+| Count | Number | 0 |
+| Limit | Nuber | 0 |
+| Find | Data | xxxxxxxx |
+| Replace | Data | 45435f5f |
    
-   | Comment | String | Change _OSI to XOSI |
-   | :--- | :--- | :--- |
-   | Enabled | String | YES |
-   | Count | Number | 0 |
-   | Limit | Nuber | 0 |
-   | Find | Data | 5f4f5349 |
-   | Replace | Data | 584f5349 |
+| Comment | String | Change _OSI to XOSI |
+| :--- | :--- | :--- |
+| Enabled | String | YES |
+| Count | Number | 0 |
+| Limit | Nuber | 0 |
+| Find | Data | 5f4f5349 |
+| Replace | Data | 584f5349 |
 
 **Quirk**: Settings for ACPI.
 
@@ -127,7 +115,7 @@ This section is allowing devices to be passthrough to macOS that are generally i
 
 ## DeviceProperties
 
-![DeviceProperties](https://i.imgur.com/Aw9t9vI.png)
+![DeviceProperties](https://i.imgur.com/vgLIhOo.png)
 
 **Add**: Sets device properties from a map.
 
@@ -137,10 +125,19 @@ If we think of our ig-plat as `0xAABBCCDD`, our swapped version would look like 
 
 The two ig-platform-id's we use are as follows:
 
-* `0x0166000A` - this is the standard hex for the ig-plat
-  * `0A006601` when hex-swapped
+* `0x0D220003` - this is used when the iGPU is used to drive a display
+  * `0300220D` when hex-swapped
+* `0x04120004` - this is used when the iGPU is only used for computing tasks and doesn't drive a display
+  * `04001204` when hex-swapped
 
-We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB. This is usually unnecessary, as this can be configured in BIOS.
+I added another portion as well that shows a `device-id` fake in case you have an HD 4400 which is unsupported in macOS.
+
+For this - we follow a similar procedure as our above ig-platform-id hex swapping - but this time, we only work with the first two pairs of hex bytes. If we think of our device id as `0xAABB0000`, our swapped version would look like `0xBBAA0000`. We don't do anything with the last 2 pairs of hex bytes.
+
+The device-id fake is set up like so:
+
+* `0x04120000` - this is the device id for HD 4600 which does have support in macOS
+  * `12040000` when hex swapped
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -&gt; `Layout-id`
 
@@ -148,13 +145,13 @@ We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenme
 
 For us, we'll be using the boot-arg `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present
 
-**Block**: Removes device properties from the map, for us we can ignore this
-
 Fun Fact: The reason the byte order is swapped is due to [Endianness](https://en.wikipedia.org/wiki/Endianness), specifically Little Endians that modern CPUs use for ordering bytes. The more you know!
+
+**Block**: Removes device properties from the map, for us we can ignore this
 
 ## Kernel
 
-![Kernel](https://i.imgur.com/repNbDT.png)
+![Kernel](https://i.imgur.com/2DkdqCv.png)
 
 **Add**: Here's where you specify which kexts to load, order matters here so make sure Lilu.kext is always first! Other higher priority kexts come after Lilu such as VirtualSMC, AppleALC, WhateverGreen, etc. A reminder that [ProperTree](https://github.com/corpnewt/ProperTree) users can run Cmd/Ctrl+R to add all their kexts in the correct order without manually typing each kext out.
 
@@ -170,7 +167,7 @@ Fun Fact: The reason the byte order is swapped is due to [Endianness](https://en
   * Path to the `info.plist` hidden within the kext
   * ex: `Contents/Info.plist`
 
-**Emulate**: Needed for spoofing unsupported CPUs like Pentiums and Celerons
+**Emulate**: Needed for spoofing unsupported CPUs like desktop Pentiums and Celerons
 
 * **CpuidMask**: When set to Zero, original CPU bit will be used
   * `<Clover_FCPUID_Extended_to_4_bytes_Swapped_Bytes> | 00 00 00 00 | 00 00 00 00 | 00 00 00 00`
@@ -212,11 +209,11 @@ Fun Fact: The reason the byte order is swapped is due to [Endianness](https://en
 * **XhciPortLimit**: YES 
   * This is actually the 15 port limit patch, don't rely on it as it's not a guaranteed solution for fixing USB. Please create a [USB map](https://usb-map.gitbook.io/project/) when possible.
 
-The reason being is that UsbInjectAll reimplements builtin macOS functionality without proper current tuning. It is much cleaner to just describe your ports in a single plist-only kext, which will not waste runtime memory and such.
+The reason being is that UsbInjectAll reimplements builtin macOS functionality without proper current tuning. It is much cleaner to just describe your ports in a single plist-only kext, which will not waste runtime memory and such
 
 ## Misc
 
-![Misc](https://i.imgur.com/OROZbCk.png)
+![Misc](https://i.imgur.com/qU1SYNs.png)
 
 **Boot**: Settings for boot screen \(leave as-is unless you know what you're doing\)
 
@@ -270,11 +267,10 @@ These values are based of those calculated in [OpenCore debugging](/troubleshoot
 * **Name** 
   * Name shown in OpenCore
 * **Enabled** 
-* Self-explanatory, enables or disables
+  * Self-explanatory, enables or disables
 * **Path** 
   * Path to file after the `Tools` folder
-
-    ex: [Shell.efi](https://github.com/acidanthera/OpenCoreShell/releases)
+  * ex: [Shell.efi](https://github.com/acidanthera/OpenCoreShell/releases)
 
 **Entries**: Used for specifying irregular boot paths that can't be found naturally with OpenCore
 
@@ -304,9 +300,8 @@ These values are based of those calculated in [OpenCore debugging](/troubleshoot
   * **-v** - this enables verbose mode, which shows all the behind-the-scenes text that scrolls by as you're booting instead of the Apple logo and progress bar. It's invaluable to any Hackintosher, as it gives you an inside look at the boot process, and can help you identify issues, problem kexts, etc.
   * **debug=0x100** - this disables macOS's watchdog which helps prevents a reboot on a kernel panic. That way you can \(hopefully\) glean some useful info and follow the breadcrumbs to get past the issues.
   * **keepsyms=1** - this is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
-  * **alcid=1** - used for setting layout-id for AppleALC, see [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system.
-  * **-wegnoegpu** - Hides all non-intel GPUs from macOS
-
+   * **alcid=1** - used for setting layout-id for AppleALC, see [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system.
+   * **-wegnoegpu** - Hides all non-intel GPUs from macOS
 * **csr-active-config**: Settings for SIP, generally recommended to manually change this within Recovery partition with `csrutil` via the recovery partition
 
 csr-active-config is set to `00000000` which enables System Integrity Protection. You can choose a number of other options to enable/disable sections of SIP. Some common ones are as follows:
@@ -320,7 +315,7 @@ Recommended to leave enabled for best secuirty practices
 * **nvda\_drv**: &lt;&gt; 
   * For enabling Nvidia WebDrivers, set to 31 if running a [Maxwell or Pascal GPU](https://github.com/khronokernel/Catalina-GPU-Buyers-Guide/blob/master/README.md#Unsupported-nVidia-GPUs). This is the same as setting nvda\_drv=1 but instead we translate it from [text to hex](https://www.browserling.com/tools/hex-to-text), Clover equivalent is `NvidiaWeb`. **AMD and Intel GPU users should leave this area blank.**
 * **prev-lang:kbd**: &lt;&gt; 
-  * Needed for non-Latin keyboards in the format of `lang-COUNTRY:keyboard`, recommeneded to keep blank though you can specify it\(**Default in Sample config is Russian**\):
+  * Needed for non-latin keyboards in the format of `lang-COUNTRY:keyboard`, recommeneded to keep blank though you can specify it\(**Default in Sample config is Russian**\):
     * American: `en-US:0`\(`656e2d55533a30` in HEX\)
     * Full list can be found in [AppleKeyboardLayouts.txt](https://github.com/acidanthera/OcSupportPkg/blob/master/Utilities/AppleKeyboardLayouts/AppleKeyboardLayouts.txt)
 
@@ -344,26 +339,29 @@ Recommended to leave enabled for best secuirty practices
 
 ## Platforminfo
 
-![PlatformInfo](https://i.imgur.com/5rl12dZ.png)
+![PlatformInfo](https://i.imgur.com/XlxjsAd.png)
 
 For setting up the SMBIOS info, we'll use CorpNewt's [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) application. 
 
-For this Ivy Bridge example, we'll choose the MacBookPro10,1 SMBIOS. The typical breakdown is as follows:
+For this Broadwell example, we chose the MacBookPro12,1 SMBIOS. Note there were no Quad core Broadwell MacBooks so the typical breakdown is as follows:
 
-* `MacBookPro10,1` - 45w Quad core 
-* `MacBookPro10,2` - 15w Dual core
+* `MacBookPro12,1` - 15w Dual core
+* `MacBookPro11,2` - 45w Quad core(High End, iGPU)
+* `MacBookPro11,3` - 45w Quad core(High End, Nvidia dGPU)
+* `MacBookPro11,4` - 45w Quad core(High End, iGPU)
+* `MacBookPro11,5` - 45w Quad core(High End, AMD dGPU)
 
 Run GenSMBIOS, pick option 1. for downloading MacSerial and Option 3. for selecting out SMBIOS.  This will give us an output similar to the following:
 
 ```text
   #######################################################
- #               MacBookPro10,1 SMBIOS Info            #
+ #               MacBookPro12,1 SMBIOS Info            #
 #######################################################
 
-Type:         MacBookPro10,1
-Serial:       C02Z2CZ5H7JY
-Board Serial: C02928701GUH69FFB
-SmUUID:       AA043F8D-33B6-4A1A-94F7-46972AAD0607
+Type:         MacBookPro12,1
+Serial:       C02M9SYJFY10
+Board Serial: C02408101J9G2Y7A8
+SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 ```
 The `Type` part gets copied to Generic -&gt; SystemProductName.
 
@@ -387,8 +385,7 @@ We set Generic -&gt; ROM to either an Apple ROM \(dumped from a real Mac\), your
 * **SupportsCsm**: NO
   * Used for when the EFI partition isn't first on the windows drive
 
-**UpdateDataHub**: YES
-
+    **UpdateDataHub**: YES
 * Update Data Hub fields
 
 **UpdateNVRAM**: YES
@@ -436,7 +433,7 @@ We set Generic -&gt; ROM to either an Apple ROM \(dumped from a real Mac\), your
 
 * **AppleSmcIo**: NO
   * Reinstalls Apple SMC I/O, this is the equivlant of VirtualSMC.efi which is only needed for users using FileVault
-* **ConsoleControl**: YES
+* **ConsoleControl**: NO
   * Replaces Console Control protocol with a builtin version, set to YES otherwise you may see text output during booting instead of nice Apple logo. Required for most APTIO firmware
 * **FirmwareVolume**: NO
   * Fixes UI regarding Filevault, set to YES for better FileVault compatibility
@@ -506,7 +503,6 @@ For those having booting issues, please make sure to read the [Troubleshooting s
 
 So what in the world needs to be done once everything is installed? Well here's some things you can do:
 
-* [Fix CPU Power Management](https://github.com/Piker-Alpha/ssdtPRGen.sh)(run ssdtPRGen.sh and add the SSDT.aml to EFI and config)
 * [USB mapping](https://usb-map.gitbook.io/project/) 
 * Correcting audio, reread the DeviceProperties on how
 * [Enabling FileVault and other security features](../post-install/security.md)
