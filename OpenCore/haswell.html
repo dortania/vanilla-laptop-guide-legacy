@@ -688,19 +688,105 @@
 </ul>
 <p>We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB.</p>
 <p>See the table and match up as best as possible to your iGPU. Intel ARK can help with extra iGPU info</p>
-<p>| iGPU | device-id | ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 4400 | 0a16000c | 0c00160a | 3 | 64MB | 34MB | 1536MB | LVDS1 DP2 |
-| Intel HD Graphics 5000** | 0a260005 | 0500260a | 3 | 32MB | 19MB | 1536MB | LVDS1 DP2 |
-| Intel HD Graphics 5000 | 0a260006 | 0600260a | 3 | 32MB | 19MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Graphics 5100 | 0a2e0008 | 08002e0a | 3 | 64MB | 34MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Pro Graphics 5200 | 0d260007 | 0700260d | 4 | 64MB | 34MB | 1536MB | LVDS1 DP2 HDMI1 |
-| Intel Iris Pro Graphics 5200 | 0d260009 | 0900260d | 1 | 64MB | 34MB | 1536MB | LVDS1 |
-| Intel Iris Pro Graphics 5200 | 0d26000e | 0e00260d | 4 | 96MB | 34MB | 1536MB | LVDS1 DP2 HDMI1 |
-| Intel Iris Pro Graphics 5200 | 0d26000f | 0f00260d | 1 | 96MB | 34MB | 1536MB | LVDS1 |</p>
-<p>Source: <a href="https://fewtarius.gitbook.io/laptopguide/prepare-install-macos/display-configuration" target="_blank">Fewt</a></p>
 </li>
 </ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">iGPU</th>
+<th style="text-align:left">device-id</th>
+<th style="text-align:left">ig-platform-id</th>
+<th style="text-align:left">Port Count</th>
+<th style="text-align:left">Stolen Memory</th>
+<th style="text-align:left">Framebuffer Memory</th>
+<th style="text-align:left">Video RAM</th>
+<th style="text-align:left">Connectors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Intel HD Graphics 4400</td>
+<td style="text-align:left">0a16000c</td>
+<td style="text-align:left">0c00160a</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 5000**</td>
+<td style="text-align:left">0a260005</td>
+<td style="text-align:left">0500260a</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">32MB</td>
+<td style="text-align:left">19MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel HD Graphics 5000</td>
+<td style="text-align:left">0a260006</td>
+<td style="text-align:left">0600260a</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">32MB</td>
+<td style="text-align:left">19MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Graphics 5100</td>
+<td style="text-align:left">0a2e0008</td>
+<td style="text-align:left">08002e0a</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Pro Graphics 5200</td>
+<td style="text-align:left">0d260007</td>
+<td style="text-align:left">0700260d</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2 HDMI1</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Pro Graphics 5200</td>
+<td style="text-align:left">0d260009</td>
+<td style="text-align:left">0900260d</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Pro Graphics 5200</td>
+<td style="text-align:left">0d26000e</td>
+<td style="text-align:left">0e00260d</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">96MB</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1 DP2 HDMI1</td>
+</tr>
+<tr>
+<td style="text-align:left">Intel Iris Pro Graphics 5200</td>
+<td style="text-align:left">0d26000f</td>
+<td style="text-align:left">0f00260d</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">96MB</td>
+<td style="text-align:left">34MB</td>
+<td style="text-align:left">1536MB</td>
+<td style="text-align:left">LVDS1</td>
+</tr>
+</tbody>
+</table>
+<p>  Source: <a href="https://fewtarius.gitbook.io/laptopguide/prepare-install-macos/display-configuration" target="_blank">Fewt</a></p>
 <p><code>PciRoot(0x0)/Pci(0x1f,0x3)</code> -&gt; <code>Layout-id</code></p>
 <ul>
 <li>Applies AppleALC audio injection, you&apos;ll need to do your own research on which codec your motherboard has and match it with AppleALC&apos;s layout. <a href="https://github.com/acidanthera/AppleALC/wiki/Supported-codecs" target="_blank">AppleALC Supported Codecs</a>.</li>
@@ -1237,7 +1323,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"4.2.2","depth":2,"next":{"title":"Broadwell","level":"4.2.3","depth":2,"path":"OpenCore/broadwell.md","ref":"OpenCore/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"4.2.1","depth":2,"path":"OpenCore/ivy-bridge.md","ref":"OpenCore/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/haswell.md","mtime":"2020-02-04T17:40:58.295Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T17:41:42.009Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"4.2.2","depth":2,"next":{"title":"Broadwell","level":"4.2.3","depth":2,"path":"OpenCore/broadwell.md","ref":"OpenCore/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"4.2.1","depth":2,"path":"OpenCore/ivy-bridge.md","ref":"OpenCore/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/haswell.md","mtime":"2020-02-04T17:53:05.392Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-02-04T17:53:52.195Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
