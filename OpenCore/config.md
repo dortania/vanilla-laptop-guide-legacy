@@ -1,5 +1,7 @@
 # Creating our config
 
+## For all Issues with OpenCore section, [blame Slav](https://github.com/khronokernel)
+
 Now comes the fun part, making our config.plist. Follow your respective section for configuring, the typical breakdown of how to follow:
 
 [Ivy Bridge](/config.plist/ivy-bridge.md)
