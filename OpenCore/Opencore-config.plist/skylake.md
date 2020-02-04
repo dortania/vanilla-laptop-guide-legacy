@@ -1,4 +1,4 @@
-# Coffee Lake
+# Skylake
 
 [Blame Slav for issues](https://github.com/khronokernel)
 
@@ -41,25 +41,25 @@ This drops certain ACPI tabes from loading, for us we can ignore this
 This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. For us, we'll need a couple:
 
 * EC Rename
-   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide]() on how to determine what EC you have and apply the appropriate patches
+   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://khronokernel.github.io/EC-fix-guide/) on how to determine what EC you have and apply the appropriate patches
 * OSI rename
    * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT
    
-   | Comment | String | Change XXXX to EC |
-   | :--- | :--- | :--- |
-   | Enabled | String | YES |
-   | Count | Number | 0 |
-   | Limit | Nuber | 0 |
-   | Find | Data | xxxxxxxx |
-   | Replace | Data | 45435f5f |
+| Comment | String | Change XXXX to EC |
+| :--- | :--- | :--- |
+| Enabled | String | YES |
+| Count | Number | 0 |
+| Limit | Nuber | 0 |
+| Find | Data | xxxxxxxx |
+| Replace | Data | 45435f5f |
    
-   | Comment | String | Change _OSI to XOSI |
-   | :--- | :--- | :--- |
-   | Enabled | String | YES |
-   | Count | Number | 0 |
-   | Limit | Nuber | 0 |
-   | Find | Data | 5f4f5349 |
-   | Replace | Data | 584f5349 |
+| Comment | String | Change _OSI to XOSI |
+| :--- | :--- | :--- |
+| Enabled | String | YES |
+| Count | Number | 0 |
+| Limit | Nuber | 0 |
+| Find | Data | 5f4f5349 |
+| Replace | Data | 584f5349 |
 
 **Quirk**: Settings for ACPI.
 
@@ -93,7 +93,7 @@ This section is allowing devices to be passthrough to macOS that are generally i
 * **DisableSingleUser**: NO
   * Disables the use of `Cmd+S` and `-s`, this is closer to the behaviour of T2 based machines
 * **DisableVariableWrite**: NO
-  * Needed for systems with non-functioning NVRAM, thanks to SSDT-PMC we no longer need this option
+  * Needed for systems with non-functioning NVRAM like Z390 and such
 * **DiscardHibernateMap**: NO
   * Reuse original hibernate memory map, only needed for certain legacy hardware 
 * **EnableSafeModeSlide**: YES
@@ -115,37 +115,22 @@ This section is allowing devices to be passthrough to macOS that are generally i
 
 ## DeviceProperties
 
-![DeviceProperties](https://i.imgur.com/kHKNvgl.png)
+![DeviceProperties](https://i.imgur.com/N44BEKs.png)
 
 **Add**: Sets device properties from a map.
 
-This section is set up via Headkaze's [Intel Framebuffer Patching Guide](https://www.insanelymac.com/forum/topic/334899-intel-framebuffer-patching-using-whatevergreen/?tab=comments#comment-2626271) and applies only one actual property to begin, which is the ig-platform-id. The way we get the proper value for this is to look at the ig-platform-id we intend to use, then swap the pairs of hex bytes.
+This section is set up via Headkaze's [_Intel Framebuffer Patching Guide_](https://www.insanelymac.com/forum/topic/334899-intel-framebuffer-patching-using-whatevergreen/?tab=comments#comment-2626271) and applies only one actual property to begin, which is the _ig-platform-id_. The way we get the proper value for this is to look at the ig-platform-id we intend to use, then swap the pairs of hex bytes.
 
 If we think of our ig-plat as `0xAABBCCDD`, our swapped version would look like `DDCCBBAA`
 
 The two ig-platform-id's we use are as follows:
 
-* `0x3E9B0007` - this is used when the iGPU is used to drive a display
-  * `07009B3E` when hex-swapped
-* `0x3E920003` - this is used when the iGPU is only used for computing tasks and doesn't drive a display
-  * `0300923E` when hex-swapped
-
-Worth noting that for 10.12 -&gt; 10.13.5, you would need to fake the iGPU to the same values in the Kaby Lake guide, as this was before native Coffee Lake iGPU showed up.
+* `0x19120000` - this is used when the iGPU is used to drive a display
+  * `00001219` when hex-swapped
+* `0x19120001` - this is used when the iGPU is only used for computing tasks and doesn't drive a display
+  * `01001219` when hex-swapped
 
 We also add 2 more properties, framebuffer-patch-enable and framebuffer-stolenmem. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB. This is usually unnecessary, as this can be configured in BIOS.
-
-I added another section as well that shows a fake `device-id` for the i3-8100's UHD 630. This has a different device id than the UHD 630 found on the 8700k, for instance, \(`3e918086` vs `3e928086` \).
-
-For this - we follow a similar procedure as our above ig-platform-id hex swapping - but this time, we only work with the first two pairs of hex bytes. If we think of our device id as 0xAABB0000, our swapped version would look like 0xBBAA0000. We don't do anything with the last 2 pairs of hex bytes.
-
-The device-id fake is set up like so:
-
-* `0x3e920000` - this is the device id for the UHD 630 found on an 8700k
-  * `923e0000` when hex swapped
-
-Note: FakeID is only required for High Sierra, Mojave doesn't require this
-
-For users with black screen issues after verbose on B360, B365, H310, H370, Z390, please see the [BusID iGPU patching](/extras/gpu-patches.md#iGPU-BusID-Patching) page
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -&gt; `Layout-id`
 
@@ -153,27 +138,25 @@ For users with black screen issues after verbose on B360, B365, H310, H370, Z390
 
 For us, we'll be using the boot-arg `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present
 
-Fun Fact: The reason the byte order is swapped is due to [Endianness](https://en.wikipedia.org/wiki/Endianness), specifically Little Endians that modern CPUs use for ordering bytes. The more you know!
+**Block**: Removes device properties from map, for us we can ignore this
 
-**Block**: Removes device properties from the map, for us we can ignore this
+Fun Fact: The reason the byte order is swapped is due to [Endianness](https://en.wikipedia.org/wiki/Endianness), specifically Little Endians that modern CPUs use for ordering bytes. The more you know!
 
 ## Kernel
 
-![Kernel](https://i.imgur.com/ACr6owo.png)
+![Kernel](https://i.imgur.com/l1pu0cJ.png)
 
 **Add**: Here's where you specify which kexts to load, order matters here so make sure Lilu.kext is always first! Other higher priority kexts come after Lilu such as VirtualSMC, AppleALC, WhateverGreen, etc. A reminder that [ProperTree](https://github.com/corpnewt/ProperTree) users can run Cmd/Ctrl+R to add all their kexts in the correct order without manually typing each kext out.
 
-* **BundlePath** 
+* **BundlePath**
   * Name of the kext
   * ex: `Lilu.kext`
-* **Enabled** 
-
-    Self-explanatory, either enables or disables the kext
-
-* **ExecutablePath** 
+* **Enabled**
+  * Self-explanatory, either enables or disables the kext
+* **ExecutablePath**
   * Path to the actual executable hidden within the kext, you can see what path you kext has by right-clicking and selecting `Show Package Contents`. Generally, they'll be `Contents/MacOS/Kext` but some have kexts hidden within under `Plugin` folder. Do note that Plist only kexts do not need this filled in.
   * ex: `Contents/MacOS/Lilu`
-* **PlistPath** 
+* **PlistPath**
   * Path to the `info.plist` hidden within the kext
   * ex: `Contents/Info.plist`
 
@@ -247,12 +230,12 @@ The reason being is that UsbInjectAll reimplements builtin macOS functionality w
 
 **Debug**: Debug has special use cases, leave as-is unless you know what you're doing.
 
-* **DisableWatchDog**: YES \(Useful for when OpenCore is stalling on something while booting, can also help for early macOS boot issues\)
+* **DisableWatchDog**: YES \(May need to be set for YES if OpenCore is stalling on something while booting, can also help for early macOS boot issues\)
 * **Target**: `67`
   * Shows more debug information, requires debug version of OpenCore
 * **DisplayLevel**: `2147483714`
   * Shows even more debug information, requires debug version of OpenCore
-  
+
 These values are based of those calculated in [OpenCore debugging](/troubleshooting/debug.md)
 
 **Security**: Security is pretty self-explanatory.
@@ -271,7 +254,6 @@ These values are based of those calculated in [OpenCore debugging](/troubleshoot
   * We won't be dealing vaulting so we can ignore as well
 * **ScanPolicy**: `0` 
   * `0` allows you to see all drives available, please refer to [Security](/post-install/security.md) section for furthur details
-
 
 **Tools** Used for running OC debugging tools like clearing NVRAM
 
@@ -297,11 +279,9 @@ These values are based of those calculated in [OpenCore debugging](/troubleshoot
 
 ![NVRAM](https://i.imgur.com/HM4FTH6.png)
 
-**Add**: 
+**Add**: 4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14 \(Booter Path, majority can ignore but \)
 
-4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14 \(Booter Path, majority can ignore but \)
-
-* UIScale:
+* **UIScale**:
   * 01: Standard resolution\(Clover equivalent is `0x28`\)
   * 02: HiDPI \(generally required for FileVault to function correctly on smaller displays, Clover equivalent is `0x2A`\)
 
@@ -309,10 +289,10 @@ These values are based of those calculated in [OpenCore debugging](/troubleshoot
 
 * **boot-args**:
   * **-v** - this enables verbose mode, which shows all the behind-the-scenes text that scrolls by as you're booting instead of the Apple logo and progress bar. It's invaluable to any Hackintosher, as it gives you an inside look at the boot process, and can help you identify issues, problem kexts, etc.
-  * **debug=0x100` - this disables macOS's watchdog which helps prevents a reboot on a kernel panic. That way you can \(hopefully\) glean some useful info and follow the breadcrumbs to get past the issues.
-  **keepsyms=1** - this is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
-   * **alcid=1** - used for setting layout-id for AppleALC, see [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system.
-   * **-wegnoegpu** - Hides all non-intel GPUs from macOS
+  * **debug=0x100** - this disables macOS's watchdog which helps prevents a reboot on a kernel panic. That way you can \(hopefully\) glean some useful info and follow the breadcrumbs to get past the issues.
+  * **keepsyms=1** - this is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
+  * **alcid=1** - used for setting layout-id for AppleALC, see [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system.
+  * **-wegnoegpu** - Hides all non-intel GPUs from macOS
 
 * **csr-active-config**: Settings for SIP, generally recommended to manually change this within Recovery partition with `csrutil` via the recovery partition
 
@@ -325,9 +305,9 @@ csr-active-config is set to `00000000` which enables System Integrity Protection
 Recommended to leave enabled for best secuirty practices
 
 * **nvda\_drv**: &lt;&gt;
-  * For enabling Nvidia WebDrivers, set to 31 if running a [Maxwell or Pascal GPU](https://github.com/khronokernel/Catalina-GPU-Buyers-Guide/blob/master/README.md#Unsupported-nVidia-GPUs). This is the same as setting nvda\_drv=1 but instead we translate it from [text to hex](https://www.browserling.com/tools/hex-to-text), Clover equivalent is `NvidiaWeb`. **AMD and Intel GPU users should leave this area blank.**
+* For enabling Nvidia WebDrivers, set to 31 if running a [Maxwell or Pascal GPU](https://github.com/khronokernel/Catalina-GPU-Buyers-Guide/blob/master/README.md#Unsupported-nVidia-GPUs). This is the same as setting nvda\_drv=1 but instead we translate it from [text to hex](https://www.browserling.com/tools/hex-to-text), Clover equivalent is `NvidiaWeb`. **AMD and Intel GPU users should leave this area blank.**
 * **prev-lang:kbd**: &lt;&gt; 
-  * Needed for non-Latin keyboards in the format of `lang-COUNTRY:keyboard`, recommended keeping blank though you can specify it\(**Default in Sample config is Russian**\):
+  * Needed for non-latin keyboards in the format of `lang-COUNTRY:keyboard`, recommeneded to keep blank though you can specify it\(**Default in Sample config is Russian**\):
     * American: `en-US:0`\(`656e2d55533a30` in HEX\)
     * Full list can be found in [AppleKeyboardLayouts.txt](https://github.com/acidanthera/OcSupportPkg/blob/master/Utilities/AppleKeyboardLayouts/AppleKeyboardLayouts.txt)
 
@@ -351,26 +331,27 @@ Recommended to leave enabled for best secuirty practices
 
 ## Platforminfo
 
-![PlatformInfo](https://i.imgur.com/JpLxh35.png)
+![PlatformInfo](https://i.imgur.com/RKIXoi5.png)
 
 For setting up the SMBIOS info, we'll use CorpNewt's [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) application. 
 
-For this Coffee Lake example, I chose the MacBookPro15,1 SMBIOS - There are two main SMBIOS used for 8th gen CPUs:
+For this Skylake example, we'll chose the MacBookPro13,1 SMBIOS -  There are 3 main SMBIOS used for Skylake:
 
-* `MacBookPro15,1` - 45w Hexa core 
-* `MacBookPro15,2` - 15w Quad core
+* `MacBookPro13,1` - 15w Dual core(Low end)
+* `MacBookPro13,2` - 15w Dual core(High end)
+* `MacBookPro13,3` - 45w Quad core 
 
 Run GenSMBIOS, pick option 1. for downloading MacSerial and Option 3. for selecting out SMBIOS.  This will give us an output similar to the following:
 
 ```text
   #######################################################
- #               MacBookPro15,1 SMBIOS Info            #
+ #               MacBookPro13,1 SMBIOS Info            #
 #######################################################
 
-Type:         MacBookPro15,1
-Serial:       C02Z2CZ5H7JY
-Board Serial: C02928701GUH69FFB
-SmUUID:       AA043F8D-33B6-4A1A-94F7-46972AAD0607
+Type:         MacBookPro13,1
+Serial:       C02S3HYWGG7L
+Board Serial: C02629102GUGPF7AD
+SmUUID:       3508AD44-B67D-4AD7-A109-7955130A1033
 ```
 The `Type` part gets copied to Generic -&gt; SystemProductName.
 
@@ -394,7 +375,8 @@ We set Generic -&gt; ROM to either an Apple ROM \(dumped from a real Mac\), your
 * **SupportsCsm**: NO
   * Used for when the EFI partition isn't first on the windows drive
 
-    **UpdateDataHub**: YES
+**UpdateDataHub**: YES
+
 * Update Data Hub fields
 
 **UpdateNVRAM**: YES
@@ -411,7 +393,7 @@ We set Generic -&gt; ROM to either an Apple ROM \(dumped from a real Mac\), your
 
 ## UEFI
 
-![UEFI](https://i.imgur.com/l1ayKSf.png)
+![UEFI](https://i.imgur.com/UiGGDWK.png)
 
 **ConnectDrivers**: YES
 
@@ -433,7 +415,7 @@ We set Generic -&gt; ROM to either an Apple ROM \(dumped from a real Mac\), your
   * Swaps `Option` and `Cmd` key
 * **PointerSupport**: `NO`
   * Used for fixing broken pointer support, commonly used for Z87 Asus boards
-* **PointerSupportMode**: 
+* **PointerSupportMode**:
   * Specifies OEM protocol, currently only supports Z87 and Z97 ASUS boards so leave blank
 * **TimerResolution**: `50000`
    * Set architecture timer resolution, Asus Z87 boards use `60000` for the interface. Settings to `0` can also work for some
@@ -443,13 +425,13 @@ We set Generic -&gt; ROM to either an Apple ROM \(dumped from a real Mac\), your
 * **AppleSmcIo**: NO
   * Reinstalls Apple SMC I/O, this is the equivlant of VirtualSMC.efi which is only needed for users using FileVault
 * **ConsoleControl**: YES
-* Replaces Console Control protocol with a builtin version, set to YES otherwise you may see text output during booting instead of nice Apple logo. Required for most APTIO firmware
+  * Replaces Console Control protocol with a builtin version, set to YES otherwise you may see text output during booting instead of nice Apple logo. Required for most APTIO firmware
 * **FirmwareVolume**: NO
-* Fixes UI regarding Filevault, set to YES for better FileVault compatibility
+  * Fixes UI regarding Filevault, set to YES for better FileVault compatibility
 * **HashServices**: NO
-* Fixes incorrect cursor size when running FileVault, set to YES for better FileVault compatibility
+  * Fixes incorrect cursor size when running FileVault, set to YES for better FileVault compatibility
 * **UnicodeCollation**: NO
-* Some older firmware have broken Unicode collation, fixes UEFI shell compatibility on these systems\(generally IvyBridge and older\)
+  * Some older firmware have broken Unicode collation, fixes UEFI shell compatibility on these systems\(generally IvyBridge and older\)
 
 **Quirks**:
 
@@ -470,7 +452,7 @@ We set Generic -&gt; ROM to either an Apple ROM \(dumped from a real Mac\), your
 * **RequestBootVarRouting**: YES
   * Redirects AptioMemeoryFix from `EFI_GLOBAL_VARIABLE_GUID` to `OC\_VENDOR\_VARIABLE\_GUID`. Needed for when firmware tries to delete boot entries and is recommended to be enabled on all systems for correct update installation, Startup Disk control panel functioning, etc.
 * **ReplaceTabWithSpace**: NO
-  * Depending on the firmware, some system may need this to properly edit files in the UEFI shell when unable to handle Tabs. This swaps it for spaces instead but the majority can ignore it but do note that ConsoleControl set to True may be needed
+  * Depending on the firmware, some system may need this to properly edit files in the UEFI shell when unable to handle Tabs. This swaps it for spaces instead-but majority can ignore it but do note that ConsoleControl set to True may be needed
 * **SanitiseClearScreen**: YES
   * Fixes High resolutions displays that display OpenCore in 1024x768, recommended for users with 1080P+ displays
 * **ClearScreenOnModeSwitch**: NO
@@ -512,13 +494,12 @@ For those having booting issues, please make sure to read the [Troubleshooting s
 
 So what in the world needs to be done once everything is installed? Well here's some things you can do:
 
-
 * [USB mapping](https://usb-map.gitbook.io/project/) 
 * Correcting audio, reread the DeviceProperties on how
 * [Enabling FileVault and other security features](../post-install/security.md)
 * [Fixing iMessage](/post-install/iservices.md)
 * Moving OpenCore from the USB to your main drive
-  * Mount USB's EFI
+* Mount USB's EFI
   * Copy EFI folder to the desktop
   * Unmount USB and mount boot drive's EFI
   * Paste EFI onto the root of the drive

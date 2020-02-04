@@ -32,6 +32,35 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
 
 For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the [**Getting started with ACPI**](../extras/acpi.md) **page.** Compiled SSDTs have a **.aml** extension\(Assembled\) and will go into the `EFI/OC/ACPI` folder and **must** be specified in your config under `ACPI -> Add` as well.
 
+**Block**
+
+This drops certain ACPI tabes from loading, for us we can ignore this
+
+**Patch**:
+
+This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. For us, we'll need a couple:
+
+* EC Rename
+   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://khronokernel.github.io/EC-fix-guide/) on how to determine what EC you have and apply the appropriate patches
+* OSI rename
+   * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT
+   
+| Comment | String | Change XXXX to EC |
+| :--- | :--- | :--- |
+| Enabled | String | YES |
+| Count | Number | 0 |
+| Limit | Nuber | 0 |
+| Find | Data | xxxxxxxx |
+| Replace | Data | 45435f5f |
+   
+| Comment | String | Change _OSI to XOSI |
+| :--- | :--- | :--- |
+| Enabled | String | YES |
+| Count | Number | 0 |
+| Limit | Nuber | 0 |
+| Find | Data | 5f4f5349 |
+| Replace | Data | 584f5349 |
+
 **Quirk**: Settings for ACPI.
 
 * **FadtEnableReset**: NO
