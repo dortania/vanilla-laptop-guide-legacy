@@ -1,6 +1,6 @@
 # Creating our config
 
-Now comes the fun part, making our config.plist. Follow your respective section for configuraing, the typical breakdown of how to follow:
+Now comes the fun part, making our config.plist. Follow your respective section for configuring, the typical breakdown of how to follow:
 
 [Ivy Bridge](/config.plist/ivy-bridge.md)
 * 3000 series, 2012 era
