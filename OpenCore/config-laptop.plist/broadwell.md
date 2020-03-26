@@ -152,42 +152,32 @@ This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://
 
 If we think of our ig-plat as `0xAABBCCDD`, our swapped version would look like `DDCCBBAA`
 
-The two ig-platform-id's we use are as follows:
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Unlisted iGPU | 06160002 | 02000616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Unlisted iGPU | 0e160001 | 01000e16 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 5600 | 12160003 | 03001216 | 4 | 34MB | 21MB | 1536MB | LVDS1 DP2 HDMI1 |
+| Intel HD Graphics 5500 | 16160002 | 02001616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 5300 | 1e160001 | 01001e16 | 3 | 38MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel Iris Pro Graphics 6200 | 22160002 | 02002216 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 6000 | 26160002 | 02002616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel HD Graphics 6000 | 26160005 | 05002616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| **Intel HD Graphics 6000** * | 26160006 | 06002616 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
+| Intel Iris Graphics 6100 | 2b160002 | 02002b16 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
 
-* `0x0D220003` - this is used when the Desktop Haswell iGPU is used to drive a display
-  * `0300220D` when hex-swapped
-* `0x04120004` - this is used when the Desktop Haswell iGPU is only used for computing tasks and doesn't drive a display
-  * `04001204` when hex-swapped
-* `0x0D220003` - this is used when the Desktop Broadwell iGPU
-  * `07002216` when hex-swapped
+#### Sepcial Notes:
 
-I added another portion as well that shows a `device-id` fake in case you have an HD 4400 which is unsupported in macOS.
+* For HD5300, HD5500 and HD6000, you do not have to specify any `device-id`
 
-The device-id fake is set up like so:
+* For HD5600 you need `device-id` faked to `26160000`
 
-* `0x04120000` - this is the device id for HD 4600 which does have support in macOS
-  * `12040000` when hex swapped
-
-We also add 2 more properties, `framebuffer-patch-enable` and `framebuffer-stolenmem`. The first enables patching via WhateverGreen.kext, and the second sets the min stolen memory to 19MB. This is usually unnecessary, as this can be configured in BIOS(64MB recommended) but required when not available.
-
-| Key | Type | Value |
-| :--- | :--- | :--- |
-| AAPL,ig-platform-id | Data | 0300220D |
-| framebuffer-patch-enable | Data | 01000000 |
-| framebuffer-stolenmem | Data | 00003001 |
-| device-id | Data | 12040000 |
-
-(This is an example for a desktop HD 4400 without a dGPU and no BIOS options for iGPU memory)
+* In some cases where you cannot set the DVMT-prealloc of these cards to 96MB higher in your UEFI Setup, you may get a kernel panic. Usually they're configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties
 
 | Key | Type | Value |
 | :--- | :--- | :--- |
-| AAPL,ig-platform-id | Data | 07002216 |
-| framebuffer-patch-enable | Data | 01000000 |
-| framebuffer-stolenmem | Data | 00003001 |
-
-(This is an example for a desktop Iris Pro 6200 and no BIOS options for iGPU memory)
-
-**Special note**: Mobile users should refer to mobile iGPU section for what properties should be used: [iGPU Patching](https://1revenger1.gitbook.io/laptop-guide/prepare-install-macos/display-configuration#igpu-patching)
+| `framebuffer-patch-enable` | Number | `1` |
+| `framebuffer-stolenmem` | Data | `00003001` |
+| `framebuffer-fbmem` | Data | `00009000` |
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -> `Layout-id`
 
