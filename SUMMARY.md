@@ -25,7 +25,7 @@
 ## Configuring OpenCore
 
 * [Gathering Files](/OpenCore/ktext.md)
-* [OpenCore config](/OpenCore/config-laptop.plist/config.md)
+* [OpenCore config](/OpenCore/config.md)
    * [Ivy Bridge](/OpenCore/config-laptop.plist/ivy-bridge.md)
    * [Haswell](/OpenCore/config-laptop.plist/haswell.md)
    * [Broadwell](/OpenCore/config-laptop.plist/broadwell.md)
