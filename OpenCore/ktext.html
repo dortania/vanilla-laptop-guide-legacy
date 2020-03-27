@@ -530,20 +530,20 @@
 <p><strong>VirtualSMC Plugins</strong>:</p>
 <ul>
 <li>SMCProcessor.kext<ul>
-<li>Used for monitoring CPU temperature, <strong>doesn&apos;t work AMD CPU based systems</strong></li>
+<li>Used for monitoring CPU temperature</li>
 </ul>
 </li>
 <li>SMCSuperIO.kext<ul>
-<li>Used for monitoring fan speed, <strong>doesn&apos;t work AMD CPU based systems</strong></li>
+<li>Used for monitoring fan speed</li>
 </ul>
 </li>
 <li>SMCLightSensor.kext<ul>
-<li>Used for the ambient light sensor on laptops, <strong>desktops can ignore</strong></li>
+<li>Used for the ambient light sensor on laptops</li>
 <li>Do not use if you don&apos;t have an ambient light sensor, can cause issues otherwise</li>
 </ul>
 </li>
 <li>SMCBatteryManager.kext<ul>
-<li>Used for measuring battery readouts on laptops, <strong>desktops can ignore</strong></li>
+<li>Used for measuring battery readouts on laptops</li>
 <li>Do not use until battery has been poperly patched, can cause issues otherwise</li>
 </ul>
 </li>
@@ -568,11 +568,6 @@
 <li>Required for Intel NICs, chipsets that are based off of I211-AT will need the SmallTreeIntel82576 kext</li>
 </ul>
 </li>
-<li><a href="https://github.com/khronokernel/SmallTree-I211-AT-patch/releases" target="_blank">SmallTreeIntel82576 kext</a><ul>
-<li>Required for I211-AT NICs, based off of the SmallTree kext but patched to support I211-AT</li>
-<li>Required for most AMD boards running Intel NICs</li>
-</ul>
-</li>
 <li><a href="https://github.com/Mieze/AtherosE2200Ethernet/releases" target="_blank">AtherosE2200Ethernet</a><ul>
 <li>Required for Atheros and Killer NICs</li>
 </ul>
@@ -585,10 +580,33 @@
 <p><strong>USB</strong>:</p>
 <ul>
 <li><a href="https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/" target="_blank">USBInjectAll</a><ul>
-<li>Used for injecting Intel USB controllers, H370, B360, H310 and X79/X99/X299 systems will likely need <a href="https://github.com/RehabMan/OS-X-USB-Inject-All" target="_blank">XHCI-unsupported</a> as well. <strong>USBInjectAll does not work on AMD CPU based systems</strong></li>
+<li>Used for injecting Intel USB controllers, Ice Lake and Comet Lake systems will likely need <a href="https://github.com/RehabMan/OS-X-USB-Inject-All" target="_blank">XHCI-unsupported</a> as well</li>
 </ul>
 </li>
 </ul>
+<p><strong>Keyboard and mouse</strong>:</p>
+<ul>
+<li><p><a href="https://github.com/acidanthera/VoodooPS2/releases" target="_blank">VoodooPS2</a></p>
+<ul>
+<li>Required for systems with PS2 keyboards and trackpads</li>
+<li>Trackpad users should also pair this with <a href="https://github.com/acidanthera/VoodooInput/releases" target="_blank">VoodooInput</a>(This must come before VoodooPS2 in your config.plist)</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/alexandred/VoodooI2C/releases" target="_blank">VoodooI2C</a> </p>
+<ul>
+<li>Used for fixing I2C devices</li>
+<li>To be paired with a plugin:<ul>
+<li>VoodooI2CHID - Implements the Microsoft HID device specification.</li>
+<li>VoodooI2CElan - Implements support for Elan proprietary devices. (does not work on ELAN1200+, use the HID instead)</li>
+<li>VoodooI2CSynaptics - Implements support for Synaptics proprietary devices.</li>
+<li>VoodooI2CFTE - Implements support for the FTE1001 touchpad.</li>
+<li>VoodooI2CUPDDEngine - Implements Touchbase driver support.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>To figure out what kind of keyboard and trackpad you have check DeviceManager in Windows or <code>dmesg |grep input</code> in Linux</p>
 <p><strong>WiFi and Bluetooth</strong>:</p>
 <ul>
 <li><a href="https://github.com/acidanthera/AirportBrcmFixup/releases" target="_blank">AirportBrcmFixup</a><ul>
@@ -612,43 +630,18 @@
 <li>BrcmFirmwareData </li>
 <li>BrcmPatchRAM3</li>
 </ol>
-<p><strong>AMD CPU Specific kexts</strong>:</p>
-<ul>
-<li><a href="https://github.com/corpnewt/NullCPUPowerManagement" target="_blank"><del>NullCPUPowerManagment</del></a><ul>
-<li>Thanks to OpenCore 0.5.5, we have a much better solution known as <code>DummyPowerManagement</code> found under <code>Kernel -&gt; Quirks</code></li>
-</ul>
-</li>
-<li><a href="https://cdn.discordapp.com/attachments/566705665616117760/566728101292408877/XLNCUSBFix.kext.zip" target="_blank">XLNCUSBFIX</a><ul>
-<li>USB fix for AMD FX systems, no effect on Ryzen</li>
-</ul>
-</li>
-<li><a href="https://sourceforge.net/projects/voodoohda/" target="_blank">VoodooHDA</a><ul>
-<li>Audio for FX systems and front panel Mic+Audio support for Ryzen system, do not mix with AppleALC. Audio quality is noticably worse than AppleALC on Zen CPUs</li>
-</ul>
-</li>
-</ul>
 <p><strong>Extra&apos;s</strong>:</p>
 <ul>
-<li><a href="https://github.com/acidanthera/bugtracker/files/3703498/AppleMCEReporterDisabler.kext.zip" target="_blank">AppleMCEReporterDisabler</a><ul>
-<li>Useful starting with Catalina to disable the AppleMCEReporter kext which will cause kernel panics on AMD CPUs and dual-socket systems</li>
-<li>Affected SMBIOS:<ul>
-<li>MacPro6,1</li>
-<li>MacPro7,1</li>
-<li>iMacPro1,1</li>
-</ul>
-</li>
-</ul>
-</li>
 <li><a href="https://bitbucket.org/RehabMan/VoodooTSCSync/downloads/" target="_blank">VoodooTSCSync</a><ul>
-<li>Needed for syncing TSC on some of Intel&apos;s HEDT and server motherboards, without this macOS may be extremly slow or even unbootable. Skylake-X should use TSCAdjustReset instead</li>
-</ul>
-</li>
-<li><a href="https://github.com/interferenc/TSCAdjustReset" target="_blank">TSCAdjustReset</a> <ul>
-<li>On Skylake-X, many firmwares including Asus and EVGA won&apos;t write the TSC to all cores. So we&apos;ll need to reset the TSC on cold boot and wake. Compiled version can be found here: <a href="https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extra-files/TSCAdjustReset.kext.zip" target="_blank">TSCAdjustReset.kext</a>. Note that you <strong>must</strong> open up the kext(ShowPackageContents in finder, <code>Contents -&gt; Info.plist</code>) and change the Info.plist -&gt; <code>IOKitPersonalities -&gt; IOPropertyMatch -&gt; IOCPUNumber</code> to the number of CPU threads you have starting from <code>0</code>(i9 7980xe 18 core would be <code>35</code> as it has 36 threads total)</li>
+<li>Some Asus laptops had firmware updates breaking their TSC sync making macOS get out of sync itself and run a lot slower</li>
 </ul>
 </li>
 <li><a href="https://github.com/acidanthera/NVMeFix/releases" target="_blank">NVMeFix</a><ul>
 <li>Used for fixing power management and initialization on non-Apple NVMe, requires macOS 10.14 or newer</li>
+</ul>
+</li>
+<li><a href="https://github.com/al3xtjames/NoTouchID/releases" target="_blank">NoTouchID</a><ul>
+<li>Recommended for SMBIOS that include a TouchID sensor to fix auth issues</li>
 </ul>
 </li>
 </ul>
@@ -763,7 +756,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Gathering Files","level":"4.1","depth":1,"next":{"title":"OpenCore config","level":"4.2","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.2.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.2.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"4.2.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"4.2.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.2.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.2.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"4.2.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]}]},"previous":{"title":"Preparing an online installer","level":"3.5","depth":1,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ktext.md","mtime":"2020-03-26T21:31:34.216Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-26T21:32:21.611Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Gathering Files","level":"4.1","depth":1,"next":{"title":"OpenCore config","level":"4.2","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.2.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.2.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"4.2.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"4.2.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.2.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.2.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"4.2.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]}]},"previous":{"title":"Preparing an online installer","level":"3.5","depth":1,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ktext.md","mtime":"2020-03-27T00:13:58.608Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-27T00:14:46.407Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
