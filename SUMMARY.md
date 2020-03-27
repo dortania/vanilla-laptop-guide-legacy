@@ -18,11 +18,9 @@
 
 * [Overview](preparations/overview.md)
 * [Multiboot](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
-* [Creating the USB](/installer-guide/opencore-efi.md)
-   * [macOS install](/installer-guide/mac-install.md)
-   * [Windows install](/installer-guide/winblows-install.md)
-   * [Linux install](/installer-guide/linux-install.md)
-* [Gathering Files](/OpenCore/ktext.md)
+* [Installer creation](preparations/installer-overview.md)
+* [Preparing an offline installer (macOS only)](preparations/offline-installer.md)
+* [Preparing an online installer](preparations/online-installer.md)
 
 ## Configuring OpenCore
 
