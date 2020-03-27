@@ -20,7 +20,7 @@ With laptops, there are several limitations regarding hardware that will not wor
   * If you are lucky, you may have a supported Atheros card, but support only runs up to High Sierra (Mojave works with AirportAtheros40 from High Sierra, but not with Catalina).
   * The best option is getting a Broadcom card; see MykolaG's [WiFi buyer's guide](https://khronokernel-7.gitbook.io/wireless-buyers-guide/) for recommendations.
 * Samsung PM981 NVMe SSDs
-  * These SSDs are not compatible (causing kernel panics) and they need updated firmware for a fix; however, since it is a OEM SSD Samsung does not release firmware to end users and no OEM has been found shipping firmware with a fix.
+  * These SSDs are not compatible OOB(causing kernel panics) and so require [NVMEFix.kext](https://github.com/acidanthera/NVMeFix/releases) fixes these kernel panics
   * On a related note, Samsung 970 EVO Plus NVMe SSDs also had the same problem but it was fixed in a firmware update; get the update (Windows via Samsung Magician or bootable ISO) [here](https://www.samsung.com/semiconductor/minisite/ssd/download/tools/).
    * Also to note, laptops that use [Intel Optane Memory](https://www.intel.com/content/www/us/en/architecture-and-technology/optane-memory.html) or [Micron 3D XPoint](https://www.micron.com/products/advanced-solutions/3d-xpoint-technology) for HDD acceleration are unsupported in macOS. These drives MUST be removed or else macOS won't boot at all.
 * Thunderbolt USB C ports

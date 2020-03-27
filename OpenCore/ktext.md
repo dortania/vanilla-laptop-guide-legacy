@@ -49,14 +49,14 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
 **VirtualSMC Plugins**:
 
 * SMCProcessor.kext
-  * Used for monitoring CPU temperature, **doesn't work AMD CPU based systems**
+  * Used for monitoring CPU temperature
 * SMCSuperIO.kext
-  * Used for monitoring fan speed, **doesn't work AMD CPU based systems**
+  * Used for monitoring fan speed
 * SMCLightSensor.kext
-  * Used for the ambient light sensor on laptops, **desktops can ignore**
+  * Used for the ambient light sensor on laptops
   * Do not use if you don't have an ambient light sensor, can cause issues otherwise
 * SMCBatteryManager.kext
-  * Used for measuring battery readouts on laptops, **desktops can ignore**
+  * Used for measuring battery readouts on laptops
   * Do not use until battery has been poperly patched, can cause issues otherwise
 
 **Graphics**:
@@ -73,9 +73,6 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
 
 * [IntelMausiEthernet](https://github.com/Mieze/IntelMausiEthernet)
   * Required for Intel NICs, chipsets that are based off of I211-AT will need the SmallTreeIntel82576 kext
-* [SmallTreeIntel82576 kext](https://github.com/khronokernel/SmallTree-I211-AT-patch/releases)
-  * Required for I211-AT NICs, based off of the SmallTree kext but patched to support I211-AT
-  * Required for most AMD boards running Intel NICs
 * [AtherosE2200Ethernet](https://github.com/Mieze/AtherosE2200Ethernet/releases)
   * Required for Atheros and Killer NICs
 * [RealtekRTL8111](https://github.com/Mieze/RTL8111_driver_for_OS_X/releases)
@@ -84,7 +81,25 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
 **USB**:
 
 * [USBInjectAll](https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/)
-  * Used for injecting Intel USB controllers, H370, B360, H310 and X79/X99/X299 systems will likely need [XHCI-unsupported](https://github.com/RehabMan/OS-X-USB-Inject-All) as well. **USBInjectAll does not work on AMD CPU based systems**
+  * Used for injecting Intel USB controllers, Ice Lake and Comet Lake systems will likely need [XHCI-unsupported](https://github.com/RehabMan/OS-X-USB-Inject-All) as well
+
+**Keyboard and mouse**:
+
+* [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases)
+   * Required for systems with PS2 keyboards and trackpads
+   * Trackpad users should also pair this with [VoodooInput](https://github.com/acidanthera/VoodooInput/releases)(This must come before VoodooPS2 in your config.plist)
+
+* [VoodooI2C](https://github.com/alexandred/VoodooI2C/releases) 
+   * Used for fixing I2C devices
+   * To be paired with a plugin:
+      * VoodooI2CHID - Implements the Microsoft HID device specification.
+      * VoodooI2CElan - Implements support for Elan proprietary devices. (does not work on ELAN1200+, use the HID instead)
+      * VoodooI2CSynaptics - Implements support for Synaptics proprietary devices.
+      * VoodooI2CFTE - Implements support for the FTE1001 touchpad.
+      * VoodooI2CUPDDEngine - Implements Touchbase driver support.
+	  
+To figure out what kind of keyboard and trackpad you have check DeviceManager in Windows or `dmesg |grep input` in Linux
+
 
 **WiFi and Bluetooth**:
 
@@ -103,29 +118,14 @@ The order in `Kernel -> Add` should be:
 2. BrcmFirmwareData 
 3. BrcmPatchRAM3
 
-**AMD CPU Specific kexts**:
-
-* [~~NullCPUPowerManagment~~](https://github.com/corpnewt/NullCPUPowerManagement)
-   * Thanks to OpenCore 0.5.5, we have a much better solution known as `DummyPowerManagement` found under `Kernel -> Quirks`
-* [XLNCUSBFIX](https://cdn.discordapp.com/attachments/566705665616117760/566728101292408877/XLNCUSBFix.kext.zip)
-  * USB fix for AMD FX systems, no effect on Ryzen
-* [VoodooHDA](https://sourceforge.net/projects/voodoohda/)
-  * Audio for FX systems and front panel Mic+Audio support for Ryzen system, do not mix with AppleALC. Audio quality is noticably worse than AppleALC on Zen CPUs
-
 **Extra's**:
 
-* [AppleMCEReporterDisabler](https://github.com/acidanthera/bugtracker/files/3703498/AppleMCEReporterDisabler.kext.zip)
-  * Useful starting with Catalina to disable the AppleMCEReporter kext which will cause kernel panics on AMD CPUs and dual-socket systems
-  * Affected SMBIOS:
-    * MacPro6,1
-    * MacPro7,1
-    * iMacPro1,1
 * [VoodooTSCSync](https://bitbucket.org/RehabMan/VoodooTSCSync/downloads/)
-   * Needed for syncing TSC on some of Intel's HEDT and server motherboards, without this macOS may be extremly slow or even unbootable. Skylake-X should use TSCAdjustReset instead
-* [TSCAdjustReset](https://github.com/interferenc/TSCAdjustReset) 
-   * On Skylake-X, many firmwares including Asus and EVGA won't write the TSC to all cores. So we'll need to reset the TSC on cold boot and wake. Compiled version can be found here: [TSCAdjustReset.kext](https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extra-files/TSCAdjustReset.kext.zip). Note that you **must** open up the kext(ShowPackageContents in finder, `Contents -> Info.plist`) and change the Info.plist -> `IOKitPersonalities -> IOPropertyMatch -> IOCPUNumber` to the number of CPU threads you have starting from `0`(i9 7980xe 18 core would be `35` as it has 36 threads total)
+   * Some Asus laptops had firmware updates breaking their TSC sync making macOS get out of sync itself and run a lot slower
 * [NVMeFix](https://github.com/acidanthera/NVMeFix/releases)
    * Used for fixing power management and initialization on non-Apple NVMe, requires macOS 10.14 or newer
+* [NoTouchID](https://github.com/al3xtjames/NoTouchID/releases)
+   * Recommended for SMBIOS that include a TouchID sensor to fix auth issues
 
 
 Please refer to [Kexts.md](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Kexts.md) for a full list of supported kexts
