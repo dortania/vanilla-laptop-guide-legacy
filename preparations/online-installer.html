@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>macOS install · GitBook</title>
+        <title>Preparing an online installer · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,10 +62,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="winblows-install.html" />
+    <link rel="next" href="../OpenCore/config.html" />
     
     
-    <link rel="prev" href="opencore-efi.html" />
+    <link rel="prev" href="offline-installer.html" />
     
 
     </head>
@@ -214,9 +214,9 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../preparations/overview.html">
+        <li class="chapter " data-level="3.1" data-path="overview.html">
             
-                <a href="../preparations/overview.html">
+                <a href="overview.html">
             
                     
                     Overview
@@ -240,26 +240,12 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="opencore-efi.html">
+        <li class="chapter " data-level="3.3" data-path="installer-overview.html">
             
-                <a href="opencore-efi.html">
-            
-                    
-                    Creating the USB
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter active" data-level="3.3.1" data-path="mac-install.html">
-            
-                <a href="mac-install.html">
+                <a href="installer-overview.html">
             
                     
-                    macOS install
+                    Installer creation
             
                 </a>
             
@@ -267,12 +253,12 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3.2" data-path="winblows-install.html">
+        <li class="chapter " data-level="3.4" data-path="offline-installer.html">
             
-                <a href="winblows-install.html">
+                <a href="offline-installer.html">
             
                     
-                    Windows install
+                    Preparing an offline installer (macOS only)
             
                 </a>
             
@@ -280,30 +266,12 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3.3" data-path="linux-install.html">
+        <li class="chapter active" data-level="3.5" data-path="online-installer.html">
             
-                <a href="linux-install.html">
-            
-                    
-                    Linux install
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.4" data-path="../OpenCore/ktext.html">
-            
-                <a href="../OpenCore/ktext.html">
+                <a href="online-installer.html">
             
                     
-                    Gathering Files
+                    Preparing an online installer
             
                 </a>
             
@@ -471,7 +439,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >macOS install</a>
+        <a href=".." >Preparing an online installer</a>
     </h1>
 </div>
 
@@ -486,44 +454,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="making-the-installer-in-macos">Making the installer in macOS</h1>
-<ul>
-<li>Supported version: 0.5.7</li>
-</ul>
-<p>While you don&apos;t need a fresh install of macOS to use OpenCore, some users prefer having a fresh slate with their boot manager upgrades.</p>
-<p><strong>Note for legacy users</strong></p>
-<ul>
-<li>If you want to use OpenCore on a system without UEFI, please follow the <a href="../extras/legacy.md">Legacy Install</a> section first, after you can continue following the <strong>Base folder structure</strong> section</li>
-</ul>
-<p>To start we&apos;ll want to grab ourselves a copy of macOS, you can skip this and head to formatting the USB if you&apos;re just making a bootable OpenCore stick and not an installer. For everyone else, here&apos;s your options for obtaining macOS directly from Apple&apos;s servers:</p>
-<ul>
-<li><p>AppStore links: </p>
-<ul>
-<li><a href="macappstores://itunes.apple.com/us/app/macos-high-sierra/id1246284741?mt=12" target="_blank">High Sierra</a>, </li>
-<li><a href="macappstores://itunes.apple.com/us/app/macos-mojave/id1398502828?mt=12" target="_blank">Mojave</a>, </li>
-<li><a href="macappstores://itunes.apple.com/us/app/macos-catalina/id1466841314?mt=12" target="_blank">Catalina</a></li>
-</ul>
-</li>
-<li><p><a href="https://github.com/corpnewt/gibMacOS" target="_blank">GibMacOS</a>:</p>
-<ul>
-<li>Download the full macOS installer</li>
-<li>Run <code>BuildmacOSInstallApp</code> then drag and drop the <code>macOS Downloads</code> folder found in GibMacOS</li>
-</ul>
-</li>
-</ul>
-<p>Next we&apos;ll want to format our USB HFS+/MacOS Journaled with GUID partition map, must be 12GB for macOS Catalina.as-is recommended to name it <code>MyVolume</code> as the script below can be used as-is.</p>
-<p><img src="https://i.imgur.com/numOUnF.png" alt="Formatting the USB"></p>
-<p>Next run the <code>createinstallmedia</code> command provided by <a href="https://support.apple.com/en-us/HT201372" target="_blank">Apple</a>, note that the command is made for USB&apos;s formatted with the name <code>MyVolume</code>:</p>
-<pre><code class="lang-text">sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
-</code></pre>
-<p>This will take some time so may want to grab a coffee or continue reading the guide(to be fair you really shouldn&apos;t be following this guide step by step without reading the whole thing first)</p>
-<h2 id="setting-up-opencores-efi-environment">Setting up OpenCore&apos;s EFI environment</h2>
-<p>Setting up OpenCore&apos;s EFI environment is simple, all you need to do is mount our EFI system partition. This is automatically made when we format with GUID but is hidden from the end user, this is where our friend <a href="https://github.com/corpnewt/MountEFI" target="_blank">mountEFI</a> comes in:</p>
-<p><img src="https://i.imgur.com/4l1oK8i.png" alt="MountEFI"></p>
-<p>You&apos;ll notice that once we open the EFI partition, it&apos;s empty. This is where the fun begins.</p>
-<p><img src="https://i.imgur.com/EDeZB3u.png" alt="Empty EFI partition"></p>
-<h3 id="now-with-all-this-done-return-to-creating-the-usb-to-finish-up-your-work">Now with all this done, return to <a href="opencore-efi.html">Creating the USB</a> to finish up your work</h3>
-
+                                
                                 
                                 </section>
                             
@@ -550,12 +481,12 @@
 
             
                 
-                <a href="opencore-efi.html" class="navigation navigation-prev " aria-label="Previous page: Creating the USB">
+                <a href="offline-installer.html" class="navigation navigation-prev " aria-label="Previous page: Preparing an offline installer (macOS only)">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="winblows-install.html" class="navigation navigation-next " aria-label="Next page: Windows install">
+                <a href="../OpenCore/config.html" class="navigation navigation-next " aria-label="Next page: OpenCore config">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -566,7 +497,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"macOS install","level":"3.3.1","depth":2,"next":{"title":"Windows install","level":"3.3.2","depth":2,"path":"installer-guide/winblows-install.md","ref":"installer-guide/winblows-install.md","articles":[]},"previous":{"title":"Creating the USB","level":"3.3","depth":1,"path":"installer-guide/opencore-efi.md","ref":"installer-guide/opencore-efi.md","articles":[{"title":"macOS install","level":"3.3.1","depth":2,"path":"installer-guide/mac-install.md","ref":"installer-guide/mac-install.md","articles":[]},{"title":"Windows install","level":"3.3.2","depth":2,"path":"installer-guide/winblows-install.md","ref":"installer-guide/winblows-install.md","articles":[]},{"title":"Linux install","level":"3.3.3","depth":2,"path":"installer-guide/linux-install.md","ref":"installer-guide/linux-install.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"installer-guide/mac-install.md","mtime":"2020-03-27T01:58:32.703Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-27T01:59:23.949Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Preparing an online installer","level":"3.5","depth":1,"next":{"title":"OpenCore config","level":"4.1","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.1.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.1.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"4.1.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"4.1.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.1.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]}]},"previous":{"title":"Preparing an offline installer (macOS only)","level":"3.4","depth":1,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},"dir":"neutral"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/online-installer.md","mtime":"2020-03-27T02:49:53.508Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-27T02:50:39.736Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
