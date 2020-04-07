@@ -34,13 +34,13 @@ Now with those downloaded, we can get to really get started:
 
 **Add:**
 
-This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://usb-map.gitbook.io/project/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://khronokernel.github.io/Getting-Started-With-ACPI/)
+This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://usb-map.gitbook.io/project/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://acpi.dortania.ml/)
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
 * [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
    * Allows for native CPU power management on Haswell and newer, Clover alternative would be under `Acpi -> GenerateOptions -> PluginType`
 * [SSDT-AWAC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl)
-  * This is the [300 series RTC patch](https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2), required for 9t gen and newer boards which prevent systems from booting macOS. The alternative is [SSDT-RTC0](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-RTC0.dsl) for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see [Getting started with ACPI](https://khronokernel.github.io/Getting-Started-With-ACPI/) page.
+  * This is the [300 series RTC patch](https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2), required for 9t gen and newer boards which prevent systems from booting macOS. The alternative is [SSDT-RTC0](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-RTC0.dsl) for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see [Getting started with ACPI](https://acpi.dortania.ml/) page.
 * [SSDT-PMC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl)
    * 9th gen and newer don't declare the FW chip as MMIO in ACPI and so XNU ignores the MMIO region declared by the UEFI memory map. This SSDT brings back NVRAM support and uses the scope `PCI0.LPCB`, this is the most common scope so a pre-made can be found here: [SSDT-PMC.aml](https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extra-files/SSDT-PMC.aml)
 * [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
@@ -53,7 +53,7 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/ACPI.
 
-For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the [**Getting started with ACPI**](https://khronokernel.github.io/Getting-Started-With-ACPI/) **page.** Compiled SSDTs have a **.aml** extension(Assembled) and will go into the `EFI/OC/ACPI` folder and **must** be specified in your config under `ACPI -> Add` as well.
+For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the [**Getting started with ACPI**](https://acpi.dortania.ml/) **page.** Compiled SSDTs have a **.aml** extension(Assembled) and will go into the `EFI/OC/ACPI` folder and **must** be specified in your config under `ACPI -> Add` as well.
 
 
 **Block**
@@ -65,7 +65,7 @@ This blocks certain ACPI tabes from loading, for us we can ignore this
 This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. For us, we'll need a couple:
 
 * EC Rename
-   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers (Laptop) Guide](https://khronokernel.github.io/Getting-Started-With-ACPI/) on how to determine what EC you have and apply the appropriate patches
+   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers (Laptop) Guide](https://acpi.dortania.ml/) on how to determine what EC you have and apply the appropriate patches
 * OSI rename
    * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT
 
@@ -295,7 +295,7 @@ These values are based of those calculated in [OpenCore debugging](/troubleshoot
 
 **Security**: Security is pretty self-explanatory, **do not skip**
 
-We'll be changing `AllowNvramReset`, `AllowSetDefault`, `RequireSignature`, `RequireVault` and `ScanPolicy`
+We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
 
 * **AllowNvramReset**: YES
    * Allows for NVRAM reset both in the boot picker and when pressing `Cmd+Opt+P+R`
@@ -337,7 +337,7 @@ Won't be covered here, see 8.6 of [Configuration.pdf](https://github.com/acidant
 
 * **DefaultBackgroundColor**: Background color used by boot.efi
    * `00000000`: Syrah Black
-   * `BFBFBF00`: Light Gary
+   * `BFBFBF00`: Light Gray
 
 7C436110-AB2A-4BBB-A880-FE41995C9F82 (System Integrity Protection bitmask)
 
@@ -393,10 +393,10 @@ For setting up the SMBIOS info, we'll use CorpNewt's [GenSMBIOS](https://github.
 
 For this Coffee Lake Plus example, I chose the MacBookPro16,1 SMBIOS - this is done intentionally for compatibility's sake. The breakdown is as follows:
 
-| SMBIOS | CPU Type | GPU Type | Display Size |
-| :--- | :--- | :--- | :--- |
-| MacBookPro16,1 | Hexa/Octa Core 45w | iGPU: UHD 630 + dGPU: 5300/5500M | 15" |
-| MacBookPro15,2 | Quad Core 15w | iGPU: Iris 655 | 13" |
+| SMBIOS | CPU Type | GPU Type | Display Size | Touch ID |
+| :--- | :--- | :--- | :--- | :--- |
+| MacBookPro16,1 | Hexa/Octa Core 45w | iGPU: UHD 630 + dGPU: 5300/5500M | 15" | Yes |
+| MacBookPro15,2 | Quad Core 15w | iGPU: Iris 655 | 13" | Yes |
 
 Run GenSMBIOS, pick option 1 for downloading MacSerial and Option 3 for selecting out SMBIOS.  This will give us an output similar to the following:
 

@@ -34,7 +34,7 @@ Now with those downloaded, we can get to really get started:
 
 **Add:**
 
-This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://usb-map.gitbook.io/project/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://khronokernel.github.io/Getting-Started-With-ACPI/)
+This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://usb-map.gitbook.io/project/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://acpi.dortania.ml/)
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
 
@@ -49,7 +49,7 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/ACPI.
 
-For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the [**Getting started with ACPI**](https://khronokernel.github.io/Getting-Started-With-ACPI/) **page.** Compiled SSDTs have a **.aml** extension(Assembled) and will go into the `EFI/OC/ACPI` folder and **must** be specified in your config under `ACPI -> Add` as well.
+For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the [**Getting started with ACPI**](https://acpi.dortania.ml/) **page.** Compiled SSDTs have a **.aml** extension(Assembled) and will go into the `EFI/OC/ACPI` folder and **must** be specified in your config under `ACPI -> Add` as well.
 
 
 **Block**
@@ -61,7 +61,7 @@ This blocks certain ACPI tabes from loading, for us we can ignore this
 This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. For us, we'll need a couple:
 
 * EC Rename
-   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://khronokernel.github.io/Getting-Started-With-ACPI/) on how to determine what EC you have and apply the appropriate patches
+   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://acpi.dortania.ml/) on how to determine what EC you have and apply the appropriate patches
 * OSI rename
    * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT
    
@@ -290,7 +290,7 @@ These values are based of those calculated in [OpenCore debugging](/troubleshoot
 
 **Security**: Security is pretty self-explanatory, **do not skip**
 
-We'll be changing `AllowNvramReset`, `AllowSetDefault`, `RequireSignature`, `RequireVault` and `ScanPolicy`
+We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
 
 * **AllowNvramReset**: YES
    * Allows for NVRAM reset both in the boot picker and when pressing `Cmd+Opt+P+R`
@@ -332,7 +332,7 @@ Won't be covered here, see 8.6 of [Configuration.pdf](https://github.com/acidant
 
 * **DefaultBackgroundColor**: Background color used by boot.efi
    * `00000000`: Syrah Black
-   * `BFBFBF00`: Light Gary
+   * `BFBFBF00`: Light Gray
 
 7C436110-AB2A-4BBB-A880-FE41995C9F82 (System Integrity Protection bitmask)
 
@@ -388,12 +388,12 @@ For setting up the SMBIOS info, we'll use CorpNewt's [GenSMBIOS](https://github.
 
 For this Coffee Lake example, I chose the MacBookPro15,1 SMBIOS - this is done intentionally for compatibility's sake. The breakdown is as follows:
 
-| SMBIOS | CPU Type | GPU Type | Display Size |
-| :--- | :--- | :--- | :--- |
-| MacBookPro15,1 | Hexa Core 45w | iGPU: UHD 630 + dGPU: RP555/560X | 15" |
-| MacBookPro15,2 | Quad Core 15w | iGPU: Iris 655 | 13" |
-| MacBookPro15,3 | Hexa Core 45w | iGPU: UHD 630 + dGPU: Vega16/20 | 15" |
-| MacBookPro15,4 | Quad Core 15w | iGPU: Iris 645 | 13" |
+| SMBIOS | CPU Type | GPU Type | Display Size | Touch ID |
+| :--- | :--- | :--- | :--- | :--- |
+| MacBookPro15,1 | Hexa Core 45w | iGPU: UHD 630 + dGPU: RP555/560X | 15" | Yes |
+| MacBookPro15,2 | Quad Core 15w | iGPU: Iris 655 | 13" | Yes |
+| MacBookPro15,3 | Hexa Core 45w | iGPU: UHD 630 + dGPU: Vega16/20 | 15" | Yes |
+| MacBookPro15,4 | Quad Core 15w | iGPU: Iris 645 | 13" | Yes |
 
 Run GenSMBIOS, pick option 1 for downloading MacSerial and Option 3 for selecting out SMBIOS.  This will give us an output similar to the following:
 
