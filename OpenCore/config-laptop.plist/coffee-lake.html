@@ -489,7 +489,7 @@
 <h2 id="acpi">ACPI</h2>
 <p><img src="https://i.imgur.com/IkLFucw.png" alt="ACPI"></p>
 <p><strong>Add:</strong></p>
-<p>This is where you&apos;ll add SSDTs for your system, these are very important to <strong>booting macOS</strong> and have many uses like <a href="https://usb-map.gitbook.io/project/" target="_blank">USB maps</a>, <a href="../../post-install/spoof.md">disabling unsupported GPUs</a> and such. And with our system, <strong>its even required to boot</strong>. Guide on making them found here: <a href="https://khronokernel.github.io/Getting-Started-With-ACPI/" target="_blank"><strong>Getting started with ACPI</strong></a></p>
+<p>This is where you&apos;ll add SSDTs for your system, these are very important to <strong>booting macOS</strong> and have many uses like <a href="https://usb-map.gitbook.io/project/" target="_blank">USB maps</a>, <a href="../../post-install/spoof.md">disabling unsupported GPUs</a> and such. And with our system, <strong>its even required to boot</strong>. Guide on making them found here: <a href="https://acpi.dortania.ml/" target="_blank"><strong>Getting started with ACPI</strong></a></p>
 <p>For us we&apos;ll need a couple of SSDTs to bring back functionality that Clover provided:</p>
 <ul>
 <li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl" target="_blank">SSDT-PLUG</a><ul>
@@ -510,14 +510,14 @@
 </li>
 </ul>
 <p>Note that you <strong>should not</strong> add your generated <code>DSDT.aml</code> here, it is already in your firmware. So if present, remove the entry for it in your <code>config.plist</code> and under EFI/ACPI.</p>
-<p>For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the <a href="https://khronokernel.github.io/Getting-Started-With-ACPI/" target="_blank"><strong>Getting started with ACPI</strong></a> <strong>page.</strong> Compiled SSDTs have a <strong>.aml</strong> extension(Assembled) and will go into the <code>EFI/OC/ACPI</code> folder and <strong>must</strong> be specified in your config under <code>ACPI -&gt; Add</code> as well.</p>
+<p>For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the <a href="https://acpi.dortania.ml/" target="_blank"><strong>Getting started with ACPI</strong></a> <strong>page.</strong> Compiled SSDTs have a <strong>.aml</strong> extension(Assembled) and will go into the <code>EFI/OC/ACPI</code> folder and <strong>must</strong> be specified in your config under <code>ACPI -&gt; Add</code> as well.</p>
 <p><strong>Block</strong></p>
 <p>This blocks certain ACPI tabes from loading, for us we can ignore this</p>
 <p><strong>Patch</strong>:</p>
 <p>This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we&apos;ll need a couple:</p>
 <ul>
 <li>EC Rename<ul>
-<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="https://khronokernel.github.io/Getting-Started-With-ACPI/" target="_blank">Fixing Embedded Controllers Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
+<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="https://acpi.dortania.ml/" target="_blank">Fixing Embedded Controllers Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
 </ul>
 </li>
 <li>OSI rename<ul>
@@ -999,7 +999,7 @@
 </ul>
 <p>These values are based of those calculated in <a href="../../troubleshooting/debug.md">OpenCore debugging</a></p>
 <p><strong>Security</strong>: Security is pretty self-explanatory, <strong>do not skip</strong></p>
-<p>We&apos;ll be changing <code>AllowNvramReset</code>, <code>AllowSetDefault</code>, <code>RequireSignature</code>, <code>RequireVault</code> and <code>ScanPolicy</code></p>
+<p>We&apos;ll be changing <code>AllowNvramReset</code>, <code>AllowSetDefault</code>, <code>Vault</code> and <code>ScanPolicy</code></p>
 <ul>
 <li><strong>AllowNvramReset</strong>: YES<ul>
 <li>Allows for NVRAM reset both in the boot picker and when pressing <code>Cmd+Opt+P+R</code></li>
@@ -1058,7 +1058,7 @@
 <li><p><strong>DefaultBackgroundColor</strong>: Background color used by boot.efi</p>
 <ul>
 <li><code>00000000</code>: Syrah Black</li>
-<li><code>BFBFBF00</code>: Light Gary</li>
+<li><code>BFBFBF00</code>: Light Gray</li>
 </ul>
 </li>
 </ul>
@@ -1140,6 +1140,7 @@
 <th style="text-align:left">CPU Type</th>
 <th style="text-align:left">GPU Type</th>
 <th style="text-align:left">Display Size</th>
+<th style="text-align:left">Touch ID</th>
 </tr>
 </thead>
 <tbody>
@@ -1148,24 +1149,28 @@
 <td style="text-align:left">Hexa Core 45w</td>
 <td style="text-align:left">iGPU: UHD 630 + dGPU: RP555/560X</td>
 <td style="text-align:left">15&quot;</td>
+<td style="text-align:left">Yes</td>
 </tr>
 <tr>
 <td style="text-align:left">MacBookPro15,2</td>
 <td style="text-align:left">Quad Core 15w</td>
 <td style="text-align:left">iGPU: Iris 655</td>
 <td style="text-align:left">13&quot;</td>
+<td style="text-align:left">Yes</td>
 </tr>
 <tr>
 <td style="text-align:left">MacBookPro15,3</td>
 <td style="text-align:left">Hexa Core 45w</td>
 <td style="text-align:left">iGPU: UHD 630 + dGPU: Vega16/20</td>
 <td style="text-align:left">15&quot;</td>
+<td style="text-align:left">Yes</td>
 </tr>
 <tr>
 <td style="text-align:left">MacBookPro15,4</td>
 <td style="text-align:left">Quad Core 15w</td>
 <td style="text-align:left">iGPU: Iris 645</td>
 <td style="text-align:left">13&quot;</td>
+<td style="text-align:left">Yes</td>
 </tr>
 </tbody>
 </table>
@@ -1465,7 +1470,7 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"next":{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},"previous":{"title":"Kaby Lake","level":"4.1.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/coffee-lake.md","mtime":"2020-03-27T02:49:53.504Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-27T02:50:39.736Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"next":{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},"previous":{"title":"Kaby Lake","level":"4.1.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/coffee-lake.md","mtime":"2020-04-07T22:36:12.354Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-07T22:37:03.583Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
