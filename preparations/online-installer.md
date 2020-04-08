@@ -18,7 +18,11 @@ Requirements:
     _OR_
     * Click `Clone or download` in the top right and `Download ZIP`, then unzip.
     
-![Hello World](/Images/preparations/CloneOrDownload.jpg)
+    ![Hello World](/Images/preparations/CloneOrDownload.jpg)
+
+* 7Zip
+    * Graphical version is probably easier in Windows
+    
 
 ### Getting the Recovery Package
 
@@ -37,20 +41,25 @@ Requirements:
 
 #### Windows
 
-Included in gibMacOS is a script which can put the recovery image on to a USB basically automatically. It will install 7-zip and dd if needed when ran. **This will format your USB** so make sure all your data is backed up.
+OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore, so we only need to format the USB to one Fat32 partition and drop it in. This does require 7Zip installed to 
 
-1.  Run `MakeInstall.bat`.
-2. **Carefully** choose your drive (look for size, name, or other features). Type in it's number and add the letter `O`, then press enter. `O` tells gibMacOS to download OpenCore rather than Clover.
-
-    ![World Hello](/Images/preparations/MakeInstall.jpg)
+1. Right click the Start Button on your task bar and run `Disk Management`
+2. You should see all of your partitions and disks. On the bottom half, you'll see your devices. Find your USB.
+3. You'll want to format the USB to have a Fat32 partition.
+    * If you have multiple partitions on the USB, right click each partition and delete volume for your USB (**This will remove data, make sure you have backups and only remove partitions from your USB**)
+        * Right click the unallocated space and create a new simple volume. Make sure it is FAT32 and atleast a gigabyte or two big. Name it "EFI"
+    * Otherwise, right click the partition on the USB and click `format` and set it to FAT32.
+    ![Hello General Kenobi](/Images/preparations/DiskManagement.jpg)
+4. In File Explorer, go to your USB and create a new folder at the root called `com.apple.recovery.boot`
+4. Again in File Explorer, find the .pkg downloaded by GibMacOS under `macOS Downloads` in the gibMacOS folder.
+5. Open the .pkg by right clicking and going under 7zip -> Open Archive
     
-3. When asked for the recovery package path, add it in.
-    * Under the GibMacOS folder, the package should've been downloaded somewhere under `macOS Downloads`.
-    * Once found, you can hold `shift` and right click the package. You can then select `Copy as Path` and paste that in.
+    ![Horld Wello](/Images/preparations/7zipWinders.jpg)
+6. Open RecoveryHDMeta.dmg (or similar named dmg) then open the folder contained.
+7. You should see BaseSystem.dmg and BaseSystem.chunklist. Drag/Copy these to `com.apple.recovery.boot`.
 
-    ![Hello General Kenobi](/Images/preparations/shiftClick.jpg)
-
-4. It will take a while to write the image to USB. Once done, you can exit out and move on to configuring OpenCore down below.
+    ![World Hello](/Images/preparations/BaseSystemWinders.jpg)
+8. You are ready to continue on and put OpenCore on the USB
 
 #### Linooox
 
@@ -63,38 +72,38 @@ This will go over using gdisk, though you can use other utilties that you are co
     3. Create a partition by entering `n`
         * Partition Number: Default (Leave blank for default)
         * First Sector: Default
-        * Last Sector: `+200M` to create a 200MB partition for your EFI
+        * Last Sector: Default
         * Hex code or GUID: `0700` for Microsoft basic data partition type
-    4. Create another partition
-        * Partition Number/First Sector/Last Sector: Default
-        * Hex code or GUID: `af00` for Apple HFS/HFS+ partition type
-    5. Enter `w` to write changes to the USB
-    6. Close by entering `q`
+    4. Enter `w` to write changes to the USB
+    5. Close by entering `q`
 3. Verify USB was formatted correctly with `lsblk`
-4. Run `mkfs.vfat -F 32 -n "EFI" /dev/<your 200MB partition>` to format the 200MB block to FAT32 and to name it "EFI"
-5. `cd` to the .pkg you downloaded under `macOS downloads`
-6. Make sure `p7zip-full` is installed
-    * `sudo apt install p7zip-full` for Ubuntu/Ubuntu forks
+4. Run `mkfs.vfat -F 32 -n "EFI" /dev/<your partition>` to format the 200MB block to FAT32 and to name it "EFI"
+5. Mount the USB by running `mount /dev/<your partition> /mnt`
+6. `cd` to your USB by running `cd /mnt` and create a folder with `mkdir com.apple.recovery.boot`. This will be where we put the Recovery image.
+7. `cd` to the .pkg you downloaded under `macOS downloads` in the gibmacos folder
+8. Make sure `p7zip-full` is installed
+    * `sudo apt install p7zip-full` for Ubuntu/Ubuntu based
     * `sudo pacman -S p7zip` for Arch
-7. Run `7z e -txar *.pkg *.dmg; 7z e *.dmg */Base*; 7z e -tdmg Base*.dmg *.hfs`. This extracts the recovery from the pkg by extracting the initial update package, then extracting the recovery dmg, then extracting the hfs image.
-8. Once you find `4.hfs` or `3.hfs`, run `dd if=*.hfs of=/dev/<your USB's second partition> bs=8M --progress`
-9. You are ready to continue and download/configure OpenCore
+9. Run `7z e -txar *.pkg *.dmg; 7z e *.dmg */Base*`. This extracts the recovery from the pkg by extracting the initial update package, then extracting the BaseSystem damage.
+
+![LINOOOOOOOOOOOOOOOOOOOOOOOOOOOOX](/Images/preparations/LinooxExtract.jpg)
+![LINUX](/Images/Preparations/LinooxLS.jpg)
+
+10. Once you find `BaseSystem.dmg` and `BaseSystem.chunklist`, copy these to `com.apple.recovery.boot` on the USB.
+11. You are ready to continue and download/configure OpenCore
 
 #### OS Ten (macOS)
 
 1. In finder, find the Recovery package under `macOS downloads`. You may need to enable file name extensions under `Finder > Preferences > Advanced.
 2. Rename the extension from `.pkg` to `.dmg`
-3. Open the image (this will mount said image)
-4. Find and double click on `Basesystem.dmg` to mount it
-5. Open `Disk Utility`
+3. Open the image by double clicking (this will mount said image)
+4. Open `Disk Utility`
     1. Select View > Show All Devices (Above the drive list in the top left)
     2. Select your USB *device*
     3. Select Partition
-        * If you do not see partition, then select Erase and format it as macOS Extended Journaled and GUID Partition Table.
-    4. Make:
-        * Minimum 200MB partition named EFI, formatted as MSDOS
-        * The rest of the drive formmated as MacOS Extended Journaled
+        * If you do not see partition, then select Erase and format it as `MS-DOS(FAT)` and GUID.
     5. Apply
-    6. Select the MacOS Extended Journaled partition and select Restore.
-    7. Choose BaseSystem from the list and let it restore.
-6. Continue down below to install OpenCore
+    6. Quit Disk Utility
+5. Open the USB and create a folder called `com.apple.recovery.boot`
+6. Go to the image you mounted earlier and find `BaseSystem.dmg` and `BaseSystem.chunklist`. Copy these both to `com.apple.recovery.boot`
+7. You are ready to continue and put OpenCore on the USB
