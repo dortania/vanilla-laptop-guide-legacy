@@ -32,4 +32,4 @@
    * [Kaby Lake](/OpenCore/config-laptop.plist/kaby-lake.md)
    * [Coffee Lake(8th Gen)](/OpenCore/config-laptop.plist/coffee-lake.md)
    * [Coffee Lake Plus(9th Gen)](/OpenCore/config-laptop.plist/coffee-lake-plus.md)
-* [Getting started with ACPI](https://khronokernel.github.io/Getting-Started-With-ACPI/)
+* [Getting started with ACPI](https://acpi.dortania.ml/)
