@@ -1,7 +1,3 @@
----
-description: page description
----
-
 # Please note this guide is currently far from finished
 
 # Overview
