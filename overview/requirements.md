@@ -32,7 +32,7 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
      * iOS users can do this as well but you need the Tetherme tweak on a jailbroken iPhone. Unfortnunately if you are not on the right version (any ios version up to 12.1.2) this is not possible. :/
 8. A **fast internet connection**
    * Users have complained of slow or locked up downloads, that's mainly due to slow or unstable internet.
-   * This is crucial for the online method, offline can get away with it.
+   * This is crucial for the online method, offline can get away without it.
 9. A **Proper OS Installation:**
    * Be it:
      * macOS \(a fairly recent one would be better\)
