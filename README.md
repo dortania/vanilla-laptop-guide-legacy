@@ -2,7 +2,7 @@
 
 # Overview
 
-[![Build Status](https://travis-ci.com/dortania/vanilla-laptop-guide.svg?branch=master)](https://travis-ci.com/dortania/vanilla-laptop-guide)
+[![Build Status](https://travis-ci.com/dortania/vanilla-laptop-guide.svg?style=flat-square&branch=master)](https://travis-ci.com/dortania/vanilla-laptop-guide)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-vanilla--laptop--guide-blue?style=flat-square&logo=github)](https://github.com/dortania/vanilla-laptop-guide)
 
 So you want to hackintosh a laptop? Can't wrap your head around RehabMan's confusing guides? Well, here's the vanila laptop guide for you. This guide will explain everything you need to know to hackintosh a laptop. For Windows and Linux we will use the internet install method, and for macOS we will use `createinstallmedia` (offline install).
