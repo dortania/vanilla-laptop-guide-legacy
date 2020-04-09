@@ -14,10 +14,10 @@ These are the drivers used by OpenCore, for the majority of systems you only nee
 
 * [ApfsDriverLoader.efi](https://github.com/acidanthera/AppleSupportPkg/releases)
    * Needed for seeing APFS volumes(ie. macOS)
-* [VboxHfs.efi](https://github.com/acidanthera/AppleSupportPkg/releases) **or** [HfsPlus.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi)
+* [HfsPlus.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi) **or** [VboxHfs.efi](https://github.com/acidanthera/AppleSupportPkg/releases)
    * Needed for seeing HFS volumes(ie. macOS Installers and Recovery partitions/images). **Do not mix HFS drivers**
 * [OpenRuntime.efi](https://github.com/acidanthera/OpenCorePkg/releases)
-  * Replacement for [AptioMemoryFix.efi](https://github.com/acidanthera/AptioFixPkg), used for patching boot.efi for NVRAM fixes and better memory management.
+  * Replacement for [AptioMemoryFix.efi](https://github.com/acidanthera/AptioFixPkg), used as an extension for OpenCore to help with patching boot.efi for NVRAM fixes and better memory management.
 
 For legacy users:
 
@@ -28,7 +28,7 @@ For legacy users:
 * [XhciDxe.efi](https://github.com/acidanthera/OpenCorePkg/releases)
    * Used for Sandy Bridge and older when no XHCI driver is built into the firmware, not needed if you're not using a USB 3.0 expansion card
 * [HfsPlusLegacy.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlusLegacy.efi)
-   * Legacy variant of HfsPlus, used for systems that lack RDRAND instruction support. This is generally seen on SandyBridge and older
+   * Legacy variant of HfsPlus, used for systems that lack RDRAND instruction support. This is generally seen on Sandy Bridge and older
 
 For a full list of compatible drivers, see 11.2 Properties in the [OpenCorePkg Docs](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf). These files will go in your Drivers folder in your EFI
 
@@ -63,6 +63,7 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
 
 * [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases)
   * Used for graphics patching DRM, boardID, framebuffer fixes, etc, all GPUs benefit from this kext.
+  * Note the SSDT-PNLF.dsl file included is only required for laptops and AIOs, see * [Getting started with ACPI](/extras/acpi.md) for more info
 
 **Audio**:
 
@@ -81,32 +82,15 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
 **USB**:
 
 * [USBInjectAll](https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/)
-  * Used for injecting Intel USB controllers, Ice Lake and Comet Lake systems will likely need [XHCI-unsupported](https://github.com/RehabMan/OS-X-USB-Inject-All) as well
-
-**Keyboard and mouse**:
-
-* [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases)
-   * Required for systems with PS2 keyboards and trackpads
-   * Trackpad users should also pair this with [VoodooInput](https://github.com/acidanthera/VoodooInput/releases)(This must come before VoodooPS2 in your config.plist)
-
-* [VoodooI2C](https://github.com/alexandred/VoodooI2C/releases) 
-   * Used for fixing I2C devices
-   * To be paired with a plugin:
-      * VoodooI2CHID - Implements the Microsoft HID device specification.
-      * VoodooI2CElan - Implements support for Elan proprietary devices. (does not work on ELAN1200+, use the HID instead)
-      * VoodooI2CSynaptics - Implements support for Synaptics proprietary devices.
-      * VoodooI2CFTE - Implements support for the FTE1001 touchpad.
-      * VoodooI2CUPDDEngine - Implements Touchbase driver support.
-	  
-To figure out what kind of keyboard and trackpad you have check DeviceManager in Windows or `dmesg |grep input` in Linux
-
+  * Used for injecting Intel USB controllers on systems without defined USB ports in ACPI
+  * Not needed on Skylake and newer 
 
 **WiFi and Bluetooth**:
 
 * [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup/releases)
   * Used for patching non-Apple Broadcom cards, **will not work on intel, Killer, Realtek, etc**
 * [BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM/releases)
-  * Used for uploading firmware on broadcom bluetooth chipset, required for all non-Apple Airport cards.
+  * Used for uploading firmware on broadcom bluetooth chipset, required for all non-Apple/Fenvi Airport cards.
   * To be paired with BrcmFirmwareData.kext
     * BrcmPatchRAM3 for 10.14+ (must be paired with BrcmBluetoothInjector)
     * BrcmPatchRAM2 for 10.11-10.14
@@ -121,12 +105,30 @@ The order in `Kernel -> Add` should be:
 **Extra's**:
 
 * [VoodooTSCSync](https://bitbucket.org/RehabMan/VoodooTSCSync/downloads/)
-   * Some Asus laptops had firmware updates breaking their TSC sync making macOS get out of sync itself and run a lot slower
+   * Needed for syncing TSC on some of Intel's HEDT and server motherboards, without this macOS may be extremly slow or even unbootable. Skylake-X should use TSCAdjustReset instead
 * [NVMeFix](https://github.com/acidanthera/NVMeFix/releases)
    * Used for fixing power management and initialization on non-Apple NVMe, requires macOS 10.14 or newer
+
+**Laptop Specifics**:
+
+* [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases)
+   * Required for systems with PS2 keyboards and trackpads
+   * Trackpad users should also pair this with [VoodooInput](https://github.com/acidanthera/VoodooInput/releases)(This must come before VoodooPS2 in your config.plist)
+
+* [VoodooI2C](https://github.com/alexandred/VoodooI2C/releases) 
+   * Used for fixing I2C devices, found with some fancier touchpads and touchscreen machines
+   * To be paired with a plugin:
+      * VoodooI2CHID - Implements the Microsoft HID device specification.
+      * VoodooI2CElan - Implements support for Elan proprietary devices. (does not work on ELAN1200+, use the HID instead)
+      * VoodooI2CSynaptics - Implements support for Synaptics proprietary devices.
+      * VoodooI2CFTE - Implements support for the FTE1001 touchpad.
+      * VoodooI2CUPDDEngine - Implements Touchbase driver support.
+
+To figure out what kind of keyboard and trackpad you have, check DeviceManager in Windows or `dmesg |grep input` in Linux
+
 * [NoTouchID](https://github.com/al3xtjames/NoTouchID/releases)
    * Recommended for SMBIOS that include a TouchID sensor to fix auth issues
-
+ 
 
 Please refer to [Kexts.md](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Kexts.md) for a full list of supported kexts
 
@@ -139,56 +141,45 @@ So you see all those SSDTs in the AcpiSamples folder and wonder whether you need
 A quick TL;DR of needed SSDTs(This is source code, you will have to compile them into a .aml file):
 
 **Ivy Bridge:**
-* [SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)
+
 * [CPU-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)
+* [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
+* EC-Rename
+* XOSI-Rename
 
 **Haswell:**
 * [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-* [SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)
+* [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
+* EC-Rename
+* XOSI-Rename
 
 **Skylake:**
 * [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-* [SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)
+* [SSDT-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)
+* [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
+* EC-Rename
+* XOSI-Rename
 
 **Kabylake:**
 * [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-* [SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)
+* [SSDT-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)
+* [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
+* EC-Rename
+* XOSI-Rename
 
 **Coffeelake:**
 * [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-* [SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)
-* [SSDT AWAC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl)
+* [SSDT-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)
+* EC-Rename
+* XOSI-Rename
+
+**Coffeelake Plus:**
+* [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
+* [SSDT-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)
+* [SSDT-AWAC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl)
 * [SSDT-PMC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl)
+* [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
+* EC-Rename
+* XOSI-Rename
 
-**Haswell-E:**
-* [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-* [SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)
-
-**Broadwell-E:**
-* [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-* [SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)
-
-**Skylake-X:**
-* [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-* [SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)
-
-**AMD:**
-* [SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)
-
-# Now head to your specific CPU section to setup your config.plist
-
-**Intel Config.plist**
-
-* [Ivy Bridge](/config.plist/ivy-bridge.md)
-* [Haswell](/config.plist/haswell.md)
-* [Skylake](/config.plist/skylake.md)
-* [Kaby Lake](/config.plist/kaby-lake.md)
-* [Coffee Lake](/config.plist/coffee-lake.md)
-
-**Intel HEDT Config.plist**
-
-* [Skylake-X](/config-HEDT/skylake-x.md)
-
-**AMD Config.plist**
-
-* [AMD](/AMD/AMD-config.md)
+# Now head [Getting Started With ACPI](https://acpi.dortania.ml/)

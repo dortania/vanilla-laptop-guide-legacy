@@ -29,7 +29,7 @@ Now with those downloaded, we can get to really get started:
 **And read this guide more than once before setting up OpenCore and make sure you have it set up correctly. Do note that images will not always be the most up-to-date so please read the text below them, if nothing's mentioned then leave as default.**
 
 ## ACPI
-![ACPI](/Images/config/config-universal/aptio-v-acpi.png)
+![ACPI](/Images/config/config-laptop.plist/kaby-lake/acpi.png)
 
 **Add:**
 

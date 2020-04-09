@@ -30,7 +30,7 @@ Now with those downloaded, we can get to really get started:
 
 ## ACPI
 
-![ACPI](/Images/config/config-universal/aptio-v-acpi.png)
+![ACPI](/Images/config/config-laptop.plist/coffeelake-plus/acpi.png)
 
 **Add:**
 

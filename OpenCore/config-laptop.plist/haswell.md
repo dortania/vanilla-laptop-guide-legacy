@@ -30,7 +30,7 @@ Now with those downloaded, we can get to really get started:
 
 ## ACPI
 
-![ACPI](/Images/config/config-universal/aptio-iv-acpi.png)
+![ACPI](/Images/config/config-laptop.plist/haswell/acpi.png)
 
 
 **Add:**
