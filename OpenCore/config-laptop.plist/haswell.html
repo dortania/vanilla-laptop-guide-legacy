@@ -487,7 +487,7 @@
 </ul>
 <p><strong>And read this guide more than once before setting up OpenCore and make sure you have it set up correctly. Do note that images will not always be the most up-to-date so please read the text below them, if nothing&apos;s mentioned then leave as default.</strong></p>
 <h2 id="acpi">ACPI</h2>
-<p><img src="../../Images/config/config-laptop.plist/haswell/acpi.png" alt="ACPI"></p>
+<p><img src="../../images/config/config-laptop.plist/haswell/acpi.png" alt="ACPI"></p>
 <p><strong>Add:</strong></p>
 <p>This is where you&apos;ll add SSDTs for your system, these are very important to <strong>booting macOS</strong> and have many uses like <a href="https://usb-map.gitbook.io/project/" target="_blank">USB maps</a>, <a href="../../post-install/spoof.md">disabling unsupported GPUs</a> and such. And with our system, <strong>its even required to boot</strong>. Guide on making them found here: <a href="https://acpi.dortania.ml/" target="_blank"><strong>Getting started with ACPI</strong></a></p>
 <p>For us we&apos;ll need a couple of SSDTs to bring back functionality that Clover provided:</p>
@@ -622,7 +622,7 @@
 </li>
 </ul>
 <h2 id="booter">Booter</h2>
-<p><img src="../../Images/config/config-universal/aptio-iv-booter.png" alt="Booter"></p>
+<p><img src="../../images/config/config-universal/aptio-iv-booter.png" alt="Booter"></p>
 <p>This section is dedicated to quirks relating to boot.efi patching with OpenRuntime, the replacement for AptioMemoryFix.efi</p>
 <p><strong>MmioWhitelist</strong>:</p>
 <p>This section is allowing spaces to be passthrough to macOS that are generally ignored, useful when paired with <code>DevirtualiseMmio</code></p>
@@ -695,7 +695,7 @@
 </li>
 </ul>
 <h2 id="deviceproperties">DeviceProperties</h2>
-<p><img src="../../Images/config/config-laptop.plist/haswell/DeviceProperties.png" alt="DeviceProperties"></p>
+<p><img src="../../images/config/config-laptop.plist/haswell/DeviceProperties.png" alt="DeviceProperties"></p>
 <p><strong>Add</strong>: Sets device properties from a map.</p>
 <p>This section is set up via WhateverGreen&apos;s <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md" target="_blank">Framebuffer Patching Guide</a> and is used for fixing certain iGPU properties like <code>ig-platform-id</code>. The way we get the proper value for this is to look at the framebuffer we intend to use, then swap the pairs of hex bytes.</p>
 <p>If we think of our ig-plat as <code>0xAABBCCDD</code>, our swapped version would look like <code>DDCCBBAA</code></p>
@@ -822,7 +822,7 @@
 <p>Fun Fact: The reason the byte order is swapped is due to <a href="https://en.wikipedia.org/wiki/Endianness" target="_blank">Endianness</a>, specifically Little Endians that modern CPUs use for ordering bytes. The more you know!</p>
 <p><strong>Block</strong>: Removes device properties from the map, for us we can ignore this</p>
 <h2 id="kernel">Kernel</h2>
-<p><img src="../../Images/config/config-universal/kernel.png" alt="Kernel"></p>
+<p><img src="../../images/config/config-universal/kernel.png" alt="Kernel"></p>
 <p><strong>Add</strong>: Here&apos;s where you specify which kexts to load, order matters here so make sure Lilu.kext is always first! Other higher priority kexts come after Lilu such as VirtualSMC, AppleALC, WhateverGreen, etc. A reminder that <a href="https://github.com/corpnewt/ProperTree" target="_blank">ProperTree</a> users can run <strong>Cmd/Ctrl + Shift + R</strong> to add all their kexts in the correct order without manually typing each kext out.</p>
 <ul>
 <li><strong>BundlePath</strong><ul>
@@ -914,7 +914,7 @@
 </ul>
 <p>The reason being is that UsbInjectAll reimplements builtin macOS functionality without proper current tuning. It is much cleaner to just describe your ports in a single plist-only kext, which will not waste runtime memory and such</p>
 <h2 id="misc">Misc</h2>
-<p><img src="../../Images/config/config-universal/misc.png" alt="Misc"></p>
+<p><img src="../../images/config/config-universal/misc.png" alt="Misc"></p>
 <p><strong>Boot</strong>: Settings for boot screen (Leave everything as default)</p>
 <ul>
 <li><strong>HibernateMode</strong>: None<ul>
@@ -1032,7 +1032,7 @@
 <p><strong>Entries</strong>: Used for specifying irregular boot paths that can&apos;t be found naturally with OpenCore</p>
 <p>Won&apos;t be covered here, see 8.6 of <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf" target="_blank">Configuration.pdf</a> for more info</p>
 <h2 id="nvram">NVRAM</h2>
-<p><img src="../../Images/config/config-universal/nvram.png" alt="NVRAM"></p>
+<p><img src="../../images/config/config-universal/nvram.png" alt="NVRAM"></p>
 <p><strong>Add</strong>: </p>
 <p>4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14 (Booter Path, mainly used for UI Scaling)</p>
 <ul>
@@ -1117,7 +1117,7 @@
 <li>Enables writing to flash memory for all added variables.</li>
 </ul>
 <h2 id="platforminfo">Platforminfo</h2>
-<p><img src="../../Images/config/config-laptop.plist/haswell/smbios.png" alt="PlatformInfo"></p>
+<p><img src="../../images/config/config-laptop.plist/haswell/smbios.png" alt="PlatformInfo"></p>
 <p>For setting up the SMBIOS info, we&apos;ll use CorpNewt&apos;s <a href="https://github.com/corpnewt/GenSMBIOS" target="_blank">GenSMBIOS</a> application. </p>
 <p>For this Haswell example, we chose the MacBookPro11,1 SMBIOS. The typical breakdown is as follows:</p>
 <table>
@@ -1224,7 +1224,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 <li>Replace the tables with newly allocated EfiReservedMemoryType, use Custom on Dell laptops requiring CustomSMBIOSGuid quirk</li>
 </ul>
 <h2 id="uefi">UEFI</h2>
-<p><img src="../../Images/config/config-universal/aptio-iv-uefi.png" alt="UEFI"></p>
+<p><img src="../../images/config/config-universal/aptio-iv-uefi.png" alt="UEFI"></p>
 <p><strong>ConnectDrivers</strong>: YES</p>
 <ul>
 <li>Forces .efi drivers, change to NO will automatically connect added UEFI drivers. This can make booting slightly faster, but not all drivers connect themselves. E.g. certain file system drivers may not load.</li>
@@ -1471,7 +1471,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"4.1.2","depth":2,"next":{"title":"Broadwell","level":"4.1.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"4.1.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/haswell.md","mtime":"2020-04-09T02:38:13.758Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-09T02:39:01.129Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"4.1.2","depth":2,"next":{"title":"Broadwell","level":"4.1.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"4.1.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/haswell.md","mtime":"2020-04-09T22:02:14.352Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-09T22:02:59.314Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

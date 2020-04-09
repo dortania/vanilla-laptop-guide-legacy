@@ -454,33 +454,30 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="preparing-an-online-installer-macoswindowslinooox">Preparing an online installer (MacOS/Windows/Linooox)</h1>
-<p>This requires a working internet connection on the target machine! If you&apos;re using wifi, that means that the wifi card must be compatible with <strong>macOS</strong>. It is possible to use hornDIS to tether with an Android phone if needed.</p>
-<p>Using gibMacOS, you can download the recovery image directly from apple servers and put it on a USB. Once booted up, this image can download the macOS installer on to the target hard drive.</p>
+                                <h1 id="preparing-an-online-installer-macoswindowslinux">Preparing an online installer (MacOS/Windows/Linux)</h1>
+<p>This requires a working internet connection on the target machine! If you&apos;re using WiFi, that means that the WiFi card must be compatible with <strong>macOS</strong>. It is possible to use HornDIS to tether with an Android phone if needed.</p>
+<p>Using gibMacOS, you can download the recovery image directly from Apple&apos;s servers and put it on a USB. Once booted up, this image can download the macOS installer on to the target hard drive.</p>
 <p><a href="https://internet-install.gitbook.io/macos-internet-install/preparing-your-installer/preparing-your-installer-media" target="_blank">Old Internet-Install Guide</a></p>
 <p>Requirements:</p>
 <ul>
 <li>4 GB USB or greater</li>
 <li><a href="https://www.python.org/downloads/" target="_blank">Python 2.7 or greater</a><ul>
-<li>For windows, make sure when installing that &quot;add to PATH&quot; is enabled in the installer.<ul>
-<li>NOTE: If the .bat fails to run, you can run <code>python &lt;file.py&gt;</code></li>
+<li>For Windows, make sure when installing that &quot;add to PATH&quot; is enabled in the installer.<ul>
+<li>NOTE: If the .bat fails to run, you can run <code>python &lt;file.py&gt;</code>.</li>
 </ul>
 </li>
-<li>For Linooox, install it through whatever package manager in your distro</li>
+<li>For Linux, install it through whatever package manager your distro uses</li>
 <li>macOS already includes Python</li>
 </ul>
 </li>
-<li><p><a href="https://github.com/corpnewt/gibMacOS" target="_blank">GibMacOS</a></p>
-<ul>
+<li><a href="https://github.com/corpnewt/gibMacOS" target="_blank">GibMacOS</a><ul>
 <li>Clone using git (<code>git clone https://github.com/CorpNewt/gibmacos.git</code>)
 <em>OR</em></li>
-<li><p>Click <code>Clone or download</code> in the top right and <code>Download ZIP</code>, then unzip.</p>
-<p><img src="../Images/preparations/CloneOrDownload.jpg" alt="Hello World"></p>
-</li>
+<li>Click <code>Clone or download</code> in the top right and <code>Download ZIP</code>, then unzip.
+<img src="../images/preparations/CloneOrDownload.jpg" alt="Hello World"></li>
 </ul>
 </li>
-<li><p>7Zip</p>
-<ul>
+<li>7-Zip<ul>
 <li>Graphical version is probably easier in Windows</li>
 </ul>
 </li>
@@ -489,46 +486,42 @@
 <ol>
 <li>Run GibMacOS<ul>
 <li>On Windows, run <code>gibMacOS.bat</code>. If it does not recognize Python, you can also run <code>python gibMacOS.command</code></li>
-<li>Linooox/MacOS - directly run gibMacOS.command</li>
+<li>Linux/MacOS - directly run gibMacOS.command</li>
 </ul>
 </li>
 <li>Toggle Recovery-Only by entering R and pressing Enter. Make sure it says <code>Toggle Recovery-Only (Currently on)</code><ul>
 <li>This reduces the download size as we only need the recovery package (500 MB) rather than the full release (7-8 GB)</li>
 </ul>
 </li>
-<li><p>Select the release you want to download. In this case, we&apos;re downloading 1.15.4, or the latest release of macOS Catalina. It does not matter if <code>FULL Install</code> is at the end or not.</p>
-<p> <img src="../Images/preparations/gibMacOS.jpg" alt="Hello World (Again!)"> </p>
-</li>
-<li><p>You can exit out of gibMacOS once it&apos;s done downloading</p>
-</li>
+<li>Select the release you want to download. In this case, we&apos;re downloading 10.15.4, or the latest release of macOS Catalina. It does not matter if <code>FULL Install</code> is at the end or not.
+ <img src="../images/preparations/gibMacOS.jpg" alt="Hello World (Again!)"> </li>
+<li>You can exit out of gibMacOS once it&apos;s done downloading.</li>
 </ol>
 <h3 id="putting-macos-on-a-usb">Putting macOS on a USB</h3>
 <h4 id="windows">Windows</h4>
-<p>OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore, so we only need to format the USB to one Fat32 partition and drop it in. This does require 7Zip installed to </p>
+<p>OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore, so we only need to format the USB to one FAT32 partition and drop it in. This does require 7-Zip installed.</p>
 <ol>
-<li>Right click the Start Button on your task bar and run <code>Disk Management</code></li>
+<li>Right click the Start Button on your task bar and select <code>Disk Management</code>.</li>
 <li>You should see all of your partitions and disks. On the bottom half, you&apos;ll see your devices. Find your USB.</li>
-<li>You&apos;ll want to format the USB to have a Fat32 partition.<ul>
-<li>If you have multiple partitions on the USB, right click each partition and delete volume for your USB (<strong>This will remove data, make sure you have backups and only remove partitions from your USB</strong>)<ul>
-<li>Right click the unallocated space and create a new simple volume. Make sure it is FAT32 and atleast a gigabyte or two big. Name it &quot;EFI&quot;</li>
+<li>You&apos;ll want to format the USB to have a FAT32 partition.<ul>
+<li>If you have multiple partitions on the USB, right click each partition and click <code>Delete Volume</code> for your USB (<strong>This will remove data, make sure you have backups and only remove partitions from your USB</strong>)<ul>
+<li>Right click the unallocated space and create a new simple volume. Make sure it is FAT32 and atleast a gigabyte or two big. Name it &quot;EFI&quot;.</li>
 </ul>
 </li>
-<li>Otherwise, right click the partition on the USB and click <code>format</code> and set it to FAT32.
-<img src="../Images/preparations/DiskManagement.jpg" alt="Hello General Kenobi"></li>
+<li>Otherwise, right click the partition on the USB and click <code>Format</code> and set it to FAT32.
+<img src="../images/preparations/DiskManagement.jpg" alt="Hello General Kenobi"></li>
 </ul>
 </li>
-<li>In File Explorer, go to your USB and create a new folder at the root called <code>com.apple.recovery.boot</code></li>
+<li>In File Explorer, go to your USB and create a new folder at the root called <code>com.apple.recovery.boot</code>.</li>
 <li>Again in File Explorer, find the .pkg downloaded by GibMacOS under <code>macOS Downloads</code> in the gibMacOS folder.</li>
-<li><p>Open the .pkg by right clicking and going under 7zip -&gt; Open Archive</p>
-<p> <img src="../Images/preparations/7zipWinders.jpg" alt="Horld Wello"></p>
-</li>
+<li>Open the .pkg by right clicking and going under 7-Zip -&gt; Open Archive
+ <img src="../images/preparations/7zipWinders.jpg" alt="Horld Wello"></li>
 <li>Open RecoveryHDMeta.dmg (or similar named dmg) then open the folder contained.</li>
-<li><p>You should see BaseSystem.dmg and BaseSystem.chunklist. Drag/Copy these to <code>com.apple.recovery.boot</code>.</p>
-<p> <img src="../Images/preparations/BaseSystemWinders.jpg" alt="World Hello"></p>
-</li>
-<li>You are ready to continue on and put OpenCore on the USB</li>
+<li>You should see BaseSystem.dmg and BaseSystem.chunklist. Drag/copy these to the <code>com.apple.recovery.boot</code> folder on your USB.
+ <img src="../images/preparations/BaseSystemWinders.jpg" alt="World Hello"></li>
+<li>You are ready to continue on and put OpenCore on the USB.</li>
 </ol>
-<h4 id="linooox">Linooox</h4>
+<h4 id="linux">Linux</h4>
 <p>This will go over using gdisk, though you can use other utilties that you are comfortable using. This will create the necessary partitions on the USB.</p>
 <ol>
 <li>Run <code>lsblk</code> and note your USB device</li>
@@ -558,31 +551,31 @@
 </li>
 <li>Run <code>7z e -txar *.pkg *.dmg; 7z e *.dmg */Base*</code>. This extracts the recovery from the pkg by extracting the initial update package, then extracting the BaseSystem damage.</li>
 </ol>
-<p><img src="../Images/preparations/LinooxExtract.jpg" alt="LINOOOOOOOOOOOOOOOOOOOOOOOOOOOOX">
-<img src="../Images/Preparations/LinooxLS.jpg" alt="LINUX"></p>
+<p><img src="../images/preparations/LinooxExtract.jpg" alt="LINOOOOOOOOOOOOOOOOOOOOOOOOOOOOX">
+<img src="../images/Preparations/LinooxLS.jpg" alt="LINUX"></p>
 <ol>
 <li>Once you find <code>BaseSystem.dmg</code> and <code>BaseSystem.chunklist</code>, copy these to <code>com.apple.recovery.boot</code> on the USB.</li>
 <li>You are ready to continue and download/configure OpenCore</li>
 </ol>
-<h4 id="os-ten-macos">OS Ten (macOS)</h4>
+<h4 id="macos">macOS</h4>
 <ol>
-<li>In finder, find the Recovery package under <code>macOS downloads</code>. You may need to enable file name extensions under `Finder &gt; Preferences &gt; Advanced.</li>
+<li>In Finder, find the Recovery package under <code>macOS Downloads</code>. You may need to enable file name extensions under <code>Finder &gt; Preferences &gt; Advanced</code>.</li>
 <li>Rename the extension from <code>.pkg</code> to <code>.dmg</code></li>
 <li>Open the image by double clicking (this will mount said image)</li>
 <li>Open <code>Disk Utility</code><ol>
-<li>Select View &gt; Show All Devices (Above the drive list in the top left)</li>
+<li>Select <code>View &gt; Show All Devices</code> (above the drive list in the top left)</li>
 <li>Select your USB <em>device</em></li>
-<li>Select Partition<ul>
-<li>If you do not see partition, then select Erase and format it as <code>MS-DOS(FAT)</code> and GUID.</li>
+<li>Select the FAT32 partition<ul>
+<li>If you do not see any partitions, then select Erase and format it as <code>MS-DOS (FAT)</code> and GUID.</li>
 </ul>
 </li>
 <li>Apply</li>
 <li>Quit Disk Utility</li>
 </ol>
 </li>
-<li>Open the USB and create a folder called <code>com.apple.recovery.boot</code></li>
-<li>Go to the image you mounted earlier and find <code>BaseSystem.dmg</code> and <code>BaseSystem.chunklist</code>. Copy these both to <code>com.apple.recovery.boot</code></li>
-<li>You are ready to continue and put OpenCore on the USB</li>
+<li>Open the USB and create a folder called <code>com.apple.recovery.boot</code>.</li>
+<li>Go to the image you mounted earlier and find <code>BaseSystem.dmg</code> and <code>BaseSystem.chunklist</code>. Copy these both to the <code>com.apple.recovery.boot</code> folder.</li>
+<li>You are ready to continue and put OpenCore on the USB.</li>
 </ol>
 
                                 
@@ -627,7 +620,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Preparing an online installer","level":"3.5","depth":1,"next":{"title":"OpenCore config","level":"4.1","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.1.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.1.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"4.1.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"4.1.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.1.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]}]},"previous":{"title":"Preparing an offline installer (macOS only)","level":"3.4","depth":1,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/online-installer.md","mtime":"2020-04-09T02:38:13.758Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-09T02:39:01.129Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Preparing an online installer","level":"3.5","depth":1,"next":{"title":"OpenCore config","level":"4.1","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.1.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.1.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"4.1.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"4.1.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.1.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]}]},"previous":{"title":"Preparing an offline installer (macOS only)","level":"3.4","depth":1,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/online-installer.md","mtime":"2020-04-09T22:02:14.352Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-09T22:02:59.314Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
