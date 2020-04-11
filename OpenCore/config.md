@@ -29,4 +29,3 @@ Now comes the fun part, making our config.plist. Follow your respective section 
 * 10000 series, 2019-2020 era
 * Do not ix this and Comet Lake up
 
-* Ice Lake is not yet supported, while macOS does have support both MacInfoPkg and WhateverGreen need to be adapted. And we also need framebuffer dumps to get a good idea on what's needed
