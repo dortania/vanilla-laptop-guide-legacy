@@ -636,7 +636,7 @@
 <li><a href="coffee-lake-plus.html#intel-bios-settings">Intel BIOS settings</a></li>
 </ul>
 <h2 id="starting-point">Starting Point</h2>
-<p>So making a config.plist may seem hard, its not. It just takes some time but this guide will tell you how to configure eveything, you won&apos;t be left in the cold. This also means if you have issues, review your config settings to make sure they&apos;re correct. Main things to note with OpenCore:</p>
+<p>So making a config.plist may seem hard, its not. It just takes some time but this guide will tell you how to configure everything, you won&apos;t be left in the cold. This also means if you have issues, review your config settings to make sure they&apos;re correct. Main things to note with OpenCore:</p>
 <ul>
 <li><strong>All properties must be defined</strong>, there are no default OpenCore will fall back on so <strong>do not delete sections unless told explicitly so</strong>. If the guide doesn&apos;t mention the option, leave it at default.</li>
 <li><strong>The Sample.plist cannot be used As-Is</strong>, you must configure it to your system</li>
@@ -872,7 +872,7 @@
 </ul>
 </li>
 <li><strong>SignalAppleOS</strong>: NO<ul>
-<li>Tricks the hardware into thinking its always booting macOS, mainly benifitial for MacBook Pro&apos;s with dGPUs as booting Windows won&apos;t allow for the iGPU to be used</li>
+<li>Tricks the hardware into thinking its always booting macOS, mainly beneficial for MacBook Pro&apos;s with dGPUs as booting Windows won&apos;t allow for the iGPU to be used</li>
 </ul>
 </li>
 <li><strong>SyncRuntimePermissions</strong>: YES<ul>
@@ -884,10 +884,10 @@
 <p><img src="../../images/config/config-laptop.plist/coffeelake-plus/DeviceProperties.png" alt="DeviceProperties"></p>
 <p><strong>Add</strong>: Sets device properties from a map.</p>
 <p>This section is set up via WhateverGreen&apos;s <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md" target="_blank">Framebuffer Patching Guide</a> and is used for fixing certain iGPU properties like <code>ig-platform-id</code>. The way we get the proper value for this is to look at the framebuffer we intend to use, then swap the pairs of hex bytes.</p>
-<p>The table below may seem daughting but it&apos;s really not, the main things we need to take away from it are:</p>
+<p>The table below may seem daunting but it&apos;s really not, the main things we need to take away from it are:</p>
 <ul>
 <li>Type of iGPU<ul>
-<li>To most closly match your setup</li>
+<li>To most closely match your setup</li>
 </ul>
 </li>
 <li>AAPL,ig-platform-id<ul>
@@ -902,9 +902,11 @@
 <li>The number of displays and what types are supported</li>
 </ul>
 </li>
-<li>device-id<ul>
-<li>The actual Device ID used by IOKit(the drivers) for inital connection, if your iGPU isn&apos;t natively supported you can add this property to correct it</li>
+<li><p>device-id</p>
+<ul>
+<li>The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn&apos;t natively supported you can add this property to correct it</li>
 </ul>
+<p>Note that highlighted entries are the recommended entries to use</p>
 </li>
 </ul>
 <table>
@@ -1075,7 +1077,7 @@
 </ul>
 </li>
 <li><strong>AppleXcpmForceBoost</strong>: NO<ul>
-<li>Forces maximum multiplier, only recommended to enable on scientific or media calculation machines that are constantly under load. Main Xeons benifit from this</li>
+<li>Forces maximum multiplier, only recommended to enable on scientific or media calculation machines that are constantly under load. Main Xeons benefit from this</li>
 </ul>
 </li>
 <li><strong>CustomSMBIOSGuid</strong>: NO <ul>
@@ -1095,7 +1097,7 @@
 </ul>
 </li>
 <li><strong>IncreasePciBarSize</strong>: NO<ul>
-<li>Increases 32-bit PCI bar size in IOPCIFamily from 1 to 4 GB, enabling Above4GDecoding in the BIOS is a much cleaner and safer approach. Some X99 boards may require this, you&apos;ll generally expereince a kernel panic on IOPCIFamily if you need this</li>
+<li>Increases 32-bit PCI bar size in IOPCIFamily from 1 to 4 GB, enabling Above4GDecoding in the BIOS is a much cleaner and safer approach. Some X99 boards may require this, you&apos;ll generally experience a kernel panic on IOPCIFamily if you need this</li>
 </ul>
 </li>
 <li><strong>LapicKernelPanic</strong>: NO <ul>
@@ -1164,7 +1166,7 @@
 </ul>
 </li>
 <li><strong>TakeoffDelay</strong>: <code>0</code><ul>
-<li>Used to add a delay for hotkeys when OpenCore is a bit to fast to register, 5000-10000 microseconds is the prefered range for users with broken hotkeys support  </li>
+<li>Used to add a delay for hotkeys when OpenCore is a bit to fast to register, 5000-10000 microseconds is the preferred range for users with broken hotkeys support  </li>
 </ul>
 </li>
 <li><strong>Timeout</strong>: <code>5</code><ul>
@@ -1175,7 +1177,7 @@
 <p><strong>Debug</strong>: Helpful for debugging OpenCore boot issues(We&apos;ll be changing everything <em>but</em> <code>DisplayDelay</code>)</p>
 <ul>
 <li><strong>AppleDebug</strong>: YES<ul>
-<li>Enables boot.efi logging, useful for debuuging. Note this is only supported on 10.15.4 and newer</li>
+<li>Enables boot.efi logging, useful for debugging. Note this is only supported on 10.15.4 and newer</li>
 </ul>
 </li>
 <li><strong>DisableWatchDog</strong>: YES<ul>
@@ -1204,7 +1206,7 @@
 </ul>
 </li>
 <li><strong>AuthRestart</strong>: NO:<ul>
-<li>Enables Authenticated restart for FileVault2 so password is not required on reboot. Can be concidered a security risk so optional</li>
+<li>Enables Authenticated restart for FileVault2 so password is not required on reboot. Can be considered a security risk so optional</li>
 </ul>
 </li>
 <li><strong>ExposeSensitiveData</strong>: <code>6</code><ul>
@@ -1283,7 +1285,7 @@
 </ul>
 </li>
 <li><strong>prev-lang:kbd</strong>: &lt;&gt; <ul>
-<li>Needed for non-latin keyboards in the format of <code>lang-COUNTRY:keyboard</code>, recommeneded to keep blank though you can specify it(<strong>Default in Sample config is Russian</strong>):</li>
+<li>Needed for non-latin keyboards in the format of <code>lang-COUNTRY:keyboard</code>, recommended to keep blank though you can specify it(<strong>Default in Sample config is Russian</strong>):</li>
 <li>American: <code>en-US:0</code>(<code>656e2d55533a30</code> in HEX)</li>
 <li>Full list can be found in <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Utilities/AppleKeyboardLayouts/AppleKeyboardLayouts.txt" target="_blank">AppleKeyboardLayouts.txt</a></li>
 <li>Hint: <code>prev-lang:kbd</code> can be changed into a String so you can input <code>en-US:0</code> directly instead of converting to HEX</li>
@@ -1451,7 +1453,7 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
 <p><strong>Input</strong>: Related to boot.efi keyboard passthrough used for FileVault and Hotkey support</p>
 <ul>
 <li><strong>KeyFiltering</strong>: NO<ul>
-<li>Verifies and discards uninitialised data, mainly prevalent on 7 series Gigabyte boards</li>
+<li>Verifies and discards uninitialized data, mainly prevalent on 7 series Gigabyte boards</li>
 </ul>
 </li>
 <li><strong>KeyForgetThreshold</strong>: <code>5</code><ul>
@@ -1490,7 +1492,7 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
 <p><strong>Output</strong>: Relating to visual output</p>
 <ul>
 <li><strong>TextRenderer</strong>: <code>BuiltinGraphics</code><ul>
-<li>Used for fixing resoltuion of OpenCore itself, <code>Resolution</code> must be set to <code>Max</code> to work correctly</li>
+<li>Used for fixing resolution of OpenCore itself, <code>Resolution</code> must be set to <code>Max</code> to work correctly</li>
 </ul>
 </li>
 <li><strong>ConsoleMode</strong>: [Blank]<ul>
@@ -1498,7 +1500,7 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
 </ul>
 </li>
 <li><strong>Resolution</strong>: <code>Max</code><ul>
-<li>Sets OpenCore&apos;s resolution, <code>Max</code> will use the highest avalible reolution or can be specified (<code>WxH@Bpp (e.g. 1920x1080@32) or WxH (e.g. 1920x1080)</code>)</li>
+<li>Sets OpenCore&apos;s resolution, <code>Max</code> will use the highest available resolution or can be specified (<code>WxH@Bpp (e.g. 1920x1080@32) or WxH (e.g. 1920x1080)</code>)</li>
 </ul>
 </li>
 <li><strong>ClearScreenOnModeSwitch</strong>: NO<ul>
@@ -1510,7 +1512,7 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
 </ul>
 </li>
 <li><strong>ProvideConsoleGop</strong>: YES<ul>
-<li>Enables GOP(Graphics output Protcol) which the macOS bootloader requires for console handle, <strong>required for graphical output once the kernel takes over</strong></li>
+<li>Enables GOP(Graphics output Protocol) which the macOS bootloader requires for console handle, <strong>required for graphical output once the kernel takes over</strong></li>
 </ul>
 </li>
 <li><strong>DirectGopRendering</strong>: NO<ul>
@@ -1530,7 +1532,7 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
 <p><strong>Protocols</strong>: (Most values can be ignored here as they&apos;re meant for real Macs/VMs)</p>
 <ul>
 <li><strong>AppleSmcIo</strong>: NO<ul>
-<li>Reinstalls Apple SMC I/O, this is the equivlant of VirtualSMC.efi which is only needed for users using FileVault</li>
+<li>Reinstalls Apple SMC I/O, this is the equivalent of VirtualSMC.efi which is only needed for users using FileVault</li>
 </ul>
 </li>
 <li><strong>FirmwareVolume</strong>: NO<ul>
@@ -1650,7 +1652,7 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"next":{"title":"Icelake","level":"4.1.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"previous":{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","mtime":"2020-04-11T22:37:08.547Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T22:37:54.532Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"next":{"title":"Icelake","level":"4.1.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"previous":{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","mtime":"2020-04-11T22:44:43.852Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T22:45:34.092Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
