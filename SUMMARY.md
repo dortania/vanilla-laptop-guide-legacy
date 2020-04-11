@@ -34,3 +34,19 @@
    * [Coffee Lake Plus(9th Gen)](/OpenCore/config-laptop.plist/coffee-lake-plus.md)
    * [Icelake](/OpenCore/config-laptop.plist/icelake.md)
 * [Getting started with ACPI](https://acpi.dortania.ml/)
+
+## Installation
+
+* [Installation Process](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
+## Post Install
+
+* [Post-Install](/post-install/README.md)
+   * [Security and FileVault](https://desktop.dortania.ml/post-install/security)
+   * [Fixing Audio](https://desktop.dortania.ml//post-install/audio)
+   * [Booting without USB](https://desktop.dortania.ml//post-install/oc2hdd)
+   * [Updating OpenCore, kexts and macOS](https://desktop.dortania.ml//post-install/update)
+   * [Fixing CFG Lock](https://desktop.dortania.ml//extras/msr-lock)
+   * [Fixing Resolution and Verbose](https://desktop.dortania.ml//post-install/verbose)
+   * [Fixing iServices](https://desktop.dortania.ml//post-install/iservices)
+   * [Emulated NVRAM](https://desktop.dortania.ml//post-install/nvram)
