@@ -177,23 +177,23 @@ The table below may seem daughting but it's really not, the main things we need 
 * device-id
    * The actual Device ID used by IOKit(the drivers) for inital connection, if your iGPU isn't natively supported you can add this property to correct it
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 530 | 12190000 | 00001219 | 3 | 34MB | 21MB | 1536MB | DUMMY1 DP2 |
-| **Intel HD Graphics 520** | 16190000 | 00001619 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
-| Intel HD Graphics 520 | 16190002 | 02001619 | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| **Intel HD Graphics 530** * | 1b190000 | 00001b19 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
-| Intel HD Graphics 530 | 1b190006 | 06001b19 | 1 | 38MB | 0MB | 1536MB | LVDS1 |
-| Intel HD Graphics 515 | 1e190000 | 00001e19 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
-| Intel HD Graphics 515 | 1e190003 | 03001e19 | 3 | 40MB | 0MB | 1536MB | LVDS1 DP2 |
-| **Intel Iris Graphics 540** | 26190000 | 00002619 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Graphics 540 | 26190002 | 02002619 | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Graphics 540 | 26190004 | 04002619 | 3 | 34MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Graphics 540 | 26190007 | 07002619 | 3 | 34MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Graphics 550 | 27190000 | 00002719 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Graphics 550 | 27190004 | 04002719 | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Pro Graphics 580 | 3b190000 | 00003b19 | 3 | 34MB | 21MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Pro Graphics 580 | 3b190005 | 05003b19 | 4 | 34MB | 21MB | 1536MB | LVDS1 DP3 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Intel HD Graphics 530 | 12190000 | 00001219 | 3 | 34MB | 21MB |  DUMMY1 DP2 |
+| **Intel HD Graphics 520** | 16190000 | 00001619 | 3 | 34MB | 21MB |  LVDS1 DP2 |
+| Intel HD Graphics 520 | 16190002 | 02001619 | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| **Intel HD Graphics 530** * | 1b190000 | 00001b19 | 3 | 34MB | 21MB |  LVDS1 DP2 |
+| Intel HD Graphics 530 | 1b190006 | 06001b19 | 1 | 38MB | 0MB |  LVDS1 |
+| Intel HD Graphics 515 | 1e190000 | 00001e19 | 3 | 34MB | 21MB |  LVDS1 DP2 |
+| Intel HD Graphics 515 | 1e190003 | 03001e19 | 3 | 40MB | 0MB |  LVDS1 DP2 |
+| **Intel Iris Graphics 540** | 26190000 | 00002619 | 3 | 34MB | 21MB |  LVDS1 DP2 |
+| Intel Iris Graphics 540 | 26190002 | 02002619 | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Graphics 540 | 26190004 | 04002619 | 3 | 34MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Graphics 540 | 26190007 | 07002619 | 3 | 34MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Graphics 550 | 27190000 | 00002719 | 3 | 34MB | 21MB |  LVDS1 DP2 |
+| Intel Iris Graphics 550 | 27190004 | 04002719 | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Pro Graphics 580 | 3b190000 | 00003b19 | 3 | 34MB | 21MB |  LVDS1 DP2 |
+| Intel Iris Pro Graphics 580 | 3b190005 | 05003b19 | 4 | 34MB | 21MB |  LVDS1 DP3 |
 
 #### Special Notes:
 
@@ -210,11 +210,11 @@ The table below may seem daughting but it's really not, the main things we need 
 
 * In some cases where you cannot set the DVMT-prealloc of these cards to 64MB higher in your UEFI Setup, you may get a kernel panic. Usually they're configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties
  
-  | Key | Type | Value |
-  | :--- | :--- | :--- |
-  | `framebuffer-patch-enable` | Number | `1` |
-  | `framebuffer-stolenmem` | Data | `00003001` |
-  | `framebuffer-fbmem` | Data | `00009000` |
+| Key | Type | Value |
+| :--- | :--- | :--- |
+| `framebuffer-patch-enable` | Number | `1` |
+| `framebuffer-stolenmem` | Data | `00003001` |
+| `framebuffer-fbmem` | Data | `00009000` |
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -> `Layout-id`
 

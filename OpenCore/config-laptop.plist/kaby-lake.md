@@ -177,21 +177,19 @@ The table below may seem daughting but it's really not, the main things we need 
 * device-id
    * The actual Device ID used by IOKit(the drivers) for inital connection, if your iGPU isn't natively supported you can add this property to correct it
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Intel HD Graphics 620** | 16590000 | 00001659 | 3 | 34MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel HD Graphics 620 | 16590009 | 09001659 | 3 | 38MB | 0MB | 1536MB | LVDS1 DP2 |
-| Unlisted iGPU | 18590002 | 02001859 | 0 | 0MB | 0MB | 1536MB | Connector: |
-| **Intel HD Graphics 630** | 1b590000 | 00001b59 | 3 | 38MB | 21MB | 1536MB | LVDS1 DP2 |
-| Intel HD Graphics 630 | 1b590006 | 06001b59 | 1 | 38MB | 0MB | 1536MB | LVDS1 |
-| Unlisted iGPU | 1c590005 | 05001c59 | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel HD Graphics 615 | 1e590000 | 00001e59 | 3 | 34MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel HD Graphics 615 | 1e590001 | 01001e59 | 3 | 38MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Plus Graphics 640 | 26590002 | 02002659 | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Plus Graphics 650 | 27590004 | 04002759 | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Plus Graphics 650 | 27590009 | 09002759 | 3 | 38MB | 0MB | 1536MB | LVDS1 DP2 |
-| **Intel UHD Graphics 617** | C0870000 | 0000C087 | 3 | 34MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel UHD Graphics 617 | C0870005 | 0500C087 | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Intel HD Graphics 620** | 16590000 | 00001659 | 3 | 34MB | 0MB |  LVDS1 DP2 |
+| Intel HD Graphics 620 | 16590009 | 09001659 | 3 | 38MB | 0MB |  LVDS1 DP2 |
+| **Intel HD Graphics 630** | 1b590000 | 00001b59 | 3 | 38MB | 21MB |  LVDS1 DP2 |
+| Intel HD Graphics 630 | 1b590006 | 06001b59 | 1 | 38MB | 0MB |  LVDS1 |
+| Intel HD Graphics 615 | 1e590000 | 00001e59 | 3 | 34MB | 0MB |  LVDS1 DP2 |
+| Intel HD Graphics 615 | 1e590001 | 01001e59 | 3 | 38MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Plus Graphics 640 | 26590002 | 02002659 | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Plus Graphics 650 | 27590004 | 04002759 | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Plus Graphics 650 | 27590009 | 09002759 | 3 | 38MB | 0MB |  LVDS1 DP2 |
+| **Intel UHD Graphics 617** | C0870000 | 0000C087 | 3 | 34MB | 0MB |  LVDS1 DP2 |
+| Intel UHD Graphics 617 | C0870005 | 0500C087 | 3 | 57MB | 0MB |  LVDS1 DP2 |
 
 #### Special Notes:
 
@@ -206,25 +204,25 @@ The table below may seem daughting but it's really not, the main things we need 
 * For all HD6\*\* (`UHD` users are not concerned), there are some small issues with output where plugging anything would cause a lock up (kernel panic), here are some patches to mitigate that (credit Rehabman):
   * 0306 to 0105 (will probably explain what it does one day)
 
-  | Key | Type | Value |
-  | :--- | :--- | :--- |
-  | `framebuffer-con1-enable` | Number | `1` |
-  | `framebuffer-con1-alldata` | Data | `01050A00 00080000 87010000 02040A00 00080000 87010000 FF000000 01000000 20000000` |
+| Key | Type | Value |
+| :--- | :--- | :--- |
+| `framebuffer-con1-enable` | Number | `1` |
+| `framebuffer-con1-alldata` | Data | `01050A00 00080000 87010000 02040A00 00080000 87010000 FF000000 01000000 20000000` |
 
   * 0204 to 0105 (will probably explain what it does one day)
 
-  | Key | Type | Value |
-  | :--- | :--- | :--- |
-  | `framebuffer-con1-enable` | Number | `1` |
-  | `framebuffer-con1-alldata` | Data | `01050A00 00080000 87010000 03060A00 00040000 87010000 FF000000 01000000 20000000` |
+| Key | Type | Value |
+| :--- | :--- | :--- |
+| `framebuffer-con1-enable` | Number | `1` |
+| `framebuffer-con1-alldata` | Data | `01050A00 00080000 87010000 03060A00 00040000 87010000 FF000000 01000000 20000000` |
 
 * In some cases where you cannot set the DVMT-prealloc of these cards to 64MB higher in your UEFI Setup, you may get a kernel panic. Usually they're configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties
  
-  | Key | Type | Value |
-  | :--- | :--- | :--- |
-  | `framebuffer-patch-enable` | Number | `1` |
-  | `framebuffer-stolenmem` | Data | `00003001` |
-  | `framebuffer-fbmem` | Data | `00009000` |
+| Key | Type | Value |
+| :--- | :--- | :--- |
+| `framebuffer-patch-enable` | Number | `1` |
+| `framebuffer-stolenmem` | Data | `00003001` |
+| `framebuffer-fbmem` | Data | `00009000` |
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -> `Layout-id`
 

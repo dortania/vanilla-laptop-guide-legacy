@@ -183,19 +183,18 @@ The table below may seem daughting but it's really not, the main things we need 
 * device-id
    * The actual Device ID used by IOKit(the drivers) for inital connection, if your iGPU isn't natively supported you can add this property to correct it
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel UHD Graphics 630 | 003E0000 | 0000003E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel UHD Graphics 630 | 923E0000 | 0000923E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel UHD Graphics 630 | 923E0009 | 0900923E | 3 | 57MB | 0MB | 1536MB | LVDS1 DUMMY2 |
-| **Intel UHD Graphics 630** | 9B3E0000 | 00009B3E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel UHD Graphics 630 | 9B3E0006 | 06009B3E | 1 | 38MB | 0MB | 1536MB | LVDS1 DUMMY2 |
-| Intel UHD Graphics 630 | 9B3E0009 | 09009B3E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Plus Graphics 655 | A53E0000 | 0000A53E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Plus Graphics 655 | A53E0004 | 0400A53E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel UHD Graphics 630 | A53E0005 | 0500A53E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Plus Graphics 655 | A53E0009 | 0900A53E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Unlisted iGPU | A63E0005 | 0500A63E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Intel UHD Graphics 630 | 003E0000 | 0000003E | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel UHD Graphics 630 | 923E0000 | 0000923E | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel UHD Graphics 630 | 923E0009 | 0900923E | 3 | 57MB | 0MB |  LVDS1 DUMMY2 |
+| **Intel UHD Graphics 630** | 9B3E0000 | 00009B3E | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel UHD Graphics 630 | 9B3E0006 | 06009B3E | 1 | 38MB | 0MB |  LVDS1 DUMMY2 |
+| Intel UHD Graphics 630 | 9B3E0009 | 09009B3E | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Plus Graphics 655 | A53E0000 | 0000A53E | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Plus Graphics 655 | A53E0004 | 0400A53E | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel UHD Graphics 630 | A53E0005 | 0500A53E | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| Intel Iris Plus Graphics 655 | A53E0009 | 0900A53E | 3 | 57MB | 0MB |  LVDS1 DP2 |
 
 #### Special Notes:
 

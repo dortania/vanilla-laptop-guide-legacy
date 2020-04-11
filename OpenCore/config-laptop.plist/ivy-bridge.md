@@ -178,14 +178,14 @@ The table below may seem daughting but it's really not, the main things we need 
 * device-id
    * The actual Device ID used by IOKit(the drivers) for inital connection, if your iGPU isn't natively supported you can add this property to correct it
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 4000 | 66010001 | 01006601 | 4 | 96MB | 24MB | 1536MB | LVDS1 HDMI1 DP2 |
-| Intel HD Graphics 4000 | 66010002 | 02006601 | 1 | 64MB | 24MB | 1536MB | LVDS1 |
-| **Intel HD Graphics 4000 <sup>1</sup>** * | 66010003 | 03006601 | 4 | 64MB | 16MB | 1536MB | LVDS1 DP3 |
-| **Intel HD Graphics 4000 <sup>2</sup>** | 66010004 | 04006601 | 1 | 32MB | 16MB | 1536MB | LVDS1 |
-| Intel HD Graphics 4000 | 66010008 | 08006601 | 3 | 64MB | 16MB | 1536MB | LVDS1 DP2 |
-| **Intel HD Graphics 4000 <sup>3</sup>** | 66010009 | 09006601 | 3 | 64MB | 16MB | 1536MB | LVDS1 DP2 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Intel HD Graphics 4000 | 66010001 | 01006601 | 4 | 96MB | 24MB |  LVDS1 HDMI1 DP2 |
+| Intel HD Graphics 4000 | 66010002 | 02006601 | 1 | 64MB | 24MB |  LVDS1 |
+| **Intel HD Graphics 4000 <sup>1</sup>** * | 66010003 | 03006601 | 4 | 64MB | 16MB |  LVDS1 DP3 |
+| **Intel HD Graphics 4000 <sup>2</sup>** | 66010004 | 04006601 | 1 | 32MB | 16MB |  LVDS1 |
+| Intel HD Graphics 4000 | 66010008 | 08006601 | 3 | 64MB | 16MB |  LVDS1 DP2 |
+| **Intel HD Graphics 4000 <sup>3</sup>** | 66010009 | 09006601 | 3 | 64MB | 16MB |  LVDS1 DP2 |
 
 #### Special Notes:
 
@@ -201,15 +201,15 @@ The table below may seem daughting but it's really not, the main things we need 
 
 * For `04006601` platform, as you can tell, it has only one output, which is not enough for external connectors (HDMI/DP), you may need to add these extra parameters (credit to Rehabman)
 
-  | Key | Type | Value | Explanation |
-  | :--- | :--- | :--- | :--- |
-  | `framebuffer-patch-enable` | Number | `1`                                                          | *enabling the semantic patches in principle* (from WEG manual) |
-  | `framebuffer-memorycount`  | Number | `2`                                                          | Matching FBMemoryCount to the one on `03006601` (1 on `04` vs 2 on `03`) |
-  | `framebuffer-pipecount`    | Number | `2`                                                          | Matching PipeCount to the one on `03006601` (3 on `04` vs 2 on `03`) |
-  | `framebuffer-portcount`    | Number | `4`                                                          | Matching PortCount to the one on `03006601` (1 on `04` vs 4 on `03`) |
-  | `framebuffer-stolenmem`    | Data   | `00000004`                                                   | Matching STOLEN memory to 64MB (0x04000000 from hex to base 10 in Bytes) to the one on `03006601`<br />Check [here](https://www.tonymacx86.com/threads/guide-alternative-to-the-minstolensize-patch-with-32mb-dvmt-prealloc.221506/) for more information. |
-  | `framebuffer-con1-enable`  | Number | `1`                                                          | This will enable patching on *connector1* of the driver. (Which is the second connector after con0, which is the eDP/LVDS one) |
-  | `framebuffer-con1-alldata` | Data   | `02050000 00040000 07040000 03040000 00040000 81000000 04060000 00040000 81000000` | When using `all data` with a connector, either you give all information of that connector (port-bused-type-flag) or that port and the ones following it, like in this case.<br />In this case, the ports in `04` are limited to `1`:<br />`05030000 02000000 30020000` (which corresponds to port 5, which is LVDS)<br />However on `03` there are 3 extra ports:<br />`05030000 02000000 30000000` (LVDS, con0, like `04`)<br/>`02050000 00040000 07040000` (DP, con1)<br/>`03040000 00040000 81000000` (DP, con2)<br/>`04060000 00040000 81000000` (DP, con3)<br />Since we changed the number of PortCount to `4` in a platform that has only 1, that means we need to define the 3 others (and we that starting with con1 to the end).<br /> |
+| Key | Type | Value | Explanation |
+| :--- | :--- | :--- | :--- |
+| `framebuffer-patch-enable` | Number | `1`                                                          | *enabling the semantic patches in principle* (from WEG manual) |
+| `framebuffer-memorycount`  | Number | `2`                                                          | Matching FBMemoryCount to the one on `03006601` (1 on `04` vs 2 on `03`) |
+| `framebuffer-pipecount`    | Number | `2`                                                          | Matching PipeCount to the one on `03006601` (3 on `04` vs 2 on `03`) |
+| `framebuffer-portcount`    | Number | `4`                                                          | Matching PortCount to the one on `03006601` (1 on `04` vs 4 on `03`) |
+| `framebuffer-stolenmem`    | Data   | `00000004`                                                   | Matching STOLEN memory to 64MB (0x04000000 from hex to base 10 in Bytes) to the one on `03006601`<br />Check [here](https://www.tonymacx86.com/threads/guide-alternative-to-the-minstolensize-patch-with-32mb-dvmt-prealloc.221506/) for more information. |
+| `framebuffer-con1-enable`  | Number | `1`                                                          | This will enable patching on *connector1* of the driver. (Which is the second connector after con0, which is the eDP/LVDS one) |
+| `framebuffer-con1-alldata` | Data   | `02050000 00040000 07040000 03040000 00040000 81000000 04060000 00040000 81000000` | When using `all data` with a connector, either you give all information of that connector (port-bused-type-flag) or that port and the ones following it, like in this case.<br />In this case, the ports in `04` are limited to `1`:<br />`05030000 02000000 30020000` (which corresponds to port 5, which is LVDS)<br />However on `03` there are 3 extra ports:<br />`05030000 02000000 30000000` (LVDS, con0, like `04`)<br/>`02050000 00040000 07040000` (DP, con1)<br/>`03040000 00040000 81000000` (DP, con2)<br/>`04060000 00040000 81000000` (DP, con3)<br />Since we changed the number of PortCount to `4` in a platform that has only 1, that means we need to define the 3 others (and we that starting with con1 to the end).<br /> |
 
 * Some laptops from this era came with a mixed chipset setup, using Ivy Bridge CPUs with Sandy Bridge chipsets which creates issues with macOS since it expects a certain IMEI ID that it doesn't find and would get stuck at boot, to fix this we need to fake the IMEI's IDs in these models
 

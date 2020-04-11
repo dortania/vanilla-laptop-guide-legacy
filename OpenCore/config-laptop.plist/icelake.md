@@ -185,16 +185,16 @@ The table below may seem daughting but it's really not, the main things we need 
 * device-id
    * The actual Device ID used by IOKit(the drivers) for inital connection, if your iGPU isn't natively supported you can add this property to correct it
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Unknown | FF050000 | 000005FF | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
-| Unknown | 8A700000 | 0000708A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
-| Ice Lake GT2 | 8A510000 | 0000518A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
-| Ice Lake GT1.5 | 8A5C0000 | 00005C8A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
-| Ice Lake GT1 | 8A5D0000 | 00005D8A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
-| **Ice Lake GT2** | 8A520000 | 0000528A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
-| Ice Lake GT1.5 | 8A5A0000 | 00005A8A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
-| Ice Lake GT1 | 8A5B0000 | 00005B8A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Unknown | FF050000 | 000005FF | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Unknown | 8A700000 | 0000708A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake GT2 | 8A510000 | 0000518A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake GT1.5 | 8A5C0000 | 00005C8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake GT1 | 8A5D0000 | 00005D8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| **Ice Lake GT2** | 8A520000 | 0000528A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake GT1.5 | 8A5A0000 | 00005A8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake GT1 | 8A5B0000 | 00005B8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
 
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -> `Layout-id`
