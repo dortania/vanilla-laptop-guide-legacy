@@ -422,6 +422,156 @@
     
 
     
+        
+        <li class="header">Installation</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" >
+            
+                <a target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+            
+                    
+                    Installation Process
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Post Install</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../post-install/">
+            
+                <a href="../post-install/">
+            
+                    
+                    Post-Install
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" >
+            
+                <a target="_blank" href="https://desktop.dortania.ml/post-install/security">
+            
+                    
+                    Security and FileVault
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.2" >
+            
+                <a target="_blank" href="https://desktop.dortania.ml//post-install/audio">
+            
+                    
+                    Fixing Audio
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.3" >
+            
+                <a target="_blank" href="https://desktop.dortania.ml//post-install/oc2hdd">
+            
+                    
+                    Booting without USB
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.4" >
+            
+                <a target="_blank" href="https://desktop.dortania.ml//post-install/update">
+            
+                    
+                    Updating OpenCore, kexts and macOS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.5" >
+            
+                <a target="_blank" href="https://desktop.dortania.ml//extras/msr-lock">
+            
+                    
+                    Fixing CFG Lock
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.6" >
+            
+                <a target="_blank" href="https://desktop.dortania.ml//post-install/verbose">
+            
+                    
+                    Fixing Resolution and Verbose
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.7" >
+            
+                <a target="_blank" href="https://desktop.dortania.ml//post-install/iservices">
+            
+                    
+                    Fixing iServices
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.8" >
+            
+                <a target="_blank" href="https://desktop.dortania.ml//post-install/nvram">
+            
+                    
+                    Emulated NVRAM
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
 
     <li class="divider"></li>
 
@@ -468,12 +618,22 @@
                                 <h1 id="installer-creation">Installer creation</h1>
 <p>So what components do we need to create a bootable USB?
 We need:</p>
-<ol>
-<li>a macOS installer.app (or recovery image for internet install)</li>
-<li>a bootloader (Clover)</li>
-</ol>
-<p>We need a macOS installer.app for an offline install, as this will be the installer that we will use to install macOS. A recovery image can also booted, if you&apos;d like to download the rest of the files over the internet, or if you don&apos;t have macOS to make the installer from.</p>
-<p>We also need a bootloader to boot macOS, as we don&apos;t have Macs. We will be using Clover for this.</p>
+<ul>
+<li>A macOS installer.app (or recovery image for internet install)</li>
+<li>A bootloader (For this guide, we&apos;ll be focusing on OpenCore)</li>
+</ul>
+<p>The installer can be split into 2 categories: Full macOS installers and Recovery Installes</p>
+<ul>
+<li>Full macOS installers are completely contained and require no network connection, they&apos;re generally 8GB+ and require you to have macOS running on something(Windows and linux do not natively support HFS, and we won&apos;t be going over the hacky ways to do so)</li>
+<li>Recovery Installers are a very small part of the normal macOS installer, only containig very core essentials to boot and the rest of the OS being download once you boot it. This requires no HFS write support so can easily be created on Linux, Windows and even Android if you so desire</li>
+</ul>
+<p>And for the bootloader, this is what we use to trick macOS into thinking it&apos;s running on a genuine Mac, by patching many parts of both our system and macOS. For this guide, we&apos;ll be OpenCore. OpenCore is just one of many bootloader in the hack world, what makes this one special is:</p>
+<ul>
+<li>Support much more suffiticated system patching meaning better overal stability with updatess</li>
+<li>Uses modern kext injection being OS agnostic, compared to the hacky injections used by its predesessors(ie. Clover)</li>
+<li>Implements much better overal secuirty and native support for FileVault</li>
+<li>Architected by the god father of Hackintoshes <a href="https://github.com/vit9696" target="_blank">Vit9696</a> and co-written with <a href="https://github.com/Download-Fritz" target="_blank">Download-Fritz</a></li>
+</ul>
 
                                 
                                 </section>
@@ -513,7 +673,7 @@ We need:</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installer creation","level":"3.3","depth":1,"next":{"title":"Preparing an offline installer (macOS only)","level":"3.4","depth":1,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},"previous":{"title":"Multiboot","level":"3.2","depth":1,"url":"https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/","ref":"https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/installer-overview.md","mtime":"2020-04-11T18:28:42.772Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T18:29:29.732Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installer creation","level":"3.3","depth":1,"next":{"title":"Preparing an offline installer (macOS only)","level":"3.4","depth":1,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},"previous":{"title":"Multiboot","level":"3.2","depth":1,"url":"https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/","ref":"https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/installer-overview.md","mtime":"2020-04-11T19:45:30.437Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T19:46:14.960Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
