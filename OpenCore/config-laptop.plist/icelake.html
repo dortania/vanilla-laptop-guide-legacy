@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Haswell · GitBook</title>
+        <title>Icelake · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,10 +62,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="broadwell.html" />
     
-    
-    <link rel="prev" href="ivy-bridge.html" />
+    <link rel="prev" href="coffee-lake-plus.html" />
     
 
     </head>
@@ -313,7 +311,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.1.2" data-path="haswell.html">
+        <li class="chapter " data-level="4.1.2" data-path="haswell.html">
             
                 <a href="haswell.html">
             
@@ -391,7 +389,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.8" data-path="icelake.html">
+        <li class="chapter active" data-level="4.1.8" data-path="icelake.html">
             
                 <a href="icelake.html">
             
@@ -452,7 +450,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Haswell</a>
+        <a href="../.." >Icelake</a>
     </h1>
 </div>
 
@@ -467,23 +465,23 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="haswell">Haswell</h1>
+                                <h1 id="icelake">Icelake</h1>
 <ul>
 <li>Supported version: 0.5.7</li>
 </ul>
 <p>Table of Contents:</p>
 <ul>
-<li><a href="haswell.html#starting-point">Starting Point</a></li>
-<li><a href="haswell.html#acpi">ACPI</a></li>
-<li><a href="haswell.html#booter">Booter</a></li>
-<li><a href="haswell.html#deviceproperties">DeviceProperties</a></li>
-<li><a href="haswell.html#kernel">Kernel</a></li>
-<li><a href="haswell.html#misc">Misc</a></li>
-<li><a href="haswell.html#nvram">NVRAM</a></li>
-<li><a href="haswell.html#smbios">SMBIOS</a></li>
-<li><a href="haswell.html#uefi">UEFI</a></li>
-<li><a href="haswell.html#cleaning-up">Cleaning up</a></li>
-<li><a href="haswell.html#intel-bios-settings">Intel BIOS settings</a></li>
+<li><a href="icelake.html#starting-point">Starting Point</a></li>
+<li><a href="icelake.html#acpi">ACPI</a></li>
+<li><a href="icelake.html#booter">Booter</a></li>
+<li><a href="icelake.html#deviceproperties">DeviceProperties</a></li>
+<li><a href="icelake.html#kernel">Kernel</a></li>
+<li><a href="icelake.html#misc">Misc</a></li>
+<li><a href="icelake.html#nvram">NVRAM</a></li>
+<li><a href="icelake.html#smbios">SMBIOS</a></li>
+<li><a href="icelake.html#uefi">UEFI</a></li>
+<li><a href="icelake.html#cleaning-up">Cleaning up</a></li>
+<li><a href="icelake.html#intel-bios-settings">Intel BIOS settings</a></li>
 </ul>
 <h2 id="starting-point">Starting Point</h2>
 <p>So making a config.plist may seem hard, its not. It just takes some time but this guide will tell you how to configure eveything, you won&apos;t be left in the cold. This also means if you have issues, review your config settings to make sure they&apos;re correct. Main things to note with OpenCore:</p>
@@ -514,13 +512,21 @@
 </ul>
 <p><strong>And read this guide more than once before setting up OpenCore and make sure you have it set up correctly. Do note that images will not always be the most up-to-date so please read the text below them, if nothing&apos;s mentioned then leave as default.</strong></p>
 <h2 id="acpi">ACPI</h2>
-<p><img src="../../images/config/config-laptop.plist/haswell/acpi.png" alt="ACPI"></p>
+<p><img src="../../images/config/config-laptop.plist/coffeelake-plus/acpi.png" alt="ACPI"></p>
 <p><strong>Add:</strong></p>
 <p>This is where you&apos;ll add SSDTs for your system, these are very important to <strong>booting macOS</strong> and have many uses like <a href="https://usb-map.gitbook.io/project/" target="_blank">USB maps</a>, <a href="../../post-install/spoof.md">disabling unsupported GPUs</a> and such. And with our system, <strong>its even required to boot</strong>. Guide on making them found here: <a href="https://acpi.dortania.ml/" target="_blank"><strong>Getting started with ACPI</strong></a></p>
 <p>For us we&apos;ll need a couple of SSDTs to bring back functionality that Clover provided:</p>
 <ul>
 <li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl" target="_blank">SSDT-PLUG</a><ul>
-<li>Allows for native CPU power management, Clover alternative would be under <code>Acpi -&gt; GenerateOptions -&gt; PluginType</code>. Do note that this SSDT is made for systems where <code>AppleACPICPU</code> attaches <code>CPU0</code>, though some ACPI tables have theirs starting at <code>PR00</code> so adjust accordingly. Seeing what device has AppleACPICPU connected first in <a href="https://github.com/toleda/audio_ALCInjection/raw/master/IORegistryExplorer_v2.1.zip" target="_blank">IORegistryExplorer</a> can also give you a hint</li>
+<li>Allows for native CPU power management on Haswell and newer, Clover alternative would be under <code>Acpi -&gt; GenerateOptions -&gt; PluginType</code></li>
+</ul>
+</li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl" target="_blank">SSDT-AWAC</a><ul>
+<li>This is the <a href="https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2" target="_blank">300 series RTC patch</a>, required for 9t gen and newer boards which prevent systems from booting macOS. The alternative is <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-RTC0.dsl" target="_blank">SSDT-RTC0</a> for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see <a href="https://acpi.dortania.ml/" target="_blank">Getting started with ACPI</a> page.</li>
+</ul>
+</li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl" target="_blank">SSDT-PMC</a><ul>
+<li>9th gen and newer don&apos;t declare the FW chip as MMIO in ACPI and so XNU ignores the MMIO region declared by the UEFI memory map. This SSDT brings back NVRAM support and uses the scope <code>PCI0.LPCB</code>, this is the most common scope so a pre-made can be found here: <a href="https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extra-files/SSDT-PMC.aml" target="_blank">SSDT-PMC.aml</a></li>
 </ul>
 </li>
 <li><a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl" target="_blank">SSDT-PNLF</a><ul>
@@ -544,7 +550,7 @@
 <p>This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we&apos;ll need a couple:</p>
 <ul>
 <li>EC Rename<ul>
-<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="https://acpi.dortania.ml/" target="_blank">Fixing Embedded Controllers Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
+<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="https://acpi.dortania.ml/" target="_blank">Fixing Embedded Controllers (Laptop) Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
 </ul>
 </li>
 <li>OSI rename<ul>
@@ -649,19 +655,19 @@
 </li>
 </ul>
 <h2 id="booter">Booter</h2>
-<p><img src="../../images/config/config-universal/aptio-iv-booter.png" alt="Booter"></p>
+<p><img src="../../images/config/config-universal/hedt-booter.png" alt="Booter"></p>
 <p>This section is dedicated to quirks relating to boot.efi patching with OpenRuntime, the replacement for AptioMemoryFix.efi</p>
 <p><strong>MmioWhitelist</strong>:</p>
-<p>This section is allowing spaces to be passthrough to macOS that are generally ignored, useful when paired with <code>DevirtualiseMmio</code></p>
+<p>This section is allowing devices to be passthrough to macOS that are generally ignored, for us we can ignore this section.</p>
 <p><strong>Quirks</strong>:</p>
-<p>Settings relating to boot.efi patching and firmware fixes, one we need to change is <code>RebuildAppleMemoryMap</code></p>
+<p>Settings relating to boot.efi patching and firmware fixes, ones we need to change are <code>DevirtualiseMmio</code>, <code>RebuildAppleMemoryMap</code>, <code>SyncRuntimePermissions</code> and <code>SetupVirtualMap</code></p>
 <ul>
 <li><strong>AvoidRuntimeDefrag</strong>: YES<ul>
 <li>Fixes UEFI runtime services like date, time, NVRAM, power control, etc</li>
 </ul>
 </li>
-<li><strong>DevirtualiseMmio</strong>: NO<ul>
-<li>Reduces Stolen Memory Footprint, expands options for <code>slide=N</code> values and generally useful especially on HEDT and Xeon systems</li>
+<li><strong>DevirtualiseMmio</strong>: YES<ul>
+<li>Reduces Stolen Memory Footprint, expands options for <code>slide=N</code> values and very helpful with fixing Memory Allocation issues on Z390. Requires <code>ProtectUefiServices</code> as well on IceLake and Z390 Coffeelake</li>
 </ul>
 </li>
 <li><strong>DisableSingleUser</strong>: NO<ul>
@@ -697,7 +703,8 @@
 </ul>
 </li>
 <li><strong>ProtectUefiServices</strong>: NO<ul>
-<li>Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and newer Coffeelake systems</li>
+<li>Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and Z390 systems&apos;</li>
+<li>If on Z390, <strong>enable this quirk</strong></li>
 </ul>
 </li>
 <li><strong>ProvideCustomSlide</strong>: YES<ul>
@@ -708,21 +715,21 @@
 <li>Generates Memory Map compatible with macOS, can break on some laptop OEM firmwares so if you receive early boot failures disable this</li>
 </ul>
 </li>
-<li><strong>SetupVirtualMap</strong>: YES<ul>
-<li>Fixes SetVirtualAddresses calls to virtual addresses, not needed on Skylake and newer</li>
+<li><strong>SetupVirtualMap</strong>: NO<ul>
+<li>Fixes SetVirtualAddresses calls to virtual addresses, not needed on Skylake and newer. Some firmware like Gigabyte may still require it, and will kernel panic without this</li>
 </ul>
 </li>
 <li><strong>SignalAppleOS</strong>: NO<ul>
 <li>Tricks the hardware into thinking its always booting macOS, mainly benifitial for MacBook Pro&apos;s with dGPUs as booting Windows won&apos;t allow for the iGPU to be used</li>
 </ul>
 </li>
-<li><strong>SyncRuntimePermissions</strong>: NO<ul>
+<li><strong>SyncRuntimePermissions</strong>: YES<ul>
 <li>Fixes alignment with MAT tables and required to boot Windows and Linux with MAT tables, also recommended for macOS. Mainly relevant for Skylake and newer</li>
 </ul>
 </li>
 </ul>
 <h2 id="deviceproperties">DeviceProperties</h2>
-<p><img src="../../images/config/config-laptop.plist/haswell/DeviceProperties.png" alt="DeviceProperties"></p>
+<p><img src="../../images/config/config-laptop.plist/coffeelake-plus/DeviceProperties.png" alt="DeviceProperties"></p>
 <p><strong>Add</strong>: Sets device properties from a map.</p>
 <p>This section is set up via WhateverGreen&apos;s <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md" target="_blank">Framebuffer Patching Guide</a> and is used for fixing certain iGPU properties like <code>ig-platform-id</code>. The way we get the proper value for this is to look at the framebuffer we intend to use, then swap the pairs of hex bytes.</p>
 <p>The table below may seem daughting but it&apos;s really not, the main things we need to take away from it are:</p>
@@ -763,106 +770,87 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Intel HD Graphics 4400</td>
-<td style="text-align:left">160a000c</td>
-<td style="text-align:left">0c00160a</td>
+<td style="text-align:left">Unknown</td>
+<td style="text-align:left">FF050000</td>
+<td style="text-align:left">000005FF</td>
 <td style="text-align:left">3</td>
 <td style="text-align:left">64MB</td>
-<td style="text-align:left">34MB</td>
+<td style="text-align:left">0MB</td>
 <td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>Intel HD Graphics 5000 <sup>1</sup></strong></td>
-<td style="text-align:left">260a0005</td>
-<td style="text-align:left">0500260a</td>
+<td style="text-align:left">Unknown</td>
+<td style="text-align:left">8A700000</td>
+<td style="text-align:left">0000708A</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">32MB</td>
-<td style="text-align:left">19MB</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">0MB</td>
 <td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left"><strong>Intel HD Graphics 5000 <sup>2</sup></strong></td>
-<td style="text-align:left">260a0006</td>
-<td style="text-align:left">0600260a</td>
+<td style="text-align:left">Ice Lake GT2</td>
+<td style="text-align:left">8A510000</td>
+<td style="text-align:left">0000518A</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">32MB</td>
-<td style="text-align:left">19MB</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">0MB</td>
 <td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel Iris Graphics 5100</td>
-<td style="text-align:left">2e0a0008</td>
-<td style="text-align:left">08002e0a</td>
+<td style="text-align:left">Ice Lake GT1.5</td>
+<td style="text-align:left">8A5C0000</td>
+<td style="text-align:left">00005C8A</td>
 <td style="text-align:left">3</td>
 <td style="text-align:left">64MB</td>
-<td style="text-align:left">34MB</td>
+<td style="text-align:left">0MB</td>
 <td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel Iris Pro Graphics 5200</td>
-<td style="text-align:left">260d0007</td>
-<td style="text-align:left">0700260d</td>
-<td style="text-align:left">4</td>
+<td style="text-align:left">Ice Lake GT1</td>
+<td style="text-align:left">8A5D0000</td>
+<td style="text-align:left">00005D8A</td>
+<td style="text-align:left">3</td>
 <td style="text-align:left">64MB</td>
-<td style="text-align:left">34MB</td>
+<td style="text-align:left">0MB</td>
 <td style="text-align:left">1536MB</td>
-<td style="text-align:left">LVDS1 DP2 HDMI1</td>
+<td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel Iris Pro Graphics 5200</td>
-<td style="text-align:left">260d0009</td>
-<td style="text-align:left">0900260d</td>
-<td style="text-align:left">1</td>
+<td style="text-align:left"><strong>Ice Lake GT2</strong></td>
+<td style="text-align:left">8A520000</td>
+<td style="text-align:left">0000528A</td>
+<td style="text-align:left">3</td>
 <td style="text-align:left">64MB</td>
-<td style="text-align:left">34MB</td>
+<td style="text-align:left">0MB</td>
 <td style="text-align:left">1536MB</td>
-<td style="text-align:left">LVDS1</td>
+<td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel Iris Pro Graphics 5200</td>
-<td style="text-align:left">260d000e</td>
-<td style="text-align:left">0e00260d</td>
-<td style="text-align:left">4</td>
-<td style="text-align:left">96MB</td>
-<td style="text-align:left">34MB</td>
+<td style="text-align:left">Ice Lake GT1.5</td>
+<td style="text-align:left">8A5A0000</td>
+<td style="text-align:left">00005A8A</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">0MB</td>
 <td style="text-align:left">1536MB</td>
-<td style="text-align:left">LVDS1 DP2 HDMI1</td>
+<td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel Iris Pro Graphics 5200</td>
-<td style="text-align:left">260d000f</td>
-<td style="text-align:left">0f00260d</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">96MB</td>
-<td style="text-align:left">34MB</td>
+<td style="text-align:left">Ice Lake GT1</td>
+<td style="text-align:left">8A5B0000</td>
+<td style="text-align:left">00005B8A</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">64MB</td>
+<td style="text-align:left">0MB</td>
 <td style="text-align:left">1536MB</td>
-<td style="text-align:left">LVDS1</td>
+<td style="text-align:left">LVDS1 DP2</td>
 </tr>
 </tbody>
 </table>
-<h4 id="special-notes">Special Notes:</h4>
-<ul>
-<li><sup>1</sup>: to be used usually with HD5000, HD5100 and HD5200<ul>
-<li>The device-id of these devices <em>should</em> be supported already by the native macOS drivers.</li>
-</ul>
-</li>
-<li><sup>2</sup>: to be used usually with HD4200, HD4400 and HD4600.<ul>
-<li>You <strong>must</strong> use <code>device-id</code> = <code>12040000</code></li>
-</ul>
-</li>
-<li>In some cases, just using these values directly would cause some glitches to show up, to mitigate them, we change the size of the cursor byte:<ul>
-<li><code>framebuffer-patch-enable</code> = <code>1</code> (as a Number)</li>
-<li><code>framebuffer-cursor</code> = <code>00009000</code> (as Data)<ul>
-<li>We change the cursor byte from 6MB (00006000) to 9MB because of some glitches.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 <p><code>PciRoot(0x0)/Pci(0x1f,0x3)</code> -&gt; <code>Layout-id</code></p>
 <ul>
 <li>Applies AppleALC audio injection, you&apos;ll need to do your own research on which codec your motherboard has and match it with AppleALC&apos;s layout. <a href="https://github.com/acidanthera/AppleALC/wiki/Supported-codecs" target="_blank">AppleALC Supported Codecs</a>.</li>
@@ -1166,9 +1154,9 @@
 <li>Enables writing to flash memory for all added variables.</li>
 </ul>
 <h2 id="platforminfo">Platforminfo</h2>
-<p><img src="../../images/config/config-laptop.plist/haswell/smbios.png" alt="PlatformInfo"></p>
+<p><img src="../../images/config/config-laptop.plist/coffeelake/smbios.png" alt="PlatformInfo"></p>
 <p>For setting up the SMBIOS info, we&apos;ll use CorpNewt&apos;s <a href="https://github.com/corpnewt/GenSMBIOS" target="_blank">GenSMBIOS</a> application. </p>
-<p>For this Haswell example, we chose the MacBookPro11,1 SMBIOS. The typical breakdown is as follows:</p>
+<p>For this icelake example, we chose the MacBookAir9,1 SMBIOS - this is done intentionally for compatibility&apos;s sake. The breakdown is as follows:</p>
 <table>
 <thead>
 <tr>
@@ -1176,63 +1164,28 @@
 <th style="text-align:left">CPU Type</th>
 <th style="text-align:left">GPU Type</th>
 <th style="text-align:left">Display Size</th>
+<th style="text-align:left">Touch ID</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">MacBookAir6,1</td>
-<td style="text-align:left">Dual Core 15w</td>
-<td style="text-align:left">iGPU: HD 5000</td>
-<td style="text-align:left">11&quot;</td>
-</tr>
-<tr>
-<td style="text-align:left">MacBookAir6,2</td>
-<td style="text-align:left">Dual Core 15w</td>
-<td style="text-align:left">iGPU: HD 5000</td>
+<td style="text-align:left">MacBookAir9,1</td>
+<td style="text-align:left">Dual/Quad Core 12w</td>
+<td style="text-align:left">iGPU: G4/G7</td>
 <td style="text-align:left">13&quot;</td>
-</tr>
-<tr>
-<td style="text-align:left">MacBookPro11,1</td>
-<td style="text-align:left">Dual Core 28w</td>
-<td style="text-align:left">iGPU: Iris 5100</td>
-<td style="text-align:left">13&quot;</td>
-</tr>
-<tr>
-<td style="text-align:left">MacBookPro11,2</td>
-<td style="text-align:left">Quad Core 45w</td>
-<td style="text-align:left">iGPU: Iris Pro 5200</td>
-<td style="text-align:left">15&quot;</td>
-</tr>
-<tr>
-<td style="text-align:left">MacBookPro11,3</td>
-<td style="text-align:left">Quad Core 45w</td>
-<td style="text-align:left">iGPU: Iris Pro 5200 + dGPU: GT750M</td>
-<td style="text-align:left">15&quot;</td>
-</tr>
-<tr>
-<td style="text-align:left">MacBookPro11,4</td>
-<td style="text-align:left">Quad Core 45w</td>
-<td style="text-align:left">iGPU: Iris Pro 5200</td>
-<td style="text-align:left">15&quot;</td>
-</tr>
-<tr>
-<td style="text-align:left">MacBookPro11,5</td>
-<td style="text-align:left">Quad Core 45w</td>
-<td style="text-align:left">iGPU: Iris Pro 5200 + dGPU: R9 M370X</td>
-<td style="text-align:left">15&quot;</td>
+<td style="text-align:left">Yes</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Note</strong>: Mobile users should refer to the SMBIOS page on which to choose: <a href="https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extras/smbios.md" target="_blank">Mobile SMBIOS</a></p>
 <p>Run GenSMBIOS, pick option 1 for downloading MacSerial and Option 3 for selecting out SMBIOS.  This will give us an output similar to the following:</p>
 <pre><code class="lang-text">  #######################################################
- #               MacBookPro11,1 SMBIOS Info                  #
+ #               MacBookAir9,1 SMBIOS Info                  #
 #######################################################
 
-Type:         MacBookPro11,1
-Serial:       C02M9SYJFY10
-Board Serial: C02408101J9G2Y7A8
-SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
+Type:         MacBookAir9,1
+Serial:       C02XG0FDH7JY
+Board Serial: C02839303QXH69FJA
+SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
 </code></pre>
 <p>The <code>Type</code> part gets copied to Generic -&gt; SystemProductName.</p>
 <p>The <code>Serial</code> part gets copied to Generic -&gt; SystemSerialNumber.</p>
@@ -1273,7 +1226,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 <li>Replace the tables with newly allocated EfiReservedMemoryType, use Custom on Dell laptops requiring CustomSMBIOSGuid quirk</li>
 </ul>
 <h2 id="uefi">UEFI</h2>
-<p><img src="../../images/config/config-universal/aptio-iv-uefi.png" alt="UEFI"></p>
+<p><img src="../../images/config/config-universal/aptio-v-uefi.png" alt="UEFI"></p>
 <p><strong>ConnectDrivers</strong>: YES</p>
 <ul>
 <li>Forces .efi drivers, change to NO will automatically connect added UEFI drivers. This can make booting slightly faster, but not all drivers connect themselves. E.g. certain file system drivers may not load.</li>
@@ -1422,7 +1375,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 <li>Only required for very specific use cases like setting to <code>3000</code> - <code>5000</code> for ASUS Z87-Pro running FileVault2</li>
 </ul>
 </li>
-<li><strong>IgnoreInvalidFlexRatio</strong>: YES<ul>
+<li><strong>IgnoreInvalidFlexRatio</strong>: NO<ul>
 <li>Fix for when MSR_FLEX_RATIO (0x194) can&apos;t be disabled in the BIOS, required for all pre-skylake based systems</li>
 </ul>
 </li>
@@ -1504,14 +1457,10 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 
             
                 
-                <a href="ivy-bridge.html" class="navigation navigation-prev " aria-label="Previous page: Ivy Bridge">
+                <a href="coffee-lake-plus.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Coffee Lake Plus(9th Gen)">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="broadwell.html" class="navigation navigation-next " aria-label="Next page: Broadwell">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -1520,7 +1469,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"4.1.2","depth":2,"next":{"title":"Broadwell","level":"4.1.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"4.1.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/haswell.md","mtime":"2020-04-11T17:13:16.687Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T17:14:02.335Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Icelake","level":"4.1.8","depth":2,"next":{"title":"Getting started with ACPI","level":"4.2","depth":1,"url":"https://acpi.dortania.ml/","ref":"https://acpi.dortania.ml/","articles":[]},"previous":{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/icelake.md","mtime":"2020-04-11T17:13:16.875Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T17:14:02.335Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
