@@ -23,8 +23,10 @@ Now comes the fun part, making our config.plist. Follow your respective section 
 
 [Coffee Lake Plus(9th Gen)](/config-laptop.plist/coffee-lake-plus.md)
 * 9000 series, 2019 era
-* Comet Lake also applies
+* Comet Lake also applies(10000 series)
 
-Special notes:
+[Icelake](/config-laptop.plist/icelake.md)
+* 10000 series, 2019-2020 era
+* Do not ix this and Comet Lake up
 
 * Ice Lake is not yet supported, while macOS does have support both MacInfoPkg and WhateverGreen need to be adapted. And we also need framebuffer dumps to get a good idea on what's needed

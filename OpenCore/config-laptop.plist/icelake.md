@@ -2,6 +2,20 @@
 
 * Supported version: 0.5.7
 
+Table of Contents:
+
+* [Starting Point](/OpenCore/config-laptop.plist/icelake.md#starting-point)
+* [ACPI](/OpenCore/config-laptop.plist/icelake.md#acpi)
+* [Booter](/OpenCore/config-laptop.plist/icelake.md#booter)
+* [DeviceProperties](/OpenCore/config-laptop.plist/icelake.md#deviceproperties)
+* [Kernel](/OpenCore/config-laptop.plist/icelake.md#kernel)
+* [Misc](/OpenCore/config-laptop.plist/icelake.md#misc)
+* [NVRAM](/OpenCore/config-laptop.plist/icelake.md#nvram)
+* [SMBIOS](/OpenCore/config-laptop.plist/icelake.md#smbios)
+* [UEFI](/OpenCore/config-laptop.plist/icelake.md#uefi)
+* [Cleaning up](/OpenCore/config-laptop.plist/icelake.md#cleaning-up)
+* [Intel BIOS settings](/OpenCore/config-laptop.plist/icelake.md#intel-bios-settings)
+
 ## Starting Point
 
 So making a config.plist may seem hard, its not. It just takes some time but this guide will tell you how to configure eveything, you won't be left in the cold. This also means if you have issues, review your config settings to make sure they're correct. Main things to note with OpenCore:
