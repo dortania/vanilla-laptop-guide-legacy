@@ -2,6 +2,8 @@
 
 * Supported version: 0.5.7
 
+**Note this page is still a work in progress**
+
 Table of Contents:
 
 * [Starting Point](/OpenCore/config-laptop.plist/icelake.md#starting-point)
