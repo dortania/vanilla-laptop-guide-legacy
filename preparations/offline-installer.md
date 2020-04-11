@@ -9,4 +9,4 @@ What you need:
   * You want the DBG (debug) build, as it makes it easier to debug issues. Afterwards, you can switch to a REL (release) build.
 * [AppleSupportPkg](https://github.com/acidanthera/AppleSupportPkg)
   * Same as above, except usually you don't need the debug version as usually there aren't any issues.
-* A plist editor
+* A plist editor (you should already have one by now)
