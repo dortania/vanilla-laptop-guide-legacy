@@ -6,6 +6,7 @@ So you've finally finsihed installing macOS with OpenCore but know there's still
 
 ## Checklist
 
+Universal:
 * [Enabling FileVault and other security features](https://desktop.dortania.ml/post-install/security)
 * [Fixing Audio](https://desktop.dortania.ml//post-install/audio)
 * [Booting without USB](https://desktop.dortania.ml//post-install/oc2hdd)
@@ -13,11 +14,13 @@ So you've finally finsihed installing macOS with OpenCore but know there's still
 * [Fixing CFG Lock](https://desktop.dortania.ml//extras/msr-lock)
 * [Fixing Resolution and Verbose](https://desktop.dortania.ml//post-install/verbose)
 * [Fixing iServices](https://desktop.dortania.ml//post-install/iservices)
-* [Fixing Intel USB](https://usb-map.gitbook.io/project/)
-
+* [Fixing USB](https://usb-map.gitbook.io/project/)
 
 For Sandy and Ivy Bridge:
 * [Fixing Power Management](https://github.com/Piker-Alpha/ssdtPRGen.sh)
+
+Extras:
+* [GUI and Bootchime](https://desktop.dortania.ml/extras/gui.html)
 
 ## Obligatory Cute Cat Photo
 
