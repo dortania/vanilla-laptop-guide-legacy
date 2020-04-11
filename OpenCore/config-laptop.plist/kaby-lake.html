@@ -391,9 +391,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.8" data-path="../../config-laptop.plist/icelake.md">
+        <li class="chapter " data-level="4.1.8" data-path="icelake.html">
             
-                <span>
+                <a href="icelake.html">
             
                     
                     Icelake
@@ -757,7 +757,6 @@
 <th style="text-align:left">Port Count</th>
 <th style="text-align:left">Stolen Memory</th>
 <th style="text-align:left">Framebuffer Memory</th>
-<th style="text-align:left">Video RAM</th>
 <th style="text-align:left">Connectors</th>
 </tr>
 </thead>
@@ -769,7 +768,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">34MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
@@ -779,18 +777,7 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">38MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
-</tr>
-<tr>
-<td style="text-align:left">Unlisted iGPU</td>
-<td style="text-align:left">18590002</td>
-<td style="text-align:left">02001859</td>
-<td style="text-align:left">0</td>
-<td style="text-align:left">0MB</td>
-<td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
-<td style="text-align:left">Connector:</td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Intel HD Graphics 630</strong></td>
@@ -799,7 +786,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">38MB</td>
 <td style="text-align:left">21MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
@@ -809,18 +795,7 @@
 <td style="text-align:left">1</td>
 <td style="text-align:left">38MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1</td>
-</tr>
-<tr>
-<td style="text-align:left">Unlisted iGPU</td>
-<td style="text-align:left">1c590005</td>
-<td style="text-align:left">05001c59</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
-<td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
-<td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
 <td style="text-align:left">Intel HD Graphics 615</td>
@@ -829,7 +804,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">34MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
@@ -839,7 +813,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">38MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
@@ -849,7 +822,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">57MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
@@ -859,7 +831,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">57MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
@@ -869,7 +840,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">38MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
@@ -879,7 +849,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">34MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
@@ -889,7 +858,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">57MB</td>
 <td style="text-align:left">0MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 </tbody>
@@ -912,30 +880,85 @@
 </li>
 </ul>
 </li>
-<li><p>For all HD6** (<code>UHD</code> users are not concerned), there are some small issues with output where plugging anything would cause a lock up (kernel panic), here are some patches to mitigate that (credit Rehabman):</p>
-<ul>
+<li>For all HD6** (<code>UHD</code> users are not concerned), there are some small issues with output where plugging anything would cause a lock up (kernel panic), here are some patches to mitigate that (credit Rehabman):<ul>
 <li>0306 to 0105 (will probably explain what it does one day)</li>
 </ul>
-<p>| Key | Type | Value |
-| :--- | :--- | :--- |
-| <code>framebuffer-con1-enable</code> | Number | <code>1</code> |
-| <code>framebuffer-con1-alldata</code> | Data | <code>01050A00 00080000 87010000 02040A00 00080000 87010000 FF000000 01000000 20000000</code> |</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>framebuffer-con1-enable</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left"><code>1</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-con1-alldata</code></td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left"><code>01050A00 00080000 87010000 02040A00 00080000 87010000 FF000000 01000000 20000000</code></td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>0204 to 0105 (will probably explain what it does one day)</li>
 </ul>
-<p>| Key | Type | Value |
-| :--- | :--- | :--- |
-| <code>framebuffer-con1-enable</code> | Number | <code>1</code> |
-| <code>framebuffer-con1-alldata</code> | Data | <code>01050A00 00080000 87010000 03060A00 00040000 87010000 FF000000 01000000 20000000</code> |</p>
-</li>
-<li><p>In some cases where you cannot set the DVMT-prealloc of these cards to 64MB higher in your UEFI Setup, you may get a kernel panic. Usually they&apos;re configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties</p>
-<p>| Key | Type | Value |
-| :--- | :--- | :--- |
-| <code>framebuffer-patch-enable</code> | Number | <code>1</code> |
-| <code>framebuffer-stolenmem</code> | Data | <code>00003001</code> |
-| <code>framebuffer-fbmem</code> | Data | <code>00009000</code> |</p>
-</li>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>framebuffer-con1-enable</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left"><code>1</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-con1-alldata</code></td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left"><code>01050A00 00080000 87010000 03060A00 00040000 87010000 FF000000 01000000 20000000</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>In some cases where you cannot set the DVMT-prealloc of these cards to 64MB higher in your UEFI Setup, you may get a kernel panic. Usually they&apos;re configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>framebuffer-patch-enable</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left"><code>1</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-stolenmem</code></td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left"><code>00003001</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-fbmem</code></td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left"><code>00009000</code></td>
+</tr>
+</tbody>
+</table>
 <p><code>PciRoot(0x0)/Pci(0x1f,0x3)</code> -&gt; <code>Layout-id</code></p>
 <ul>
 <li>Applies AppleALC audio injection, you&apos;ll need to do your own research on which codec your motherboard has and match it with AppleALC&apos;s layout. <a href="https://github.com/acidanthera/AppleALC/wiki/Supported-codecs" target="_blank">AppleALC Supported Codecs</a>.</li>
@@ -1572,7 +1595,7 @@ SmUUID:       AA043F8D-33B6-4A1A-94F7-46972AAD0607
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Kaby Lake","level":"4.1.5","depth":2,"next":{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"previous":{"title":"Skylake","level":"4.1.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/kaby-lake.md","mtime":"2020-04-11T17:53:38.271Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T17:54:25.098Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Kaby Lake","level":"4.1.5","depth":2,"next":{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"previous":{"title":"Skylake","level":"4.1.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/kaby-lake.md","mtime":"2020-04-11T18:28:42.660Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T18:29:29.732Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

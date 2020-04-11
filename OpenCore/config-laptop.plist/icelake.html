@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Coffee Lake(8th Gen) · GitBook</title>
+        <title>Icelake · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,10 +62,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="coffee-lake-plus.html" />
     
-    
-    <link rel="prev" href="kaby-lake.html" />
+    <link rel="prev" href="coffee-lake-plus.html" />
     
 
     </head>
@@ -365,7 +363,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.1.6" data-path="coffee-lake.html">
+        <li class="chapter " data-level="4.1.6" data-path="coffee-lake.html">
             
                 <a href="coffee-lake.html">
             
@@ -391,7 +389,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.8" data-path="icelake.html">
+        <li class="chapter active" data-level="4.1.8" data-path="icelake.html">
             
                 <a href="icelake.html">
             
@@ -452,7 +450,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Coffee Lake(8th Gen)</a>
+        <a href="../.." >Icelake</a>
     </h1>
 </div>
 
@@ -467,23 +465,24 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="coffee-lake">Coffee Lake</h1>
+                                <h1 id="icelake">Icelake</h1>
 <ul>
 <li>Supported version: 0.5.7</li>
 </ul>
+<p><strong>Note this page is still a work in progress</strong></p>
 <p>Table of Contents:</p>
 <ul>
-<li><a href="coffee-lake.html#starting-point">Starting Point</a></li>
-<li><a href="coffee-lake.html#acpi">ACPI</a></li>
-<li><a href="coffee-lake.html#booter">Booter</a></li>
-<li><a href="coffee-lake.html#deviceproperties">DeviceProperties</a></li>
-<li><a href="coffee-lake.html#kernel">Kernel</a></li>
-<li><a href="coffee-lake.html#misc">Misc</a></li>
-<li><a href="coffee-lake.html#nvram">NVRAM</a></li>
-<li><a href="coffee-lake.html#smbios">SMBIOS</a></li>
-<li><a href="coffee-lake.html#uefi">UEFI</a></li>
-<li><a href="coffee-lake.html#cleaning-up">Cleaning up</a></li>
-<li><a href="coffee-lake.html#intel-bios-settings">Intel BIOS settings</a></li>
+<li><a href="icelake.html#starting-point">Starting Point</a></li>
+<li><a href="icelake.html#acpi">ACPI</a></li>
+<li><a href="icelake.html#booter">Booter</a></li>
+<li><a href="icelake.html#deviceproperties">DeviceProperties</a></li>
+<li><a href="icelake.html#kernel">Kernel</a></li>
+<li><a href="icelake.html#misc">Misc</a></li>
+<li><a href="icelake.html#nvram">NVRAM</a></li>
+<li><a href="icelake.html#smbios">SMBIOS</a></li>
+<li><a href="icelake.html#uefi">UEFI</a></li>
+<li><a href="icelake.html#cleaning-up">Cleaning up</a></li>
+<li><a href="icelake.html#intel-bios-settings">Intel BIOS settings</a></li>
 </ul>
 <h2 id="starting-point">Starting Point</h2>
 <p>So making a config.plist may seem hard, its not. It just takes some time but this guide will tell you how to configure eveything, you won&apos;t be left in the cold. This also means if you have issues, review your config settings to make sure they&apos;re correct. Main things to note with OpenCore:</p>
@@ -514,13 +513,21 @@
 </ul>
 <p><strong>And read this guide more than once before setting up OpenCore and make sure you have it set up correctly. Do note that images will not always be the most up-to-date so please read the text below them, if nothing&apos;s mentioned then leave as default.</strong></p>
 <h2 id="acpi">ACPI</h2>
-<p><img src="../../images/config/config-laptop.plist/coffeelake/acpi.png" alt="ACPI"></p>
+<p><img src="../../images/config/config-laptop.plist/coffeelake-plus/acpi.png" alt="ACPI"></p>
 <p><strong>Add:</strong></p>
 <p>This is where you&apos;ll add SSDTs for your system, these are very important to <strong>booting macOS</strong> and have many uses like <a href="https://usb-map.gitbook.io/project/" target="_blank">USB maps</a>, <a href="../../post-install/spoof.md">disabling unsupported GPUs</a> and such. And with our system, <strong>its even required to boot</strong>. Guide on making them found here: <a href="https://acpi.dortania.ml/" target="_blank"><strong>Getting started with ACPI</strong></a></p>
 <p>For us we&apos;ll need a couple of SSDTs to bring back functionality that Clover provided:</p>
 <ul>
 <li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl" target="_blank">SSDT-PLUG</a><ul>
-<li>Allows for native CPU power management, Clover alternative would be under <code>Acpi -&gt; GenerateOptions -&gt; PluginType</code>. Do note that this SSDT is made for systems where <code>AppleACPICPU</code> attaches <code>CPU0</code>, though some ACPI tables have theirs starting at <code>PR00</code> so adjust accordingly. Seeing what device has AppleACPICPU connected first in <a href="https://github.com/toleda/audio_ALCInjection/raw/master/IORegistryExplorer_v2.1.zip" target="_blank">IORegistryExplorer</a> can also give you a hint</li>
+<li>Allows for native CPU power management on Haswell and newer, Clover alternative would be under <code>Acpi -&gt; GenerateOptions -&gt; PluginType</code></li>
+</ul>
+</li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl" target="_blank">SSDT-AWAC</a><ul>
+<li>This is the <a href="https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2" target="_blank">300 series RTC patch</a>, required for 9t gen and newer boards which prevent systems from booting macOS. The alternative is <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-RTC0.dsl" target="_blank">SSDT-RTC0</a> for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see <a href="https://acpi.dortania.ml/" target="_blank">Getting started with ACPI</a> page.</li>
+</ul>
+</li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl" target="_blank">SSDT-PMC</a><ul>
+<li>9th gen and newer don&apos;t declare the FW chip as MMIO in ACPI and so XNU ignores the MMIO region declared by the UEFI memory map. This SSDT brings back NVRAM support and uses the scope <code>PCI0.LPCB</code>, this is the most common scope so a pre-made can be found here: <a href="https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extra-files/SSDT-PMC.aml" target="_blank">SSDT-PMC.aml</a></li>
 </ul>
 </li>
 <li><a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl" target="_blank">SSDT-PNLF</a><ul>
@@ -544,7 +551,7 @@
 <p>This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we&apos;ll need a couple:</p>
 <ul>
 <li>EC Rename<ul>
-<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="https://acpi.dortania.ml/" target="_blank">Fixing Embedded Controllers Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
+<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="https://acpi.dortania.ml/" target="_blank">Fixing Embedded Controllers (Laptop) Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
 </ul>
 </li>
 <li>OSI rename<ul>
@@ -649,23 +656,23 @@
 </li>
 </ul>
 <h2 id="booter">Booter</h2>
-<p><img src="../../images/config/config-universal/aptio-v-booter.png" alt="Booter"></p>
+<p><img src="../../images/config/config-universal/hedt-booter.png" alt="Booter"></p>
 <p>This section is dedicated to quirks relating to boot.efi patching with OpenRuntime, the replacement for AptioMemoryFix.efi</p>
 <p><strong>MmioWhitelist</strong>:</p>
-<p>This section is allowing spaces to be passthrough to macOS that are generally ignored, useful when paired with <code>DevirtualiseMmio</code></p>
+<p>This section is allowing devices to be passthrough to macOS that are generally ignored, for us we can ignore this section.</p>
 <p><strong>Quirks</strong>:</p>
-<p>Settings relating to boot.efi patching and firmware fixes, ones we need to change are <code>RebuildAppleMemoryMap</code>, <code>SyncRuntimePermissions</code> and <code>SetupVirtualMap</code></p>
+<p>Settings relating to boot.efi patching and firmware fixes, ones we need to change are <code>DevirtualiseMmio</code>, <code>RebuildAppleMemoryMap</code>, <code>SyncRuntimePermissions</code> and <code>SetupVirtualMap</code></p>
 <ul>
 <li><strong>AvoidRuntimeDefrag</strong>: YES<ul>
 <li>Fixes UEFI runtime services like date, time, NVRAM, power control, etc</li>
 </ul>
 </li>
-<li><strong>DevirtualiseMmio</strong>: NO<ul>
-<li>Reduces Stolen Memory Footprint, expands options for <code>slide=N</code> values and generally useful especially on HEDT and Xeon systems</li>
+<li><strong>DevirtualiseMmio</strong>: YES<ul>
+<li>Reduces Stolen Memory Footprint, expands options for <code>slide=N</code> values and very helpful with fixing Memory Allocation issues on Z390. Requires <code>ProtectUefiServices</code> as well on IceLake and Z390 Coffeelake</li>
 </ul>
 </li>
 <li><strong>DisableSingleUser</strong>: NO<ul>
-<li>Disables the use of <code>Cmd+S</code> and <code>-s</code>, this is closer to the behavi&#xDF;our of T2 based machines</li>
+<li>Disables the use of <code>Cmd+S</code> and <code>-s</code>, this is closer to the behaviour of T2 based machines</li>
 </ul>
 </li>
 <li><strong>DisableVariableWrite</strong>: NO<ul>
@@ -697,7 +704,8 @@
 </ul>
 </li>
 <li><strong>ProtectUefiServices</strong>: NO<ul>
-<li>Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and newer Coffeelake systems</li>
+<li>Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and Z390 systems&apos;</li>
+<li>If on Z390, <strong>enable this quirk</strong></li>
 </ul>
 </li>
 <li><strong>ProvideCustomSlide</strong>: YES<ul>
@@ -722,7 +730,7 @@
 </li>
 </ul>
 <h2 id="deviceproperties">DeviceProperties</h2>
-<p><img src="../../images/config/config-laptop.plist/coffeelake/DeviceProperties.png" alt="DeviceProperties"></p>
+<p><img src="../../images/config/config-laptop.plist/coffeelake-plus/DeviceProperties.png" alt="DeviceProperties"></p>
 <p><strong>Add</strong>: Sets device properties from a map.</p>
 <p>This section is set up via WhateverGreen&apos;s <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md" target="_blank">Framebuffer Patching Guide</a> and is used for fixing certain iGPU properties like <code>ig-platform-id</code>. The way we get the proper value for this is to look at the framebuffer we intend to use, then swap the pairs of hex bytes.</p>
 <p>The table below may seem daughting but it&apos;s really not, the main things we need to take away from it are:</p>
@@ -762,106 +770,79 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Intel UHD Graphics 630</td>
-<td style="text-align:left">003E0000</td>
-<td style="text-align:left">0000003E</td>
+<td style="text-align:left">Unknown</td>
+<td style="text-align:left">FF050000</td>
+<td style="text-align:left">000005FF</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
+<td style="text-align:left">64MB</td>
 <td style="text-align:left">0MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel UHD Graphics 630</td>
-<td style="text-align:left">923E0000</td>
-<td style="text-align:left">0000923E</td>
+<td style="text-align:left">Unknown</td>
+<td style="text-align:left">8A700000</td>
+<td style="text-align:left">0000708A</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
+<td style="text-align:left">64MB</td>
 <td style="text-align:left">0MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel UHD Graphics 630</td>
-<td style="text-align:left">923E0009</td>
-<td style="text-align:left">0900923E</td>
+<td style="text-align:left">Ice Lake GT2</td>
+<td style="text-align:left">8A510000</td>
+<td style="text-align:left">0000518A</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
-<td style="text-align:left">0MB</td>
-<td style="text-align:left">LVDS1 DUMMY2</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Intel UHD Graphics 630</strong></td>
-<td style="text-align:left">9B3E0000</td>
-<td style="text-align:left">00009B3E</td>
-<td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
+<td style="text-align:left">64MB</td>
 <td style="text-align:left">0MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel UHD Graphics 630</td>
-<td style="text-align:left">9B3E0006</td>
-<td style="text-align:left">06009B3E</td>
-<td style="text-align:left">1</td>
-<td style="text-align:left">38MB</td>
-<td style="text-align:left">0MB</td>
-<td style="text-align:left">LVDS1 DUMMY2</td>
-</tr>
-<tr>
-<td style="text-align:left">Intel UHD Graphics 630</td>
-<td style="text-align:left">9B3E0009</td>
-<td style="text-align:left">09009B3E</td>
+<td style="text-align:left">Ice Lake GT1.5</td>
+<td style="text-align:left">8A5C0000</td>
+<td style="text-align:left">00005C8A</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
+<td style="text-align:left">64MB</td>
 <td style="text-align:left">0MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel Iris Plus Graphics 655</td>
-<td style="text-align:left">A53E0000</td>
-<td style="text-align:left">0000A53E</td>
+<td style="text-align:left">Ice Lake GT1</td>
+<td style="text-align:left">8A5D0000</td>
+<td style="text-align:left">00005D8A</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
+<td style="text-align:left">64MB</td>
 <td style="text-align:left">0MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel Iris Plus Graphics 655</td>
-<td style="text-align:left">A53E0004</td>
-<td style="text-align:left">0400A53E</td>
+<td style="text-align:left"><strong>Ice Lake GT2</strong></td>
+<td style="text-align:left">8A520000</td>
+<td style="text-align:left">0000528A</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
+<td style="text-align:left">64MB</td>
 <td style="text-align:left">0MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel UHD Graphics 630</td>
-<td style="text-align:left">A53E0005</td>
-<td style="text-align:left">0500A53E</td>
+<td style="text-align:left">Ice Lake GT1.5</td>
+<td style="text-align:left">8A5A0000</td>
+<td style="text-align:left">00005A8A</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
+<td style="text-align:left">64MB</td>
 <td style="text-align:left">0MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
-<td style="text-align:left">Intel Iris Plus Graphics 655</td>
-<td style="text-align:left">A53E0009</td>
-<td style="text-align:left">0900A53E</td>
+<td style="text-align:left">Ice Lake GT1</td>
+<td style="text-align:left">8A5B0000</td>
+<td style="text-align:left">00005B8A</td>
 <td style="text-align:left">3</td>
-<td style="text-align:left">57MB</td>
+<td style="text-align:left">64MB</td>
 <td style="text-align:left">0MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 </tbody>
 </table>
-<h4 id="special-notes">Special Notes:</h4>
-<ul>
-<li>For <code>UHD630</code> you may not need to fake the <code>device-id</code>  as long as it&apos;s <code>8086:9B3E</code>, if it&apos;s anything else, you may use <code>device-id</code>=<code>9B3E0000</code></li>
-<li>For <code>UHD620</code> in a Comet Lake CPU <strong>requires</strong>:<ul>
-<li><code>device-id</code>=<code>9B3E0000</code></li>
-<li><code>AAPL,ig-platform-id</code>=<code>00009B3E</code></li>
-</ul>
-</li>
-</ul>
 <p><code>PciRoot(0x0)/Pci(0x1f,0x3)</code> -&gt; <code>Layout-id</code></p>
 <ul>
 <li>Applies AppleALC audio injection, you&apos;ll need to do your own research on which codec your motherboard has and match it with AppleALC&apos;s layout. <a href="https://github.com/acidanthera/AppleALC/wiki/Supported-codecs" target="_blank">AppleALC Supported Codecs</a>.</li>
@@ -1167,7 +1148,7 @@
 <h2 id="platforminfo">Platforminfo</h2>
 <p><img src="../../images/config/config-laptop.plist/coffeelake/smbios.png" alt="PlatformInfo"></p>
 <p>For setting up the SMBIOS info, we&apos;ll use CorpNewt&apos;s <a href="https://github.com/corpnewt/GenSMBIOS" target="_blank">GenSMBIOS</a> application. </p>
-<p>For this Coffee Lake example, I chose the MacBookPro15,1 SMBIOS - this is done intentionally for compatibility&apos;s sake. The breakdown is as follows:</p>
+<p>For this icelake example, we chose the MacBookAir9,1 SMBIOS - this is done intentionally for compatibility&apos;s sake. The breakdown is as follows:</p>
 <table>
 <thead>
 <tr>
@@ -1180,30 +1161,9 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">MacBookPro15,1</td>
-<td style="text-align:left">Hexa Core 45w</td>
-<td style="text-align:left">iGPU: UHD 630 + dGPU: RP555/560X</td>
-<td style="text-align:left">15&quot;</td>
-<td style="text-align:left">Yes</td>
-</tr>
-<tr>
-<td style="text-align:left">MacBookPro15,2</td>
-<td style="text-align:left">Quad Core 15w</td>
-<td style="text-align:left">iGPU: Iris 655</td>
-<td style="text-align:left">13&quot;</td>
-<td style="text-align:left">Yes</td>
-</tr>
-<tr>
-<td style="text-align:left">MacBookPro15,3</td>
-<td style="text-align:left">Hexa Core 45w</td>
-<td style="text-align:left">iGPU: UHD 630 + dGPU: Vega16/20</td>
-<td style="text-align:left">15&quot;</td>
-<td style="text-align:left">Yes</td>
-</tr>
-<tr>
-<td style="text-align:left">MacBookPro15,4</td>
-<td style="text-align:left">Quad Core 15w</td>
-<td style="text-align:left">iGPU: Iris 645</td>
+<td style="text-align:left">MacBookAir9,1</td>
+<td style="text-align:left">Dual/Quad Core 12w</td>
+<td style="text-align:left">iGPU: G4/G7</td>
 <td style="text-align:left">13&quot;</td>
 <td style="text-align:left">Yes</td>
 </tr>
@@ -1211,10 +1171,10 @@
 </table>
 <p>Run GenSMBIOS, pick option 1 for downloading MacSerial and Option 3 for selecting out SMBIOS.  This will give us an output similar to the following:</p>
 <pre><code class="lang-text">  #######################################################
- #               MacBookPro15,1 SMBIOS Info                  #
+ #               MacBookAir9,1 SMBIOS Info                  #
 #######################################################
 
-Type:         MacBookPro15,1
+Type:         MacBookAir9,1
 Serial:       C02XG0FDH7JY
 Board Serial: C02839303QXH69FJA
 SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
@@ -1489,14 +1449,10 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
 
             
                 
-                <a href="kaby-lake.html" class="navigation navigation-prev " aria-label="Previous page: Kaby Lake">
+                <a href="coffee-lake-plus.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Coffee Lake Plus(9th Gen)">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="coffee-lake-plus.html" class="navigation navigation-next " aria-label="Next page: Coffee Lake Plus(9th Gen)">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -1505,7 +1461,7 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"next":{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},"previous":{"title":"Kaby Lake","level":"4.1.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/coffee-lake.md","mtime":"2020-04-11T18:28:42.660Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T18:29:29.732Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Icelake","level":"4.1.8","depth":2,"next":{"title":"Getting started with ACPI","level":"4.2","depth":1,"url":"https://acpi.dortania.ml/","ref":"https://acpi.dortania.ml/","articles":[]},"previous":{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/icelake.md","mtime":"2020-04-11T18:28:42.660Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T18:29:29.732Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

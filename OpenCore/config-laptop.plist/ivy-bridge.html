@@ -391,9 +391,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.8" data-path="../../config-laptop.plist/icelake.md">
+        <li class="chapter " data-level="4.1.8" data-path="icelake.html">
             
-                <span>
+                <a href="icelake.html">
             
                     
                     Icelake
@@ -757,7 +757,6 @@
 <th style="text-align:left">Port Count</th>
 <th style="text-align:left">Stolen Memory</th>
 <th style="text-align:left">Framebuffer Memory</th>
-<th style="text-align:left">Video RAM</th>
 <th style="text-align:left">Connectors</th>
 </tr>
 </thead>
@@ -769,7 +768,6 @@
 <td style="text-align:left">4</td>
 <td style="text-align:left">96MB</td>
 <td style="text-align:left">24MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 HDMI1 DP2</td>
 </tr>
 <tr>
@@ -779,7 +777,6 @@
 <td style="text-align:left">1</td>
 <td style="text-align:left">64MB</td>
 <td style="text-align:left">24MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1</td>
 </tr>
 <tr>
@@ -789,7 +786,6 @@
 <td style="text-align:left">4</td>
 <td style="text-align:left">64MB</td>
 <td style="text-align:left">16MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP3</td>
 </tr>
 <tr>
@@ -799,7 +795,6 @@
 <td style="text-align:left">1</td>
 <td style="text-align:left">32MB</td>
 <td style="text-align:left">16MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1</td>
 </tr>
 <tr>
@@ -809,7 +804,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">64MB</td>
 <td style="text-align:left">16MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 <tr>
@@ -819,7 +813,6 @@
 <td style="text-align:left">3</td>
 <td style="text-align:left">64MB</td>
 <td style="text-align:left">16MB</td>
-<td style="text-align:left">1536MB</td>
 <td style="text-align:left">LVDS1 DP2</td>
 </tr>
 </tbody>
@@ -837,16 +830,63 @@
 <li><p>VGA is <em>not</em> supported (unless it&apos;s running through a DP to VGA internal adapter, which apparently only rare devices will see it as DP and not VGA, it&apos;s all about luck.)</p>
 </li>
 <li><p>For <code>04006601</code> platform, as you can tell, it has only one output, which is not enough for external connectors (HDMI/DP), you may need to add these extra parameters (credit to Rehabman)</p>
-<p>| Key | Type | Value | Explanation |
-| :--- | :--- | :--- | :--- |
-| <code>framebuffer-patch-enable</code> | Number | <code>1</code>                                                          | <em>enabling the semantic patches in principle</em> (from WEG manual) |
-| <code>framebuffer-memorycount</code>  | Number | <code>2</code>                                                          | Matching FBMemoryCount to the one on <code>03006601</code> (1 on <code>04</code> vs 2 on <code>03</code>) |
-| <code>framebuffer-pipecount</code>    | Number | <code>2</code>                                                          | Matching PipeCount to the one on <code>03006601</code> (3 on <code>04</code> vs 2 on <code>03</code>) |
-| <code>framebuffer-portcount</code>    | Number | <code>4</code>                                                          | Matching PortCount to the one on <code>03006601</code> (1 on <code>04</code> vs 4 on <code>03</code>) |
-| <code>framebuffer-stolenmem</code>    | Data   | <code>00000004</code>                                                   | Matching STOLEN memory to 64MB (0x04000000 from hex to base 10 in Bytes) to the one on <code>03006601</code><br>Check <a href="https://www.tonymacx86.com/threads/guide-alternative-to-the-minstolensize-patch-with-32mb-dvmt-prealloc.221506/" target="_blank">here</a> for more information. |
-| <code>framebuffer-con1-enable</code>  | Number | <code>1</code>                                                          | This will enable patching on <em>connector1</em> of the driver. (Which is the second connector after con0, which is the eDP/LVDS one) |
-| <code>framebuffer-con1-alldata</code> | Data   | <code>02050000 00040000 07040000 03040000 00040000 81000000 04060000 00040000 81000000</code> | When using <code>all data</code> with a connector, either you give all information of that connector (port-bused-type-flag) or that port and the ones following it, like in this case.<br>In this case, the ports in <code>04</code> are limited to <code>1</code>:<br><code>05030000 02000000 30020000</code> (which corresponds to port 5, which is LVDS)<br>However on <code>03</code> there are 3 extra ports:<br><code>05030000 02000000 30000000</code> (LVDS, con0, like <code>04</code>)<br><code>02050000 00040000 07040000</code> (DP, con1)<br><code>03040000 00040000 81000000</code> (DP, con2)<br><code>04060000 00040000 81000000</code> (DP, con3)<br>Since we changed the number of PortCount to <code>4</code> in a platform that has only 1, that means we need to define the 3 others (and we that starting with con1 to the end).<br> |</p>
 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Value</th>
+<th style="text-align:left">Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>framebuffer-patch-enable</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left"><code>1</code></td>
+<td style="text-align:left"><em>enabling the semantic patches in principle</em> (from WEG manual)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-memorycount</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left"><code>2</code></td>
+<td style="text-align:left">Matching FBMemoryCount to the one on <code>03006601</code> (1 on <code>04</code> vs 2 on <code>03</code>)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-pipecount</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left"><code>2</code></td>
+<td style="text-align:left">Matching PipeCount to the one on <code>03006601</code> (3 on <code>04</code> vs 2 on <code>03</code>)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-portcount</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left"><code>4</code></td>
+<td style="text-align:left">Matching PortCount to the one on <code>03006601</code> (1 on <code>04</code> vs 4 on <code>03</code>)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-stolenmem</code></td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left"><code>00000004</code></td>
+<td style="text-align:left">Matching STOLEN memory to 64MB (0x04000000 from hex to base 10 in Bytes) to the one on <code>03006601</code><br>Check <a href="https://www.tonymacx86.com/threads/guide-alternative-to-the-minstolensize-patch-with-32mb-dvmt-prealloc.221506/" target="_blank">here</a> for more information.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-con1-enable</code></td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left"><code>1</code></td>
+<td style="text-align:left">This will enable patching on <em>connector1</em> of the driver. (Which is the second connector after con0, which is the eDP/LVDS one)</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>framebuffer-con1-alldata</code></td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left"><code>02050000 00040000 07040000 03040000 00040000 81000000 04060000 00040000 81000000</code></td>
+<td style="text-align:left">When using <code>all data</code> with a connector, either you give all information of that connector (port-bused-type-flag) or that port and the ones following it, like in this case.<br>In this case, the ports in <code>04</code> are limited to <code>1</code>:<br><code>05030000 02000000 30020000</code> (which corresponds to port 5, which is LVDS)<br>However on <code>03</code> there are 3 extra ports:<br><code>05030000 02000000 30000000</code> (LVDS, con0, like <code>04</code>)<br><code>02050000 00040000 07040000</code> (DP, con1)<br><code>03040000 00040000 81000000</code> (DP, con2)<br><code>04060000 00040000 81000000</code> (DP, con3)<br>Since we changed the number of PortCount to <code>4</code> in a platform that has only 1, that means we need to define the 3 others (and we that starting with con1 to the end).<br></td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><p>Some laptops from this era came with a mixed chipset setup, using Ivy Bridge CPUs with Sandy Bridge chipsets which creates issues with macOS since it expects a certain IMEI ID that it doesn&apos;t find and would get stuck at boot, to fix this we need to fake the IMEI&apos;s IDs in these models</p>
 <ul>
 <li>To know if you&apos;re affected check if your CPU is an intel Core ix-3xxx and your chipset is Hx6x (for example a laptop with HM65 or HM67 with a Core i3-3110M)</li>
@@ -1497,7 +1537,7 @@ SmUUID:       A154B586-874B-4E57-A1FF-9D6E503E4580
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"4.1.1","depth":2,"next":{"title":"Haswell","level":"4.1.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},"previous":{"title":"OpenCore config","level":"4.1","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.1.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.1.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"4.1.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"4.1.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.1.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},{"title":"Icelake","level":"4.1.8","depth":2,"path":"config-laptop.plist/icelake.md","ref":"config-laptop.plist/icelake.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/ivy-bridge.md","mtime":"2020-04-11T17:53:38.271Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T17:54:25.098Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"4.1.1","depth":2,"next":{"title":"Haswell","level":"4.1.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},"previous":{"title":"OpenCore config","level":"4.1","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.1.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.1.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"4.1.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"4.1.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.1.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"4.1.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},{"title":"Icelake","level":"4.1.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/ivy-bridge.md","mtime":"2020-04-11T18:28:42.660Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T18:29:29.732Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
