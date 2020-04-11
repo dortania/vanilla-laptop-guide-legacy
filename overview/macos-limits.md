@@ -3,7 +3,7 @@
 With laptops, there are several limitations regarding hardware that will not work.
 
 * Low End iGPUs
-   * With macOS, support for iGPUs start at the [GT2 tier](https://en.wikipedia.org/wiki/Intel_Graphics_Technology), this means many low end iGPUs found on Celerons and Pentiums will not work. For a full list, see the [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
+  * With macOS, support for iGPUs start at the [GT2 tier](https://en.wikipedia.org/wiki/Intel_Graphics_Technology), this means many low end iGPUs found on Celerons and Pentiums will not work. For a full list, see the [GPU Buyers Guide](https://khronokernel-3.gitbook.io/catalina-gpu-buyers-guide/)
 * Fingerprint sensors
   * There is no way to emulate the Touch ID sensor as of currently, so fingerprint sensors will not work.
 * Discrete GPUs
@@ -18,17 +18,17 @@ With laptops, there are several limitations regarding hardware that will not wor
 * Most WiFi cards
   * Most WiFi cards that come with laptops are not supported as they are usually Intel/Qualcomm.
   * If you are lucky, you may have a supported Atheros card, but support only runs up to High Sierra (Mojave works with AirportAtheros40 from High Sierra, but not with Catalina).
-  * The best option is getting a Broadcom card; see MykolaG's [WiFi buyer's guide](https://khronokernel-7.gitbook.io/wireless-buyers-guide/) for recommendations.
+  * The best option is getting a Broadcom card; see the [WiFi Buyer's Guide](https://wifi.dortania.ml/) for recommendations.
 * Samsung PM981 NVMe SSDs
-  * These SSDs are not compatible OOB(causing kernel panics) and so require [NVMEFix.kext](https://github.com/acidanthera/NVMeFix/releases) fixes these kernel panics
+  * These SSDs are not compatible OOB (causing kernel panics) and therefore require [NVMeFix.kext](https://github.com/acidanthera/NVMeFix/releases) to fix these kernel panics.
   * On a related note, Samsung 970 EVO Plus NVMe SSDs also had the same problem but it was fixed in a firmware update; get the update (Windows via Samsung Magician or bootable ISO) [here](https://www.samsung.com/semiconductor/minisite/ssd/download/tools/).
-   * Also to note, laptops that use [Intel Optane Memory](https://www.intel.com/content/www/us/en/architecture-and-technology/optane-memory.html) or [Micron 3D XPoint](https://www.micron.com/products/advanced-solutions/3d-xpoint-technology) for HDD acceleration are unsupported in macOS. These drives MUST be removed or else macOS won't boot at all.
-* Thunderbolt USB C ports
-  * (Hackintosh) Thunderbolt support is currently still iffy in macOS, even more so with Alpine Ridge controllers, which most current laptops have. There have been attempts to keep the controller powered on, which allows Thunderbolt and USB C hotplug to work, but it comes at the cost of kernel panics and/or USB C breaking after sleep. If you want to use the USB C side of the port and be able to sleep, you must plug it in at boot and keep it plugged in.
-  * Note: This does not apply to USB C only ports - only Thunderbolt 3 and USB C combined ports.
+  * Also to note, laptops that use [Intel Optane Memory](https://www.intel.com/content/www/us/en/architecture-and-technology/optane-memory.html) or [Micron 3D XPoint](https://www.micron.com/products/advanced-solutions/3d-xpoint-technology) for HDD acceleration are unsupported in macOS. These drives MUST be removed or else macOS won't boot at all.
+* Thunderbolt USB-C ports
+  * (Hackintosh) Thunderbolt support is currently still iffy in macOS, even more so with Alpine Ridge controllers, which most current laptops have. There have been attempts to keep the controller powered on, which allows Thunderbolt and USB-C hotplug to work, but it comes at the cost of kernel panics and/or USB-C breaking after sleep. If you want to use the USB-C side of the port and be able to sleep, you must plug it in at boot and keep it plugged in.
+  * Note: This does not apply to USB-C only ports - only Thunderbolt 3 and USB-C combined ports.
 * Windows Hello Face Recognition
   * Some laptops come with WHFR that is I2C connected (and used through your iGPU), those will not work.
-  * Some laptops come with WHFR that is USB connected, if you're lucky, you may get the camera functionality, but nothing else.
+  * Some laptops come with WHFR that is USB-Connected, if you're lucky, you may get the camera functionality, but nothing else.
 * Intel Smart Sound Technology
   * Laptops with Intel SST will not have anything connected through them (usually internal mic) work, as it is not supported. You can check with Device Manager on Windows.
 * Headphone Jack Combo
