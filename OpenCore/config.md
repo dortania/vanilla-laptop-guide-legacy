@@ -27,4 +27,5 @@ Now comes the fun part, making our config.plist. Follow your respective section 
 
 [Icelake](/OpenCore/config-laptop.plist/icelake.md)
 * 10000 series, 2019-2020 era
-* Do not ix this and Comet Lake up
+* Do not mix this and Comet Lake up
+* Guide still under testing as WhateverGreen needs updating
