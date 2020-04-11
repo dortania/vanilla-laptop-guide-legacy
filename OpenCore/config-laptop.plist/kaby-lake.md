@@ -150,7 +150,18 @@ Settings relating to boot.efi patching and firmware fixes, ones we need to chang
 
 This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for fixing certain iGPU properties like `ig-platform-id`. The way we get the proper value for this is to look at the framebuffer we intend to use, then swap the pairs of hex bytes.
 
-If we think of our ig-plat as `0xAABBCCDD`, our swapped version would look like `DDCCBBAA`
+The table below may seem daughting but it's really not, the main things we need to take away from it are:
+
+* Type of iGPU
+   * To most closly match your setup
+* AAPL,ig-platform-id
+   * This is what's used for setting up our iGPU so the drivers function correctly
+* Stolen Memory
+   * The minimum amount of iGPU memory required for the framebuffer to work correctly
+* Port Count + Connectors
+   * The number of displays and what types are supported
+* device-id
+   * The actual Device ID used by IOKit(the drivers) for inital connection, if your iGPU isn't natively supported you can add this property to correct it
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |

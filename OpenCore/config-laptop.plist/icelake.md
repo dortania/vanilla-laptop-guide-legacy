@@ -1,4 +1,4 @@
-# Coffee Lake
+# Icelake
 
 * Supported version: 0.5.7
 
@@ -30,22 +30,26 @@ Now with those downloaded, we can get to really get started:
 
 ## ACPI
 
-![ACPI](/images/config/config-laptop.plist/coffeelake/acpi.png)
+![ACPI](/images/config/config-laptop.plist/coffeelake-plus/acpi.png)
 
 **Add:**
 
 This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://usb-map.gitbook.io/project/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://acpi.dortania.ml/)
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
-
 * [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-  * Allows for native CPU power management, Clover alternative would be under `Acpi -> GenerateOptions -> PluginType`. Do note that this SSDT is made for systems where `AppleACPICPU` attaches `CPU0`, though some ACPI tables have theirs starting at `PR00` so adjust accordingly. Seeing what device has AppleACPICPU connected first in [IORegistryExplorer](https://github.com/toleda/audio_ALCInjection/raw/master/IORegistryExplorer_v2.1.zip) can also give you a hint
+   * Allows for native CPU power management on Haswell and newer, Clover alternative would be under `Acpi -> GenerateOptions -> PluginType`
+* [SSDT-AWAC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl)
+  * This is the [300 series RTC patch](https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2), required for 9t gen and newer boards which prevent systems from booting macOS. The alternative is [SSDT-RTC0](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-RTC0.dsl) for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see [Getting started with ACPI](https://acpi.dortania.ml/) page.
+* [SSDT-PMC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl)
+   * 9th gen and newer don't declare the FW chip as MMIO in ACPI and so XNU ignores the MMIO region declared by the UEFI memory map. This SSDT brings back NVRAM support and uses the scope `PCI0.LPCB`, this is the most common scope so a pre-made can be found here: [SSDT-PMC.aml](https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extra-files/SSDT-PMC.aml)
 * [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
    * Adds brightness control support
 * [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)
    * Used for enabling Windows features in macOS, mainly needed for I2C controllers
 * [SSDT-GPIO](https://github.com/khronokernel/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)
    * Creates a stub so VoodooI2C can connect
+
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/ACPI.
 
@@ -61,10 +65,10 @@ This blocks certain ACPI tabes from loading, for us we can ignore this
 This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. For us, we'll need a couple:
 
 * EC Rename
-   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://acpi.dortania.ml/) on how to determine what EC you have and apply the appropriate patches
+   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers (Laptop) Guide](https://acpi.dortania.ml/) on how to determine what EC you have and apply the appropriate patches
 * OSI rename
    * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT
-   
+
 | Comment | String | Change XXXX to EC |
 | :--- | :--- | :--- |
 | Enabled | String | YES |
@@ -98,24 +102,24 @@ Settings relating to ACPI, leave everything here as default.
 
 ## Booter
 
-![Booter](/images/config/config-universal/aptio-v-booter.png)
+![Booter](/images/config/config-universal/hedt-booter.png)
 
 This section is dedicated to quirks relating to boot.efi patching with OpenRuntime, the replacement for AptioMemoryFix.efi
 
 **MmioWhitelist**:
 
-This section is allowing spaces to be passthrough to macOS that are generally ignored, useful when paired with `DevirtualiseMmio`
+This section is allowing devices to be passthrough to macOS that are generally ignored, for us we can ignore this section.
 
 **Quirks**:
 
-Settings relating to boot.efi patching and firmware fixes, ones we need to change are `RebuildAppleMemoryMap`, `SyncRuntimePermissions` and `SetupVirtualMap`
+Settings relating to boot.efi patching and firmware fixes, ones we need to change are `DevirtualiseMmio`, `RebuildAppleMemoryMap`, `SyncRuntimePermissions` and `SetupVirtualMap`
 
 * **AvoidRuntimeDefrag**: YES
    * Fixes UEFI runtime services like date, time, NVRAM, power control, etc
-* **DevirtualiseMmio**: NO
-   * Reduces Stolen Memory Footprint, expands options for `slide=N` values and generally useful especially on HEDT and Xeon systems
+* **DevirtualiseMmio**: YES
+   * Reduces Stolen Memory Footprint, expands options for `slide=N` values and very helpful with fixing Memory Allocation issues on Z390. Requires `ProtectUefiServices` as well on IceLake and Z390 Coffeelake
 * **DisableSingleUser**: NO
-   * Disables the use of `Cmd+S` and `-s`, this is closer to the behavißour of T2 based machines
+   * Disables the use of `Cmd+S` and `-s`, this is closer to the behaviour of T2 based machines
 * **DisableVariableWrite**: NO
    * Needed for systems with non-functioning NVRAM, you can verify [here](/post-install/nvram.md) if yours works
 * **DiscardHibernateMap**: NO
@@ -131,7 +135,8 @@ Settings relating to boot.efi patching and firmware fixes, ones we need to chang
 * **ProtectSecureBoot**: NO
    * Fixes secureboot keys on MacPro5,1 and Insyde firmwares
 * **ProtectUefiServices**: NO
-   * Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and newer Coffeelake systems
+   * Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and Z390 systems'
+   * If on Z390, **enable this quirk**
 * **ProvideCustomSlide**: YES
    * If there's a conflicting slide value, this option forces macOS to use a pseudo-random value. Needed for those receiving `Only N/256 slide values are usable!` debug message
 * **RebuildAppleMemoryMap**: YES
@@ -145,7 +150,7 @@ Settings relating to boot.efi patching and firmware fixes, ones we need to chang
 
 ## DeviceProperties
 
-![DeviceProperties](/images/config/config-laptop.plist/coffeelake/DeviceProperties.png)
+![DeviceProperties](/images/config/config-laptop.plist/coffeelake-plus/DeviceProperties.png)
 
 **Add**: Sets device properties from a map.
 
@@ -166,24 +171,15 @@ The table below may seem daughting but it's really not, the main things we need 
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel UHD Graphics 630 | 003E0000 | 0000003E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel UHD Graphics 630 | 923E0000 | 0000923E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel UHD Graphics 630 | 923E0009 | 0900923E | 3 | 57MB | 0MB | 1536MB | LVDS1 DUMMY2 |
-| **Intel UHD Graphics 630** | 9B3E0000 | 00009B3E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel UHD Graphics 630 | 9B3E0006 | 06009B3E | 1 | 38MB | 0MB | 1536MB | LVDS1 DUMMY2 |
-| Intel UHD Graphics 630 | 9B3E0009 | 09009B3E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Plus Graphics 655 | A53E0000 | 0000A53E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Plus Graphics 655 | A53E0004 | 0400A53E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel UHD Graphics 630 | A53E0005 | 0500A53E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Intel Iris Plus Graphics 655 | A53E0009 | 0900A53E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
-| Unlisted iGPU | A63E0005 | 0500A63E | 3 | 57MB | 0MB | 1536MB | LVDS1 DP2 |
+| Unknown | FF050000 | 000005FF | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
+| Unknown | 8A700000 | 0000708A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
+| Ice Lake GT2 | 8A510000 | 0000518A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
+| Ice Lake GT1.5 | 8A5C0000 | 00005C8A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
+| Ice Lake GT1 | 8A5D0000 | 00005D8A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
+| **Ice Lake GT2** | 8A520000 | 0000528A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
+| Ice Lake GT1.5 | 8A5A0000 | 00005A8A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
+| Ice Lake GT1 | 8A5B0000 | 00005B8A | 3 | 64MB | 0MB | 1536MB | LVDS1 DP2 |
 
-#### Special Notes:
-
-* For `UHD630` you may not need to fake the `device-id`  as long as it's `8086:9B3E`, if it's anything else, you may use `device-id`=`9B3E0000`
-* For `UHD620` in a Comet Lake CPU **requires**:
-  * `device-id`=`9B3E0000`
-  * `AAPL,ig-platform-id`=`00009B3E`
 
 `PciRoot(0x0)/Pci(0x1f,0x3)` -> `Layout-id`
 
@@ -400,23 +396,20 @@ Recommended to leave enabled for best security practices
 
 For setting up the SMBIOS info, we'll use CorpNewt's [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) application. 
 
-For this Coffee Lake example, I chose the MacBookPro15,1 SMBIOS - this is done intentionally for compatibility's sake. The breakdown is as follows:
+For this icelake example, we chose the MacBookAir9,1 SMBIOS - this is done intentionally for compatibility's sake. The breakdown is as follows:
 
 | SMBIOS | CPU Type | GPU Type | Display Size | Touch ID |
 | :--- | :--- | :--- | :--- | :--- |
-| MacBookPro15,1 | Hexa Core 45w | iGPU: UHD 630 + dGPU: RP555/560X | 15" | Yes |
-| MacBookPro15,2 | Quad Core 15w | iGPU: Iris 655 | 13" | Yes |
-| MacBookPro15,3 | Hexa Core 45w | iGPU: UHD 630 + dGPU: Vega16/20 | 15" | Yes |
-| MacBookPro15,4 | Quad Core 15w | iGPU: Iris 645 | 13" | Yes |
+| MacBookAir9,1 | Dual/Quad Core 12w | iGPU: G4/G7 | 13" | Yes |
 
 Run GenSMBIOS, pick option 1 for downloading MacSerial and Option 3 for selecting out SMBIOS.  This will give us an output similar to the following:
 
 ```text
   #######################################################
- #               MacBookPro15,1 SMBIOS Info                  #
+ #               MacBookAir9,1 SMBIOS Info                  #
 #######################################################
 
-Type:         MacBookPro15,1
+Type:         MacBookAir9,1
 Serial:       C02XG0FDH7JY
 Board Serial: C02839303QXH69FJA
 SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
