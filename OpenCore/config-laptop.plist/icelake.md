@@ -164,7 +164,7 @@ Settings relating to boot.efi patching and firmware fixes, ones we need to chang
 
 ## DeviceProperties
 
-![DeviceProperties](/images/config/config-laptop.plist/icelake/DeviceProperties.png)
+![DeviceProperties](/Images/config/config-laptop.plist/icelake/DeviceProperties.png)
 
 **Add**: Sets device properties from a map.
 
@@ -424,7 +424,7 @@ Recommended to leave enabled for best security practices
 
 ## Platforminfo
 
-![PlatformInfo](/images/config/config-laptop.plist/icelake/smbios.png)
+![PlatformInfo](/Images/config/config-laptop.plist/icelake/smbios.png)
 
 For setting up the SMBIOS info, we'll use CorpNewt's [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS) application. 
 
