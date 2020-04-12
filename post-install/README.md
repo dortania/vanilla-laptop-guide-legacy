@@ -24,7 +24,3 @@ For Sandy and Ivy Bridge:
 Extras:
 
 * [GUI and Boot Chime](https://desktop.dortania.ml/extras/gui.html)
-
-## Obligatory Cute Cat Photo
-
-![CAT](/Images/post-install/cat.png)

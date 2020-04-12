@@ -164,6 +164,8 @@ Settings relating to boot.efi patching and firmware fixes, one we need to change
 
 **Add**: Sets device properties from a map.
 
+`PciRoot(0x0)/Pci(0x2,0x0)`
+
 This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for fixing certain iGPU properties like `ig-platform-id`. The way we get the proper value for this is to look at the framebuffer we intend to use, then swap the pairs of hex bytes.
 
 The table below may seem daunting but it's really not, the main things we need to take away from it are:

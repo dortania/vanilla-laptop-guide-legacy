@@ -19,11 +19,14 @@
 * [Overview](preparations/overview.md)
 * [Multiboot](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
 * [Installer creation](preparations/installer-overview.md)
-* [Preparing an offline installer (macOS only)](preparations/offline-installer.md)
-* [Preparing an online installer](preparations/online-installer.md)
+   * [Preparing an offline installer](preparations/offline-installer.md)
+   * [Preparing an online installer](preparations/online-installer.md)
+* [Setting Up OpenCore](preparations/opencore-efi.md)
 
 ## Configuring OpenCore
 
+* [Gathering Files](/OpenCore/ktext.md)
+* [Getting started with ACPI](https://acpi.dortania.ml/)
 * [OpenCore config](/OpenCore/config.md)
    * [Ivy Bridge](/OpenCore/config-laptop.plist/ivy-bridge.md)
    * [Haswell](/OpenCore/config-laptop.plist/haswell.md)
@@ -33,11 +36,10 @@
    * [Coffee Lake(8th Gen)](/OpenCore/config-laptop.plist/coffee-lake.md)
    * [Coffee Lake Plus(9th Gen)](/OpenCore/config-laptop.plist/coffee-lake-plus.md)
    * [Icelake](/OpenCore/config-laptop.plist/icelake.md)
-* [Getting started with ACPI](https://acpi.dortania.ml/)
 
 ## Installation
 
-* [Installation Process](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+* [Installation Process](/installation/installation-process.md)
 
 ## Post Install
 
