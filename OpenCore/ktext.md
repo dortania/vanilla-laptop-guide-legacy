@@ -57,7 +57,7 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
   * Do not use if you don't have an ambient light sensor, can cause issues otherwise
 * SMCBatteryManager.kext
   * Used for measuring battery readouts on laptops
-  * Do not use until battery has been poperly patched, can cause issues otherwise
+  * Do not use until battery has been properly patched, can cause issues otherwise
 
 **Graphics**:
 
@@ -90,7 +90,7 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
 * [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup/releases)
   * Used for patching non-Apple Broadcom cards, **will not work on intel, Killer, Realtek, etc**
 * [BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM/releases)
-  * Used for uploading firmware on broadcom bluetooth chipset, required for all non-Apple/Fenvi Airport cards.
+  * Used for uploading firmware on Broadcom bluetooth chipset, required for all non-Apple/Fenvi Airport cards.
   * To be paired with BrcmFirmwareData.kext
     * BrcmPatchRAM3 for 10.14+ (must be paired with BrcmBluetoothInjector)
     * BrcmPatchRAM2 for 10.11-10.14
@@ -105,7 +105,7 @@ The order in `Kernel -> Add` should be:
 **Extra's**:
 
 * [VoodooTSCSync](https://bitbucket.org/RehabMan/VoodooTSCSync/downloads/)
-   * Needed for syncing TSC on some of Intel's HEDT and server motherboards, without this macOS may be extremly slow or even unbootable. Skylake-X should use TSCAdjustReset instead
+   * Needed for syncing TSC on some of Intel's HEDT and server motherboards, without this macOS may be extremely slow or even unbootable. Skylake-X should use TSCAdjustReset instead
 * [NVMeFix](https://github.com/acidanthera/NVMeFix/releases)
    * Used for fixing power management and initialization on non-Apple NVMe, requires macOS 10.14 or newer
 
@@ -120,7 +120,7 @@ The order in `Kernel -> Add` should be:
    * To be paired with a plugin:
       * VoodooI2CHID - Implements the Microsoft HID device specification.
       * VoodooI2CElan - Implements support for Elan proprietary devices. (does not work on ELAN1200+, use the HID instead)
-      * VoodooI2CSynaptics - Implements support for Synaptics proprietary devices.
+      * VoodooI2CSynaptics - Implements support for Synaptic's proprietary devices.
       * VoodooI2CFTE - Implements support for the FTE1001 touchpad.
       * VoodooI2CUPDDEngine - Implements Touchbase driver support.
 
