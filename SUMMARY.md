@@ -40,6 +40,7 @@
 ## Installation
 
 * [Installation Process](/installation/installation-process.md)
+* [Troubleshooting](/installation/troubleshooting.md)
 
 ## Post Install
 
