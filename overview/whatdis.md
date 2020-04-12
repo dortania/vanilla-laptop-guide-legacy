@@ -1,6 +1,8 @@
 # What is this whole mess?
 
-Glad you asked! As you may know, real Macs run **macOS** (if you say iOS, you can just close this tab/window and go back), and that OS is crafted specifically for those devices. However, some of us may have been an old Mac user or uses Mac-specific applications or is used to using macOS for various reasons, but don't want to spend $$$$ on a laptop that is expensive and may break and there is no way to get data back once it's messed up *cough* MBP13,x+ *cough*. With this guide, you'll be taught how to install macOS on your Intel powered laptop, and it will include the following:
+Glad you asked! As you may know, real Macs run **macOS** (if you say iOS, you can just close this tab/window and go back), and that OS is crafted specifically for those devices. Hackintoshes aim to bring as much functionality onto modern PC hardware. This is **not** a quick way to get a cheap MacBook, this should be seen only as a hobby project and never relied on unless you completely understand what you're doing *and* know how to fix things when shit goes south. If you need a daily driver MacBook, we recommend looking elsewhere like the used market on eBay, Facebook, etc. For those who are either masochists, want a challenge or want to see how far you can get, this guide is for you! 
+
+With this guide, you'll be taught how to install macOS on your Intel powered laptop, and it will include the following:
 
 ## Overview
 

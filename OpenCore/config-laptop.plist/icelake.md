@@ -189,35 +189,20 @@ The table below may seem daunting but it's really not, the main things we need t
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Ice Lake HD | FF050000 | 000005FF | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Ice Lake HD | 8A710000 | 0000718A | 6 | 64MB | 0MB |  LVDS1 DP5 |
-| Ice Lake HD | 8A700000 | 0000708A | 6 | 64MB | 0MB |  LVDS1 DP5 |
-| Ice Lake HD | 8A510000 | 0000518A | 6 | 64MB | 0MB |  LVDS1 DP5 |
-| Ice Lake HD | 8A5C0000 | 00005C8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
-| Ice Lake HD | 8A5D0000 | 00005D8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
-| **Ice Lake HD** | 8A520000 | 0000528A | 6 | 64MB | 0MB |  LVDS1 DP5 |
-| Ice Lake HD | 8A530000 | 0000538A | 6 | 64MB | 0MB |  LVDS1 DP5 |
-| Ice Lake HD | 8A5A0000 | 00005A8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
-| Ice Lake HD | 8A5B0000 | 00005B8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
-| Ice Lake HD | 8A710001 | 0000718A | 5 | 64MB | 0MB |  LVDS1 DP4 |
-| Ice Lake HD | 8A700001 | 0000708A | 5 | 64MB | 0MB |  LVDS1 DP4 |
-| Ice Lake HD | 8A510001 | 0100518A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Ice Lake HD | 8A5C0001 | 01005C8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Ice Lake HD | 8A5D0001 | 01005D8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Ice Lake HD | 8A520001 | 0100528A | 5 | 64MB | 0MB |  LVDS1 DP4 |
-| Ice Lake HD | 8A530001 | 0100538A | 5 | 64MB | 0MB |  LVDS1 DP4 |
-| Ice Lake HD | 8A5A0001 | 01005A8A | 5 | 64MB | 0MB |  LVDS1 DP4 |
-| Ice Lake HD | 8A5B0001 | 01005B8A | 5 | 64MB | 0MB |  LVDS1 DP4 |
-| Iris Plus | 8A510002 | 0200518A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Iris Plus | 8A5C0002 | 02005C8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Iris Plus | 8A520002 | 0200528A | 5 | 64MB | 0MB |  LVDS1 DP4 |
-| Iris Plus | 8A530002 | 0200538A | 5 | 64MB | 0MB |  LVDS1 DP4 |
+| Iris Plus | 8A510000 | 0000518A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Iris Plus | 8A5C0000 | 00005C8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| **Iris Plus** | 8A520000 | 0000528A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Iris Plus | 8A5A0000 | 00005A8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+
+#### Special Notes
+
+* `8A520000` is the recommended ig-platform-id value, note that info on setting up Icelake iGPUs is still limited
 
 `PciRoot(0x0)/Pci(0x1b,0x0)` -> `Layout-id`
 
 * Applies AppleALC audio injection, you'll need to do your own research on which codec your motherboard has and match it with AppleALC's layout. [AppleALC Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs).
 
-For us, we'll be using the boot-arg `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present
+For us, we'll be using the boot-arg `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present. More info on this is covered in the [Post-Install Page](/post-install/README.md)
 
 Fun Fact: The reason the byte order is swapped is due to [Endianness](https://en.wikipedia.org/wiki/Endianness), specifically Little Endians that modern CPUs use for ordering bytes. The more you know!
 
@@ -380,9 +365,9 @@ Won't be covered here, see 8.6 of [Configuration.pdf](https://github.com/acidant
 
 * **boot-args**:
    * **-v** - this enables verbose mode, which shows all the behind-the-scenes text that scrolls by as you're booting instead of the Apple logo and progress bar. It's invaluable to any Hackintosher, as it gives you an inside look at the boot process, and can help you identify issues, problem kexts, etc.
-   * **debug=0x100**- this disables macOS's watchdog which helps prevents a reboot on a kernel panic. That way you can *hopefully* glean some useful info and follow the breadcrumbs to get past the issues.
    * **keepsyms=1** - this is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
-   * **alcid=1** - used for setting layout-id for AppleALC, see [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system.
+   * **debug=0x100**- this disables macOS's watchdog which helps prevents a reboot on a kernel panic. That way you can *hopefully* glean some useful info and follow the breadcrumbs to get past the issues.
+   * **alcid=1** - used for setting layout-id for AppleALC, see [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system. More info on this is covered in the [Post-Install Page](/post-install/README.md)
    * **-wegnoegpu** - Disables all other GPUs besides the integrated GPU, needed as the dGPUs in laptops are not supported
    
    
