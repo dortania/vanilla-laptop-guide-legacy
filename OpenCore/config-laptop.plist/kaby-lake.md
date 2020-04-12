@@ -144,7 +144,7 @@ Settings relating to boot.efi patching and firmware fixes, ones we need to chang
 * **ProtectSecureBoot**: NO
    * Fixes secureboot keys on MacPro5,1 and Insyde firmwares
 * **ProtectUefiServices**: NO
-   * Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and newer Coffeelake systems
+   * Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and newer Coffee Lake systems
 * **ProvideCustomSlide**: YES
    * If there's a conflicting slide value, this option forces macOS to use a pseudo-random value. Needed for those receiving `Only N/256 slide values are usable!` debug message
 * **RebuildAppleMemoryMap**: YES
@@ -226,7 +226,7 @@ The table below may seem daunting but it's really not, the main things we need t
 | `framebuffer-stolenmem` | Data | `00003001` |
 | `framebuffer-fbmem` | Data | `00009000` |
 
-`PciRoot(0x0)/Pci(0x1f,0x3)` -> `Layout-id`
+`PciRoot(0x0)/Pci(0x1b,0x0)` -> `Layout-id`
 
 * Applies AppleALC audio injection, you'll need to do your own research on which codec your motherboard has and match it with AppleALC's layout. [AppleALC Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs).
 
