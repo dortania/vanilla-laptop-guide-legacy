@@ -189,17 +189,31 @@ The table below may seem daunting but it's really not, the main things we need t
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Unknown | FF050000 | 000005FF | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Unknown | 8A700000 | 0000708A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Ice Lake GT2 | 8A510000 | 0000518A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Ice Lake GT1.5 | 8A5C0000 | 00005C8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Ice Lake GT1 | 8A5D0000 | 00005D8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| **Ice Lake GT2** | 8A520000 | 0000528A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Ice Lake GT1.5 | 8A5A0000 | 00005A8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
-| Ice Lake GT1 | 8A5B0000 | 00005B8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake HD | FF050000 | 000005FF | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake HD | 8A710000 | 0000718A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Ice Lake HD | 8A700000 | 0000708A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Ice Lake HD | 8A510000 | 0000518A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Ice Lake HD | 8A5C0000 | 00005C8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Ice Lake HD | 8A5D0000 | 00005D8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| **Ice Lake HD** | 8A520000 | 0000528A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Ice Lake HD | 8A530000 | 0000538A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Ice Lake HD | 8A5A0000 | 00005A8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Ice Lake HD | 8A5B0000 | 00005B8A | 6 | 64MB | 0MB |  LVDS1 DP5 |
+| Ice Lake HD | 8A710001 | 0000718A | 5 | 64MB | 0MB |  LVDS1 DP4 |
+| Ice Lake HD | 8A700001 | 0000708A | 5 | 64MB | 0MB |  LVDS1 DP4 |
+| Ice Lake HD | 8A510001 | 0100518A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake HD | 8A5C0001 | 01005C8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake HD | 8A5D0001 | 01005D8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Ice Lake HD | 8A520001 | 0100528A | 5 | 64MB | 0MB |  LVDS1 DP4 |
+| Ice Lake HD | 8A530001 | 0100538A | 5 | 64MB | 0MB |  LVDS1 DP4 |
+| Ice Lake HD | 8A5A0001 | 01005A8A | 5 | 64MB | 0MB |  LVDS1 DP4 |
+| Ice Lake HD | 8A5B0001 | 01005B8A | 5 | 64MB | 0MB |  LVDS1 DP4 |
+| Iris Plus | 8A510002 | 0200518A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Iris Plus | 8A5C0002 | 02005C8A | 3 | 64MB | 0MB |  LVDS1 DP2 |
+| Iris Plus | 8A520002 | 0200528A | 5 | 64MB | 0MB |  LVDS1 DP4 |
+| Iris Plus | 8A530002 | 0200538A | 5 | 64MB | 0MB |  LVDS1 DP4 |
 
-
-`PciRoot(0x0)/Pci(0x1f,0x3)` -> `Layout-id`
+`PciRoot(0x0)/Pci(0x1b,0x0)` -> `Layout-id`
 
 * Applies AppleALC audio injection, you'll need to do your own research on which codec your motherboard has and match it with AppleALC's layout. [AppleALC Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs).
 

@@ -203,7 +203,7 @@ The table below may seem daunting but it's really not, the main things we need t
   * `framebuffer-cursor` = `00009000` (as Data)
     * We change the cursor byte from 6MB (00006000) to 9MB because of some glitches.
 
-`PciRoot(0x0)/Pci(0x1f,0x3)` -> `Layout-id`
+`PciRoot(0x0)/Pci(0x1b,0x0)` -> `Layout-id`
 
 * Applies AppleALC audio injection, you'll need to do your own research on which codec your motherboard has and match it with AppleALC's layout. [AppleALC Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs).
 
