@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>OpenCore config · GitBook</title>
+        <title>Gathering Files · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,8 +62,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="config-laptop.plist/ivy-bridge.html" />
     
+    <link rel="prev" href="../preparations/opencore-efi.html" />
     
 
     </head>
@@ -303,7 +303,7 @@
         
         
     
-        <li class="chapter " data-level="4.1" data-path="ktext.html">
+        <li class="chapter active" data-level="4.1" data-path="ktext.html">
             
                 <a href="ktext.html">
             
@@ -329,7 +329,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.3" data-path="config.html">
+        <li class="chapter " data-level="4.3" data-path="config.html">
             
                 <a href="config.html">
             
@@ -632,7 +632,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >OpenCore config</a>
+        <a href=".." >Gathering Files</a>
     </h1>
 </div>
 
@@ -647,44 +647,241 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="creating-our-config">Creating our config</h1>
-<p>Now comes the fun part, making our config.plist. Follow your respective section for configuring, the typical breakdown of how to follow:</p>
-<p><a href="config-laptop.plist/ivy-bridge.html">Ivy Bridge</a></p>
+                                <h1 id="gathering-files">Gathering files</h1>
 <ul>
-<li>3XXX series, 2012 era</li>
+<li>Supported version: 0.5.7</li>
 </ul>
-<p><a href="config-laptop.plist/haswell.html">Haswell</a></p>
+<p>This section is for gathering miscellaneous files for booting macOS, we do expect you to know your hardware well before starting and hopefully made a Hackintosh before as we won&apos;t be deep diving in here.</p>
+<blockquote>
+<p>What&apos;s the best way to figure out if my hardware is supported?</p>
+</blockquote>
+<p>See the <a href="https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extras/hardware.md" target="_blank"><strong>supported hardware section</strong></a> for some better insight into what macOS requires to boot, hardware support between Clover and OpenCore are quite similar.</p>
+<h2 id="firmware-drivers">Firmware Drivers</h2>
+<p>These are the drivers used by OpenCore, for the majority of systems you only need 3 .efi drivers to get up and running:</p>
 <ul>
-<li>4XXX series, 2013 era</li>
+<li><a href="https://github.com/acidanthera/AppleSupportPkg/releases" target="_blank">ApfsDriverLoader.efi</a><ul>
+<li>Needed for seeing APFS volumes(ie. macOS)</li>
 </ul>
-<p><a href="config-laptop.plist/broadwell.html">Broadwell</a></p>
+</li>
+<li><a href="https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi" target="_blank">HfsPlus.efi</a> <strong>or</strong> <a href="https://github.com/acidanthera/AppleSupportPkg/releases" target="_blank">VboxHfs.efi</a><ul>
+<li>Needed for seeing HFS volumes(ie. macOS Installers and Recovery partitions/images). <strong>Do not mix HFS drivers</strong></li>
+</ul>
+</li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank">OpenRuntime.efi</a><ul>
+<li>Replacement for <a href="https://github.com/acidanthera/AptioFixPkg" target="_blank">AptioMemoryFix.efi</a>, used as an extension for OpenCore to help with patching boot.efi for NVRAM fixes and better memory management.</li>
+</ul>
+</li>
+</ul>
+<p>For legacy users:</p>
 <ul>
-<li>5XXX series, 2014 era</li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank">OpenUsbKbDxe.efi</a><ul>
+<li>Used for OpenCore picker on <strong>legacy systems running DuetPkg</strong>, <a href="https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653" target="_blank">not recommended and even harmful on UEFI(Ivy Bridge and newer)</a></li>
 </ul>
-<p><a href="config-laptop.plist/skylake.html">Skylake</a></p>
+</li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank">NvmExpressDxe.efi</a><ul>
+<li>Used for Haswell and older when no NVMe driver is built into the firmware, not needed if you&apos;re not using an NVMe drive</li>
+</ul>
+</li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank">XhciDxe.efi</a><ul>
+<li>Used for Sandy Bridge and older when no XHCI driver is built into the firmware, not needed if you&apos;re not using a USB 3.0 expansion card</li>
+</ul>
+</li>
+<li><a href="https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlusLegacy.efi" target="_blank">HfsPlusLegacy.efi</a><ul>
+<li>Legacy variant of HfsPlus, used for systems that lack RDRAND instruction support. This is generally seen on Sandy Bridge and older</li>
+</ul>
+</li>
+</ul>
+<p>For a full list of compatible drivers, see 11.2 Properties in the <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf" target="_blank">OpenCorePkg Docs</a>. These files will go in your Drivers folder in your EFI</p>
+<h2 id="kexts">Kexts</h2>
+<p>A kext is a <strong>k</strong>ernel <strong>ext</strong>ension, you can think of this as a driver for macOS, these files will go into the Kexts folder in your EFI</p>
+<p>All kext listed below can be found <strong>pre-compiled</strong> in the <a href="http://kexts.goldfish64.com/" target="_blank">Kext Repo</a>. Kexts here are compiled each time there&apos;s a new commit.</p>
+<p><strong>Must haves</strong>:</p>
 <ul>
-<li>6XXX series, 2015-2016 era</li>
+<li><a href="https://github.com/acidanthera/VirtualSMC/releases" target="_blank">VirtualSMC</a><ul>
+<li>Emulates the SMC chip found on real macs, without this macOS will not boot</li>
+<li>Alternative is FakeSMC which can have better or worse support, most commonly used on legacy hardware.</li>
 </ul>
-<p><a href="config-laptop.plist/kaby-lake.html">Kaby Lake</a></p>
+</li>
+<li><a href="https://github.com/vit9696/Lilu/releases" target="_blank">Lilu</a><ul>
+<li>A kext to patch many processes, required for AppleALC and WhateverGreen and recommended for VirtualSMC</li>
+</ul>
+</li>
+</ul>
+<p><strong>VirtualSMC Plugins</strong>:</p>
 <ul>
-<li>7XXX series, 2017 era</li>
-<li>Kaby Lake-R and Amber Lake also apply</li>
+<li>SMCProcessor.kext<ul>
+<li>Used for monitoring CPU temperature</li>
 </ul>
-<p><a href="config-laptop.plist/coffee-lake.html">Coffee Lake(8th Gen)</a></p>
+</li>
+<li>SMCSuperIO.kext<ul>
+<li>Used for monitoring fan speed</li>
+</ul>
+</li>
+<li>SMCLightSensor.kext<ul>
+<li>Used for the ambient light sensor on laptops</li>
+<li>Do not use if you don&apos;t have an ambient light sensor, can cause issues otherwise</li>
+</ul>
+</li>
+<li>SMCBatteryManager.kext<ul>
+<li>Used for measuring battery readouts on laptops</li>
+<li>Do not use until battery has been properly patched, can cause issues otherwise</li>
+</ul>
+</li>
+</ul>
+<p><strong>Graphics</strong>:</p>
 <ul>
-<li>8XXX series, 2017-2018 era</li>
+<li><a href="https://github.com/acidanthera/WhateverGreen/releases" target="_blank">WhateverGreen</a><ul>
+<li>Used for graphics patching DRM, boardID, framebuffer fixes, etc, all GPUs benefit from this kext.</li>
+<li>Note the SSDT-PNLF.dsl file included is only required for laptops and AIOs, see * <a href="../extras/acpi.md">Getting started with ACPI</a> for more info</li>
 </ul>
-<p><a href="config-laptop.plist/coffee-lake-plus.html">Coffee Lake Plus(9th Gen)</a></p>
+</li>
+</ul>
+<p><strong>Audio</strong>:</p>
 <ul>
-<li>9XXX series, 2019 era</li>
-<li>Comet Lake also applies(10XXX series)</li>
+<li><a href="https://github.com/vit9696/AppleALC/releases" target="_blank">AppleALC</a><ul>
+<li>Used for AppleHDA patching, used for giving you onboard audio. AMD 15h/16h may have issues with this and Ryzen/Threadripper systems rarely have mic support</li>
 </ul>
-<p><a href="config-laptop.plist/icelake.html">Icelake</a></p>
+</li>
+</ul>
+<p><strong>Ethernet</strong>:</p>
 <ul>
-<li>10XXX series, 2019-2020 era</li>
-<li>Do not mix this and Comet Lake up</li>
-<li>Guide still under testing as WhateverGreen needs updating</li>
+<li><a href="https://github.com/Mieze/IntelMausiEthernet" target="_blank">IntelMausiEthernet</a><ul>
+<li>Required for Intel NICs, chipsets that are based off of I211-AT will need the SmallTreeIntel82576 kext</li>
 </ul>
+</li>
+<li><a href="https://github.com/Mieze/AtherosE2200Ethernet/releases" target="_blank">AtherosE2200Ethernet</a><ul>
+<li>Required for Atheros and Killer NICs</li>
+</ul>
+</li>
+<li><a href="https://github.com/Mieze/RTL8111_driver_for_OS_X/releases" target="_blank">RealtekRTL8111</a><ul>
+<li>Required for Realtek NICs</li>
+</ul>
+</li>
+</ul>
+<p><strong>USB</strong>:</p>
+<ul>
+<li><a href="https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/" target="_blank">USBInjectAll</a><ul>
+<li>Used for injecting Intel USB controllers on systems without defined USB ports in ACPI</li>
+<li>Not needed on Skylake and newer </li>
+</ul>
+</li>
+</ul>
+<p><strong>WiFi and Bluetooth</strong>:</p>
+<ul>
+<li><a href="https://github.com/acidanthera/AirportBrcmFixup/releases" target="_blank">AirportBrcmFixup</a><ul>
+<li>Used for patching non-Apple Broadcom cards, <strong>will not work on intel, Killer, Realtek, etc</strong></li>
+</ul>
+</li>
+<li><a href="https://github.com/acidanthera/BrcmPatchRAM/releases" target="_blank">BrcmPatchRAM</a><ul>
+<li>Used for uploading firmware on Broadcom bluetooth chipset, required for all non-Apple/Fenvi Airport cards.</li>
+<li>To be paired with BrcmFirmwareData.kext<ul>
+<li>BrcmPatchRAM3 for 10.14+ (must be paired with BrcmBluetoothInjector)</li>
+<li>BrcmPatchRAM2 for 10.11-10.14</li>
+<li>BrcmPatchRAM for 10.10 or older</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The order in <code>Kernel -&gt; Add</code> should be: </p>
+<ol>
+<li>BrcmBluetoothInjector </li>
+<li>BrcmFirmwareData </li>
+<li>BrcmPatchRAM3</li>
+</ol>
+<p><strong>Extra&apos;s</strong>:</p>
+<ul>
+<li><a href="https://bitbucket.org/RehabMan/VoodooTSCSync/downloads/" target="_blank">VoodooTSCSync</a><ul>
+<li>Needed for syncing TSC on some of Intel&apos;s HEDT and server motherboards, without this macOS may be extremely slow or even unbootable. Skylake-X should use TSCAdjustReset instead</li>
+</ul>
+</li>
+<li><a href="https://github.com/acidanthera/NVMeFix/releases" target="_blank">NVMeFix</a><ul>
+<li>Used for fixing power management and initialization on non-Apple NVMe, requires macOS 10.14 or newer</li>
+</ul>
+</li>
+</ul>
+<p><strong>Laptop Specifics</strong>:</p>
+<ul>
+<li><p><a href="https://github.com/acidanthera/VoodooPS2/releases" target="_blank">VoodooPS2</a></p>
+<ul>
+<li>Required for systems with PS2 keyboards and trackpads</li>
+<li>Trackpad users should also pair this with <a href="https://github.com/acidanthera/VoodooInput/releases" target="_blank">VoodooInput</a>(This must come before VoodooPS2 in your config.plist)</li>
+</ul>
+</li>
+<li><p><a href="https://github.com/alexandred/VoodooI2C/releases" target="_blank">VoodooI2C</a> </p>
+<ul>
+<li>Used for fixing I2C devices, found with some fancier touchpads and touchscreen machines</li>
+<li>To be paired with a plugin:<ul>
+<li>VoodooI2CHID - Implements the Microsoft HID device specification.</li>
+<li>VoodooI2CElan - Implements support for Elan proprietary devices. (does not work on ELAN1200+, use the HID instead)</li>
+<li>VoodooI2CSynaptics - Implements support for Synaptic&apos;s proprietary devices.</li>
+<li>VoodooI2CFTE - Implements support for the FTE1001 touchpad.</li>
+<li>VoodooI2CUPDDEngine - Implements Touchbase driver support.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>To figure out what kind of keyboard and trackpad you have, check DeviceManager in Windows or <code>dmesg |grep input</code> in Linux</p>
+<ul>
+<li><a href="https://github.com/al3xtjames/NoTouchID/releases" target="_blank">NoTouchID</a><ul>
+<li>Recommended for SMBIOS that include a TouchID sensor to fix auth issues</li>
+</ul>
+</li>
+</ul>
+<p>Please refer to <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Kexts.md" target="_blank">Kexts.md</a> for a full list of supported kexts</p>
+<h2 id="ssdts">SSDTs</h2>
+<p>So you see all those SSDTs in the AcpiSamples folder and wonder whether you need any of them. For us, we will be going over what SSDTs you need in <strong>your specific ACPI section of the config.plist</strong>, as the SSDTs you need are platform specific. With some even system specific where they need to be configured and you can easily get lost if I give you a list of SSDTs to choose from now. </p>
+<p><a href="../extras/acpi.md">Getting started with ACPI</a> has an extended section on SSDTs including compiling them on different platforms.</p>
+<p>A quick TL;DR of needed SSDTs(This is source code, you will have to compile them into a .aml file):</p>
+<p><strong>Ivy Bridge:</strong></p>
+<ul>
+<li><a href="https://github.com/Piker-Alpha/ssdtPRGen.sh" target="_blank">CPU-PM</a></li>
+<li><a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl" target="_blank">SSDT-PNLF</a></li>
+<li>EC-Rename</li>
+<li>XOSI-Rename</li>
+</ul>
+<p><strong>Haswell:</strong></p>
+<ul>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl" target="_blank">SSDT-PLUG</a></li>
+<li><a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl" target="_blank">SSDT-PNLF</a></li>
+<li>EC-Rename</li>
+<li>XOSI-Rename</li>
+</ul>
+<p><strong>Skylake:</strong></p>
+<ul>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl" target="_blank">SSDT-PLUG</a></li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl" target="_blank">SSDT-USBX</a></li>
+<li><a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl" target="_blank">SSDT-PNLF</a></li>
+<li>EC-Rename</li>
+<li>XOSI-Rename</li>
+</ul>
+<p><strong>Kabylake:</strong></p>
+<ul>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl" target="_blank">SSDT-PLUG</a></li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl" target="_blank">SSDT-USBX</a></li>
+<li><a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl" target="_blank">SSDT-PNLF</a></li>
+<li>EC-Rename</li>
+<li>XOSI-Rename</li>
+</ul>
+<p><strong>Coffeelake:</strong></p>
+<ul>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl" target="_blank">SSDT-PLUG</a></li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl" target="_blank">SSDT-USBX</a></li>
+<li>EC-Rename</li>
+<li>XOSI-Rename</li>
+</ul>
+<p><strong>Coffeelake Plus:</strong></p>
+<ul>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl" target="_blank">SSDT-PLUG</a></li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl" target="_blank">SSDT-USBX</a></li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl" target="_blank">SSDT-AWAC</a></li>
+<li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl" target="_blank">SSDT-PMC</a></li>
+<li><a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl" target="_blank">SSDT-PNLF</a></li>
+<li>EC-Rename</li>
+<li>XOSI-Rename</li>
+</ul>
+<h1 id="now-head-getting-started-with-acpi">Now head <a href="https://acpi.dortania.ml/" target="_blank">Getting Started With ACPI</a></h1>
 
                                 
                                 </section>
@@ -712,10 +909,10 @@
 
             
                 
-                
-                <a href="config-laptop.plist/ivy-bridge.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Ivy Bridge">
-                    <i class="fa fa-angle-right"></i>
+                <a href="../preparations/opencore-efi.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Setting Up OpenCore">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+                
                 
             
         
@@ -724,7 +921,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"OpenCore config","level":"4.3","depth":1,"next":{"title":"Ivy Bridge","level":"4.3.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},"previous":{"title":"Getting started with ACPI","level":"4.2","depth":1,"url":"https://acpi.dortania.ml/","ref":"https://acpi.dortania.ml/","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config.md","mtime":"2020-04-12T03:08:31.512Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T03:09:16.857Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Gathering Files","level":"4.1","depth":1,"next":{"title":"Getting started with ACPI","level":"4.2","depth":1,"url":"https://acpi.dortania.ml/","ref":"https://acpi.dortania.ml/","articles":[]},"previous":{"title":"Setting Up OpenCore","level":"3.4","depth":1,"path":"preparations/opencore-efi.md","ref":"preparations/opencore-efi.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ktext.md","mtime":"2020-04-12T03:08:31.512Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T03:09:16.857Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

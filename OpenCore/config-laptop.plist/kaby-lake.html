@@ -251,14 +251,15 @@
             
 
             
-        </li>
+            <ul class="articles">
+                
     
-        <li class="chapter " data-level="3.4" data-path="../../preparations/offline-installer.html">
+        <li class="chapter " data-level="3.3.1" data-path="../../preparations/offline-installer.html">
             
                 <a href="../../preparations/offline-installer.html">
             
                     
-                    Preparing an offline installer (macOS only)
+                    Preparing an offline installer
             
                 </a>
             
@@ -266,12 +267,30 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5" data-path="../../preparations/online-installer.html">
+        <li class="chapter " data-level="3.3.2" data-path="../../preparations/online-installer.html">
             
                 <a href="../../preparations/online-installer.html">
             
                     
                     Preparing an online installer
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../../preparations/opencore-efi.html">
+            
+                <a href="../../preparations/opencore-efi.html">
+            
+                    
+                    Setting Up OpenCore
             
                 </a>
             
@@ -286,7 +305,33 @@
         
         
     
-        <li class="chapter " data-level="4.1" data-path="../config.html">
+        <li class="chapter " data-level="4.1" data-path="../ktext.html">
+            
+                <a href="../ktext.html">
+            
+                    
+                    Gathering Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" >
+            
+                <a target="_blank" href="https://acpi.dortania.ml/">
+            
+                    
+                    Getting started with ACPI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../config.html">
             
                 <a href="../config.html">
             
@@ -300,7 +345,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1.1" data-path="ivy-bridge.html">
+        <li class="chapter " data-level="4.3.1" data-path="ivy-bridge.html">
             
                 <a href="ivy-bridge.html">
             
@@ -313,7 +358,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.2" data-path="haswell.html">
+        <li class="chapter " data-level="4.3.2" data-path="haswell.html">
             
                 <a href="haswell.html">
             
@@ -326,7 +371,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.3" data-path="broadwell.html">
+        <li class="chapter " data-level="4.3.3" data-path="broadwell.html">
             
                 <a href="broadwell.html">
             
@@ -339,7 +384,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.4" data-path="skylake.html">
+        <li class="chapter " data-level="4.3.4" data-path="skylake.html">
             
                 <a href="skylake.html">
             
@@ -352,7 +397,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.1.5" data-path="kaby-lake.html">
+        <li class="chapter active" data-level="4.3.5" data-path="kaby-lake.html">
             
                 <a href="kaby-lake.html">
             
@@ -365,7 +410,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.6" data-path="coffee-lake.html">
+        <li class="chapter " data-level="4.3.6" data-path="coffee-lake.html">
             
                 <a href="coffee-lake.html">
             
@@ -378,7 +423,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.7" data-path="coffee-lake-plus.html">
+        <li class="chapter " data-level="4.3.7" data-path="coffee-lake-plus.html">
             
                 <a href="coffee-lake-plus.html">
             
@@ -391,7 +436,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.1.8" data-path="icelake.html">
+        <li class="chapter " data-level="4.3.8" data-path="icelake.html">
             
                 <a href="icelake.html">
             
@@ -409,19 +454,6 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" >
-            
-                <a target="_blank" href="https://acpi.dortania.ml/">
-            
-                    
-                    Getting started with ACPI
-            
-                </a>
-            
-
-            
-        </li>
-    
 
     
         
@@ -429,9 +461,9 @@
         
         
     
-        <li class="chapter " data-level="5.1" >
+        <li class="chapter " data-level="5.1" data-path="../../installation/installation-process.html">
             
-                <a target="_blank" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                <a href="../../installation/installation-process.html">
             
                     
                     Installation Process
@@ -874,6 +906,7 @@
 <h2 id="deviceproperties">DeviceProperties</h2>
 <p><img src="../../images/config/config-laptop.plist/kaby-lake/DeviceProperties.png" alt="DeviceProperties"></p>
 <p><strong>Add</strong>: Sets device properties from a map.</p>
+<p><code>PciRoot(0x0)/Pci(0x2,0x0)</code></p>
 <p>This section is set up via WhateverGreen&apos;s <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md" target="_blank">Framebuffer Patching Guide</a> and is used for fixing certain iGPU properties like <code>ig-platform-id</code>. The way we get the proper value for this is to look at the framebuffer we intend to use, then swap the pairs of hex bytes.</p>
 <p>The table below may seem daunting but it&apos;s really not, the main things we need to take away from it are:</p>
 <ul>
@@ -1747,7 +1780,7 @@ SmUUID:       AA043F8D-33B6-4A1A-94F7-46972AAD0607
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Kaby Lake","level":"4.1.5","depth":2,"next":{"title":"Coffee Lake(8th Gen)","level":"4.1.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"previous":{"title":"Skylake","level":"4.1.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/kaby-lake.md","mtime":"2020-04-12T02:18:38.284Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T02:19:28.557Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Kaby Lake","level":"4.3.5","depth":2,"next":{"title":"Coffee Lake(8th Gen)","level":"4.3.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"previous":{"title":"Skylake","level":"4.3.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/kaby-lake.md","mtime":"2020-04-12T03:08:31.512Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T03:09:16.857Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

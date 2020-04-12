@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Hardware compatibility · GitBook</title>
+        <title>Installation Process · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,10 +62,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="macos-limits.html" />
+    <link rel="next" href="../post-install/" />
     
     
-    <link rel="prev" href="whatdis.html" />
+    <link rel="prev" href="../OpenCore/config-laptop.plist/icelake.html" />
     
 
     </head>
@@ -116,9 +116,9 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="whatdis.html">
+        <li class="chapter " data-level="2.1" data-path="../overview/whatdis.html">
             
-                <a href="whatdis.html">
+                <a href="../overview/whatdis.html">
             
                     
                     What is this
@@ -129,9 +129,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2" data-path="compatibility.html">
+        <li class="chapter " data-level="2.2" data-path="../overview/compatibility.html">
             
-                <a href="compatibility.html">
+                <a href="../overview/compatibility.html">
             
                     
                     Hardware compatibility
@@ -142,9 +142,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="macos-limits.html">
+        <li class="chapter " data-level="2.3" data-path="../overview/macos-limits.html">
             
-                <a href="macos-limits.html">
+                <a href="../overview/macos-limits.html">
             
                     
                     macOS limitations
@@ -155,9 +155,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="process-overview.html">
+        <li class="chapter " data-level="2.4" data-path="../overview/process-overview.html">
             
-                <a href="process-overview.html">
+                <a href="../overview/process-overview.html">
             
                     
                     How does it go?
@@ -168,9 +168,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="disclaimer.html">
+        <li class="chapter " data-level="2.5" data-path="../overview/disclaimer.html">
             
-                <a href="disclaimer.html">
+                <a href="../overview/disclaimer.html">
             
                     
                     Disclaimer
@@ -181,9 +181,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="requirements.html">
+        <li class="chapter " data-level="2.6" data-path="../overview/requirements.html">
             
-                <a href="requirements.html">
+                <a href="../overview/requirements.html">
             
                     
                     Requirements
@@ -194,9 +194,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="terminology.html">
+        <li class="chapter " data-level="2.7" data-path="../overview/terminology.html">
             
-                <a href="terminology.html">
+                <a href="../overview/terminology.html">
             
                     
                     Terminology
@@ -461,9 +461,9 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="../installation/installation-process.html">
+        <li class="chapter active" data-level="5.1" data-path="installation-process.html">
             
-                <a href="../installation/installation-process.html">
+                <a href="installation-process.html">
             
                     
                     Installation Process
@@ -634,7 +634,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Hardware compatibility</a>
+        <a href=".." >Installation Process</a>
     </h1>
 </div>
 
@@ -649,16 +649,52 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="hardware-compatibility">Hardware compatibility</h1>
-<p>This guide will cover laptops with Intel Core CPUs from Sandy Bridge and above. Laptops with AMD CPUs are not supported because of the limitations covered in <a href="macos-limits.html">macOS limitations</a>.</p>
-<p>CPUs that are not supported by this guide:</p>
-<ol>
-<li>AMD laptop CPUs</li>
-<li>Intel Pentium</li>
-<li>Intel Celeron</li>
-<li>Intel ATOM</li>
-<li>ARM devices</li>
-</ol>
+                                <h1 id="installation-process">Installation Process</h1>
+<p>Now that you&apos;ve finished setting up OpenCore, you&apos;re finally able to boot, main things to keep in mind:</p>
+<ul>
+<li>Make sure the laptop is connected to the charger<ul>
+<li>If the battery isn&apos;t properly patched for macOS support, it can be a bit flakey. To avoid headaches make sure to to be plugged in</li>
+</ul>
+</li>
+<li>Enable BIOS settings optimal for macOS</li>
+<li>Read up on the <a href="https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/" target="_blank">Multiboot Guide</a></li>
+<li>And a copy of the <del>OpenCore bible</del> <a href="https://desktop.dortania.ml/troubleshooting/troubleshooting.html" target="_blank">troubleshooting page</a></li>
+<li>And a ton of of patience</li>
+</ul>
+<h2 id="recommended-bios-settings">Recommended BIOS Settings</h2>
+<p>With many OEMs you&apos;re likely going to be heavily limited in your options, if you can try to find these options and enable them:</p>
+<p><strong>Disable:</strong></p>
+<ul>
+<li>Fast Boot</li>
+<li>VT-d(can be enabled if you set <code>DisableIoMapper</code> to YES)</li>
+<li>Thunderbolt</li>
+<li>Intel SGX</li>
+<li>Intel Platform Trust</li>
+<li>CFG Lock(MSR 0xE2 write protection)</li>
+</ul>
+<p><strong>Enable:</strong></p>
+<ul>
+<li>VT-x</li>
+<li>Above 4G decoding</li>
+<li>Hyper-Threading</li>
+<li>Execute Disable Bit</li>
+<li>EHCI/XHCI Hand-off</li>
+<li>OS type: Windows 8.1/10 UEFI Mode<ul>
+<li>If OpenCore doesn&apos;t show up set this to OtherOS</li>
+</ul>
+</li>
+<li>DVMT Pre-Allocated(iGPU Memory): 64MB</li>
+</ul>
+<h2 id="macos-installer">macOS Installer</h2>
+<p>So you&apos;ve finally got the installer booted, got through the verbose and hit the installer! Now that you&apos;ve gotten this far,  the main things to keep in mind:</p>
+<ul>
+<li>Drives you wish to install macOS on <strong>must</strong> be both of GUI partition Scheme <strong>and</strong> APFS</li>
+<li>The drive <strong>must</strong> also have a 200MB partition<ul>
+<li>By default, macOS will setup freshly formatted drives with 200MB</li>
+<li>See the <a href="https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/" target="_blank">Multiboot Guide</a> for more info on partitioning a Windows Drive</li>
+</ul>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -686,12 +722,12 @@
 
             
                 
-                <a href="whatdis.html" class="navigation navigation-prev " aria-label="Previous page: What is this">
+                <a href="../OpenCore/config-laptop.plist/icelake.html" class="navigation navigation-prev " aria-label="Previous page: Icelake">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="macos-limits.html" class="navigation navigation-next " aria-label="Next page: macOS limitations">
+                <a href="../post-install/" class="navigation navigation-next " aria-label="Next page: Post-Install">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -702,7 +738,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Hardware compatibility","level":"2.2","depth":1,"next":{"title":"macOS limitations","level":"2.3","depth":1,"path":"overview/macos-limits.md","ref":"overview/macos-limits.md","articles":[]},"previous":{"title":"What is this","level":"2.1","depth":1,"path":"overview/whatdis.md","ref":"overview/whatdis.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/compatibility.md","mtime":"2020-04-12T03:08:31.628Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T03:09:16.857Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation Process","level":"5.1","depth":1,"next":{"title":"Post-Install","level":"6.1","depth":1,"path":"post-install/README.md","ref":"post-install/README.md","articles":[{"title":"Security and FileVault","level":"6.1.1","depth":2,"url":"https://desktop.dortania.ml/post-install/security","ref":"https://desktop.dortania.ml/post-install/security","articles":[]},{"title":"Fixing Audio","level":"6.1.2","depth":2,"url":"https://desktop.dortania.ml//post-install/audio","ref":"https://desktop.dortania.ml//post-install/audio","articles":[]},{"title":"Booting without USB","level":"6.1.3","depth":2,"url":"https://desktop.dortania.ml//post-install/oc2hdd","ref":"https://desktop.dortania.ml//post-install/oc2hdd","articles":[]},{"title":"Updating OpenCore, kexts and macOS","level":"6.1.4","depth":2,"url":"https://desktop.dortania.ml//post-install/update","ref":"https://desktop.dortania.ml//post-install/update","articles":[]},{"title":"Fixing CFG Lock","level":"6.1.5","depth":2,"url":"https://desktop.dortania.ml//extras/msr-lock","ref":"https://desktop.dortania.ml//extras/msr-lock","articles":[]},{"title":"Fixing Resolution and Verbose","level":"6.1.6","depth":2,"url":"https://desktop.dortania.ml//post-install/verbose","ref":"https://desktop.dortania.ml//post-install/verbose","articles":[]},{"title":"Fixing iServices","level":"6.1.7","depth":2,"url":"https://desktop.dortania.ml//post-install/iservices","ref":"https://desktop.dortania.ml//post-install/iservices","articles":[]},{"title":"Emulated NVRAM","level":"6.1.8","depth":2,"url":"https://desktop.dortania.ml//post-install/nvram","ref":"https://desktop.dortania.ml//post-install/nvram","articles":[]}]},"previous":{"title":"Icelake","level":"4.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"installation/installation-process.md","mtime":"2020-04-12T03:08:31.628Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-12T03:09:16.857Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
