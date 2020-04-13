@@ -1,9 +1,11 @@
-# macOS limitations
+# Hardware Limitations
 
 With laptops, there are several limitations regarding hardware that will not work.
 
 * **Low End iGPUs**
-  * With macOS, support for iGPUs start at the [GT2 tier](https://en.wikipedia.org/wiki/Intel_Graphics_Technology), this means many low end iGPUs found on Celerons and Pentiums will not work. For a full list, see the [GPU Buyers Guide](https://gpu.dortania.ml/)
+  * With macOS, support for iGPUs start at the [GT2 tier](https://en.wikipedia.org/wiki/Intel_Graphics_Technology), this means many low end iGPUs found on Celerons, Pentiums, and Atoms will not work. For a full list, see the [GPU Buyers Guide](https://gpu.dortania.ml/)
+* **No ARM Support**
+  * Please don't torture it with macOS. macOS was never optimized for such low end hardware and Apple has never released any ARM binaries for macOS.
 * **Fingerprint sensors**
   * There is no way to emulate the Touch ID sensor as of currently, so fingerprint sensors will not work.
 * **Discrete GPUs**
