@@ -59,4 +59,8 @@ There are two additional types:
 Though these are not used for OpenCore and thus should not be used in your Config.plist.
 
 ProperTree makes this much easier to deal with. The same example used above looks something like this:
-![ProperTree](images/overview/propertree.jpg) 
+
+![ProperTree](/images/overview/propertree.jpg) 
+
+Key value pairs are put side by side, so it's clear what value is for what key. Also allows you to right click and add new values easily and drag around entries. In addition, ProperTree also has a utility called "OC Snapshot" which will automatically add in all of your kexts, drivers, and SSDTs from your EFI. OC Snapshot Clear does the same thing but will also delete old kexts/drivers/SSDTs and re-add them all (in case the order gets screwed up).
+
