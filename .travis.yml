@@ -17,6 +17,7 @@ deploy:
   on:
     branch: master
   target_branch: gh-pages
+  fqdn: wip.dortania.ml
   # committer_from_gh: true
   # allow_empty_commit: true
   github_token:
