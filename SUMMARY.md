@@ -6,8 +6,8 @@
 * [Hardware limitations](overview/macos-limits.md)
 * [Disclaimer](overview/disclaimer.md)
 * [Requirements](overview/requirements.md)
-* [Plist](overview/plist.md)
 * [Terminology](overview/terminology.md)
+* [Plist](overview/plist.md)
 
 ## Preparations
 

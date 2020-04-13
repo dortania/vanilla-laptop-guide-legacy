@@ -41,7 +41,8 @@
 }
 
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code {
-    background: #222225;
+    display: block;
+    line-height: 18px; 
     border-color: #222225;
 }
 
