@@ -7,7 +7,7 @@
 * [Disclaimer](overview/disclaimer.md)
 * [Requirements](overview/requirements.md)
 * [Terminology](overview/terminology.md)
-* [Plist](overview/plist.md)
+* [PLIST Structure](overview/plist.md)
 
 ## Preparations
 
