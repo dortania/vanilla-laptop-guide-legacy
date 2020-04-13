@@ -53,3 +53,4 @@
    * [Fixing Resolution and Verbose](https://desktop.dortania.ml//post-install/verbose)
    * [Fixing iServices](https://desktop.dortania.ml//post-install/iservices)
    * [Emulated NVRAM](https://desktop.dortania.ml//post-install/nvram)
+   * [Fixing Power Management](/post-install/pm.md)
