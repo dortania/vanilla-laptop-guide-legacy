@@ -53,9 +53,9 @@ Combining the both, we can do something like:
 </dict>
 ```
 
-There are additional types:
+There are two additional types:
 * Real
-* Date
+* Date  
 Though these are not used for OpenCore and thus should not be used in your Config.plist.
 
 ProperTree makes this much easier to deal with. The same example used above looks something like this:
