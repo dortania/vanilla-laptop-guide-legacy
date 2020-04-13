@@ -760,7 +760,89 @@
 <p>Note that you <strong>should not</strong> add your generated <code>DSDT.aml</code> here, it is already in your firmware. So if present, remove the entry for it in your <code>config.plist</code> and under EFI/ACPI.</p>
 <p>For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the <a href="https://acpi.dortania.ml/" target="_blank"><strong>Getting started with ACPI</strong></a> <strong>page.</strong> Compiled SSDTs have a <strong>.aml</strong> extension(Assembled) and will go into the <code>EFI/OC/ACPI</code> folder and <strong>must</strong> be specified in your config under <code>ACPI -&gt; Add</code> as well.</p>
 <p><strong>Block</strong></p>
-<p>This blocks certain ACPI tabes from loading, for us we can ignore this</p>
+<p>This blocks certain ACPI tabes from loading, for us we reallly care about this. Main reason is that Apple&apos;s XCPM does not support IvyBridge all to well and can cause AppleIntelCPUPowerManagement panics on boot. To avoid this we make our own PM SSDT and drop the old tables:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">All</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">YES</td>
+</tr>
+<tr>
+<td style="text-align:left">Comment</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">Drop CpuPm</td>
+</tr>
+<tr>
+<td style="text-align:left">Enabled</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">YES</td>
+</tr>
+<tr>
+<td style="text-align:left">OemTableId</td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left">437075506d000000</td>
+</tr>
+<tr>
+<td style="text-align:left">TableLength</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">TableSignature</td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left">53534454</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Key</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">All</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">YES</td>
+</tr>
+<tr>
+<td style="text-align:left">Comment</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">Drop Cpu0Ist</td>
+</tr>
+<tr>
+<td style="text-align:left">Enabled</td>
+<td style="text-align:left">Boolean</td>
+<td style="text-align:left">YES</td>
+</tr>
+<tr>
+<td style="text-align:left">OemTableId</td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left">4370753049737400</td>
+</tr>
+<tr>
+<td style="text-align:left">TableLength</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">TableSignature</td>
+<td style="text-align:left">Data</td>
+<td style="text-align:left">53534454</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Patch</strong>:</p>
 <p>This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we&apos;ll need a couple:</p>
 <ul>
@@ -1761,7 +1843,7 @@ SmUUID:       A154B586-874B-4E57-A1FF-9D6E503E4580
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"4.3.1","depth":2,"next":{"title":"Haswell","level":"4.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},"previous":{"title":"OpenCore config","level":"4.3","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.3.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"4.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"4.3.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.3.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.3.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"4.3.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},{"title":"Icelake","level":"4.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/ivy-bridge.md","mtime":"2020-04-13T02:53:18.026Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T02:54:09.740Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"4.3.1","depth":2,"next":{"title":"Haswell","level":"4.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},"previous":{"title":"OpenCore config","level":"4.3","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"4.3.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"4.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"4.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"4.3.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"4.3.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"4.3.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"4.3.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},{"title":"Icelake","level":"4.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/ivy-bridge.md","mtime":"2020-04-13T06:46:29.182Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T06:47:14.181Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
