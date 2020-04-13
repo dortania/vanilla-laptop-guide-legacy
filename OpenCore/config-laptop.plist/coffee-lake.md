@@ -11,7 +11,7 @@ Table of Contents:
 * [Kernel](/OpenCore/config-laptop.plist/coffee-lake.md#kernel)
 * [Misc](/OpenCore/config-laptop.plist/coffee-lake.md#misc)
 * [NVRAM](/OpenCore/config-laptop.plist/coffee-lake.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/coffee-lake.md#smbios)
+* [SMBIOS](/OpenCore/config-laptop.plist/coffee-lake.md#platforminfo)
 * [UEFI](/OpenCore/config-laptop.plist/coffee-lake.md#uefi)
 * [Cleaning up](/OpenCore/config-laptop.plist/coffee-lake.md#cleaning-up)
 * [Intel BIOS settings](/OpenCore/config-laptop.plist/coffee-lake.md#intel-bios-settings)

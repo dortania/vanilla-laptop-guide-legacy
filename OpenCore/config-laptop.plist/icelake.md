@@ -11,7 +11,7 @@ Table of Contents:
 * [Kernel](/OpenCore/config-laptop.plist/icelake.md#kernel)
 * [Misc](/OpenCore/config-laptop.plist/icelake.md#misc)
 * [NVRAM](/OpenCore/config-laptop.plist/icelake.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/icelake.md#smbios)
+* [SMBIOS](/OpenCore/config-laptop.plist/icelake.md#platforminfo)
 * [UEFI](/OpenCore/config-laptop.plist/icelake.md#uefi)
 * [Cleaning up](/OpenCore/config-laptop.plist/icelake.md#cleaning-up)
 * [Intel BIOS settings](/OpenCore/config-laptop.plist/icelake.md#intel-bios-settings)

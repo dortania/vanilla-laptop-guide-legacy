@@ -11,7 +11,7 @@ Table of Contents:
 * [Kernel](/OpenCore/config-laptop.plist/ivy-bridge.md#kernel)
 * [Misc](/OpenCore/config-laptop.plist/ivy-bridge.md#misc)
 * [NVRAM](/OpenCore/config-laptop.plist/ivy-bridge.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/ivy-bridge.md#smbios)
+* [SMBIOS](/OpenCore/config-laptop.plist/ivy-bridge.md#platforminfo)
 * [UEFI](/OpenCore/config-laptop.plist/ivy-bridge.md#uefi)
 * [Cleaning up](/OpenCore/config-laptop.plist/ivy-bridge.md#cleaning-up)
 * [Intel BIOS settings](/OpenCore/config-laptop.plist/ivy-bridge.md#intel-bios-settings)

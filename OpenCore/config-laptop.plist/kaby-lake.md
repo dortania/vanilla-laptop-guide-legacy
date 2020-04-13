@@ -11,7 +11,7 @@ Table of Contents:
 * [Kernel](/OpenCore/config-laptop.plist/kaby-lake.md#kernel)
 * [Misc](/OpenCore/config-laptop.plist/kaby-lake.md#misc)
 * [NVRAM](/OpenCore/config-laptop.plist/kaby-lake.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/kaby-lake.md#smbios)
+* [SMBIOS](/OpenCore/config-laptop.plist/kaby-lake.md#platforminfo)
 * [UEFI](/OpenCore/config-laptop.plist/kaby-lake.md#uefi)
 * [Cleaning up](/OpenCore/config-laptop.plist/kaby-lake.md#cleaning-up)
 * [Intel BIOS settings](/OpenCore/config-laptop.plist/kaby-lake.md#intel-bios-settings)

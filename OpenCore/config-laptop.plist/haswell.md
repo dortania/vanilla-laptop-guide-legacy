@@ -11,7 +11,7 @@ Table of Contents:
 * [Kernel](/OpenCore/config-laptop.plist/haswell.md#kernel)
 * [Misc](/OpenCore/config-laptop.plist/haswell.md#misc)
 * [NVRAM](/OpenCore/config-laptop.plist/haswell.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/haswell.md#smbios)
+* [SMBIOS](/OpenCore/config-laptop.plist/haswell.md#platforminfo)
 * [UEFI](/OpenCore/config-laptop.plist/haswell.md#uefi)
 * [Cleaning up](/OpenCore/config-laptop.plist/haswell.md#cleaning-up)
 * [Intel BIOS settings](/OpenCore/config-laptop.plist/haswell.md#intel-bios-settings)

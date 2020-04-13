@@ -11,7 +11,7 @@ Table of Contents:
 * [Kernel](/OpenCore/config-laptop.plist/skylake.md#kernel)
 * [Misc](/OpenCore/config-laptop.plist/skylake.md#misc)
 * [NVRAM](/OpenCore/config-laptop.plist/skylake.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/skylake.md#smbios)
+* [SMBIOS](/OpenCore/config-laptop.plist/skylake.md#platforminfo)
 * [UEFI](/OpenCore/config-laptop.plist/skylake.md#uefi)
 * [Cleaning up](/OpenCore/config-laptop.plist/skylake.md#cleaning-up)
 * [Intel BIOS settings](/OpenCore/config-laptop.plist/skylake.md#intel-bios-settings)

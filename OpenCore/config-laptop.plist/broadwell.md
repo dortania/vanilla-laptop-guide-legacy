@@ -11,7 +11,7 @@ Table of Contents:
 * [Kernel](/OpenCore/config-laptop.plist/broadwell.md#kernel)
 * [Misc](/OpenCore/config-laptop.plist/broadwell.md#misc)
 * [NVRAM](/OpenCore/config-laptop.plist/broadwell.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/broadwell.md#smbios)
+* [SMBIOS](/OpenCore/config-laptop.plist/broadwell.md#platforminfo)
 * [UEFI](/OpenCore/config-laptop.plist/broadwell.md#uefi)
 * [Cleaning up](/OpenCore/config-laptop.plist/broadwell.md#cleaning-up)
 * [Intel BIOS settings](/OpenCore/config-laptop.plist/broadwell.md#intel-bios-settings)
