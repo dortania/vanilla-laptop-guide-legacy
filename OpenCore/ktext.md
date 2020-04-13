@@ -182,4 +182,4 @@ A quick TL;DR of needed SSDTs(This is source code, you will have to compile them
 * EC-Rename
 * XOSI-Rename
 
-# Now head [Getting Started With ACPI](https://acpi.dortania.ml/)
+# Now head [Getting Started With ACPI](https://dortanian.github.io/Getting-Started-With-ACPI/)

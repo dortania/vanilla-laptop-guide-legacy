@@ -20,7 +20,7 @@
 ## Configuring OpenCore
 
 * [Gathering Files](/OpenCore/ktext.md)
-* [Getting started with ACPI](https://acpi.dortania.ml/)
+* [Getting started with ACPI](https://dortanian.github.io/Getting-Started-With-ACPI/)
 * [OpenCore config](/OpenCore/config.md)
    * [Ivy Bridge](/OpenCore/config-laptop.plist/ivy-bridge.md)
    * [Haswell](/OpenCore/config-laptop.plist/haswell.md)
@@ -39,12 +39,12 @@
 ## Post Install
 
 * [Post-Install](/post-install/README.md)
-   * [Security and FileVault](https://desktop.dortania.ml/post-install/security)
-   * [Fixing Audio](https://desktop.dortania.ml/post-install/audio)
-   * [Booting without USB](https://desktop.dortania.ml/post-install/oc2hdd)
+   * [Security and FileVault](https://dortanian.github.io/OpenCore-Desktop-Guide/post-install/security)
+   * [Fixing Audio](https://dortanian.github.io/OpenCore-Desktop-Guide/post-install/audio)
+   * [Booting without USB](https://dortanian.github.io/OpenCore-Desktop-Guide/post-install/oc2hdd)
    * [Updating OpenCore, kexts and macOS](https:/desktop.dortania.ml//post-install/update)
-   * [Fixing CFG Lock](https://desktop.dortania.ml/extras/msr-lock)
-   * [Fixing Resolution and Verbose](https://desktop.dortania.ml/post-install/verbose)
-   * [Fixing iServices](https://desktop.dortania.ml/post-install/iservices)
-   * [Emulated NVRAM](https://desktop.dortania.ml/post-install/nvram)
-   * [Fixing Power Management](https://desktop.dortania.ml/post-install/pm.md)
+   * [Fixing CFG Lock](https://dortanian.github.io/OpenCore-Desktop-Guide/extras/msr-lock)
+   * [Fixing Resolution and Verbose](https://dortanian.github.io/OpenCore-Desktop-Guide/post-install/verbose)
+   * [Fixing iServices](https://dortanian.github.io/OpenCore-Desktop-Guide/post-install/iservices)
+   * [Emulated NVRAM](https://dortanian.github.io/OpenCore-Desktop-Guide/post-install/nvram)
+   * [Fixing Power Management](https://dortanian.github.io/OpenCore-Desktop-Guide/post-install/pm.md)
