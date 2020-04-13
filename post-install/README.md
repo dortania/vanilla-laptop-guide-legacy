@@ -16,10 +16,7 @@ Universal:
 * [Fixing Resolution and Verbose](https://desktop.dortania.ml//post-install/verbose)
 * [Fixing iServices](https://desktop.dortania.ml//post-install/iservices)
 * [Fixing USB](https://usb-map.gitbook.io/project/)
-
-For Sandy and Ivy Bridge:
-
-* [Fixing Power Management](https://github.com/Piker-Alpha/ssdtPRGen.sh)
+* [Fixing Power Management](/post-install/pm.md)
 
 Extras:
 
