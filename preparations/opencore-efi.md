@@ -2,7 +2,7 @@
 
 * Supported version: 0.5.7
 
-To setup OpenCore’s folder structure, you’ll want to grab the EFI folder found in OpenCorePkg's releases page(this will already be done on the `BOOT` USB drive for windows users):
+To setup OpenCore’s folder structure, you’ll want to grab the EFI folder found in OpenCorePkg's releases page:
 
 ![base EFI folder](/Images/preparations/opencore-efi/base-efi.png)
 
