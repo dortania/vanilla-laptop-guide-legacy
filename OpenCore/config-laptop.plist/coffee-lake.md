@@ -150,8 +150,8 @@ Settings relating to boot.efi patching and firmware fixes, ones we need to chang
    * If there's a conflicting slide value, this option forces macOS to use a pseudo-random value. Needed for those receiving `Only N/256 slide values are usable!` debug message
 * **RebuildAppleMemoryMap**: YES
    * Generates Memory Map compatible with macOS, can break on some laptop OEM firmwares so if you receive early boot failures disable this
-* **SetupVirtualMap**: NO
-   * Fixes SetVirtualAddresses calls to virtual addresses, not needed on Skylake and newer. Some firmware like Gigabyte may still require it, and will kernel panic without this
+* **SetupVirtualMap**: YES
+   * Fixes SetVirtualAddresses calls to virtual addresses
 * **SignalAppleOS**: NO
    * Tricks the hardware into thinking its always booting macOS, mainly beneficial for MacBook Pro's with dGPUs as booting Windows won't allow for the iGPU to be used
 * **SyncRuntimePermissions**: YES
@@ -562,7 +562,7 @@ Only drivers present here should be:
 * **AppleSmcIo**: NO
    * Reinstalls Apple SMC I/O, this is the equivalent of VirtualSMC.efi which is only needed for users using FileVault
 * **FirmwareVolume**: NO
-   * Fixes UI regarding Filevault, set to YES for better FileVault compatibility
+   * Fixes UI regarding FileVault, set to YES for better FileVault compatibility
 * **HashServices**: NO
    * Fixes incorrect cursor size when running FileVault, set to YES for better FileVault compatibility
 * **UnicodeCollation**: NO
@@ -575,8 +575,8 @@ Only drivers present here should be:
    * Only required for very specific use cases like setting to `3000` - `5000` for ASUS Z87-Pro running FileVault2
 * **IgnoreInvalidFlexRatio**: NO
    * Fix for when MSR\_FLEX\_RATIO (0x194) can't be disabled in the BIOS, required for all pre-Skylake based systems
-* **ReleaseUsbOwnership**: NO
-   * Releases USB controller from firmware driver, needed for when your firmware doesn't support EHCI/XHCI Handoff. Clover equivalent is `FixOwnership`
+* **ReleaseUsbOwnership**: YES
+   * Releases USB controller from firmware driver, needed for when your firmware doesn't support EHCI/XHCI Handoff. Most laptops have garbo firmwares so we'll need this as well
 * **RequestBootVarFallback**: YES
    * Request fallback of some Boot prefixed variables from `OC_VENDOR_VARIABLE_GUID` to `EFI_GLOBAL_VARIABLE_GUID`. Used for fixing boot options.
 * **RequestBootVarRouting**: YES
@@ -597,7 +597,20 @@ For those having booting issues, please make sure to read the [Troubleshooting s
 
 So thanks to the efforts of Ramus, we also have an amazing tool to help verify your config for those who may have missed something:
 
-* [**Sanity Checker**](https://opencore.slowgeek.com)
+
+
+### Config reminders
+
+**HP Users**: 
+* Kernel -> Quirks -> LapicKernelPanic -> True
+   * You will get a kernel panic on LAPIC otherwise
+* UEFI -> Quirks -> UnblockFsConnect -> True
+   
+**Dell Users**:
+
+ For Skylake and newer:
+ * Kernel -> Quirk -> CustomSMBIOSGuid -> True
+ * PlatformInfo -> UpdateSMBIOSMode -> Custom
 
 # Intel BIOS settings
 

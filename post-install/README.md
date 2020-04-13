@@ -16,7 +16,7 @@ Universal:
 * [Fixing Resolution and Verbose](https://desktop.dortania.ml//post-install/verbose)
 * [Fixing iServices](https://desktop.dortania.ml//post-install/iservices)
 * [Fixing USB](https://usb-map.gitbook.io/project/)
-* [Fixing Power Management](/post-install/pm.md)
+* [Fixing Power Management](https://desktop.dortania.ml/post-install/pm.md)
 
 Extras:
 
