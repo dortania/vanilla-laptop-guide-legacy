@@ -477,7 +477,7 @@
     
         <li class="chapter " data-level="5.1.2" >
             
-                <a target="_blank" href="https://desktop.dortania.ml//post-install/audio">
+                <a target="_blank" href="https://desktop.dortania.ml/post-install/audio">
             
                     
                     Fixing Audio
@@ -490,7 +490,7 @@
     
         <li class="chapter " data-level="5.1.3" >
             
-                <a target="_blank" href="https://desktop.dortania.ml//post-install/oc2hdd">
+                <a target="_blank" href="https://desktop.dortania.ml/post-install/oc2hdd">
             
                     
                     Booting without USB
@@ -503,7 +503,7 @@
     
         <li class="chapter " data-level="5.1.4" >
             
-                <a target="_blank" href="https://desktop.dortania.ml//post-install/update">
+                <a target="_blank" href="https:/desktop.dortania.ml//post-install/update">
             
                     
                     Updating OpenCore, kexts and macOS
@@ -516,7 +516,7 @@
     
         <li class="chapter " data-level="5.1.5" >
             
-                <a target="_blank" href="https://desktop.dortania.ml//extras/msr-lock">
+                <a target="_blank" href="https://desktop.dortania.ml/extras/msr-lock">
             
                     
                     Fixing CFG Lock
@@ -529,7 +529,7 @@
     
         <li class="chapter " data-level="5.1.6" >
             
-                <a target="_blank" href="https://desktop.dortania.ml//post-install/verbose">
+                <a target="_blank" href="https://desktop.dortania.ml/post-install/verbose">
             
                     
                     Fixing Resolution and Verbose
@@ -542,7 +542,7 @@
     
         <li class="chapter " data-level="5.1.7" >
             
-                <a target="_blank" href="https://desktop.dortania.ml//post-install/iservices">
+                <a target="_blank" href="https://desktop.dortania.ml/post-install/iservices">
             
                     
                     Fixing iServices
@@ -555,7 +555,7 @@
     
         <li class="chapter " data-level="5.1.8" >
             
-                <a target="_blank" href="https://desktop.dortania.ml//post-install/nvram">
+                <a target="_blank" href="https://desktop.dortania.ml/post-install/nvram">
             
                     
                     Emulated NVRAM
@@ -566,9 +566,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.1.9" data-path="../../post-install/pm.md">
+        <li class="chapter " data-level="5.1.9" >
             
-                <span>
+                <a target="_blank" href="https://desktop.dortania.ml/post-install/pm.md">
             
                     
                     Fixing Power Management
@@ -871,7 +871,7 @@
 </ul>
 </li>
 <li><strong>SetupVirtualMap</strong>: YES<ul>
-<li>Fixes SetVirtualAddresses calls to virtual addresses, not needed on Skylake and newer</li>
+<li>Fixes SetVirtualAddresses calls to virtual addresses</li>
 </ul>
 </li>
 <li><strong>SignalAppleOS</strong>: NO<ul>
@@ -1560,7 +1560,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 </ul>
 </li>
 <li><strong>FirmwareVolume</strong>: NO<ul>
-<li>Fixes UI regarding Filevault, set to YES for better FileVault compatibility</li>
+<li>Fixes UI regarding FileVault, set to YES for better FileVault compatibility</li>
 </ul>
 </li>
 <li><strong>HashServices</strong>: NO<ul>
@@ -1582,8 +1582,8 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 <li>Fix for when MSR_FLEX_RATIO (0x194) can&apos;t be disabled in the BIOS, required for all pre-Skylake based systems</li>
 </ul>
 </li>
-<li><strong>ReleaseUsbOwnership</strong>: NO<ul>
-<li>Releases USB controller from firmware driver, needed for when your firmware doesn&apos;t support EHCI/XHCI Handoff. Clover equivalent is <code>FixOwnership</code></li>
+<li><strong>ReleaseUsbOwnership</strong>: YES<ul>
+<li>Releases USB controller from firmware driver, needed for when your firmware doesn&apos;t support EHCI/XHCI Handoff. Most laptops have garbo firmwares so we&apos;ll need this as well</li>
 </ul>
 </li>
 <li><strong>RequestBootVarFallback</strong>: YES<ul>
@@ -1608,8 +1608,14 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 </ul>
 <p><strong>Sanity check</strong>:</p>
 <p>So thanks to the efforts of Ramus, we also have an amazing tool to help verify your config for those who may have missed something:</p>
+<h3 id="config-reminders">Config reminders</h3>
+<p><strong>HP Users</strong>: </p>
 <ul>
-<li><a href="https://opencore.slowgeek.com" target="_blank"><strong>Sanity Checker</strong></a></li>
+<li>Kernel -&gt; Quirks -&gt; LapicKernelPanic -&gt; True<ul>
+<li>You will get a kernel panic on LAPIC otherwise</li>
+</ul>
+</li>
+<li>UEFI -&gt; Quirks -&gt; UnblockFsConnect -&gt; True</li>
 </ul>
 <h1 id="intel-bios-settings">Intel BIOS settings</h1>
 <p><strong>Disable:</strong></p>
@@ -1676,7 +1682,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"3.3.2","depth":2,"next":{"title":"Broadwell","level":"3.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"3.3.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/haswell.md","mtime":"2020-04-13T20:03:52.803Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T20:04:40.361Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"3.3.2","depth":2,"next":{"title":"Broadwell","level":"3.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"3.3.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/haswell.md","mtime":"2020-04-13T23:01:01.672Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T23:01:52.680Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
