@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Installation Process · GitBook</title>
+        <title>Plist · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -62,10 +62,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="troubleshooting.html" />
+    <link rel="next" href="terminology.html" />
     
     
-    <link rel="prev" href="../OpenCore/config-laptop.plist/icelake.html" />
+    <link rel="prev" href="requirements.html" />
     
 
     </head>
@@ -116,9 +116,9 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="../overview/whatdis.html">
+        <li class="chapter " data-level="2.1" data-path="whatdis.html">
             
-                <a href="../overview/whatdis.html">
+                <a href="whatdis.html">
             
                     
                     What is this
@@ -129,9 +129,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="../overview/compatibility.html">
+        <li class="chapter " data-level="2.2" data-path="compatibility.html">
             
-                <a href="../overview/compatibility.html">
+                <a href="compatibility.html">
             
                     
                     Hardware compatibility
@@ -142,9 +142,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="../overview/macos-limits.html">
+        <li class="chapter " data-level="2.3" data-path="macos-limits.html">
             
-                <a href="../overview/macos-limits.html">
+                <a href="macos-limits.html">
             
                     
                     macOS limitations
@@ -155,9 +155,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="../overview/process-overview.html">
+        <li class="chapter " data-level="2.4" data-path="process-overview.html">
             
-                <a href="../overview/process-overview.html">
+                <a href="process-overview.html">
             
                     
                     How does it go?
@@ -168,9 +168,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="../overview/disclaimer.html">
+        <li class="chapter " data-level="2.5" data-path="disclaimer.html">
             
-                <a href="../overview/disclaimer.html">
+                <a href="disclaimer.html">
             
                     
                     Disclaimer
@@ -181,9 +181,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="../overview/requirements.html">
+        <li class="chapter " data-level="2.6" data-path="requirements.html">
             
-                <a href="../overview/requirements.html">
+                <a href="requirements.html">
             
                     
                     Requirements
@@ -194,9 +194,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../overview/plist.html">
+        <li class="chapter active" data-level="2.7" data-path="plist.html">
             
-                <a href="../overview/plist.html">
+                <a href="plist.html">
             
                     
                     Plist
@@ -207,9 +207,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.8" data-path="../overview/terminology.html">
+        <li class="chapter " data-level="2.8" data-path="terminology.html">
             
-                <a href="../overview/terminology.html">
+                <a href="terminology.html">
             
                     
                     Terminology
@@ -474,9 +474,9 @@
         
         
     
-        <li class="chapter active" data-level="5.1" data-path="installation-process.html">
+        <li class="chapter " data-level="5.1" data-path="../installation/installation-process.html">
             
-                <a href="installation-process.html">
+                <a href="../installation/installation-process.html">
             
                     
                     Installation Process
@@ -487,9 +487,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="troubleshooting.html">
+        <li class="chapter " data-level="5.2" data-path="../installation/troubleshooting.html">
             
-                <a href="troubleshooting.html">
+                <a href="../installation/troubleshooting.html">
             
                     
                     Troubleshooting
@@ -673,7 +673,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Installation Process</a>
+        <a href=".." >Plist</a>
     </h1>
 </div>
 
@@ -688,52 +688,75 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="installation-process">Installation Process</h1>
-<p>Now that you&apos;ve finished setting up OpenCore, you&apos;re finally able to boot, main things to keep in mind:</p>
+                                <h1 id="what-are-plists">What are plists?</h1>
+<p>Plists are &quot;Property list&quot; files that are often used to store a user&apos;s settings or information about a Kext. Config.plist is one such file, which is used to tell OpenCore how to behave. If you open a plist, they are usually formatted like an XML file where there is (almost) always keys assigned to values.</p>
+<p>The most important part about a plist is that values almost always come in key/value pairs.</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Enabled<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span> <span class="hljs-comment">&lt;!-- Key   --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">true</span>/&gt;</span>           <span class="hljs-comment">&lt;!-- Value --&gt;</span>
+</code></pre>
+<p>Enabled is key, which has the value &quot;True&quot;</p>
+<p>Values can be any one of four types</p>
 <ul>
-<li>Make sure the laptop is connected to the charger<ul>
-<li>If the battery isn&apos;t properly patched for macOS support, it can be a bit flakey. To avoid headaches make sure to to be plugged in</li>
+<li>Boolean<ul>
+<li>True/False. Generally written as <code>&lt;true/&gt;</code> or <code>&lt;false/&gt;</code></li>
 </ul>
 </li>
-<li>Enable BIOS settings optimal for macOS</li>
-<li>Read up on the <a href="https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/" target="_blank">Multiboot Guide</a></li>
-<li>And a copy of the <del>OpenCore bible</del> <a href="https://desktop.dortania.ml/troubleshooting/troubleshooting.html" target="_blank">troubleshooting page</a></li>
-<li>And a ton of of patience</li>
-</ul>
-<h2 id="recommended-bios-settings">Recommended BIOS Settings</h2>
-<p>With many OEMs you&apos;re likely going to be heavily limited in your options, if you can try to find these options and enable them:</p>
-<p><strong>Disable:</strong></p>
-<ul>
-<li>Fast Boot</li>
-<li>VT-d(can be enabled if you set <code>DisableIoMapper</code> to YES)</li>
-<li>Thunderbolt</li>
-<li>Intel SGX</li>
-<li>Intel Platform Trust</li>
-<li>CFG Lock(MSR 0xE2 write protection)</li>
-</ul>
-<p><strong>Enable:</strong></p>
-<ul>
-<li>VT-x</li>
-<li>Above 4G decoding</li>
-<li>Hyper-Threading</li>
-<li>Execute Disable Bit</li>
-<li>EHCI/XHCI Hand-off</li>
-<li>OS type: Windows 8.1/10 UEFI Mode<ul>
-<li>If OpenCore doesn&apos;t show up set this to OtherOS</li>
+<li>Integer<ul>
+<li>Whole numbers. Written as <code>&lt;integer&gt;255&lt;/integer&gt;</code></li>
 </ul>
 </li>
-<li>DVMT Pre-Allocated(iGPU Memory): 64MB</li>
+<li>Data<ul>
+<li>This is meant to represent generic data in Hex, though it is stored as base64 in the file.</li>
+<li><code>&lt;data&gt;AQAAAA==&lt;/data&gt;</code> for example represents 01000000 in hex.</li>
 </ul>
-<h2 id="macos-installer">macOS Installer</h2>
-<p>So you&apos;ve finally got the installer booted, got through the verbose and hit the installer! Now that you&apos;ve gotten this far,  the main things to keep in mind:</p>
-<ul>
-<li>Drives you wish to install macOS on <strong>must</strong> be both of GUI partition Scheme <strong>and</strong> APFS</li>
-<li>The drive <strong>must</strong> also have a 200MB partition<ul>
-<li>By default, macOS will setup freshly formatted drives with 200MB</li>
-<li>See the <a href="https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/" target="_blank">Multiboot Guide</a> for more info on partitioning a Windows Drive</li>
+</li>
+<li>String<ul>
+<li>Any sort of written text. Usually used for comments</li>
+<li><code>&lt;string&gt;External&lt;/string&gt;</code></li>
 </ul>
 </li>
 </ul>
+<p>In addition, there are 2 other types which are used for organizing data and listing data</p>
+<ul>
+<li>Dictionary<ul>
+<li>Can contain many values which all have their own keys</li>
+</ul>
+</li>
+<li>Array<ul>
+<li>Can contain many values which don&apos;t have keys</li>
+</ul>
+</li>
+</ul>
+<p>Combining the both, we can do something like:</p>
+<pre><code class="lang-xml">&lt;key&gt;Specs&lt;/key&gt;
+&lt;dict&gt;
+  &lt;key&gt;CPU&lt;/key&gt;
+  &lt;string&gt;Intel i3-9100&lt;/string&gt;
+  &lt;key&gt;RAM&lt;/key&gt;
+  &lt;array&gt;
+    &lt;dict&gt;
+      &lt;key&gt;Manufacturer&lt;/key&gt;
+      &lt;string&gt;Vengeance&lt;/key&gt;
+      &lt;key&gt;Size&lt;/key&gt;
+      &lt;integer&gt;4096&lt;/integer&gt;
+    &lt;/dict&gt;
+    &lt;dict&gt;
+      &lt;key&gt;Manufacturer&lt;/key&gt;
+      &lt;string&gt;Adata&lt;/string&gt;
+      &lt;key&gt;Size&lt;/key&gt;
+      &lt;integer&gt;2046&lt;/integer&lt;/integer&gt;
+    &lt;/dict&gt;
+  &lt;/array&gt;
+&lt;/dict&gt;
+</code></pre>
+<p>There are additional types:</p>
+<ul>
+<li>Real</li>
+<li>Date
+Though these are not used for OpenCore and thus should not be used in your Config.plist.</li>
+</ul>
+<p>ProperTree makes this much easier to deal with. The same example used above looks something like this:
+<img src="images/overview/propertree.jpg" alt="ProperTree"> </p>
 
                                 
                                 </section>
@@ -761,12 +784,12 @@
 
             
                 
-                <a href="../OpenCore/config-laptop.plist/icelake.html" class="navigation navigation-prev " aria-label="Previous page: Icelake">
+                <a href="requirements.html" class="navigation navigation-prev " aria-label="Previous page: Requirements">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="troubleshooting.html" class="navigation navigation-next " aria-label="Next page: Troubleshooting">
+                <a href="terminology.html" class="navigation navigation-next " aria-label="Next page: Terminology">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -777,7 +800,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation Process","level":"5.1","depth":1,"next":{"title":"Troubleshooting","level":"5.2","depth":1,"path":"installation/troubleshooting.md","ref":"installation/troubleshooting.md","articles":[]},"previous":{"title":"Icelake","level":"4.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"installation/installation-process.md","mtime":"2020-04-13T01:56:08.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T01:56:53.100Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Plist","level":"2.7","depth":1,"next":{"title":"Terminology","level":"2.8","depth":1,"path":"overview/terminology.md","ref":"overview/terminology.md","articles":[]},"previous":{"title":"Requirements","level":"2.6","depth":1,"path":"overview/requirements.md","ref":"overview/requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/plist.md","mtime":"2020-04-13T01:56:08.334Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-13T01:56:53.100Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
