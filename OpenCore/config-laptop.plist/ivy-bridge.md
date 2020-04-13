@@ -68,7 +68,26 @@ For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs,
 
 **Block**
 
-This blocks certain ACPI tabes from loading, for us we can ignore this
+This blocks certain ACPI tabes from loading, for us we reallly care about this. Main reason is that Apple's XCPM does not support IvyBridge all to well and can cause AppleIntelCPUPowerManagement panics on boot. To avoid this we make our own PM SSDT and drop the old tables:
+
+| Key | Type | Value |
+| :--- | :--- | :--- |
+| All | Boolean | YES |
+| Comment | String | Drop CpuPm |
+| Enabled | Boolean | YES |
+| OemTableId | Data | 437075506d000000 |
+| TableLength | Number | 0 |
+| TableSignature | Data | 53534454 |
+
+| Key | Type | Value |
+| :--- | :--- | :--- |
+| All | Boolean | YES |
+| Comment | String | Drop Cpu0Ist |
+| Enabled | Boolean | YES |
+| OemTableId | Data | 4370753049737400 |
+| TableLength | Number | 0 |
+| TableSignature | Data | 53534454 |
+
 
 **Patch**:
 

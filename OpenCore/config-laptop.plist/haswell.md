@@ -432,7 +432,7 @@ For this Haswell example, we chose the MacBookPro11,1 SMBIOS. The typical breakd
 | MacBookPro11,4 | Quad Core 45w | iGPU: Iris Pro 5200 | 15" |
 | MacBookPro11,5 | Quad Core 45w | iGPU: Iris Pro 5200 + dGPU: R9 M370X | 15" |
 
-**Note**: Mobile users should refer to the SMBIOS page on which to choose: [Mobile SMBIOS](https://github.com/khronokernel/Opencore-Vanilla-Desktop-Guide/blob/master/extras/smbios.md)
+**Note**: Mobile users should refer to the SMBIOS page on which to choose: [Mobile SMBIOS](https://github.com/dortania/Opencore-Desktop-Guide/blob//master/extras/smbios.md)
 
 Run GenSMBIOS, pick option 1 for downloading MacSerial and Option 3 for selecting out SMBIOS.  This will give us an output similar to the following:
 
