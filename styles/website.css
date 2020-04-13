@@ -72,3 +72,56 @@
 .gitbook-link {
     display: none !important
 }
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-corner {
+  width: 12px;
+  height: 17px;
+  border: 0 solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(60, 60, 60, 0.9);
+}
+
+::-webkit-scrollbar:horizontal,
+::-webkit-scrollbar-corner {
+  border-top-width: 1px;
+}
+
+::-webkit-scrollbar:vertical,
+::-webkit-scrollbar-corner {
+  border-left-width: 1px;
+}
+
+::-webkit-scrollbar {
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 32px;
+  height: 32px;
+  border: 4px solid transparent;
+  background-color: rgba(255, 255, 255, .2);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  border-top-width: 5px;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  border-left-width: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, .4);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(255, 255, 255, .6);
+}
+
+::-webkit-scrollbar-thumb:disabled {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+::selection {
+  background-color: rgba(26, 115, 232, 0.24);
+}
