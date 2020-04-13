@@ -12,6 +12,7 @@
 * [How does it go?](overview/process-overview.md)
 * [Disclaimer](overview/disclaimer.md)
 * [Requirements](overview/requirements.md)
+* [Plist](overview/plist.md)
 * [Terminology](overview/terminology.md)
 
 ## Preparations
