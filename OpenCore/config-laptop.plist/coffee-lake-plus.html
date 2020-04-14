@@ -274,7 +274,7 @@
     
         <li class="chapter " data-level="3.2" >
             
-                <a target="_blank" href="https://acpi.dortania.ml/">
+                <a target="_blank" href="https://dortania.github.io/Getting-Started-With-ACPI/">
             
                     
                     Getting started with ACPI
@@ -464,7 +464,7 @@
     
         <li class="chapter " data-level="5.1.1" >
             
-                <a target="_blank" href="https://desktop.dortania.ml/post-install/security">
+                <a target="_blank" href="https://dortania.github.io/OpenCore-Desktop-Guide/post-install/security">
             
                     
                     Security and FileVault
@@ -477,7 +477,7 @@
     
         <li class="chapter " data-level="5.1.2" >
             
-                <a target="_blank" href="https://desktop.dortania.ml/post-install/audio">
+                <a target="_blank" href="https://dortania.github.io/OpenCore-Desktop-Guide/post-install/audio">
             
                     
                     Fixing Audio
@@ -490,7 +490,7 @@
     
         <li class="chapter " data-level="5.1.3" >
             
-                <a target="_blank" href="https://desktop.dortania.ml/post-install/oc2hdd">
+                <a target="_blank" href="https://dortania.github.io/OpenCore-Desktop-Guide/post-install/oc2hdd">
             
                     
                     Booting without USB
@@ -516,7 +516,7 @@
     
         <li class="chapter " data-level="5.1.5" >
             
-                <a target="_blank" href="https://desktop.dortania.ml/extras/msr-lock">
+                <a target="_blank" href="https://dortania.github.io/OpenCore-Desktop-Guide/extras/msr-lock">
             
                     
                     Fixing CFG Lock
@@ -529,7 +529,7 @@
     
         <li class="chapter " data-level="5.1.6" >
             
-                <a target="_blank" href="https://desktop.dortania.ml/post-install/verbose">
+                <a target="_blank" href="https://dortania.github.io/OpenCore-Desktop-Guide/post-install/verbose">
             
                     
                     Fixing Resolution and Verbose
@@ -542,7 +542,7 @@
     
         <li class="chapter " data-level="5.1.7" >
             
-                <a target="_blank" href="https://desktop.dortania.ml/post-install/iservices">
+                <a target="_blank" href="https://dortania.github.io/OpenCore-Desktop-Guide/post-install/iservices">
             
                     
                     Fixing iServices
@@ -555,7 +555,7 @@
     
         <li class="chapter " data-level="5.1.8" >
             
-                <a target="_blank" href="https://desktop.dortania.ml/post-install/nvram">
+                <a target="_blank" href="https://dortania.github.io/OpenCore-Desktop-Guide/post-install/nvram">
             
                     
                     Emulated NVRAM
@@ -568,7 +568,7 @@
     
         <li class="chapter " data-level="5.1.9" >
             
-                <a target="_blank" href="https://desktop.dortania.ml/post-install/pm.md">
+                <a target="_blank" href="https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.md">
             
                     
                     Fixing Power Management
@@ -678,7 +678,7 @@
 <h2 id="acpi">ACPI</h2>
 <p><img src="../../images/config/config-laptop.plist/coffeelake-plus/acpi.png" alt="ACPI"></p>
 <p><strong>Add:</strong></p>
-<p>This is where you&apos;ll add SSDTs for your system, these are very important to <strong>booting macOS</strong> and have many uses like <a href="https://usb-map.gitbook.io/project/" target="_blank">USB maps</a>, <a href="../../post-install/spoof.md">disabling unsupported GPUs</a> and such. And with our system, <strong>its even required to boot</strong>. Guide on making them found here: <a href="https://acpi.dortania.ml/" target="_blank"><strong>Getting started with ACPI</strong></a></p>
+<p>This is where you&apos;ll add SSDTs for your system, these are very important to <strong>booting macOS</strong> and have many uses like <a href="https://usb-map.gitbook.io/project/" target="_blank">USB maps</a>, <a href="../../post-install/spoof.md">disabling unsupported GPUs</a> and such. And with our system, <strong>its even required to boot</strong>. Guide on making them found here: <a href="https://dortania.github.io/Getting-Started-With-ACPI/" target="_blank"><strong>Getting started with ACPI</strong></a></p>
 <p>For us we&apos;ll need a couple of SSDTs to bring back functionality that Clover provided:</p>
 <ul>
 <li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl" target="_blank">SSDT-PLUG</a><ul>
@@ -686,7 +686,7 @@
 </ul>
 </li>
 <li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl" target="_blank">SSDT-AWAC</a><ul>
-<li>This is the <a href="https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2" target="_blank">300 series RTC patch</a>, required for 9t gen and newer boards which prevent systems from booting macOS. The alternative is <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-RTC0.dsl" target="_blank">SSDT-RTC0</a> for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see <a href="https://acpi.dortania.ml/" target="_blank">Getting started with ACPI</a> page.</li>
+<li>This is the <a href="https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2" target="_blank">300 series RTC patch</a>, required for 9t gen and newer boards which prevent systems from booting macOS. The alternative is <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-RTC0.dsl" target="_blank">SSDT-RTC0</a> for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see <a href="https://dortania.github.io/Getting-Started-With-ACPI/" target="_blank">Getting started with ACPI</a> page.</li>
 </ul>
 </li>
 <li><a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl" target="_blank">SSDT-PMC</a><ul>
@@ -707,14 +707,14 @@
 </li>
 </ul>
 <p>Note that you <strong>should not</strong> add your generated <code>DSDT.aml</code> here, it is already in your firmware. So if present, remove the entry for it in your <code>config.plist</code> and under EFI/ACPI.</p>
-<p>For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the <a href="https://acpi.dortania.ml/" target="_blank"><strong>Getting started with ACPI</strong></a> <strong>page.</strong> Compiled SSDTs have a <strong>.aml</strong> extension(Assembled) and will go into the <code>EFI/OC/ACPI</code> folder and <strong>must</strong> be specified in your config under <code>ACPI -&gt; Add</code> as well.</p>
+<p>For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the <a href="https://dortania.github.io/Getting-Started-With-ACPI/" target="_blank"><strong>Getting started with ACPI</strong></a> <strong>page.</strong> Compiled SSDTs have a <strong>.aml</strong> extension(Assembled) and will go into the <code>EFI/OC/ACPI</code> folder and <strong>must</strong> be specified in your config under <code>ACPI -&gt; Add</code> as well.</p>
 <p><strong>Block</strong></p>
 <p>This blocks certain ACPI tabes from loading, for us we can ignore this</p>
 <p><strong>Patch</strong>:</p>
 <p>This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we&apos;ll need a couple:</p>
 <ul>
 <li>EC Rename<ul>
-<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="https://acpi.dortania.ml/" target="_blank">Fixing Embedded Controllers (Laptop) Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
+<li>Needed for Catalina support as it doesn&apos;t like the standard one found on most PCs, follow the <a href="https://dortania.github.io/Getting-Started-With-ACPI/" target="_blank">Fixing Embedded Controllers (Laptop) Guide</a> on how to determine what EC you have and apply the appropriate patches</li>
 </ul>
 </li>
 <li>OSI rename<ul>
@@ -1677,7 +1677,7 @@ SmUUID:       DBB364D6-44B2-4A02-B922-AB4396F16DA8
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Coffee Lake Plus(9th Gen)","level":"3.3.7","depth":2,"next":{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"previous":{"title":"Coffee Lake(8th Gen)","level":"3.3.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","mtime":"2020-04-14T14:38:29.692Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-14T14:39:15.960Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Coffee Lake Plus(9th Gen)","level":"3.3.7","depth":2,"next":{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"previous":{"title":"Coffee Lake(8th Gen)","level":"3.3.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","mtime":"2020-04-14T15:44:19.679Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-14T15:45:05.414Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
