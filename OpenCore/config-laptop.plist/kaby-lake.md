@@ -183,17 +183,17 @@ The table below may seem daunting but it's really not, the main things we need t
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Intel HD Graphics 620** | 16590000 | 00001659 | 3 | 34MB | 0MB |  LVDS1 DP2 |
-| Intel HD Graphics 620 | 16590009 | 09001659 | 3 | 38MB | 0MB |  LVDS1 DP2 |
-| **Intel HD Graphics 630** | 1b590000 | 00001b59 | 3 | 38MB | 21MB |  LVDS1 DP2 |
-| Intel HD Graphics 630 | 1b590006 | 06001b59 | 1 | 38MB | 0MB |  LVDS1 |
-| Intel HD Graphics 615 | 1e590000 | 00001e59 | 3 | 34MB | 0MB |  LVDS1 DP2 |
-| Intel HD Graphics 615 | 1e590001 | 01001e59 | 3 | 38MB | 0MB |  LVDS1 DP2 |
-| Intel Iris Plus Graphics 640 | 26590002 | 02002659 | 3 | 57MB | 0MB |  LVDS1 DP2 |
-| Intel Iris Plus Graphics 650 | 27590004 | 04002759 | 3 | 57MB | 0MB |  LVDS1 DP2 |
-| Intel Iris Plus Graphics 650 | 27590009 | 09002759 | 3 | 38MB | 0MB |  LVDS1 DP2 |
-| **Intel UHD Graphics 617** | C0870000 | 0000C087 | 3 | 34MB | 0MB |  LVDS1 DP2 |
-| Intel UHD Graphics 617 | C0870005 | 0500C087 | 3 | 57MB | 0MB |  LVDS1 DP2 |
+| **Intel HD Graphics 620** | 16590000 | 00001659 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 620 | 16590009 | 09001659 | 3 | 38MB | 0MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 630** | 1b590000 | 00001b59 | 3 | 38MB | 21MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 630 | 1b590006 | 06001b59 | 1 | 38MB | 0MB |  LVDSx1 |
+| Intel HD Graphics 615 | 1e590000 | 00001e59 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 615 | 1e590001 | 01001e59 | 3 | 38MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 640 | 26590002 | 02002659 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 650 | 27590004 | 04002759 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 650 | 27590009 | 09002759 | 3 | 38MB | 0MB |  LVDSx1 DPx2 |
+| **Intel UHD Graphics 617** | C0870000 | 0000C087 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
+| Intel UHD Graphics 617 | C0870005 | 0500C087 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 
 #### Special Notes:
 

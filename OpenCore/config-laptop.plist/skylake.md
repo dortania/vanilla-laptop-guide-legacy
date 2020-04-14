@@ -183,21 +183,21 @@ The table below may seem daunting but it's really not, the main things we need t
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 530 | 12190000 | 00001219 | 3 | 34MB | 21MB |  DUMMY1 DP2 |
-| **Intel HD Graphics 520** | 16190000 | 00001619 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel HD Graphics 520 | 16190002 | 02001619 | 3 | 57MB | 0MB |  LVDS1 DP2 |
-| **Intel HD Graphics 530** * | 1b190000 | 00001b19 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel HD Graphics 530 | 1b190006 | 06001b19 | 1 | 38MB | 0MB |  LVDS1 |
-| Intel HD Graphics 515 | 1e190000 | 00001e19 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel HD Graphics 515 | 1e190003 | 03001e19 | 3 | 40MB | 0MB |  LVDS1 DP2 |
-| **Intel Iris Graphics 540** | 26190000 | 00002619 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel Iris Graphics 540 | 26190002 | 02002619 | 3 | 57MB | 0MB |  LVDS1 DP2 |
-| Intel Iris Graphics 540 | 26190004 | 04002619 | 3 | 34MB | 0MB |  LVDS1 DP2 |
-| Intel Iris Graphics 540 | 26190007 | 07002619 | 3 | 34MB | 0MB |  LVDS1 DP2 |
-| Intel Iris Graphics 550 | 27190000 | 00002719 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel Iris Graphics 550 | 27190004 | 04002719 | 3 | 57MB | 0MB |  LVDS1 DP2 |
-| Intel Iris Pro Graphics 580 | 3b190000 | 00003b19 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel Iris Pro Graphics 580 | 3b190005 | 05003b19 | 4 | 34MB | 21MB |  LVDS1 DP3 |
+| Intel HD Graphics 530 | 12190000 | 00001219 | 3 | 34MB | 21MB |  DUMMY1 DPx2 |
+| **Intel HD Graphics 520** | 16190000 | 00001619 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 520 | 16190002 | 02001619 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 530** * | 1b190000 | 00001b19 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 530 | 1b190006 | 06001b19 | 1 | 38MB | 0MB |  LVDSx1 |
+| Intel HD Graphics 515 | 1e190000 | 00001e19 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 515 | 1e190003 | 03001e19 | 3 | 40MB | 0MB |  LVDSx1 DPx2 |
+| **Intel Iris Graphics 540** | 26190000 | 00002619 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 540 | 26190002 | 02002619 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 540 | 26190004 | 04002619 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 540 | 26190007 | 07002619 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 550 | 27190000 | 00002719 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 550 | 27190004 | 04002719 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Pro Graphics 580 | 3b190000 | 00003b19 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel Iris Pro Graphics 580 | 3b190005 | 05003b19 | 4 | 34MB | 21MB |  LVDSx1 DPx3 |
 
 #### Special Notes:
 

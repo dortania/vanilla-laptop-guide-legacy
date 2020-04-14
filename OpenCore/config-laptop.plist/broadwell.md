@@ -185,14 +185,14 @@ The table below may seem daunting but it's really not, the main things we need t
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 5600 | 12160003 | 03001216 | 4 | 34MB | 21MB |  LVDS1 DP2 HDMI1 |
-| Intel HD Graphics 5500 | 16160002 | 02001616 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel HD Graphics 5300 | 1e160001 | 01001e16 | 3 | 38MB | 21MB |  LVDS1 DP2 |
-| Intel Iris Pro Graphics 6200 | 22160002 | 02002216 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel HD Graphics 6000 | 26160002 | 02002616 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel HD Graphics 6000 | 26160005 | 05002616 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| **Intel HD Graphics 6000** * | 26160006 | 06002616 | 3 | 34MB | 21MB |  LVDS1 DP2 |
-| Intel Iris Graphics 6100 | 2b160002 | 02002b16 | 3 | 34MB | 21MB |  LVDS1 DP2 |
+| Intel HD Graphics 5600 | 12160003 | 03001216 | 4 | 34MB | 21MB |  LVDSx1 DPx2 HDMIx1 |
+| Intel HD Graphics 5500 | 16160002 | 02001616 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 5300 | 1e160001 | 01001e16 | 3 | 38MB | 21MB |  LVDSx1 DPx2 |
+| Intel Iris Pro Graphics 6200 | 22160002 | 02002216 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 6000 | 26160002 | 02002616 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 6000 | 26160005 | 05002616 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 6000** * | 26160006 | 06002616 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 6100 | 2b160002 | 02002b16 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
 
 #### Special Notes:
 
