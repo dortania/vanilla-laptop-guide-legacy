@@ -17,11 +17,11 @@ With many OEMs you're likely going to be heavily limited in your options, if you
 **Disable:**
 
 * Fast Boot
-* VT-d(can be enabled if you set `DisableIoMapper` to YES)
+* VT-d (can be enabled if you set `DisableIoMapper` to YES)
 * Thunderbolt
 * Intel SGX
 * Intel Platform Trust
-* CFG Lock(MSR 0xE2 write protection)
+* CFG Lock (MSR 0xE2 write protection)
 
 **Enable:**
 
