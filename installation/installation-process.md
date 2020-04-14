@@ -6,7 +6,7 @@ Now that you've finished setting up OpenCore, you're finally able to boot, main 
    * If the battery isn't properly patched for macOS support, it can be a bit flakey. To avoid headaches make sure to to be plugged in
 * Enable BIOS settings optimal for macOS
 * Read up on the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
-* And a copy of the ~~OpenCore bible~~ [troubleshooting page](https://desktop.dortania.ml/troubleshooting/troubleshooting.html)
+* And a copy of the ~~OpenCore bible~~ [troubleshooting page](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html)
 * And a ton of of patience
 
 

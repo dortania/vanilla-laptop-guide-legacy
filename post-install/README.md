@@ -8,16 +8,16 @@ So you've finally finished installing macOS with OpenCore but know there's still
 
 Universal:
 
-* [Enabling FileVault and other security features](https://desktop.dortania.ml/post-install/security)
-* [Fixing Audio](https://desktop.dortania.ml//post-install/audio)
-* [Booting without USB](https://desktop.dortania.ml//post-install/oc2hdd)
-* [Updating OpenCore, kexts and macOS](https://desktop.dortania.ml//post-install/update)
-* [Fixing CFG Lock](https://desktop.dortania.ml//extras/msr-lock)
-* [Fixing Resolution and Verbose](https://desktop.dortania.ml//post-install/verbose)
-* [Fixing iServices](https://desktop.dortania.ml//post-install/iservices)
+* [Enabling FileVault and other security features](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/security)
+* [Fixing Audio](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/audio)
+* [Booting without USB](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/oc2hdd)
+* [Updating OpenCore, kexts and macOS](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/update)
+* [Fixing CFG Lock](https://dortania.github.io/OpenCore-Desktop-Guide//extras/msr-lock)
+* [Fixing Resolution and Verbose](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/verbose)
+* [Fixing iServices](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/iservices)
 * [Fixing USB](https://usb-map.gitbook.io/project/)
-* [Fixing Power Management](https://desktop.dortania.ml/post-install/pm.md)
+* [Fixing Power Management](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.md)
 
 Extras:
 
-* [GUI and Boot Chime](https://desktop.dortania.ml/extras/gui.html)
+* [GUI and Boot Chime](https://dortania.github.io/OpenCore-Desktop-Guide/extras/gui.html)

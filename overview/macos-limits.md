@@ -3,7 +3,7 @@
 With laptops, there are several limitations regarding hardware that will not work.
 
 * **Low End iGPUs**
-  * With macOS, support for iGPUs start at the [GT2 tier](https://en.wikipedia.org/wiki/Intel_Graphics_Technology), this means many low end iGPUs found on Celerons, Pentiums, and Atoms will not work. For a full list, see the [GPU Buyers Guide](https://gpu.dortania.ml/)
+  * With macOS, support for iGPUs start at the [GT2 tier](https://en.wikipedia.org/wiki/Intel_Graphics_Technology), this means many low end iGPUs found on Celerons, Pentiums, and Atoms will not work. For a full list, see the [GPU Buyers Guide](https://dortania.github.io/GPU-Buyers-Guide/)
 * **No ARM Support**
   * Please don't torture it with macOS. macOS was never optimized for such low end hardware and Apple has never released any ARM binaries for macOS.
 * **Fingerprint sensors**
@@ -20,7 +20,7 @@ With laptops, there are several limitations regarding hardware that will not wor
 * **Most WiFi cards**
   * Most WiFi cards that come with laptops are not supported as they are usually Intel/Qualcomm.
   * If you are lucky, you may have a supported Atheros card, but support only runs up to High Sierra (Mojave works with AirportAtheros40 from High Sierra, but not with Catalina).
-  * The best option is getting a Broadcom card; see the [WiFi Buyer's Guide](https://wifi.dortania.ml/) for recommendations.
+  * The best option is getting a Broadcom card; see the [WiFi Buyer's Guide](https://dortania.github.io/Wireless-Buyers-Guide/) for recommendations.
 * **Samsung PM981 and Micron 2200S NVMe SSDs**
   * These SSDs are not compatible OOB (causing kernel panics) and therefore require [NVMeFix.kext](https://github.com/acidanthera/NVMeFix/releases) to fix these kernel panics. Note that the Micron 2200S may still cause boot issues even with NVMeFix.kext.
   * On a related note, Samsung 970 EVO Plus NVMe SSDs also had the same problem but it was fixed in a firmware update; get the update (Windows via Samsung Magician or bootable ISO) [here](https://www.samsung.com/semiconductor/minisite/ssd/download/tools/).
