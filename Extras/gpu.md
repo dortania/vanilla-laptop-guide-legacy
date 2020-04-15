@@ -8,7 +8,6 @@
 * [Coffee Lake / Comet Lake](/Extras/gpu.md#coffee-lake-comet-lake)
 * [Ice Lake](/Extras/gpu.md#ice-lake)
 
-
 ## Ivy Bridge
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Video RAM | Connectors |
@@ -20,7 +19,7 @@
 | Intel HD Graphics 4000 | 66010008 | 08006601 | 3 | 64MB | 16MB | 1536MB | LVDSx1 DPx2 |
 | **Intel HD Graphics 4000 3** | 66010009 | 09006601 | 3 | 64MB | 16MB | 1536MB | LVDSx1 DPx2 |
 
-#### Special Notes:
+#### Special Notes
 
 * For these cards, no `device-id` property is required.
 * 1 : to be used with 1366 by 768 displays or lower \(main\)
@@ -59,7 +58,7 @@
 | Intel Iris Pro Graphics 5200 | 260d000e | 0e00260d | 4 | 96MB | 34MB | 1536MB | LVDSx1 DPx2 HDMIx1 |
 | Intel Iris Pro Graphics 5200 | 260d000f | 0f00260d | 1 | 96MB | 34MB | 1536MB | LVDSx1 |
 
-#### Special Notes:
+#### Special Notes
 
 * 1: to be used usually with HD5000, HD5100 and HD5200
   * The device-id of these devices _should_ be supported already by the native macOS drivers.
@@ -85,7 +84,7 @@
 | **Intel HD Graphics 6000** \* | 26160006 | 06002616 | 3 | 34MB | 21MB | 1536MB | LVDSx1 DPx2 |
 | Intel Iris Graphics 6100 | 2b160002 | 02002b16 | 3 | 34MB | 21MB | 1536MB | LVDSx1 DPx2 |
 
-#### Special Notes:
+#### Special Notes
 
 * For HD5300, HD5500 and HD6000, you do not have to specify any `device-id`
 * For HD5600 you need `device-id` faked to `26160000`
@@ -117,7 +116,7 @@
 | Intel Iris Pro Graphics 580 | 3b190000 | 00003b19 | 3 | 34MB | 21MB | 1536MB | LVDSx1 DPx2 |
 | Intel Iris Pro Graphics 580 | 3b190005 | 05003b19 | 4 | 34MB | 21MB | 1536MB | LVDSx1 DPx3 |
 
-#### Special Notes:
+#### Special Notes
 
 * For HD515, HD520, HD530 and HD540, you do not need to use `device-id` faking, they're natively recognised.
   * I would recommend you keep the `AAPL,ig-platform-id` automatically recognised for each device-id by commenting/removing its entry in the config, otherwise it is recommended to choose `00001619`.
@@ -155,7 +154,7 @@
 | **Intel UHD Graphics 617** | C0870000 | 0000C087 | 3 | 34MB | 0MB | 1536MB | LVDSx1 DPx2 |
 | Intel UHD Graphics 617 | C0870005 | 0500C087 | 3 | 57MB | 0MB | 1536MB | LVDSx1 DPx2 |
 
-#### Special Notes:
+#### Special Notes
 
 * For `HD615`, `HD620`, `HD630`, `HD640` and `HD650` it is not needed to use a `device-id`, however due to many issues with different setups it is recommended to use:
   * `device-id`=`1b590000` or `16590000`
@@ -205,13 +204,12 @@
 | Intel Iris Plus Graphics 655 | A53E0009 | 0900A53E | 3 | 57MB | 0MB | 1536MB | LVDSx1 DPx2 |
 | Unlisted iGPU | A63E0005 | 0500A63E | 3 | 57MB | 0MB | 1536MB | LVDSx1 DPx2 |
 
-#### Special Notes:
+#### Special Notes
 
 * For `UHD630` you may not need to fake the `device-id`  as long as it's `8086:9B3E`, if it's anything else, you may use `device-id`=`9B3E0000`
 * For `UHD620` in a Comet Lake CPU **requires**:
   * `device-id`=`9B3E0000`
   * `AAPL,ig-platform-id`=`00009B3E`
-
 
 ## Ice Lake
 
