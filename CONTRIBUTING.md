@@ -9,5 +9,6 @@ This is a community ran guide which is not officially endorsed by Acidanthera. P
 * Your PR must be ran through a markdown lint and have all issues fixed.
 
 ## How to Contribute
+
 Generally through PRs. Best way to test your commits and make sure they are formatted correctly is downloading `nodejs` and getting the gitbook-cli tools and markdownlint-cli tool. When you run `gitbook serve`, it will set up a local webserver which you can connect to to view the changes you made. `markdownlint *` will throw any errors at you about formatting as well, and `markdownlint -f *` will attempt to fix these.
 `
