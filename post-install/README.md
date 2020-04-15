@@ -2,7 +2,7 @@
 
 * Supported version: 0.5.7
 
-So you've finally finished installing macOS with OpenCore but know there's still some things to clean up, well you've come to the right place! Note that most links here will send you to our sister guide, the [OpenCore Desktop Guide](https://desktop.dortania.ml) as to keep things nicely synchronized. All info linked here will apply just the same as it would for a desktop, and any differences will be noted.
+So you've finally finished installing macOS with OpenCore but know there's still some things to clean up, well you've come to the right place! Note that most links here will send you to our sister guide, the [OpenCore Desktop Guide](https://dortania.github.io/OpenCore-Desktop-Guide/) as to keep things nicely synchronized. All info linked here will apply just the same as it would for a desktop, and any differences will be noted.
 
 ## Checklist
 
