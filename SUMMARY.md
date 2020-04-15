@@ -42,7 +42,7 @@
   * [Security and FileVault](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/security)
   * [Fixing Audio](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/audio)
   * [Booting without USB](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/oc2hdd)
-  * [Updating OpenCore, kexts and macOS](https:/desktop.dortania.ml//post-install/update)
+  * [Updating OpenCore, kexts and macOS](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/update)
   * [Fixing CFG Lock](https://dortania.github.io/OpenCore-Desktop-Guide/extras/msr-lock)
   * [Fixing Resolution and Verbose](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/verbose)
   * [Fixing iServices](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/iservices)
