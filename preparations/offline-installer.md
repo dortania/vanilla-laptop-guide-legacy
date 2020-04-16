@@ -11,8 +11,8 @@ What you need:
   * Same as above, except usually you don't need the debug version as usually there aren't any issues.
 * A plist editor (you should already have one by now)
 
+##### Note for legacy users
 
-**Note for legacy users**
 * If you want to use OpenCore on a system without UEFI, please follow the [Legacy Install](/extras/legacy.md) section first, after you can continue following the **Base folder structure** section
 
 To start we'll want to grab ourselves a copy of macOS, you can skip this and head to formatting the USB if you're just making a bootable OpenCore stick and not an installer. For everyone else, you can either download macOS from the AppStore or with GibMacOS
