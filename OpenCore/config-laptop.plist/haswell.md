@@ -57,7 +57,7 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
 * [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
   * Adds brightness control support
 * [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)
-  * Used for enabling Windows features in macOS, mainly needed for I2C controllers
+  * Used for enabling Windows features in macOS, mainly needed for I2C controllers, **this is not needed if you're using SSDT-GPIO**
 * [SSDT-GPIO](https://github.com/khronokernel/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)
   * Creates a stub so VoodooI2C can connect
 
@@ -76,8 +76,8 @@ This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc
 * EC Rename
   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://dortania.github.io/Getting-Started-With-ACPI/) on how to determine what EC you have and apply the appropriate patches
 * OSI rename
-  * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT
-
+  * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT, **this is not needed if you're using SSDT-GPIO**
+   
 | Comment | String | Change XXXX to EC |
 | :--- | :--- | :--- |
 | Enabled | String | YES |
