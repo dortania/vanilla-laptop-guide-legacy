@@ -62,7 +62,7 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
   * Adds brightness control support
 * [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)
   * Used for enabling Windows features in macOS, mainly needed for I2C controllers, **this is not needed if you're using SSDT-GPIO**
-* [SSDT-GPIO](https://github.com/khronokernel/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)
+* [SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)
   * Creates a stub so VoodooI2C can connect
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/ACPI.
