@@ -82,7 +82,6 @@ This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc
 * OSI rename
   * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT, **this is not needed if you're using SSDT-GPIO**
 
-
 | Comment | String | Change XXXX to EC |
 | :--- | :--- | :--- |
 | Enabled | String | YES |

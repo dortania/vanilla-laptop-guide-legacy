@@ -95,7 +95,7 @@ This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc
   * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://dortania.github.io/Getting-Started-With-ACPI/) on how to determine what EC you have and apply the appropriate patches
 * OSI rename
   * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT, **this is not needed if you're using SSDT-GPIO**
-   
+
 | Comment | String | Change XXXX to EC |
 | :--- | :--- | :--- |
 | Enabled | String | YES |
