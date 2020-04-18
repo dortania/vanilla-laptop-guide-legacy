@@ -12,8 +12,8 @@ See the [**supported hardware section**](https://github.com/dortania/Opencore-De
 
 These are the drivers used by OpenCore, for the majority of systems you only need 3 .efi drivers to get up and running:
 
-* [ApfsDriverLoader.efi](https://github.com/acidanthera/AppleSupportPkg/releases)
-  * Needed for seeing APFS volumes(ie. macOS)
+* [~~ApfsDriverLoader.efi~~](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+  * ~~Needed for seeing APFS volumes(ie. macOS)~~. As of OpenCore 0.5.8, this driver is built in and configured via config.plist -> UEFI -> APFS
 * [HfsPlus.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi) **or** [VboxHfs.efi](https://github.com/acidanthera/AppleSupportPkg/releases)
   * Needed for seeing HFS volumes(ie. macOS Installers and Recovery partitions/images). **Do not mix HFS drivers**
 * [OpenRuntime.efi](https://github.com/acidanthera/OpenCorePkg/releases)

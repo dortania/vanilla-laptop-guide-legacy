@@ -37,7 +37,7 @@ With many OEMs you're likely going to be heavily limited in your options, if you
 
 So you've finally got the installer booted, got through the verbose and hit the installer! Now that you've gotten this far,  the main things to keep in mind:
 
-* Drives you wish to install macOS on **must** be both of GUI partition Scheme **and** APFS
+* Drives you wish to install macOS on **must** be both of GPT partition Scheme **and** APFS
 * The drive **must** also have a 200MB partition
   * By default, macOS will setup freshly formatted drives with 200MB
   * See the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/) for more info on partitioning a Windows Drive
