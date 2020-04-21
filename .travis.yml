@@ -29,3 +29,8 @@ matrix:
       - npm install -g markdownlint-cli
       script: 
       - markdownlint *
+    - name: "Spellcheck"
+      before_script:
+      - npm install -g spellchecker-cli
+      script: 
+      - spellchecker --plugins spell indefinite-article repeated-words syntax-urls --files *.md 
