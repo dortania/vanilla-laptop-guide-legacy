@@ -17,7 +17,7 @@ With many OEMs you're likely going to be heavily limited in your options, if you
 
 * Fast Boot
 * VT-d (can be enabled if you set `DisableIoMapper` to YES)
-* Thunderbolt(For intial install, as Thunderbolt can cause issues if not setup correctly)(For intial install, as Thunderbolt can cause issues if not setup correctly)
+* Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)(For initial install, as Thunderbolt can cause issues if not setup correctly)
 * Intel SGX
 * Intel Platform Trust
 * CFG Lock (MSR 0xE2 write protection)
@@ -30,14 +30,14 @@ With many OEMs you're likely going to be heavily limited in your options, if you
 * Execute Disable Bit
 * EHCI/XHCI Hand-off
 * OS type: Windows 8.1/10 UEFI Mode
-  * If OpenCore doesn't show up set this to OtherOS
+  * If OpenCore doesn't show up, set this to OtherOS
 * DVMT Pre-Allocated(iGPU Memory): 64MB
 
 ## macOS Installer
 
 So you've finally got the installer booted, got through the verbose and hit the installer! Now that you've gotten this far,  the main things to keep in mind:
 
-* Drives you wish to install macOS on **must** be both of GUI partition Scheme **and** APFS
+* Drives you wish to install macOS on **must** be both of GUID partition Scheme **and** APFS
 * The drive **must** also have a 200MB partition
   * By default, macOS will setup freshly formatted drives with 200MB
   * See the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/) for more info on partitioning a Windows Drive
