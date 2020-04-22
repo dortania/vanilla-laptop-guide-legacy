@@ -157,7 +157,7 @@ Settings relating to boot.efi patching and firmware fixes, one we need to change
   * Removes write protection from CR0 register during their execution
 * **ForceExitBootServices**: NO
   * Ensures ExitBootServices calls succeeds even when MemoryMap has changed, don't use unless necessary
-* **ProtectMemoryRegion**: NO
+* **ProtectMemoryRegions**: NO
   * Needed for fixing artefacts and sleep-wake issues, generally only needed on very old firmwares
 * **ProtectSecureBoot**: NO
   * Fixes secureboot keys on MacPro5,1 and Insyde firmwares
@@ -655,7 +655,7 @@ So thanks to the efforts of Ramus, we also have an amazing tool to help verify y
 * Fast Boot
 * VT-d (can be enabled if you set `DisableIoMapper` to YES)
 * CSM
-* Thunderbolt
+* Thunderbolt(For intial install, as Thunderbolt can cause issues if not setup correctly)(For intial install, as Thunderbolt can cause issues if not setup correctly)
 * Intel SGX
 * Intel Platform Trust
 * CFG Lock (MSR 0xE2 write protection)(**This must be off, if you can't find the option then enable both `AppleCpuPmCfgLock` and `AppleXcpmCfgLock` under Kernel -> Quirks. Your hack will not boot with CFG-Lock enabled**)
