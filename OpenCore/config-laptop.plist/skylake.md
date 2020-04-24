@@ -128,13 +128,13 @@ Settings relating to boot.efi patching and firmware fixes, ones we need to chang
 * **DevirtualiseMmio**: NO
   * Reduces Stolen Memory Footprint, expands options for `slide=N` values and generally useful especially on HEDT and Xeon systems
 * **DisableSingleUser**: NO
-  * Disables the use of `Cmd+S` and `-s`, this is closer to the behaviour of T2 based machines
+  * Disables the use of `Cmd+S` and `-s`, this is closer to the behavior of T2 based machines
 * **DisableVariableWrite**: NO
   * Needed for systems with non-functioning NVRAM, you can verify [here](/post-install/nvram.md) if yours works
 * **DiscardHibernateMap**: NO
   * Reuse original hibernate memory map, only needed for certain legacy hardware
 * **EnableSafeModeSlide**: YES
-  * Allows for slide values to be used in Safemode
+  * Allows for slide values to be used in Safe mode
 * **EnableWriteUnprotector**: YES
   * Removes write protection from CR0 register during their execution
 * **ForceExitBootServices**: NO
@@ -201,8 +201,8 @@ The table below may seem daunting but it's really not, the main things we need t
 
 #### Special Notes
 
-* For HD515, HD520, HD530 and HD540, you do not need to use `device-id` faking, they're natively recognised.
-  * I would recommend you keep the `AAPL,ig-platform-id` automatically recognised for each device-id by commenting/removing its entry in the config, otherwise it is recommended to choose `00001619`.
+* For HD515, HD520, HD530 and HD540, you do not need to use `device-id` faking, they're natively recognized.
+  * I would recommend you keep the `AAPL,ig-platform-id` automatically recognized for each device-id by commenting/removing its entry in the config, otherwise it is recommended to choose `00001619`.
 * For HD510 you may need to use `device-id`=`02190000` to fake its device-id.
   * You would need also to use `AAPL,ig-platform-id`=`00001B19` or `00001619`
 * For HD550 and P530 (and potentially all HD P-series iGPUs), you may need to use `device-id`=`16190000`(recommended) or `12190000` or `26190000` or `1b190000`
@@ -274,7 +274,7 @@ Settings relating to the kernel, for us we'll be enabling `AppleCpuPmCfgLock`, `
 * **DisableIoMapper**: YES
   * Needed to get around VT-D if either unable to disable in BIOS or needed for other operating systems, much better alternative to `dart=0` as SIP can stay on in Catalina
 * **DisableRtcChecksum**: NO
-  * Prevents AppleRTC from writing to primary checksum (0x58-0x59), required for users who either receive BIOS reset or are sent into Safemode after reboot/shutdown
+  * Prevents AppleRTC from writing to primary checksum (0x58-0x59), required for users who either receive BIOS reset or are sent into Safe mode after reboot/shutdown
 * **DummyPowerManagement**: NO
   * New alternative to NullCPUPowerManagement, required for all AMD CPU based systems as there's no native power management. Intel can ignore
 * **ExternalDiskIcons**: NO
@@ -305,7 +305,7 @@ The reason being is that UsbInjectAll reimplements builtin macOS functionality w
 * **PickerMode**: `Builtin`
   * Sets OpenCore to use the builtin picker
 * **HideAuxiliary**: NO
-  * Hides Recovery and other partitions unless spacebar is pressed, more closely matches real Mac behaviour
+  * Hides Recovery and other partitions unless spacebar is pressed, more closely matches real Mac behavior
 * **HideSelf**: YES
   * Hides the EFI partition as a boot option in OC's boot picker
 * **ConsoleAttributes**: `0`
@@ -349,6 +349,8 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
   * Allow `CTRL+Enter` and `CTRL+Index` to set default boot device in the picker
 * **AuthRestart**: NO:
   * Enables Authenticated restart for FileVault2 so password is not required on reboot. Can be considered a security risk so optional
+* **BootProtect**: None
+  * Allows the use of Boostrap.efi inside EFI/OC/Bootstrap instead of BOOTx64.efi, useful for those wanting to either boot with rEFInd or avoid BOOTx64.efi overwrites from Windows. Proper use of this quirks is not be covered in this guide
 * **ExposeSensitiveData**: `6`
   * Shows more debug information, requires debug version of OpenCore
 * **Vault**: `Optional`
@@ -601,7 +603,7 @@ Only drivers present here should be:
 * **SanitiseClearScreen**: NO
   * Fixes High resolutions displays that display OpenCore in 1024x768, only relevant for users using `System` TextRenderer
 
-**Protocols**: (Most values can be ignored here as they're meant for real Macs/VMs)
+**ProtocolOverrides**: (Most values can be ignored here as they're meant for real Macs/VMs)
 
 * **AppleSmcIo**: NO
   * Reinstalls Apple SMC I/O, this is the equivalent of VirtualSMC.efi which is only needed for users using FileVault
@@ -626,6 +628,10 @@ Only drivers present here should be:
   * Redirects AptioMemoryFix from `EFI_GLOBAL_VARIABLE_GUID` to `OC\_VENDOR\_VARIABLE\_GUID`. Needed for when firmware tries to delete boot entries and is recommended to be enabled on all systems for correct update installation, Startup Disk control panel functioning, etc.
 * **UnblockFsConnect**: NO
   * Some firmware block partition handles by opening them in By Driver mode, which results in File System protocols being unable to install. Mainly relevant for HP systems when no drives are listed
+
+**ReservedMemory**:
+
+Used for exempting certain memory regions from OSes to use, mainly relevant for Sandy Bridge iGPUs or systems with faulty memory. Use of this quirk is not covered in this guide
 
 ## Cleaning up
 
