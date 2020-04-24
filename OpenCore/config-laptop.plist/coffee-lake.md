@@ -67,7 +67,7 @@ For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs,
 
 **Block:**
 
-This blocks certain ACPI tabes from loading, for us we can ignore this
+This blocks certain ACPI tables from loading, for us we can ignore this
 
 **Patch**:
 
@@ -117,7 +117,7 @@ This section is dedicated to quirks relating to boot.efi patching with OpenRunti
 
 **MmioWhitelist**:
 
-This section is allowing spaces to be passthrough to macOS that are generally ignored, useful when paired with `DevirtualiseMmio`
+This section is allowing spaces to be pass-through to macOS that are generally ignored, useful when paired with `DevirtualiseMmio`
 
 **Quirks**:
 
@@ -327,7 +327,7 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
 * **AllowSetDefault**: YES
   * Allow `CTRL+Enter` and `CTRL+Index` to set default boot device in the picker
 * **AuthRestart**: NO:
-  * Enables Authenticated restart for FileVault2 so password is not required on reboot. Can be considered a security risk so optional
+  * Enables Authenticated restart for FileVault 2 so password is not required on reboot. Can be considered a security risk so optional
 * **ExposeSensitiveData**: `6`
   * Shows more debug information, requires debug version of OpenCore
 * **Vault**: `Optional`
@@ -380,13 +380,13 @@ Won't be covered here, see 8.6 of [Configuration.pdf](https://github.com/acidant
 csr-active-config is set to `00000000` which enables System Integrity Protection. You can choose a number of other options to enable/disable sections of SIP. Some common ones are as follows:
 
 * `00000000` - SIP completely enabled
-* `03000000` - Allow unsigned kexts and writing to protected fs locations
+* `03000000` - Allow unsigned kexts and writing to protected file system locations
 * `E7030000` - SIP completely disabled
 
 Recommended to leave enabled for best security practices
 
 * **nvda\_drv**: &lt;>
-  * For enabling Nvidia WebDrivers, set to 31 if running a [Maxwell or Pascal GPU](https://github.com/khronokernel/Catalina-GPU-Buyers-Guide/blob/master/README.md#Unsupported-nVidia-GPUs). This is the same as setting nvda\_drv=1 but instead we translate it from [text to hex](https://www.browserling.com/tools/hex-to-text), Clover equivalent is `NvidiaWeb`. **AMD, Intel and Kepler GPU users should delete this section.**
+  * For enabling Nvidia Web Drivers, set to 31 if running a [Maxwell or Pascal GPU](https://github.com/khronokernel/Catalina-GPU-Buyers-Guide/blob/master/README.md#Unsupported-nVidia-GPUs). This is the same as setting nvda\_drv=1 but instead we translate it from [text to hex](https://www.browserling.com/tools/hex-to-text), Clover equivalent is `NvidiaWeb`. **AMD, Intel and Kepler GPU users should delete this section.**
 * **prev-lang:kbd**: &lt;>
   * Needed for non-latin keyboards in the format of `lang-COUNTRY:keyboard`, recommended to keep blank though you can specify it(**Default in Sample config is Russian**):
   * American: `en-US:0`(`656e2d55533a30` in HEX)
@@ -415,7 +415,7 @@ Recommended to leave enabled for best security practices
 
 * Enables writing to flash memory for all added variables.
 
-## Platforminfo
+## PlatformInfo
 
 ![PlatformInfo](/images/config/config-laptop.plist/coffeelake/smbios.png)
 
@@ -449,7 +449,7 @@ The `Serial` part gets copied to Generic -> SystemSerialNumber.
 
 The `Board Serial` part gets copied to Generic -> MLB.
 
-The `SmUUID` part gets copied toto Generic -> SystemUUID.
+The `SmUUID` part gets copied to Generic -> SystemUUID.
 
 We set Generic -> ROM to either an Apple ROM (dumped from a real Mac), your NIC MAC address, or any random MAC address (could be just 6 random bytes, for this guide we'll use `11223300 0000`. After install follow the [Fixing iServices](/post-install/iservices.md) page on how to find your real MAC Address)
 
@@ -459,7 +459,7 @@ We set Generic -> ROM to either an Apple ROM (dumped from a real Mac), your NIC 
 
 **Automatic**: YES
 
-* Generates Platforminfo based on Generic section instead of DataHub, NVRAM, and SMBIOS sections
+* Generates PlatformInfo based on Generic section instead of DataHub, NVRAM, and SMBIOS sections
 
 **Generic**:
 
@@ -519,7 +519,7 @@ Only drivers present here should be:
 * **VolumeAmplifier**: 0
   * Multiplication coefficient for system volume to raw volume linear translation from 0 to 1000, see [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf) for more info on calculation
 
-**Input**: Related to boot.efi keyboard passthrough used for FileVault and Hotkey support
+**Input**: Related to boot.efi keyboard pass-through used for FileVault and Hotkey support
 
 * **KeyFiltering**: NO
   * Verifies and discards uninitialized data, mainly prevalent on 7 series Gigabyte boards
@@ -576,11 +576,11 @@ Only drivers present here should be:
 **Quirks**:
 
 * **ExitBootServicesDelay**: `0`
-  * Only required for very specific use cases like setting to `3000` - `5000` for ASUS Z87-Pro running FileVault2
+  * Only required for very specific use cases like setting to `3000` - `5000` for ASUS Z87-Pro running FileVault 2
 * **IgnoreInvalidFlexRatio**: NO
   * Fix for when MSR\_FLEX\_RATIO (0x194) can't be disabled in the BIOS, required for all pre-Skylake based systems
 * **ReleaseUsbOwnership**: YES
-  * Releases USB controller from firmware driver, needed for when your firmware doesn't support EHCI/XHCI Handoff. Most laptops have garbo firmwares so we'll need this as well
+  * Releases USB controller from firmware driver, needed for when your firmware doesn't support EHCI/XHCI Handoff. Most laptops have garbage firmwares so we'll need this as well
 * **RequestBootVarFallback**: YES
   * Request fallback of some Boot prefixed variables from `OC_VENDOR_VARIABLE_GUID` to `EFI_GLOBAL_VARIABLE_GUID`. Used for fixing boot options.
 * **RequestBootVarRouting**: YES
