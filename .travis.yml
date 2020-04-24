@@ -28,9 +28,9 @@ matrix:
       before_script:
       - npm install -g markdownlint-cli
       script: 
-      - markdownlint *
+      - npm run testLint
     - name: "Spellcheck"
       before_script:
       - npm install -g spellchecker-cli
       script: 
-      - spellchecker --plugins spell indefinite-article repeated-words syntax-urls --dictionaries dictionary.txt --files '**/*.md' 
+      - npm run testSpell 
