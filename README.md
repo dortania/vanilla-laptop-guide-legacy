@@ -1,11 +1,11 @@
 # Overview
 
 [![Build Status](https://img.shields.io/travis/com/dortania/vanilla-laptop-guide?style=flat-square)](https://travis-ci.com/dortania/vanilla-laptop-guide)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-vanilla--laptop--guide-blue?style=flat-square&logo=github)](https://github.com/dortania/vanilla-laptop-guide)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-vanilla--laptop--guide-blue?style=flat-square&logo=github)](https://github.com/dortania/vanilla-laptop-guide)
 
 ## Please note this guide is still WIP
 
-So you want to hackintosh a laptop? Willing to spend ~~hours~~ days troubleshooting various parts of your laptop? Well, here's the vanila laptop guide for you. This guide will explain everything you need to know to hackintosh a laptop. This is **not** a quick way to get a cheap MacBook - this should only be seen as a hobby project and never relied on unless you completely understannd what you're doing *and* know how to fix things when things break. If you need a daily driver MacBook, we recommend looking elsewhere like the used market on eBay, Facebook, etc. For those who are either masochists, want a challenge, or want to see how far you can get, this guide is for you!
+So you want to hackintosh a laptop? Willing to spend ~~hours~~ days troubleshooting various parts of your laptop? Well, here's the vanilla laptop guide for you. This guide will explain everything you need to know to hackintosh a laptop. This is **not** a quick way to get a cheap MacBook - this should only be seen as a hobby project and never relied on unless you completely understand what you're doing *and* know how to fix things when things break. If you need a daily driver MacBook, we recommend looking elsewhere like the used market on eBay, Facebook, etc. For those who are either masochists, want a challenge, or want to see how far you can get, this guide is for you!
 
 ## Before you begin
 

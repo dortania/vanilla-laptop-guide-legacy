@@ -6,7 +6,7 @@ You will want to [view the troubleshooting page from the desktop guide for thing
 
 Make sure that VoodooInput is listed *before* VoodooPS2 and VoodooI2C kexts.
 
-### Stuck at gIOLockState(3
+### Stuck at `gIOLockState (3...`
 
 * Double check that ig-platform-id and device-id are valid.
 * CSM is off in UEFI/BIOS
@@ -16,4 +16,4 @@ Make sure that VoodooInput is listed *before* VoodooPS2 and VoodooI2C kexts.
 ### Scrambled Screen
 
 ![Scrambled Screen](/images/install/Scrambled.jpg)
-Enable CSM in your UEFI settings. This may appear as "Boot legacy Roms" or other legacy setting.
+Enable CSM in your UEFI settings. This may appear as "Boot legacy ROMs" or other legacy setting.

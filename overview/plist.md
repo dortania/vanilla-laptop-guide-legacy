@@ -1,6 +1,6 @@
 # What are plists
 
-Plists are "Property list" files that are often used to store a user's settings or information about a Kext. Config.plist is one such file, which is used to tell OpenCore how to behave. If you open a plist, they are usually formatted like an XML file where there is (almost) always keys assigned to values.
+Plists are "Property list" files that are often used to store a user's settings or information about a kext. Config.plist is one such file, which is used to tell OpenCore how to behave. If you open a plist, they are usually formatted like an XML file where there is (almost) always keys assigned to values.
 
 The most important part about a plist is that values almost always come in key/value pairs.
 

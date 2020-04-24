@@ -1,6 +1,6 @@
-# Preparing an online installer (MacOS/Windows/Linux)
+# Preparing an online installer (macOS/Windows/Linux)
 
-This requires a working internet connection on the target machine! If you're using WiFi, that means that the WiFi card must be compatible with **macOS**. It is possible to use HornDIS to tether with an Android phone if needed.
+This requires a working internet connection on the target machine! If you're using WiFi, that means that the WiFi card must be compatible with **macOS**. It is possible to use HoRNDIS to tether with an Android phone if needed.
 
 Using gibMacOS, you can download the recovery image directly from Apple's servers and put it on a USB. Once booted up, this image can download the macOS installer on to the target hard drive.
 
@@ -24,9 +24,9 @@ Requirements:
 
 ## Getting the Recovery Package
 
-1. Run GibMacOS
+1. Run gibMacOS
     * On Windows, run `gibMacOS.bat`. If it does not recognize Python, you can also run `python gibMacOS.command`
-    * Linux/MacOS - directly run gibMacOS.command
+    * Linux/macOS - directly run gibMacOS.command
 2. Toggle Recovery-Only by entering R and pressing Enter. Make sure it says `Toggle Recovery-Only (Currently on)`
     * This reduces the download size as we only need the recovery package (500 MB) rather than the full release (7-8 GB)
 3. Select the release you want to download. In this case, we're downloading 10.15.4, or the latest release of macOS Catalina. It does not matter if `FULL Install` is at the end or not.
@@ -47,7 +47,7 @@ OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore, so we onl
     * Otherwise, right click the partition on the USB and click `Format` and set it to FAT32.
     ![Disk Management right click menu](/images/preparations/DiskManagement.jpg)
 4. In File Explorer, go to your USB and create a new folder at the root called `com.apple.recovery.boot`.
-5. Again in File Explorer, find the .pkg downloaded by GibMacOS under `macOS Downloads` in the gibMacOS folder.
+5. Again in File Explorer, find the .pkg downloaded by gibMacOS under `macOS Downloads` in the gibMacOS folder.
 6. Open the .pkg by right clicking and going under 7-Zip -> Open Archive
     ![7-Zip right click menu](/images/preparations/7zipWinders.jpg)
 7. Open RecoveryHDMeta.dmg (or similar named dmg) then open the folder contained.
@@ -74,7 +74,7 @@ This will go over using gdisk, though you can use other utilities that you are c
 4. Run `mkfs.vfat -F 32 -n "EFI" /dev/<your partition>` to format the 200MB block to FAT32 and to name it "EFI"
 5. Mount the USB by running `mount /dev/<your partition> /mnt`
 6. `cd` to your USB by running `cd /mnt` and create a folder with `mkdir com.apple.recovery.boot`. This will be where we put the Recovery image.
-7. `cd` to the .pkg you downloaded under `macOS downloads` in the gibmacos folder
+7. `cd` to the .pkg you downloaded under `macOS downloads` in the gibMacOS folder
 8. Make sure `p7zip-full` is installed
     * `sudo apt install p7zip-full` for Ubuntu/Ubuntu based
     * `sudo pacman -S p7zip` for Arch

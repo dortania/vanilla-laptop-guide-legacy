@@ -16,7 +16,7 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
    * Your audio codec
    * Your laptop model
    * Your **Ethernet chipset**
-   * Your WLAN/BT chipset
+   * Your WLAN/Bluetooth chipset
 4. _**[CRUCIAL]**_ **A BASIC KNOWLEDGE OF COMMAND LINES AND HOW TO USE A TERMINAL/COMMAND PROMPT**
    * This is not just [CRUCIAL], this is the basis of this whole guide. Don't come crying to us because you don't know how to `cd` to a directory or delete a file.
 5. _**[CRUCIAL]**_ A machine that is compatible as seen in the _**Compatibility**_ section.
@@ -61,12 +61,12 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
 * **Python** 2.7 or greater:
   * For Windows, get it from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and make sure you enable "Add to PATH" during the install
     * **DO NOT** use the Python release in the Microsoft Store, get it from the official website.
-  * For Linux users, install it, if you don't already already have it, with your distro's package manager.
+  * For Linux users, install it, if you don't already have it, with your distro's package manager.
   * For macOS users, you already have it installed.
 * **ProperTree** [Recommended]: a simple tool to edit plist files, from /u/CorpNewt ([https://github.com/corpnewt/ProperTree](https://github.com/corpnewt/ProperTree))
   * Or text editor: Notepad++, Sublime Text, VSCode...
     * Note: on October/fall 2018 Windows Update, the native notepad can work too. Older versions of windows must use a 3rd party text editor. If you don't know what this is, get a one of the text editors above.
 * **gibMacOS**: another sweet tool from /u/CorpNewt ([https://github.com/corpnewt/gibMacOS](https://github.com/corpnewt/gibMacOS))
-  * if you have git on windows use it to clone the repo
+  * if you have git on windows use it to clone the repository
   * if you don't, press `Clone or Download` button and download as Zip, extract it somewhere
 * Other software requirements will be downloaded throughout the guide (OS specific)

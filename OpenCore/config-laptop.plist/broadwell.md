@@ -128,21 +128,21 @@ Settings relating to boot.efi patching and firmware fixes, one we need to change
 * **DevirtualiseMmio**: NO
   * Reduces Stolen Memory Footprint, expands options for `slide=N` values and generally useful especially on HEDT and Xeon systems
 * **DisableSingleUser**: NO
-  * Disables the use of `Cmd+S` and `-s`, this is closer to the behaviour of T2 based machines
+  * Disables the use of `Cmd+S` and `-s`, this is closer to the behavior of T2 based machines
 * **DisableVariableWrite**: NO
   * Needed for systems with non-functioning NVRAM, you can verify [here](/post-install/nvram.md) if yours works
 * **DiscardHibernateMap**: NO
   * Reuse original hibernate memory map, only needed for certain legacy hardware
 * **EnableSafeModeSlide**: YES
-  * Allows for slide values to be used in Safemode
+  * Allows for slide values to be used in Safe mode
 * **EnableWriteUnprotector**: YES
   * Removes write protection from CR0 register during their execution
 * **ForceExitBootServices**: NO
-  * Ensures ExitBootServices calls succeeds even when MemoryMap has changed, don't use unless necessary
+  * Ensures ExitBootServices calls succeeds even when the memory map has changed, don't use unless necessary
 * **ProtectMemoryRegions**: NO
-  * Needed for fixing artefacts and sleep-wake issues, generally only needed on very old firmwares
+  * Needed for fixing artifacts and sleep-wake issues, generally only needed on very old firmwares
 * **ProtectSecureBoot**: NO
-  * Fixes secureboot keys on MacPro5,1 and Insyde firmwares
+  * Fixes Secure Boot keys on MacPro5,1 and Insyde firmwares
 * **ProtectUefiServices**: NO
   * Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and newer Coffee Lake systems
 * **ProvideCustomSlide**: YES
@@ -210,9 +210,9 @@ The table below may seem daunting but it's really not, the main things we need t
 
 * Applies AppleALC audio injection, you'll need to do your own research on which codec your motherboard has and match it with AppleALC's layout. [AppleALC Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs).
 
-For us, we'll be using the boot-arg `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present. More info on this is covered in the [Post-Install Page](/post-install/README.md)
+For us, we'll be using the boot argument `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present. More info on this is covered in the [Post-Install Page](/post-install/README.md)
 
-Fun Fact: The reason the byte order is swapped is due to [Endianness](https://en.wikipedia.org/wiki/Endianness), specifically Little Endians that modern CPUs use for ordering bytes. The more you know!
+Fun Fact: The reason the byte order is swapped is because most modern processors are [Little Endian](https://en.wikipedia.org/wiki/Endianness). The more you know!
 
 **Block**: Removes device properties from the map, for us we can ignore this
 
@@ -287,7 +287,7 @@ The reason being is that UsbInjectAll reimplements builtin macOS functionality w
 * **PickerMode**: `Builtin`
   * Sets OpenCore to use the builtin picker
 * **HideAuxiliary**: NO
-  * Hides Recovery and other partitions unless spacebar is pressed, more closely matches real Mac behaviour
+  * Hides Recovery and other partitions unless spacebar is pressed, more closely matches real Mac behavior
 * **HideSelf**: YES
   * Hides the EFI partition as a boot option in OC's boot picker
 * **ConsoleAttributes**: `0`
@@ -330,14 +330,14 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
 * **AllowSetDefault**: YES
   * Allow `CTRL+Enter` and `CTRL+Index` to set default boot device in the picker
 * **AuthRestart**: NO:
-  * Enables Authenticated restart for FileVault 2 so password is not required on reboot. Can be concidered a security risk so optional
+  * Enables Authenticated restart for FileVault 2 so password is not required on reboot. Can be considered a security risk so optional
 * **ExposeSensitiveData**: `6`
   * Shows more debug information, requires debug version of OpenCore
 * **Vault**: `Optional`
   * We won't be dealing vaulting so we can ignore, **you won't boot with this set to Secure**
   * This is a word, it is not optional to omit this setting. You will regret it if you don't set it to `Optional`, note that it is case-sensitive
 * **ScanPolicy**: `0`
-  * `0` allows you to see all drives available, please refer to [Security](/post-install/security.md) section for further details. **Will not boot USBs with this set to default**
+  * `0` allows you to see all drives available, please refer to [Security](/post-install/security.md) section for further details. **Will not boot USB devices with this set to default**
 
 **Tools** Used for running OC debugging tools like the shell, ProperTree's snapshot function will add these for you. For us, we won't be using any tools
 
@@ -374,7 +374,7 @@ Won't be covered here, see 8.6 of [Configuration.pdf](https://github.com/acidant
 * **boot-args**:
   * **-v** - this enables verbose mode, which shows all the behind-the-scenes text that scrolls by as you're booting instead of the Apple logo and progress bar. It's invaluable to any Hackintosher, as it gives you an inside look at the boot process, and can help you identify issues, problem kexts, etc.
   * **keepsyms=1** - this is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
-  * **debug=0x100**- this disables macOS's watchdog which helps prevents a reboot on a kernel panic. That way you can *hopefully* glean some useful info and follow the breadcrumbs to get past the issues.
+  * **debug=0x100** - this disables macOS's watchdog which helps prevents a reboot on a kernel panic. That way you can *hopefully* glean some useful info and follow the breadcrumbs to get past the issues.
   * **alcid=1** - used for setting layout-id for AppleALC, see [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system. More info on this is covered in the [Post-Install Page](/post-install/README.md)
   * **-wegnoegpu** - Disables all other GPUs besides the integrated GPU, needed as the dGPUs in laptops are not supported
 

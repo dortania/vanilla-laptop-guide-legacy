@@ -3,11 +3,11 @@
 Now that you've finished setting up OpenCore, you're finally able to boot, main things to keep in mind:
 
 * Make sure the laptop is connected to the charger
-  * If the battery isn't properly patched for macOS support, it can be a bit flakey. To avoid headaches make sure to to be plugged in
+  * If the battery isn't properly patched for macOS support, it can cause weird behaviors. To avoid headaches, make sure to have your device plugged in
 * Enable BIOS settings optimal for macOS
 * Read up on the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
 * And a copy of the ~~OpenCore bible~~ [troubleshooting page](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html)
-* And a ton of of patience
+* And a ton of patience
 
 ## Recommended BIOS Settings
 
@@ -42,7 +42,7 @@ So you've finally got the installer booted, got through the verbose and hit the 
   * By default, macOS will setup freshly formatted drives with 200MB
   * See the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/) for more info on partitioning a Windows Drive
 
-Once you start the installation, you will want to wait until the lappie restarts. You will once again want to boot into opencore, but rather than selecting your USB installer/recovery - you will want to select the macOS installer on the hard drive to continue installation. You should get an apple logo, and after a few minutes you should get a timer at the bottom saying "x minutes remaining". This may be a good time to get a drink or snack as this will take a while. It may restart a couple more times, but if all goes well, it should finally plop you at the "Setup your Mac screen"
+Once you start the installation, you will want to wait until the lappie restarts. You will once again want to boot into OpenCore, but rather than selecting your USB installer/recovery - you will want to select the macOS installer on the hard drive to continue installation. You should get an apple logo, and after a few minutes you should get a timer at the bottom saying "x minutes remaining". This may be a good time to get a drink or snack as this will take a while. It may restart a couple more times, but if all goes well, it should finally plop you at the "Setup your Mac screen"
 
 * You may want to set OpenCore to be your first boot option and set `Misc->Boot->Timeout` to something like 5-10 seconds to automatically have it go through the installer.
 
