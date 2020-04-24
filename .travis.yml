@@ -33,4 +33,4 @@ matrix:
       before_script:
       - npm install -g spellchecker-cli
       script: 
-      - spellchecker --plugins spell indefinite-article repeated-words syntax-urls --files '**/*.md' 
+      - spellchecker --plugins spell indefinite-article repeated-words syntax-urls --dictionaries dictionary.txt --files '**/*.md' 
