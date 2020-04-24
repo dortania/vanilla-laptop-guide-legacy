@@ -637,13 +637,13 @@
 <p>Now that you&apos;ve finished setting up OpenCore, you&apos;re finally able to boot, main things to keep in mind:</p>
 <ul>
 <li>Make sure the laptop is connected to the charger<ul>
-<li>If the battery isn&apos;t properly patched for macOS support, it can be a bit flakey. To avoid headaches make sure to to be plugged in</li>
+<li>If the battery isn&apos;t properly patched for macOS support, it can cause weird behaviors. To avoid headaches, make sure to have your device plugged in</li>
 </ul>
 </li>
 <li>Enable BIOS settings optimal for macOS</li>
 <li>Read up on the <a href="https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/" target="_blank">Multiboot Guide</a></li>
 <li>And a copy of the <del>OpenCore bible</del> <a href="https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html" target="_blank">troubleshooting page</a></li>
-<li>And a ton of of patience</li>
+<li>And a ton of patience</li>
 </ul>
 <h2 id="recommended-bios-settings">Recommended BIOS Settings</h2>
 <p>With many OEMs you&apos;re likely going to be heavily limited in your options, if you can try to find these options and enable them:</p>
@@ -679,7 +679,7 @@
 </ul>
 </li>
 </ul>
-<p>Once you start the installation, you will want to wait until the lappie restarts. You will once again want to boot into opencore, but rather than selecting your USB installer/recovery - you will want to select the macOS installer on the hard drive to continue installation. You should get an apple logo, and after a few minutes you should get a timer at the bottom saying &quot;x minutes remaining&quot;. This may be a good time to get a drink or snack as this will take a while. It may restart a couple more times, but if all goes well, it should finally plop you at the &quot;Setup your Mac screen&quot;</p>
+<p>Once you start the installation, you will want to wait until the lappie restarts. You will once again want to boot into OpenCore, but rather than selecting your USB installer/recovery - you will want to select the macOS installer on the hard drive to continue installation. You should get an apple logo, and after a few minutes you should get a timer at the bottom saying &quot;x minutes remaining&quot;. This may be a good time to get a drink or snack as this will take a while. It may restart a couple more times, but if all goes well, it should finally plop you at the &quot;Setup your Mac screen&quot;</p>
 <ul>
 <li>You may want to set OpenCore to be your first boot option and set <code>Misc-&gt;Boot-&gt;Timeout</code> to something like 5-10 seconds to automatically have it go through the installer.</li>
 </ul>
@@ -728,7 +728,7 @@ You will want to go through the Post-Installation pages to finish setting up you
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation Process","level":"4.1","depth":1,"next":{"title":"Troubleshooting","level":"4.2","depth":1,"path":"installation/troubleshooting.md","ref":"installation/troubleshooting.md","articles":[]},"previous":{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"installation/installation-process.md","mtime":"2020-04-24T03:42:17.472Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T03:43:03.308Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation Process","level":"4.1","depth":1,"next":{"title":"Troubleshooting","level":"4.2","depth":1,"path":"installation/troubleshooting.md","ref":"installation/troubleshooting.md","articles":[]},"previous":{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"installation/installation-process.md","mtime":"2020-04-24T07:09:31.068Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T07:10:18.017Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

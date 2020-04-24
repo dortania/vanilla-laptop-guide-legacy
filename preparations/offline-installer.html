@@ -638,7 +638,7 @@
 <ul>
 <li>A macOS installer.app, from the App Store</li>
 <li><a href="https://github.com/acidanthera/OpenCorePkg" target="_blank">OpenCorePkg</a><ul>
-<li>You can download a <a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank">prebuilt release</a> (recommended, comes with needed EFI drivers)</li>
+<li>You can download a <a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank">pre-built release</a> (recommended, comes with needed EFI drivers)</li>
 <li>Or build it manually with <code>./macbuild.tool</code></li>
 <li>You want the DBG (debug) build, as it makes it easier to debug issues. Afterwards, you can switch to a REL (release) build.</li>
 </ul>
@@ -653,16 +653,16 @@
 <ul>
 <li>If you want to use OpenCore on a system without UEFI, please follow the <a href="../extras/legacy.md">Legacy Install</a> section first, after you can continue following the <strong>Base folder structure</strong> section</li>
 </ul>
-<p>To start we&apos;ll want to grab ourselves a copy of macOS, you can skip this and head to formatting the USB if you&apos;re just making a bootable OpenCore stick and not an installer. For everyone else, you can either download macOS from the AppStore or with GibMacOS</p>
+<p>To start we&apos;ll want to grab ourselves a copy of macOS, you can skip this and head to formatting the USB if you&apos;re just making a bootable OpenCore stick and not an installer. For everyone else, you can either download macOS from the App Store or with gibMacOS</p>
 <h2 id="downloading-macos">Downloading macOS</h2>
-<p>Now lets grab <a href="https://github.com/corpnewt/gibMacOS" target="_blank">GibMacOS</a> and run the <code>gibMacOS.command</code>:</p>
+<p>Now lets grab <a href="https://github.com/corpnewt/gibMacOS" target="_blank">gibMacOS</a> and run the <code>gibMacOS.command</code>:</p>
 <p><img src="../images/preparations/offline-installer/gib.png" alt=""></p>
 <p>From this, we get a nice list of macOS installers. If you need beta versions of macOS, you can select <code>C. Change Catalog</code>. For this example we&apos;ll choose 1:</p>
 <p><img src="../images/preparations/offline-installer/gib-process.png" alt=""></p>
 <p>This is going to take a while as we&apos;re downloading the entire 8GB+ macOS installer, so highly recommend reading the rest of the guide while you wait.</p>
 <p>Once finished, we&apos;ll next want to run the <code>BuildmacOSInstallApp.command</code>:</p>
 <p><img src="../images/preparations/offline-installer/gib-location.png" alt=""></p>
-<p>It&apos;s gonna ask for the macOS installer files, at the moment they&apos;re in pieces in the <code>macOS Downloads</code> folder found in GibMacOS</p>
+<p>It&apos;s gonna ask for the macOS installer files, at the moment they&apos;re in pieces in the <code>macOS Downloads</code> folder found in gibMacOS</p>
 <p>Once it&apos;s done, you can find it with the rest of the files. I recommend moving it to your applications folder to make things a bit easier with the next section.</p>
 <p><img src="../images/preparations/offline-installer/gib-done.png" alt=""></p>
 <h2 id="setting-up-the-installer">Setting up the installer</h2>
@@ -674,7 +674,7 @@
 <p>This will take some time so may want to grab a coffee or continue reading the guide(to be fair you really shouldn&apos;t be following this guide step by step without reading the whole thing first)</p>
 <p>You can also replace the <code>createinstallmedia</code> path with that of where your installer&apos;s located, same idea with the drive name.</p>
 <h2 id="setting-up-opencores-efi-environment">Setting up OpenCore&apos;s EFI environment</h2>
-<p>Setting up OpenCore&apos;s EFI environment is simple, all you need to do is mount our EFI system partition. This is automatically made when we format with GUID but is unmounted by default, this is where our friend <a href="https://github.com/corpnewt/MountEFI" target="_blank">mountEFI</a> comes in:</p>
+<p>Setting up OpenCore&apos;s EFI environment is simple, all you need to do is mount our EFI system partition. This is automatically made when we format with GUID but is unmounted by default, this is where our friend <a href="https://github.com/corpnewt/MountEFI" target="_blank">MountEFI</a> comes in:</p>
 <p><img src="../images/preparations/offline-installer/mount-efi-usb.png" alt="MountEFI"></p>
 <p>You&apos;ll notice that once we open the EFI partition, it&apos;s empty. This is where the fun begins.</p>
 <p><img src="../images/preparations/offline-installer/base-efi.png" alt="Empty EFI partition"></p>
@@ -721,7 +721,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"next":{"title":"Preparing an online installer","level":"2.2.2","depth":2,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]},"previous":{"title":"Installer creation","level":"2.2","depth":1,"path":"preparations/installer-overview.md","ref":"preparations/installer-overview.md","articles":[{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},{"title":"Preparing an online installer","level":"2.2.2","depth":2,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/offline-installer.md","mtime":"2020-04-24T03:42:17.472Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T03:43:03.308Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"next":{"title":"Preparing an online installer","level":"2.2.2","depth":2,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]},"previous":{"title":"Installer creation","level":"2.2","depth":1,"path":"preparations/installer-overview.md","ref":"preparations/installer-overview.md","articles":[{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},{"title":"Preparing an online installer","level":"2.2.2","depth":2,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/offline-installer.md","mtime":"2020-04-24T07:09:31.068Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T07:10:18.017Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

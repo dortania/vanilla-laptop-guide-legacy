@@ -831,7 +831,7 @@
 </ul>
 </li>
 <li><strong>DisableSingleUser</strong>: NO<ul>
-<li>Disables the use of <code>Cmd+S</code> and <code>-s</code>, this is closer to the behaviour of T2 based machines</li>
+<li>Disables the use of <code>Cmd+S</code> and <code>-s</code>, this is closer to the behavior of T2 based machines</li>
 </ul>
 </li>
 <li><strong>DisableVariableWrite</strong>: NO<ul>
@@ -843,7 +843,7 @@
 </ul>
 </li>
 <li><strong>EnableSafeModeSlide</strong>: YES<ul>
-<li>Allows for slide values to be used in Safemode</li>
+<li>Allows for slide values to be used in Safe mode</li>
 </ul>
 </li>
 <li><strong>EnableWriteUnprotector</strong>: YES<ul>
@@ -851,15 +851,15 @@
 </ul>
 </li>
 <li><strong>ForceExitBootServices</strong>: NO<ul>
-<li>Ensures ExitBootServices calls succeeds even when MemoryMap has changed, don&apos;t use unless necessary</li>
+<li>Ensures ExitBootServices calls succeeds even when the memory map has changed, don&apos;t use unless necessary</li>
 </ul>
 </li>
 <li><strong>ProtectMemoryRegions</strong>: NO<ul>
-<li>Needed for fixing artefacts and sleep-wake issues, generally only needed on very old firmwares</li>
+<li>Needed for fixing artifacts and sleep-wake issues, generally only needed on very old firmwares</li>
 </ul>
 </li>
 <li><strong>ProtectSecureBoot</strong>: NO<ul>
-<li>Fixes secureboot keys on MacPro5,1 and Insyde firmwares</li>
+<li>Fixes Secure Boot keys on MacPro5,1 and Insyde firmwares</li>
 </ul>
 </li>
 <li><strong>ProtectUefiServices</strong>: NO<ul>
@@ -1027,8 +1027,8 @@
 <ul>
 <li>Applies AppleALC audio injection, you&apos;ll need to do your own research on which codec your motherboard has and match it with AppleALC&apos;s layout. <a href="https://github.com/acidanthera/AppleALC/wiki/Supported-codecs" target="_blank">AppleALC Supported Codecs</a>.</li>
 </ul>
-<p>For us, we&apos;ll be using the boot-arg <code>alcid=xxx</code> instead to accomplish this. <code>alcid</code> will override all other layout-IDs present. More info on this is covered in the <a href="../../post-install/">Post-Install Page</a></p>
-<p>Fun Fact: The reason the byte order is swapped is due to <a href="https://en.wikipedia.org/wiki/Endianness" target="_blank">Endianness</a>, specifically Little Endians that modern CPUs use for ordering bytes. The more you know!</p>
+<p>For us, we&apos;ll be using the boot argument <code>alcid=xxx</code> instead to accomplish this. <code>alcid</code> will override all other layout-IDs present. More info on this is covered in the <a href="../../post-install/">Post-Install Page</a></p>
+<p>Fun Fact: The reason the byte order is swapped is because most modern processors are <a href="https://en.wikipedia.org/wiki/Endianness" target="_blank">Little Endian</a>. The more you know!</p>
 <p><strong>Block</strong>: Removes device properties from the map, for us we can ignore this</p>
 <h2 id="kernel">Kernel</h2>
 <p><img src="../../images/config/config-universal/kernel.png" alt="Kernel"></p>
@@ -1135,7 +1135,7 @@
 </ul>
 </li>
 <li><strong>HideAuxiliary</strong>: NO<ul>
-<li>Hides Recovery and other partitions unless spacebar is pressed, more closely matches real Mac behaviour</li>
+<li>Hides Recovery and other partitions unless spacebar is pressed, more closely matches real Mac behavior</li>
 </ul>
 </li>
 <li><strong>HideSelf</strong>: YES<ul>
@@ -1219,7 +1219,7 @@
 </ul>
 </li>
 <li><strong>ScanPolicy</strong>: <code>0</code><ul>
-<li><code>0</code> allows you to see all drives available, please refer to <a href="../../post-install/security.md">Security</a> section for further details. <strong>Will not boot USBs with this set to default</strong></li>
+<li><code>0</code> allows you to see all drives available, please refer to <a href="../../post-install/security.md">Security</a> section for further details. <strong>Will not boot USB devices with this set to default</strong></li>
 </ul>
 </li>
 </ul>
@@ -1265,7 +1265,7 @@
 <ul>
 <li><strong>-v</strong> - this enables verbose mode, which shows all the behind-the-scenes text that scrolls by as you&apos;re booting instead of the Apple logo and progress bar. It&apos;s invaluable to any Hackintosher, as it gives you an inside look at the boot process, and can help you identify issues, problem kexts, etc.</li>
 <li><strong>keepsyms=1</strong> - this is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what&apos;s causing the panic itself.</li>
-<li><strong>debug=0x100</strong>- this disables macOS&apos;s watchdog which helps prevents a reboot on a kernel panic. That way you can <em>hopefully</em> glean some useful info and follow the breadcrumbs to get past the issues.</li>
+<li><strong>debug=0x100</strong> - this disables macOS&apos;s watchdog which helps prevents a reboot on a kernel panic. That way you can <em>hopefully</em> glean some useful info and follow the breadcrumbs to get past the issues.</li>
 <li><strong>alcid=1</strong> - used for setting layout-id for AppleALC, see <a href="https://github.com/acidanthera/applealc/wiki/supported-codecs" target="_blank">supported codecs</a> to figure out which layout to use for your specific system. More info on this is covered in the <a href="../../post-install/">Post-Install Page</a></li>
 <li><strong>-wegnoegpu</strong> - Disables all other GPUs besides the integrated GPU, needed as the dGPUs in laptops are not supported</li>
 </ul>
@@ -1687,7 +1687,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"3.3.2","depth":2,"next":{"title":"Broadwell","level":"3.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"3.3.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/haswell.md","mtime":"2020-04-24T03:42:17.272Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T03:43:03.308Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Haswell","level":"3.3.2","depth":2,"next":{"title":"Broadwell","level":"3.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},"previous":{"title":"Ivy Bridge","level":"3.3.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/haswell.md","mtime":"2020-04-24T07:09:30.868Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-24T07:10:18.017Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
