@@ -14,7 +14,7 @@ These are the drivers used by OpenCore, for the majority of systems you only nee
 
 * [ApfsDriverLoader.efi](https://github.com/acidanthera/AppleSupportPkg/releases)
   * Needed for seeing APFS volumes(ie. macOS)
-* [HFSPlus.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi) **or** [VboxHfs.efi](https://github.com/acidanthera/AppleSupportPkg/releases)
+* [HfsPlus.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi) **or** [VboxHfs.efi](https://github.com/acidanthera/AppleSupportPkg/releases)
   * Needed for seeing HFS volumes(ie. macOS Installers and Recovery partitions/images). **Do not mix HFS drivers**
 * [OpenRuntime.efi](https://github.com/acidanthera/OpenCorePkg/releases)
   * Replacement for [AptioMemoryFix.efi](https://github.com/acidanthera/AptioFixPkg), used as an extension for OpenCore to help with patching boot.efi for NVRAM fixes and better memory management.
@@ -27,8 +27,8 @@ For legacy users:
   * Used for Haswell and older when no NVMe driver is built into the firmware, not needed if you're not using an NVMe drive
 * [XhciDxe.efi](https://github.com/acidanthera/OpenCorePkg/releases)
   * Used for Sandy Bridge and older when no XHCI driver is built into the firmware, not needed if you're not using a USB 3.0 expansion card
-* [HFSPlusLegacy.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlusLegacy.efi)
-  * Legacy variant of HFSPlus, used for systems that lack RDRAND instruction support. This is generally seen on Sandy Bridge and older
+* [HfsPlusLegacy.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlusLegacy.efi)
+  * Legacy variant of HfsPlus, used for systems that lack RDRAND instruction support. This is generally seen on Sandy Bridge and older
 
 For a full list of compatible drivers, see 11.2 Properties in the [OpenCorePkg Docs](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf). These files will go in your Drivers folder in your EFI
 

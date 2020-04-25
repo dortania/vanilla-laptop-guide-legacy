@@ -84,7 +84,7 @@ This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc
 
 | Comment | String | Change XXXX to EC |
 | :--- | :--- | :--- |
-| Enabled | String | YES |
+| Enabled | Boolean | YES |
 | Count | Number | 0 |
 | Limit | Nuber | 0 |
 | Find | Data | xxxxxxxx |
@@ -92,7 +92,7 @@ This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc
 
 | Comment | String | Change _OSI to XOSI |
 | :--- | :--- | :--- |
-| Enabled | String | YES |
+| Enabled | Boolean | YES |
 | Count | Number | 0 |
 | Limit | Nuber | 0 |
 | Find | Data | 5f4f5349 |
@@ -286,7 +286,7 @@ The reason being is that UsbInjectAll reimplements builtin macOS functionality w
 * **ConsoleAttributes**: `0`
   * Sets OpenCore's UI color, won't be covered here but see 8.3.8 of [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf) for more info
 * **PickerAttributes**: `0`
-  * Used for setting custom picker attributes, won't be covered here but see 8.3.8 of [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf) for more info
+  * Used for setting custom picker attributes, use of this setting will be covered in [Post-Install](/extras/gui.md)
 * **PickerAudioAssist**: NO
   * Used for enabling VoiceOver like support in the picker, unless you want your hack talking to you keep this disabled
 * **PollAppleHotKeys**: NO
@@ -459,7 +459,7 @@ We set Generic -> ROM to either an Apple ROM (dumped from a real Mac), your NIC 
 * **SpoofVendor**: YES
   * Swaps vendor field for Acidanthera, generally not safe to use Apple as a vendor in most case
 * **AdviseWindows**: NO
-  * Used for when the EFI partition isn't first on the windows drive
+  * Used for when the EFI partition isn't first on the Windows drive
 
 **UpdateDataHub**: YES
 
