@@ -6,8 +6,8 @@
   "scripts": {
     "testLint": "echo \"Linting...\" && markdownlint *",
     "testSpell": "spellchecker --plugins spell indefinite-article repeated-words syntax-urls --dictionaries dictionary.txt --files '**/*.md'",
-    "test": "npm run testLint && npm run testSpell",
-    "fixSpell": "npm run testLint -- -f",
+    "test": "npm run testLint --silent && npm run testSpell --silent",
+    "fixLint": "npm run testLint --silent -- -f",
     "sortDictionary": "node ./scripts/sortDict.js"
   },
   "repository": {

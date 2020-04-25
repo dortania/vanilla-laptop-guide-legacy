@@ -10,5 +10,12 @@ This is a community ran guide which is not officially endorsed by Acidanthera. P
 
 ## How to Contribute
 
-Generally through PRs. Best way to test your commits and make sure they are formatted correctly is downloading `nodejs` and getting the gitbook-cli tools and markdownlint-cli tool. When you run `gitbook serve`, it will set up a local webserver which you can connect to view the changes you made. `markdownlint *` will throw any errors at you about formatting as well, and `markdownlint -f *` will attempt to fix these.
-`
+Generally through PRs. Best way to test your commits and make sure they are formatted correctly is downloading `nodejs` and getting `gitbook-cli`, `spellchecker-cli`, and `markdownlint-cli`. When you run `gitbook serve`, it will set up a local webserver which you can connect to view the changes you made. Included within the Package.json are several tasks for testing, which can be ran with `npm run <task name>`:
+
+* `npm run testSpell` - Check spelling through spellchecker-cli
+* `npm run testLint` - Run repository through markdownlint-cli
+* `npm run test` - runs both of the above tests
+* `npm run fixLint` - attempt to fix lint issues
+* `npm run sortDict` - sort dictionary.txt
+
+You can add `--silent` to the end of the command to silence the `ERR!` messages from NPM - be sure that the test actually passed though with no errors.

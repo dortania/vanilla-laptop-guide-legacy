@@ -102,7 +102,7 @@ HDDs
 HD[0-9]*
 HEDT
 HFS
-HFSPlus
+HfsPlus
 HM[0-9]{2}
 Hackintosh
 Hackintosher
@@ -336,3 +336,4 @@ trackpads
 unallocated
 unbootable
 webserver
+spellchecker-cli
