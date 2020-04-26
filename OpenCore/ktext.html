@@ -792,9 +792,9 @@
 <li>Required for systems with PS2 keyboards and trackpads</li>
 <li>Trackpad users should also pair this with <a href="https://github.com/acidanthera/VoodooInput/releases" target="_blank">VoodooInput</a>(This must come before VoodooPS2 in your config.plist)</li>
 <li>Order for in Kernel -&gt; Add should be:<ol>
-<li>VoodooInput (Inside VoodooPS2Controller.kext/Contents/PlugIns)</li>
+<li>VoodooInput (Found under VoodooPS2Controller.kext/Contents/PlugIns)</li>
 <li>VoodooPS2Controller</li>
-<li>Rest of the PlugIns inside VoodooPS2Controller.kext/Contents/PlugIns</li>
+<li>Rest of the kexts found under VoodooPS2Controller.kext/Contents/PlugIns</li>
 </ol>
 </li>
 <li>ProperTree will put these in the correct order automatically when using OC Snapshot - be a good idea to double check though.</li>
@@ -812,7 +812,7 @@
 </ul>
 </li>
 <li>Order for in Kernel -&gt; Add should be:<ol>
-<li>VoodooGPIO, VoodooInput, and VoodooI2CServices in any order (In VoodooI2C.kext/Contents/PlugIns)</li>
+<li>VoodooGPIO, VoodooInput, and VoodooI2CServices in any order (Found under VoodooI2C.kext/Contents/PlugIns)</li>
 <li>VoodooI2C</li>
 <li>Satellite/Plugin Kext listed above.</li>
 </ol>
@@ -959,7 +959,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Gathering Files","level":"3.1","depth":1,"next":{"title":"Getting started with ACPI","level":"3.2","depth":1,"url":"https://dortania.github.io/Getting-Started-With-ACPI/","ref":"https://dortania.github.io/Getting-Started-With-ACPI/","articles":[]},"previous":{"title":"Setting Up OpenCore","level":"2.3","depth":1,"path":"preparations/opencore-efi.md","ref":"preparations/opencore-efi.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ktext.md","mtime":"2020-04-26T21:30:39.184Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-26T21:31:32.627Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Gathering Files","level":"3.1","depth":1,"next":{"title":"Getting started with ACPI","level":"3.2","depth":1,"url":"https://dortania.github.io/Getting-Started-With-ACPI/","ref":"https://dortania.github.io/Getting-Started-With-ACPI/","articles":[]},"previous":{"title":"Setting Up OpenCore","level":"2.3","depth":1,"path":"preparations/opencore-efi.md","ref":"preparations/opencore-efi.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ktext.md","mtime":"2020-04-26T21:42:17.675Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-26T21:43:05.752Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
