@@ -71,7 +71,7 @@ This will go over using gdisk, though you can use other utilities that you are c
     4. Enter `w` to write changes to the USB
     5. Close by entering `q`
 3. Verify USB was formatted correctly with `lsblk`
-4. Run `mkfs.vfat -F 32 -n "EFI" /dev/<your partition>` to format the 200MB block to FAT32 and to name it "EFI"
+4. Run `mkfs.vfat -F 32 -n "macOS" /dev/<your partition>` to format the partition you created to FAT32 and to name it "macOS"
 5. Mount the USB by running `mount /dev/<your partition> /mnt`
 6. `cd` to your USB by running `cd /mnt` and create a folder with `mkdir com.apple.recovery.boot`. This will be where we put the Recovery image.
 7. `cd` to the .pkg you downloaded under `macOS downloads` in the gibMacOS folder
@@ -80,7 +80,7 @@ This will go over using gdisk, though you can use other utilities that you are c
     * `sudo pacman -S p7zip` for Arch
 9. Run `7z e -txar *.pkg *.dmg; 7z e *.dmg */Base*`. This extracts the recovery from the pkg by extracting the initial update package, then extracting the BaseSystem damage.
     ![RecoveryHDMetaDmg.pkg extraction](/images/preparations/LinooxExtract.jpg)
-    ![File listing](/images/Preparations/LinooxLS.jpg)
+    ![File listing](/images/preparations/LinooxLS.jpg)
 10. Once you find `BaseSystem.dmg` and `BaseSystem.chunklist`, copy these to `com.apple.recovery.boot` on the USB.
 11. You are ready to continue and download/configure OpenCore
 
