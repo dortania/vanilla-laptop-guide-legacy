@@ -73,6 +73,10 @@
     font-family: "SF Mono", "Anonymous Pro", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
+.page-inner {
+	max-width: 1200px;
+}
+
 .gitbook-link {
     display: none !important
 }
