@@ -1,5 +1,7 @@
 
 
+
+
 (15|16)h
 (No)?TouchID
 .aml
@@ -186,8 +188,8 @@ PRs
 PS2
 PciRoot
 PlatformInfo
-PlistPath
 Plist
+PlistPath
 Plists
 Pre-Allocated
 ProperTree
@@ -246,9 +248,12 @@ VMs
 VSCode
 VirtualSMC
 VoiceOver
+VoodooGPIO
 VoodooI2C
+VoodooI2CServices
 VoodooInput
 VoodooPS2
+VoodooPS2Controller
 VoodooTSCSync
 WHFR
 WIP
@@ -259,6 +264,7 @@ X99
 XCPM
 XHCI
 XNU
+XOSI
 XPoint
 Xeon
 Xeons

@@ -48,6 +48,8 @@ All kext listed below can be found **pre-compiled** in the [Kext Repository](htt
 
 **VirtualSMC Plugins**:
 
+Note that these come in the release/debug downloads for VirtualSMC
+
 * SMCProcessor.kext
   * Used for monitoring CPU temperature
 * SMCSuperIO.kext
@@ -114,6 +116,11 @@ The order in `Kernel -> Add` should be:
 * [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases)
   * Required for systems with PS2 keyboards and trackpads
   * Trackpad users should also pair this with [VoodooInput](https://github.com/acidanthera/VoodooInput/releases)(This must come before VoodooPS2 in your config.plist)
+  * Order for in Kernel -> Add should be:
+    1. VoodooInput (Inside VoodooPS2Controller.kext/Contents/PlugIns)
+    2. VoodooPS2Controller
+    3. Rest of the PlugIns inside VoodooPS2Controller.kext/Contents/PlugIns
+  * ProperTree will put these in the correct order automatically when using OC Snapshot - be a good idea to double check though.
 
 * [VoodooI2C](https://github.com/alexandred/VoodooI2C/releases)
   * Used for fixing I2C devices, found with some fancier touchpads and touchscreen machines
@@ -123,6 +130,11 @@ The order in `Kernel -> Add` should be:
     * VoodooI2CSynaptics - Implements support for Synaptic's proprietary devices.
     * VoodooI2CFTE - Implements support for the FTE1001 touchpad.
     * VoodooI2CUPDDEngine - Implements Touchbase driver support.
+  * Order for in Kernel -> Add should be:
+    1. VoodooGPIO, VoodooInput, and VoodooI2CServices in any order (In VoodooI2C.kext/Contents/PlugIns)
+    2. VoodooI2C
+    3. Satellite/Plugin Kext listed above.
+  * ProperTree will put these in the correct order automatically when using OC Snapshot - be a good idea to double check though.
 
 To figure out what kind of keyboard and trackpad you have, check Device Manager in Windows or `dmesg |grep input` in Linux
 

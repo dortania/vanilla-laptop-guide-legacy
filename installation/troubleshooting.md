@@ -17,3 +17,13 @@ Make sure that VoodooInput is listed *before* VoodooPS2 and VoodooI2C kexts.
 
 ![Scrambled Screen](/images/install/Scrambled.jpg)
 Enable CSM in your UEFI settings. This may appear as "Boot legacy ROMs" or other legacy setting.
+
+### VoodooI2C Troubleshooting
+
+Check the order that your kexts load - make they match what is shown under [Gathering Files](/OpenCore/ktext.md):
+
+1. VoodooGPIO, VoodooInput, and VoodooI2CServices in any order (In VoodooI2C.kext/Contents/PlugIns)
+2. VoodooI2C
+3. Satellite/Plugin Kext listed above.
+
+Make sure you have both _OSI to XOSI enabled as well, and SSDT-XOSI under ACPI -> Add
