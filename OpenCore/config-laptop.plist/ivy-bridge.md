@@ -91,18 +91,8 @@ This blocks certain ACPI tables from loading, for us we really care about this. 
 
 This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. For us, we'll need a couple:
 
-* EC Rename
-  * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://dortania.github.io/Getting-Started-With-ACPI/) on how to determine what EC you have and apply the appropriate patches
 * OSI rename
   * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT, **this is not needed if you're using SSDT-GPIO**
-
-| Comment | String | Change XXXX to EC |
-| :--- | :--- | :--- |
-| Enabled | Boolean | YES |
-| Count | Number | 0 |
-| Limit | Nuber | 0 |
-| Find | Data | xxxxxxxx |
-| Replace | Data | 45435f5f |
 
 | Comment | String | Change _OSI to XOSI |
 | :--- | :--- | :--- |
