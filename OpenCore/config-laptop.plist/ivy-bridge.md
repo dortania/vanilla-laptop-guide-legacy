@@ -52,14 +52,12 @@ This is where you'll add SSDTs for your system, these are very important to **bo
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
 
-* [CPU-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)
-  * Needed for proper CPU power management, you will need to run Pike's ssdtPRGen.sh script to generate this file. This will be run in post install.
-* [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
-  * Adds brightness control support
-* [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)
-  * Used for enabling Windows features in macOS, mainly needed for I2C controllers, **this is not needed if you're using SSDT-GPIO**
-* [SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)
-  * Creates a stub so VoodooI2C can connect
+| Required_SSDTs | Description |
+| :--- | :--- |
+| **[SSDT-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)** | Needed for proper CPU power management, you will need to run Pike's ssdtPRGen.sh script to generate this file. This will be run in [post install](/post-install/README.md). |
+| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. |
+| **[SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)** | Creates a stub so VoodooI2C can connect, for those having troubles getting VoodooI2C working can try [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml) instead |
+| **[SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)** | Adds brightness control support |
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/OC/ACPI.
 

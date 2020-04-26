@@ -52,18 +52,14 @@ This is where you'll add SSDTs for your system, these are very important to **bo
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
 
-* [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-  * Allows for native CPU power management on Haswell and newer, Clover alternative would be under `Acpi -> GenerateOptions -> PluginType`
-* [SSDT-AWAC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl)
-  * This is the [300 series RTC patch](https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2), required for 9th gen and newer boards which prevent systems from booting macOS. The alternative is [SSDT-RTC0](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-RTC0.dsl) for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see [Getting started with ACPI](https://dortania.github.io/Getting-Started-With-ACPI/) page.
-* [SSDT-PMC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl)
-  * 9th gen and newer don't declare the FW chip as MMIO in ACPI and so XNU ignores the MMIO region declared by the UEFI memory map. This SSDT brings back NVRAM support and uses the scope `PCI0.LPCB`, this is the most common scope so a pre-made can be found here: [SSDT-PMC.aml](https://github.com/dortania/Opencore-Desktop-Guide/blob/master/extra-files/SSDT-PMC.aml)
-* [SSDT-PNLFCFL](https://i.applelife.ru/2019/12/463488_SSDT-PNLFCFL.aml.zip)
-  * Adds brightness control support
-* [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)
-  * Used for enabling Windows features in macOS, mainly needed for I2C controllers, **this is not needed if you're using SSDT-GPIO**
-* [SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)
-  * Creates a stub so VoodooI2C can connect
+| Required_SSDTs | Description |
+| :--- | :--- |
+| **[SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)** | Allows for native CPU power management on Haswell and newer |
+| **[SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. This SSDT also has a second function, USBX. This is used for forcing USB power properties, requires SSDT-EC so this just jumbles them together. |
+| **[SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)** | Creates a stub so VoodooI2C can connect, for those having troubles getting VoodooI2C working can try [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml) instead |
+| **[SSDT-PNLFCFL](https://i.applelife.ru/2019/12/463488_SSDT-PNLFCFL.aml.zip)** | Adds brightness control support |
+| **[SSDT-AWAC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl)** | This is the [300 series RTC patch](https://www.hackintosh-forum.de/forum/thread/39846-asrock-z390-taichi-ultimate/?pageNo=2), required for most B360, B365, H310, H370, Z390 and some Z370 boards which prevent systems from booting macOS. The alternative is [SSDT-RTC0](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-RTC0.dsl) for when AWAC SSDT is incompatible due to missing the Legacy RTC clock, to check whether you need it and which to use please see [Getting started with ACPI](../extras/acpi.md) page. |
+| **[SSDT-PMC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl)** | So true 300 series motherboards(non-Z370) don't declare the FW chip as MMIO in ACPI and so XNU ignores the MMIO region declared by the UEFI memory map. This SSDT brings back NVRAM support and uses the scope `PCI0.LPCB`, this is the most common scope so a pre-made can be found here: [SSDT-PMC.aml](https://github.com/dortania/Opencore-Desktop-Guide/blob/master/extra-files/SSDT-PMC.aml) |
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/OC/ACPI.
 
