@@ -68,19 +68,19 @@ ProperTree makes this much easier to deal with. The same example used above look
 
 Key value pairs are put side by side, so it's clear what value is for what key. Also allows you to right click and add new values easily and drag around entries. In addition, ProperTree also has a utility called "OC Snapshot" which will automatically add in all of your kexts, drivers, and SSDTs from your EFI. OC Snapshot Clear does the same thing but will also delete old kexts/drivers/SSDTs and re-add them all (in case the order gets screwed up).
 
-## Opencore's Plist Structure
+## OpenCore's Plist Structure
 
-OpenCore seperates their config.plist into 8 sections - ACPI, Booter, DeviceProperties, Kernel, Misc, NVRAM, PlatformInfo, and UEFI. Each section (other than NVRAM, Misc, and PlatformInfo) have a set of options called "Quirks" in addition to other properties in those sections. As always, the best place for information is [directly from their repository](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf), though we'll summarize each section here and what they are used for.
+OpenCore separates their config.plist into 8 sections - ACPI, Booter, DeviceProperties, Kernel, Misc, NVRAM, PlatformInfo, and UEFI. Each section (other than NVRAM, Misc, and PlatformInfo) have a set of options called "Quirks" in addition to other properties in those sections. As always, the best place for information is [directly from their repository](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf), though we'll summarize each section here and what they are used for.
 
-| Section | Purpose|
+| Section | Purpose |
 | --- | --- |
 | ACPI | Where you add, remove, or binary patch ACPI tables. |
 | Booter | Controls OpenRuntime.efi and OC's AppleBootCompatibility code for modifying the environment in which macOS boots in. This is generally what your editing if your getting boot failures in macOS's boot.efi |
 | DeviceProperties | Add properties to devices - usually used for ig-platform-id on iGPUs, as well as device-id or other settings. Many kexts also look here for options (like alc-layout-id for AppleALC) |
 | Kernel | Add, patch, and block Kexts from loading. In addition, there are various quirks used for built-in kernel patches that are a part of OpenCore |
-| Misc | Various options for OpenCore that don't really fit anywhere else. There is where security and debug settings reside
+| Misc | Various options for OpenCore that don't really fit anywhere else. There is where security and debug settings reside |
 | NVRAM | Add or block NVRAM entries. This is where boot-args are set. In addition, there is where you set up fake NVRAM if needed |
 | PlatformInfo | Where you set SMBIOS fields like model, serial number, MLB, etc.
 | UEFI | Where additional UEFI drivers are loaded, as well as where you can set up things like BootChime, OC's APFS driver, Text Output, and various other firmware quirks ) |
 
-It is highly recomended to look through the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blobl/master/Docs/Configuration.pdf). Once your system is set up, you should specifically look through the Misc and UEFI section to configure OpenCore as you like with settings such as `PollAppleHotKeys`.
+It is highly recommended to look through the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blobl/master/Docs/Configuration.pdf). Once your system is set up, you should specifically look through the Misc and UEFI section to configure OpenCore as you like with settings such as `PollAppleHotKeys`.
