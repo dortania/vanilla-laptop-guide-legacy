@@ -700,6 +700,51 @@
 <p>ProperTree makes this much easier to deal with. The same example used above looks something like this:</p>
 <p><img src="../images/overview/propertree.jpg" alt="ProperTree"></p>
 <p>Key value pairs are put side by side, so it&apos;s clear what value is for what key. Also allows you to right click and add new values easily and drag around entries. In addition, ProperTree also has a utility called &quot;OC Snapshot&quot; which will automatically add in all of your kexts, drivers, and SSDTs from your EFI. OC Snapshot Clear does the same thing but will also delete old kexts/drivers/SSDTs and re-add them all (in case the order gets screwed up).</p>
+<h2 id="opencores-plist-structure">Opencore&apos;s Plist Structure</h2>
+<p>OpenCore seperates their config.plist into 8 sections - ACPI, Booter, DeviceProperties, Kernel, Misc, NVRAM, PlatformInfo, and UEFI. Each section (other than NVRAM, Misc, and PlatformInfo) have a set of options called &quot;Quirks&quot; in addition to other properties in those sections. As always, the best place for information is <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf" target="_blank">directly from their repository</a>, though we&apos;ll summarize each section here and what they are used for.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACPI</td>
+<td>Where you add, remove, or binary patch ACPI tables.</td>
+</tr>
+<tr>
+<td>Booter</td>
+<td>Controls OpenRuntime.efi and OC&apos;s AppleBootCompatibility code for modifying the environment in which macOS boots in. This is generally what your editing if your getting boot failures in macOS&apos;s boot.efi</td>
+</tr>
+<tr>
+<td>DeviceProperties</td>
+<td>Add properties to devices - usually used for ig-platform-id on iGPUs, as well as device-id or other settings. Many kexts also look here for options (like alc-layout-id for AppleALC)</td>
+</tr>
+<tr>
+<td>Kernel</td>
+<td>Add, patch, and block Kexts from loading. In addition, there are various quirks used for built-in kernel patches that are a part of OpenCore</td>
+</tr>
+<tr>
+<td>Misc</td>
+<td>Various options for OpenCore that don&apos;t really fit anywhere else. There is where security and debug settings reside</td>
+</tr>
+<tr>
+<td>NVRAM</td>
+<td>Add or block NVRAM entries. This is where boot-args are set. In addition, there is where you set up fake NVRAM if needed</td>
+</tr>
+<tr>
+<td>PlatformInfo</td>
+<td>Where you set SMBIOS fields like model, serial number, MLB, etc.</td>
+</tr>
+<tr>
+<td>UEFI</td>
+<td>Where additional UEFI drivers are loaded, as well as where you can set up things like BootChime, OC&apos;s APFS driver, Text Output, and various other firmware quirks )</td>
+</tr>
+</tbody>
+</table>
+<p>It is highly recomended to look through the <a href="https://github.com/acidanthera/OpenCorePkg/blobl/master/Docs/Configuration.pdf" target="_blank">Configuration.pdf</a>. Once your system is set up, you should specifically look through the Misc and UEFI section to configure OpenCore as you like with settings such as <code>PollAppleHotKeys</code>.</p>
 
                                 
                                 </section>
@@ -739,7 +784,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"PLIST Structure","level":"1.6","depth":1,"next":{"title":"Multiboot","level":"2.1","depth":1,"url":"https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/","ref":"https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/","articles":[]},"previous":{"title":"Terminology","level":"1.5","depth":1,"path":"overview/terminology.md","ref":"overview/terminology.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/plist.md","mtime":"2020-04-26T01:35:55.747Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-26T01:36:40.812Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"PLIST Structure","level":"1.6","depth":1,"next":{"title":"Multiboot","level":"2.1","depth":1,"url":"https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/","ref":"https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/","articles":[]},"previous":{"title":"Terminology","level":"1.5","depth":1,"path":"overview/terminology.md","ref":"overview/terminology.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/plist.md","mtime":"2020-04-26T02:39:32.896Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-26T02:40:23.495Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
