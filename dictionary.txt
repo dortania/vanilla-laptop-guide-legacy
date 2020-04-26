@@ -346,3 +346,4 @@ trackpads
 unallocated
 unbootable
 webserver
+GPIO
