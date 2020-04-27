@@ -12,8 +12,8 @@ Term | Description
 ---
 Term | Description
 --- | ---
-**Clover**  | a piece of software made by the [Clover team](https://sourceforge.net/projects/cloverefiboot/) that have a lot of features like patching and/or booting macOS/OS X/Mac OS X, Windows and Unix/Linux OSes and many other features. It is the go-to **boot manager** for hackintoshing.
 **OpenCore**   | the new hotness on the hackintosh scene, made with security in mind by the [Acidanthera team](https://github.com/acidanthera), has faster booting and lighter weight than Clover. It is a lot more work to set up but also supports many things a lot more natively than Clover (like Hibernation, FileVault 2, Boot HotKeys...).
+**Clover**  | A bootloader now considered legacy with the release of OpenCore, this guide will not be covering uses of this product.
 **ACPI**  | the Advanced Configuration and Power Interface (ACPI) provides an open standard that operating systems can use to discover and configure computer hardware components, to perform power management by (for example) putting unused components to sleep, and to perform status monitoring. (sauce: trusty Wikipedia)
 **Kexts**   | also known as **K**ernel **Ext**ensions, are macOS's drivers. They're used to perform different tasks like device drivers or for a different purpose (in hackintoshing) like patching the OS or injecting information or running tasks. Kexts are not the only part of a good hackintosh, they're sometimes paired with ACPI patches and fixes.
 **BIOS**  | the Basic Input/Output System is firmware used to perform hardware initialization during the booting process (power-on startup), and to provide runtime services for operating systems and programs. The BIOS firmware comes pre-installed on a personal computer's system board, and it is the first software to run when powered on. (sauce: trusty Wikipedia) It's a legacy piece of software that was made back in the 70s and still used to this day due to its maturity.

@@ -347,3 +347,9 @@ unallocated
 unbootable
 webserver
 GPIO
+I211
+Asus
+SmallTree
+LucyRTL8125Ethernet
+Realtek
+Journaled
