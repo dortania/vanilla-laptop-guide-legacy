@@ -2,6 +2,7 @@
 
 
 
+
 (15|16)h
 (No)?TouchID
 .aml
@@ -34,6 +35,7 @@ AppleIntelCPUPM
 AppleIntelCPUPowerManagement
 AppleSupportPkg
 AptioMemoryFix
+Asus
 Asus
 Atheros
 AtherosE2200Ethernet
@@ -95,6 +97,7 @@ FakeSMC
 Fenvi
 FileVault
 Framebuffer
+GPIO
 GPT
 GPUs
 GT2
@@ -116,6 +119,7 @@ HfsPlus
 HiDPI
 HoRNDIS
 Hx6x
+I211
 I211-AT
 I2C
 I7,
@@ -130,6 +134,7 @@ Icelake
 Insyde
 IntelMausiEthernet
 IvyBridge
+Journaled
 KBL-R
 Kaby
 KabyLake
@@ -143,6 +148,7 @@ LapicKernelPanic
 LegacyEnable
 Lenovo
 Lilu
+LucyRTL8125Ethernet
 MLB
 MMIO
 MSR
@@ -202,6 +208,7 @@ R[5|7]
 Radeon
 Ramus
 Realtek
+Realtek
 RealtekRTL8111
 Rehabman
 Reinstalls
@@ -218,6 +225,7 @@ SSDs
 SetVirtualAddresses
 Skylake
 Skylake-X
+SmallTree
 SmallTreeIntel82576
 Speccy
 Subreddit
@@ -346,10 +354,3 @@ trackpads
 unallocated
 unbootable
 webserver
-GPIO
-I211
-Asus
-SmallTree
-LucyRTL8125Ethernet
-Realtek
-Journaled
