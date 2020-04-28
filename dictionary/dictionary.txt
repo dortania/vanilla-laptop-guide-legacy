@@ -27,7 +27,6 @@ AppleIntelCPUPowerManagement
 AppleSupportPkg
 AptioMemoryFix
 Asus
-Asus
 Atheros
 AtherosE2200Ethernet
 AudioDxe
@@ -131,7 +130,6 @@ LVDS
 Lenovo
 Lilu
 LucyRTL8125Ethernet
-MLB
 MMIO
 MSR
 MSR_FLEX_RATIO
@@ -188,7 +186,6 @@ R[5|7]
 Radeon
 Ramus
 Realtek
-Realtek
 RealtekRTL8111
 Rehabman
 Reinstalls
@@ -215,7 +212,6 @@ TSCAdjustReset
 TetherMe
 TextMode
 ThinkPad
-Thinkpad
 Thinkpad
 Threadripper
 Touchbase
@@ -258,7 +254,6 @@ Z97
 \.efi
 base64
 bitmask
-boot-args
 boot-args
 bootable
 bootloader

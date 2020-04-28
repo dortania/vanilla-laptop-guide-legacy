@@ -12,6 +12,9 @@ let ocDictionary = fs.readFileSync("../dictionary/opencorekeys.txt", { encoding:
 dictionary = dictionary.filter(string => string != "");
 ocDictionary = ocDictionary.filter(string => string != "");
 
+dictionary = dictionary.filter((string, index) => dictionary.indexOf(string) == index);
+ocDictionary = ocDictionary.filter((string, index) => ocDictionary.indexOf(string) == index);
+
 dictionary = dictionary.filter(string => !ocDictionary.includes(string));
 
 console.log("Sorting...");
