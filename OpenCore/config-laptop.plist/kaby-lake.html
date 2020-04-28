@@ -276,9 +276,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" >
+        <li class="chapter " data-level="3.2" data-path="../acpi.html">
             
-                <a target="_blank" href="https://dortania.github.io/Getting-Started-With-ACPI/">
+                <a href="../acpi.html">
             
                     
                     Getting started with ACPI
@@ -715,7 +715,7 @@
 <p><strong>Block:</strong></p>
 <p>This blocks certain ACPI tables from loading, for us we can ignore this</p>
 <p><strong>Patch</strong>:</p>
-<p>This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we&apos;ll need a couple:</p>
+<p>This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we&apos;ll need the following:</p>
 <ul>
 <li>OSI rename<ul>
 <li>This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT, <strong>this is not needed if you&apos;re using SSDT-GPIO</strong></li>
@@ -1334,17 +1334,53 @@
 </ul>
 <p>7C436110-AB2A-4BBB-A880-FE41995C9F82 (System Integrity Protection bitmask)</p>
 <ul>
-<li><p><strong>boot-args</strong>:</p>
-<ul>
-<li><strong>-v</strong> - this enables verbose mode, which shows all the behind-the-scenes text that scrolls by as you&apos;re booting instead of the Apple logo and progress bar. It&apos;s invaluable to any Hackintosher, as it gives you an inside look at the boot process, and can help you identify issues, problem kexts, etc.</li>
-<li><strong>keepsyms=1</strong> - this is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what&apos;s causing the panic itself.</li>
-<li><strong>debug=0x100</strong> - this disables macOS&apos;s watchdog which helps prevents a reboot on a kernel panic. That way you can <em>hopefully</em> glean some useful info and follow the breadcrumbs to get past the issues.</li>
-<li><strong>alcid=1</strong> - used for setting layout-id for AppleALC, see <a href="https://github.com/acidanthera/applealc/wiki/supported-codecs" target="_blank">supported codecs</a> to figure out which layout to use for your specific system. More info on this is covered in the <a href="../../post-install/">Post-Install Page</a></li>
-<li><strong>-wegnoegpu</strong> - Disables all other GPUs besides the integrated GPU, needed as the dGPUs in laptops are not supported</li>
+<li><strong>General Purpose boot-args</strong>:</li>
 </ul>
-</li>
-<li><p><strong>csr-active-config</strong>: Settings for SIP, generally recommended to manually change this within Recovery partition with <code>csrutil</code> via the recovery partition</p>
-</li>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">boot-args</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>-v</strong></td>
+<td style="text-align:left">This enables verbose mode, which shows all the behind-the-scenes text that scrolls by as you&apos;re booting instead of the Apple logo and progress bar. It&apos;s invaluable to any Hackintosher, as it gives you an inside look at the boot process, and can help you identify issues, problem kexts, etc.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>debug=0x100</strong></td>
+<td style="text-align:left">This disables macOS&apos;s watchdog which helps prevents a reboot on a kernel panic. That way you can <em>hopefully</em> glean some useful info and follow the breadcrumbs to get past the issues.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>keepsyms=1</strong></td>
+<td style="text-align:left">This is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what&apos;s causing the panic itself.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>alcid=1</strong></td>
+<td style="text-align:left">Used for setting layout-id for AppleALC, see <a href="https://github.com/acidanthera/applealc/wiki/supported-codecs" target="_blank">supported codecs</a> to figure out which layout to use for your specific system. More info on this is covered in the <a href="../../post-install/audio.md">Post-Install Page</a></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>GPU-Specific boot-args</strong>:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">boot-args</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>-wegnoegpu</strong></td>
+<td style="text-align:left">Used for disabling all other GPUs than the integrated Intel iGPU, useful for those wanting to run newer versions of macOS where their dGPU isn&apos;t supported</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>csr-active-config</strong>: Settings for SIP, generally recommended to manually change this within Recovery partition with <code>csrutil</code> via the recovery partition</li>
 </ul>
 <p>csr-active-config is set to <code>00000000</code> which enables System Integrity Protection. You can choose a number of other options to enable/disable sections of SIP. Some common ones are as follows:</p>
 <ul>
@@ -1686,7 +1722,7 @@ SmUUID:       AA043F8D-33B6-4A1A-94F7-46972AAD0607
 <li>Fast Boot</li>
 <li>VT-d (can be enabled if you set <code>DisableIoMapper</code> to YES)</li>
 <li>CSM</li>
-<li>Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)(For initial install, as Thunderbolt can cause issues if not setup correctly)</li>
+<li>Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)</li>
 <li>Intel SGX</li>
 <li>Intel Platform Trust</li>
 <li>CFG Lock (MSR 0xE2 write protection)(<strong>This must be off, if you can&apos;t find the option then enable both <code>AppleCpuPmCfgLock</code> and <code>AppleXcpmCfgLock</code> under Kernel -&gt; Quirks. Your hack will not boot with CFG-Lock enabled</strong>)</li>
@@ -1745,7 +1781,7 @@ SmUUID:       AA043F8D-33B6-4A1A-94F7-46972AAD0607
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Kaby Lake","level":"3.3.5","depth":2,"next":{"title":"Coffee Lake(8th Gen)","level":"3.3.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"previous":{"title":"Skylake","level":"3.3.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/kaby-lake.md","mtime":"2020-04-28T00:42:58.348Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-28T00:43:47.407Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Kaby Lake","level":"3.3.5","depth":2,"next":{"title":"Coffee Lake(8th Gen)","level":"3.3.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},"previous":{"title":"Skylake","level":"3.3.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/kaby-lake.md","mtime":"2020-04-28T17:21:24.428Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-28T17:22:14.167Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

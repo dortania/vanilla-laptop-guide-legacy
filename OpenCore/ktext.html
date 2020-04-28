@@ -66,6 +66,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="acpi.html" />
+    
     
     <link rel="prev" href="../preparations/opencore-efi.html" />
     
@@ -274,9 +276,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" >
+        <li class="chapter " data-level="3.2" data-path="acpi.html">
             
-                <a target="_blank" href="https://dortania.github.io/Getting-Started-With-ACPI/">
+                <a href="acpi.html">
             
                     
                     Getting started with ACPI
@@ -717,7 +719,7 @@
 <ul>
 <li><a href="https://github.com/acidanthera/WhateverGreen/releases" target="_blank">WhateverGreen</a><ul>
 <li>Used for graphics patching DRM, boardID, framebuffer fixes, etc, all GPUs benefit from this kext.</li>
-<li>Note the SSDT-PNLF.dsl file included is only required for laptops and AIOs, see * <a href="../extras/acpi.md">Getting started with ACPI</a> for more info</li>
+<li>Note the SSDT-PNLF.dsl file included is only required for laptops and AIOs, see <a href="acpi.html">Getting started with ACPI</a> for more info</li>
 </ul>
 </li>
 </ul>
@@ -835,7 +837,7 @@
 <p>Please refer to <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Kexts.md" target="_blank">Kexts.md</a> for a full list of supported kexts</p>
 <h2 id="ssdts">SSDTs</h2>
 <p>So you see all those SSDTs in the AcpiSamples folder and wonder whether you need any of them. For us, we will be going over what SSDTs you need in <strong>your specific ACPI section of the config.plist</strong>, as the SSDTs you need are platform specific. With some even system specific where they need to be configured and you can easily get lost if I give you a list of SSDTs to choose from now.</p>
-<p><a href="../extras/acpi.md">Getting started with ACPI</a> has an extended section on SSDTs including compiling them on different platforms.</p>
+<p><a href="acpi.html">Getting started with ACPI</a> has an extended section on SSDTs including compiling them on different platforms.</p>
 <p>A quick TL;DR of needed SSDTs(This is source code, you will have to compile them into a .aml file):</p>
 <table>
 <thead>
@@ -951,10 +953,14 @@
 
             
                 
-                <a href="../preparations/opencore-efi.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Setting Up OpenCore">
+                <a href="../preparations/opencore-efi.html" class="navigation navigation-prev " aria-label="Previous page: Setting Up OpenCore">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="acpi.html" class="navigation navigation-next " aria-label="Next page: Getting started with ACPI">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -963,7 +969,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Gathering Files","level":"3.1","depth":1,"next":{"title":"Getting started with ACPI","level":"3.2","depth":1,"url":"https://dortania.github.io/Getting-Started-With-ACPI/","ref":"https://dortania.github.io/Getting-Started-With-ACPI/","articles":[]},"previous":{"title":"Setting Up OpenCore","level":"2.3","depth":1,"path":"preparations/opencore-efi.md","ref":"preparations/opencore-efi.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ktext.md","mtime":"2020-04-28T00:42:58.348Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-28T00:43:47.407Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Gathering Files","level":"3.1","depth":1,"next":{"title":"Getting started with ACPI","level":"3.2","depth":1,"path":"OpenCore/acpi.md","ref":"OpenCore/acpi.md","articles":[]},"previous":{"title":"Setting Up OpenCore","level":"2.3","depth":1,"path":"preparations/opencore-efi.md","ref":"preparations/opencore-efi.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ktext.md","mtime":"2020-04-28T17:21:24.428Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-28T17:22:14.167Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

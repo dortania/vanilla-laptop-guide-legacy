@@ -276,9 +276,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" >
+        <li class="chapter " data-level="3.2" data-path="../OpenCore/acpi.html">
             
-                <a target="_blank" href="https://dortania.github.io/Getting-Started-With-ACPI/">
+                <a href="../OpenCore/acpi.html">
             
                     
                     Getting started with ACPI
@@ -652,23 +652,23 @@
 </tr>
 <tr>
 <td><strong>Linux</strong></td>
-<td>is a family of open source Unix-like operating systems based on the Linux kernel, an operating system kernel first released on September 17, 1991, by Linus Torvalds. Linux is typically packaged in a Linux distribution. (sauce: trusty Wikipedia)  </td>
+<td>Family of open source Unix-like operating systems based on the Linux kernel, an operating system kernel first released on September 17, 1991, by Linus Torvalds. Linux is typically packaged in a Linux distribution. (sauce: trusty Wikipedia)  </td>
 </tr>
 <tr>
 <td><strong>Distros</strong></td>
-<td>short for Distributions. Linux distros are how Linux is distributed. However when it comes to macOS, it&apos;s a mixed macOS installer with a bunch of tools that are not from Apple, <strong>do not use macOS Distros</strong>.  </td>
+<td>Short for Distributions. Linux distros are how Linux is distributed. However when it comes to macOS, it&apos;s a mixed macOS installer with a bunch of tools that are not from Apple, <strong>do not use macOS Distros</strong>.  </td>
 </tr>
 <tr>
 <td><strong>Hackintosh</strong></td>
-<td>the process of installing macOS onto a PC, note that <strong>hackintosh IS NOT the OS</strong>, it can also refer to the machine that was &quot;hacked&quot; to get macOS running on it. EG: <em>I installed macOS on this Windows machine, therefore I have a hackintosh. But I did NOT install &quot;hackintosh&quot;.</em>  </td>
+<td>The process of installing macOS onto a PC, note that <strong>hackintosh IS NOT the OS</strong>, it can also refer to the machine that was &quot;hacked&quot; to get macOS running on it. EG: <em>I installed macOS on this Windows machine, therefore I have a hackintosh. But I did NOT install &quot;hackintosh&quot;.</em>  </td>
 </tr>
 <tr>
 <td><strong>Bootloader</strong></td>
-<td>a piece of software that loads an OS, usually made by the OS creators. OpenCore <strong>IS NOT</strong> a bootloader per se (explanation down below).</td>
+<td>Piece of software that loads an OS, usually made by the OS creators. OpenCore <strong>IS NOT</strong> a bootloader per se (explanation down below).</td>
 </tr>
 <tr>
 <td><strong>Boot Manager</strong></td>
-<td>a piece of software that manages bootloaders, and we have many of those: Clover, systemd-boot, OpenCore, rEFInd, rEFIt...</td>
+<td>Piece of software that manages bootloaders, and we have many of those: Clover, systemd-boot, OpenCore, rEFInd, rEFIt...</td>
 </tr>
 </tbody>
 </table>
@@ -683,7 +683,7 @@
 <tbody>
 <tr>
 <td><strong>OpenCore</strong></td>
-<td>the new hotness on the hackintosh scene, made with security in mind by the <a href="https://github.com/acidanthera" target="_blank">Acidanthera team</a>, has faster booting and lighter weight than Clover. It is a lot more work to set up but also supports many things a lot more natively than Clover (like Hibernation, FileVault 2, Boot HotKeys...).</td>
+<td>The new hotness on the hackintosh scene, made with security in mind by the <a href="https://github.com/acidanthera" target="_blank">Acidanthera team</a>, has faster booting and lighter weight than Clover. It is a lot more work to set up but also supports many things a lot more natively than Clover (like Hibernation, FileVault 2, Boot HotKeys...).</td>
 </tr>
 <tr>
 <td><strong>Clover</strong></td>
@@ -691,15 +691,15 @@
 </tr>
 <tr>
 <td><strong>ACPI</strong></td>
-<td>the Advanced Configuration and Power Interface (ACPI) provides an open standard that operating systems can use to discover and configure computer hardware components, to perform power management by (for example) putting unused components to sleep, and to perform status monitoring. (sauce: trusty Wikipedia)</td>
+<td>The Advanced Configuration and Power Interface (ACPI) provides an open standard that operating systems can use to discover and configure computer hardware components, to perform power management by (for example) putting unused components to sleep, and to perform status monitoring. (sauce: trusty Wikipedia)</td>
 </tr>
 <tr>
 <td><strong>Kexts</strong></td>
-<td>also known as <strong>K</strong>ernel <strong>Ext</strong>ensions, are macOS&apos;s drivers. They&apos;re used to perform different tasks like device drivers or for a different purpose (in hackintoshing) like patching the OS or injecting information or running tasks. Kexts are not the only part of a good hackintosh, they&apos;re sometimes paired with ACPI patches and fixes.</td>
+<td>Also known as <strong>K</strong>ernel <strong>Ext</strong>ensions, are macOS&apos;s drivers. They&apos;re used to perform different tasks like device drivers or for a different purpose (in hackintoshing) like patching the OS or injecting information or running tasks. Kexts are not the only part of a good hackintosh, they&apos;re sometimes paired with ACPI patches and fixes.</td>
 </tr>
 <tr>
 <td><strong>BIOS</strong></td>
-<td>the Basic Input/Output System is firmware used to perform hardware initialization during the booting process (power-on startup), and to provide runtime services for operating systems and programs. The BIOS firmware comes pre-installed on a personal computer&apos;s system board, and it is the first software to run when powered on. (sauce: trusty Wikipedia) It&apos;s a legacy piece of software that was made back in the 70s and still used to this day due to its maturity.</td>
+<td>The Basic Input/Output System is firmware used to perform hardware initialization during the booting process (power-on startup), and to provide runtime services for operating systems and programs. The BIOS firmware comes pre-installed on a personal computer&apos;s system board, and it is the first software to run when powered on. (sauce: trusty Wikipedia) It&apos;s a legacy piece of software that was made back in the 70s and still used to this day due to its maturity.</td>
 </tr>
 <tr>
 <td><strong>UEFI</strong></td>
@@ -777,7 +777,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Terminology","level":"1.5","depth":1,"next":{"title":"PLIST Structure","level":"1.6","depth":1,"path":"overview/plist.md","ref":"overview/plist.md","articles":[]},"previous":{"title":"Requirements","level":"1.4","depth":1,"path":"overview/requirements.md","ref":"overview/requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/terminology.md","mtime":"2020-04-28T00:42:58.556Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-28T00:43:47.407Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Terminology","level":"1.5","depth":1,"next":{"title":"PLIST Structure","level":"1.6","depth":1,"path":"overview/plist.md","ref":"overview/plist.md","articles":[]},"previous":{"title":"Requirements","level":"1.4","depth":1,"path":"overview/requirements.md","ref":"overview/requirements.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"overview/terminology.md","mtime":"2020-04-28T17:21:24.632Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-28T17:22:14.167Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
