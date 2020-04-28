@@ -321,3 +321,5 @@ trackpads
 unallocated
 unbootable
 webserver
+Realtek's
+Asus's
