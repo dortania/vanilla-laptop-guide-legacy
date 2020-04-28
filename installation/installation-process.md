@@ -17,7 +17,7 @@ With many OEMs you're likely going to be heavily limited in your options, if you
 
 * Fast Boot
 * VT-d (can be enabled if you set `DisableIoMapper` to YES)
-* Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)(For initial install, as Thunderbolt can cause issues if not setup correctly)
+* Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)
 * Intel SGX
 * Intel Platform Trust
 * CFG Lock (MSR 0xE2 write protection)

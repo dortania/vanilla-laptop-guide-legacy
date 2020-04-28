@@ -20,7 +20,7 @@
 ## Configuring OpenCore
 
 * [Gathering Files](/OpenCore/ktext.md)
-* [Getting started with ACPI](https://dortania.github.io/Getting-Started-With-ACPI/)
+* [Getting started with ACPI](/OpenCore/acpi.md)
 * [OpenCore config](/OpenCore/config.md)
   * [Ivy Bridge](/OpenCore/config-laptop.plist/ivy-bridge.md)
   * [Haswell](/OpenCore/config-laptop.plist/haswell.md)
