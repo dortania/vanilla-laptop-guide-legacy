@@ -35,7 +35,6 @@ BoardAssetTag
 BoardLocationInChassis
 BoardManufacturer
 BoardProduct
-BoardProduct
 BoardRevision
 BoardSerialNumber
 BoardType
@@ -56,9 +55,7 @@ Cpuid1Data
 Cpuid1Mask
 CustomSMBIOSGuid
 DataHub
-DataHub
 DevicePathsSupported
-DeviceProperties
 DeviceProperties
 DevirtualiseMmio
 DirectGopCacheMode
@@ -83,8 +80,6 @@ FSBFrequency
 FadtEnableReset
 FindMask
 FirmwareFeatures
-FirmwareFeatures
-FirmwareFeaturesMask
 FirmwareFeaturesMask
 FirmwareVolume
 ForceExitBootServices
@@ -109,7 +104,6 @@ LapicKernelPanic
 LegacyEnable
 LegacyOverwrite
 LegacySchema
-MLB
 MLB
 MaxKernel
 MemoryFormFactor
@@ -143,12 +137,10 @@ ProvideConsoleGop
 ProvideCustomSlide
 Quirks
 ROM
-ROM
 RebaseRegions
 RebuildAppleMemoryMap
 ReconnectOnResChange
 ReleaseUsbOwnership
-ReplaceMask
 ReplaceMask
 ReplaceTabWithSpace
 RequestBootVarFallback
@@ -172,13 +164,8 @@ SyncRuntimePermissions
 SystemFamily
 SystemManufacturer
 SystemProductName
-SystemProductName
 SystemSKUNumber
 SystemSerialNumber
-SystemSerialNumber
-SystemSerialNumber
-SystemUUID
-SystemUUID
 SystemUUID
 SystemVersion
 SysttemProductName
