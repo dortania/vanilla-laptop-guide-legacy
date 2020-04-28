@@ -27,6 +27,7 @@ AppleIntelCPUPowerManagement
 AppleSupportPkg
 AptioMemoryFix
 Asus
+Asus
 Atheros
 AtherosE2200Ethernet
 AudioDxe
@@ -102,6 +103,7 @@ HfsPlus
 HiDPI
 HoRNDIS
 Hx6x
+I211
 I211-AT
 I2C
 I7,
@@ -116,6 +118,7 @@ Icelake
 Insyde
 IntelMausiEthernet
 IvyBridge
+Journaled
 KBL-R
 Kaby
 KabyLake
@@ -127,6 +130,8 @@ LAPIC
 LVDS
 Lenovo
 Lilu
+LucyRTL8125Ethernet
+MLB
 MMIO
 MSR
 MSR_FLEX_RATIO
@@ -183,6 +188,7 @@ R[5|7]
 Radeon
 Ramus
 Realtek
+Realtek
 RealtekRTL8111
 Rehabman
 Reinstalls
@@ -198,6 +204,7 @@ SSDs
 SetVirtualAddresses
 Skylake
 Skylake-X
+SmallTree
 SmallTreeIntel82576
 Speccy
 Subreddit

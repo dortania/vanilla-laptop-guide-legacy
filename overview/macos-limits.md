@@ -19,7 +19,7 @@ With laptops, there are several limitations regarding hardware that will not wor
     * No support for AMD integrated graphics (Radeon R5, R7, etc.)
 * **Most WiFi cards**
   * Most WiFi cards that come with laptops are not supported as they are usually Intel/Qualcomm.
-  * If you are lucky, you may have a supported Atheros card, but support only runs up to High Sierra (Mojave works with AirportAtheros40 from High Sierra, but not with Catalina).
+  * If you are lucky, you may have a supported Atheros card, but support only runs up to High Sierra.
   * The best option is getting a Broadcom card; see the [WiFi Buyer's Guide](https://dortania.github.io/Wireless-Buyers-Guide/) for recommendations.
 * **Samsung PM981 and Micron 2200S NVMe SSDs**
   * These SSDs are not compatible out of the box (causing kernel panics) and therefore require [NVMeFix.kext](https://github.com/acidanthera/NVMeFix/releases) to fix these kernel panics. Note that the Micron 2200S may still cause boot issues even with NVMeFix.kext.

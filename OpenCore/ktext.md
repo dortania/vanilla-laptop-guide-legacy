@@ -75,11 +75,13 @@ Note that these come in the release/debug downloads for VirtualSMC
 **Ethernet**:
 
 * [IntelMausiEthernet](https://github.com/Mieze/IntelMausiEthernet)
-  * Required for Intel NICs, chipsets that are based off of I211-AT will need the SmallTreeIntel82576 kext
+  * Required for Intel NICs, chipsets that are based off of I211 will need the SmallTreeIntel82576 kext
 * [AtherosE2200Ethernet](https://github.com/Mieze/AtherosE2200Ethernet/releases)
   * Required for Atheros and Killer NICs
-* [RealtekRTL8111](https://github.com/Mieze/RTL8111_driver_for_OS_X/releases)
-  * Required for Realtek NICs
+* [RealtekRTL8111](https://github.com/Mieze/RTL8111_driver_for_OS_X)
+  * For Realtek's Gigabit Ethernet
+* [LucyRTL8125Ethernet](https://github.com/Mieze/LucyRTL8125Ethernet)
+  * For Realtek's 2.5Gb Ethernet
 
 **USB**:
 
@@ -107,7 +109,7 @@ The order in `Kernel -> Add` should be:
 **Extra's**:
 
 * [VoodooTSCSync](https://bitbucket.org/RehabMan/VoodooTSCSync/downloads/)
-  * Needed for syncing TSC on some of Intel's HEDT and server motherboards, without this macOS may be extremely slow or even unbootable. Skylake-X should use TSCAdjustReset instead
+  * Needed for syncing TSC on some of Intel's HEDT and server motherboards, without this macOS may be extremely slow or even unbootable. Some of Asus's laptops need this kext but recommended to try without it first
 * [NVMeFix](https://github.com/acidanthera/NVMeFix/releases)
   * Used for fixing power management and initialization on non-Apple NVMe, requires macOS 10.14 or newer
 

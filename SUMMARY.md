@@ -34,7 +34,7 @@
 ## Installation
 
 * [Installation Process](/installation/installation-process.md)
-* [Troubleshooting](/installation/troubleshooting.md)
+* [Troubleshooting](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html)
 
 ## Post Install
 

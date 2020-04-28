@@ -6,7 +6,7 @@ Now that you've finished setting up OpenCore, you're finally able to boot, main 
   * If the battery isn't properly patched for macOS support, it can cause weird behaviors. To avoid headaches, make sure to have your device plugged in
 * Enable BIOS settings optimal for macOS
 * Read up on the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
-* And a copy of the ~~OpenCore bible~~ [troubleshooting page](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html)
+* And a copy of the [troubleshooting page](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html)
 * And a ton of patience
 
 ## Recommended BIOS Settings
@@ -38,6 +38,7 @@ With many OEMs you're likely going to be heavily limited in your options, if you
 So you've finally got the installer booted, got through the verbose and hit the installer! Now that you've gotten this far,  the main things to keep in mind:
 
 * Drives you wish to install macOS on **must** be both of GUID partition Scheme **and** APFS
+  * High Sierra on HDD and all Sierra users will need to use macOS Journaled(HFS+)
 * The drive **must** also have a 200MB partition
   * By default, macOS will setup freshly formatted drives with 200MB
   * See the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/) for more info on partitioning a Windows Drive
