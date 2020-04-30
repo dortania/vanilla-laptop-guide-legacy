@@ -1,5 +1,5 @@
  {
-    "plugins": ["theme-default", "-lunr", "-search", "search-plus", "addcssjs", "medium-zoom", "autocover"],
+    "plugins": ["theme-default", "-lunr", "-search", "search-plus", "addcssjs", "medium-zoom", "git+https://git@github.com/piecioshka/plugin-autocover.git"],
     "pluginsConfig": {
         "fontsettings": {
             "theme":  "night",
