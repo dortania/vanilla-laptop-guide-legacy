@@ -35,6 +35,7 @@ matrix:
       script: 
       - npm run testSpell
     - name: "Build PDF"
+      node_js: 13
       # if: tag IS present
       install:
       - sudo apt update
