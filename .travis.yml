@@ -35,7 +35,7 @@ matrix:
       script: 
       - npm run testSpell
     - name: "Build PDF"
-      if: tag IS present
+      # if: tag IS present
       install:
       - sudo apt update
       - sudo apt install calibre -y
