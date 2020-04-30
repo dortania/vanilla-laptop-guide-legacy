@@ -37,6 +37,7 @@ matrix:
     - name: "Build PDF"
       if: tag IS present
       install:
+      - sudo apt update
       - sudo apt install calibre -y
       - npm install -g gitbook-cli canvas
       script:
