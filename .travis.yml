@@ -35,11 +35,10 @@ matrix:
       script: 
       - npm run testSpell
     - name: "Build PDF"
-      node_js: 13
       # if: tag IS present
       install:
       - sudo apt update
-      - sudo apt install calibre -y
+      - sudo apt install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev calibre -y
       - npm install -g gitbook-cli canvas
       script:
       - gitbook install
