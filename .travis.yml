@@ -5,10 +5,10 @@ cache:
 matrix:
   include:
     - name: "Build and Push"
-      before_script:
+      install:
       - npm install -g gitbook-cli
-      script: 
       - gitbook install
+      script: 
       - gitbook build
       - cp icons/* _book/gitbook/images
       deploy:
@@ -25,12 +25,27 @@ matrix:
         github_token:
           secure: ejC7dHCPWU1fFYKoOiYOAwYv4tGMVXYCWkVjA1i8NGcioSgX0ZsHnJzMQ0+hCdPQmIXv/5lv/5W/KMpYaivgky/VYewOTxDCJi6PxhrO+15STUfjTtpEM8EfWHwzKrdzwwlZGLoSrL5RP1EfbHdohry+3R57pRwSuL7qZXOo+d6enqYFcjsia9pFxyPBla3Pjir8VZQZUfIej3o4Ll3Z9vfD+LqHFTVHZ7sKIBoGu/H8IhzNtOWFjtG05Evh8RXMgnVj7vebnIspAQ2VWtCT8T35NEKkUe+1pmRM/57HUSgSbWZlv39OQdekamOxYU5YtjEyfVdXpAfnBOoQSLBVc/ZCL9NwL4hT6CotZOspVwWPGOy7t3aLA8sADwB6rn4ybJ57R2BcHvjpQnKZEELmBdNbIviaIrvveDQXMYvuSY/Hjv0Tp5xZmRLddyU/M0vHjpmWPUnCFu4518bUoZhB8bhmh4NphMdpa71/RcR9ya2KfQEQ8yZP0P8qOnFahUeC5Zj++IcJhFAJ7gk86rVHte/613o64olO0EAuheJUuZGFqq+FlEA+ToEZkuD5f6bXUmKK/e4d9dkMo5l4/HfhXyT/hyGNnkmgF2RqCaI4brYu8cxuAwVaSqf5p8QjxSSTpNVfUyEjCsXYv1nm/5PDIfjwFrHpdG/UaUAo+VQzK2E=
     - name: "Lint"
-      before_script:
+      install:
       - npm install -g markdownlint-cli
       script: 
       - npm run testLint
     - name: "Spellcheck"
-      before_script:
+      install:
       - npm install -g spellchecker-cli
       script: 
-      - npm run testSpell 
+      - npm run testSpell
+    - name: "Build PDF"
+      if: tag IS present
+      install:
+      - sudo apt install calibre -y
+      - npm install canvas
+      script:
+      - gitbook pdf ./ ./book.pdf
+      deploy:
+        provider: releases
+        file: "book.pdf"
+        skip_cleanup: true
+        on:
+          tags: true
+        api_key:
+          secure: ejC7dHCPWU1fFYKoOiYOAwYv4tGMVXYCWkVjA1i8NGcioSgX0ZsHnJzMQ0+hCdPQmIXv/5lv/5W/KMpYaivgky/VYewOTxDCJi6PxhrO+15STUfjTtpEM8EfWHwzKrdzwwlZGLoSrL5RP1EfbHdohry+3R57pRwSuL7qZXOo+d6enqYFcjsia9pFxyPBla3Pjir8VZQZUfIej3o4Ll3Z9vfD+LqHFTVHZ7sKIBoGu/H8IhzNtOWFjtG05Evh8RXMgnVj7vebnIspAQ2VWtCT8T35NEKkUe+1pmRM/57HUSgSbWZlv39OQdekamOxYU5YtjEyfVdXpAfnBOoQSLBVc/ZCL9NwL4hT6CotZOspVwWPGOy7t3aLA8sADwB6rn4ybJ57R2BcHvjpQnKZEELmBdNbIviaIrvveDQXMYvuSY/Hjv0Tp5xZmRLddyU/M0vHjpmWPUnCFu4518bUoZhB8bhmh4NphMdpa71/RcR9ya2KfQEQ8yZP0P8qOnFahUeC5Zj++IcJhFAJ7gk86rVHte/613o64olO0EAuheJUuZGFqq+FlEA+ToEZkuD5f6bXUmKK/e4d9dkMo5l4/HfhXyT/hyGNnkmgF2RqCaI4brYu8cxuAwVaSqf5p8QjxSSTpNVfUyEjCsXYv1nm/5PDIfjwFrHpdG/UaUAo+VQzK2E=
