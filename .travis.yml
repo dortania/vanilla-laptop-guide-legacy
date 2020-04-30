@@ -40,7 +40,7 @@ matrix:
       - sudo apt update
       - sudo apt install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev calibre -y
       - npm install -g gitbook-cli
-      - npm install canvas
+      - npm install git+https://git@github.com/piecioshka/plugin-autocover.git
       script:
       - gitbook install
       - gitbook pdf ./ ./book.pdf
