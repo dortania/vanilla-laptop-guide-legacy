@@ -38,8 +38,9 @@ matrix:
       if: tag IS present
       install:
       - sudo apt install calibre -y
-      - npm install canvas
+      - npm install -g gitbook-cli canvas
       script:
+      - gitbook install
       - gitbook pdf ./ ./book.pdf
       deploy:
         provider: releases
