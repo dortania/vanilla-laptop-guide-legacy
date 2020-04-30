@@ -38,8 +38,12 @@ matrix:
       # if: tag IS present
       install:
       - sudo apt update
-      - sudo apt install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev calibre -y
+      - sudo apt install calibre xvfb -y
       - npm install -g gitbook-cli
+      before_script:
+      - sudo mv /usr/bin/ebook-convert /usr/bin/ebook-convert2
+      - sudo cp ./ebook-wrapper.sh /usr/bin/ebook-convert
+      - sudo chmod +x /usr/bin/ebook-convert
       script:
       - gitbook install
       - gitbook pdf ./ ./book.pdf
