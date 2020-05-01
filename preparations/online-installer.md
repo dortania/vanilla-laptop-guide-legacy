@@ -1,11 +1,11 @@
 # Preparing a Recovery installer on Windows/Linux/macOS
 
-An *online Recovery installer* installs only core elements of macOS, then downloads the full OS from the Apple servers. 
-This requires a working internet connection - usually Ethernet - on the target machine. 
-If you want to use WiFi, ensure your target machine's WiFi card is compatible with **macOS**. 
+An *online Recovery installer* installs only core elements of macOS, then downloads the full OS from the Apple servers.
+This requires a working internet connection - usually Ethernet - on the target machine.
+If you want to use WiFi, ensure your target machine's WiFi card is compatible with **macOS**.
 (It is possible to use HoRNDIS to tether with an Android phone if needed.)
 
-*[We temporarily include a link to the (Clover-based) [Internet-Install Guide](https://internet-install.gitbook.io/macos-internet-install/preparing-your-installer/preparing-your-installer-media)  for reference.]*
+*[We temporarily include a link to the (Clover-based) [Internet-Install Guide](https://internet-install.gitbook.io/macos-internet-install/preparing-your-installer/preparing-your-installer-media) for reference.]*
 
 Requirements:
 
@@ -15,7 +15,7 @@ Requirements:
     * NOTE: If the .bat fails to run, you can run `python <file.py>`.
   * For Linux, install it through whatever package manager your distro uses
   * macOS already includes Python
-* [**gibMacOS software**](https://github.com/corpnewt/gibMacOS) 
+* [**gibMacOS software**](https://github.com/corpnewt/gibMacOS)
 downloads your desired macOS image directly from Apple servers (to ensure authenticity).
   * Clone using git (`git clone https://github.com/CorpNewt/gibmacos.git`)
     _OR_
@@ -39,8 +39,8 @@ downloads your desired macOS image directly from Apple servers (to ensure authen
 
 ### Windows
 
-OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore, 
-so we only need to format the USB to one FAT32 partition and drop it in. 
+OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore,
+so we only need to format the USB to one FAT32 partition and drop it in.
 This does require 7-Zip to be installed.
 
 1. Right click the Start Button on your task bar and select `Disk Management`.
@@ -58,7 +58,6 @@ This does require 7-Zip to be installed.
 8. You should see BaseSystem.dmg and BaseSystem.chunklist. Drag/copy these to the `com.apple.recovery.boot` folder on your USB.
     ![BaseSystem screenshot](/images/preparations/BaseSystemWinders.jpg)
 9. You are ready to continue and [add OpenCore files to the USB installer.](./opencore-efi.md)
-
 
 ### Linux
 
