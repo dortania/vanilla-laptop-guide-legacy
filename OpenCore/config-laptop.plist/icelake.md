@@ -1,6 +1,6 @@
 # Icelake
 
-* Supported version: 0.5.7ß
+* Supported version: 0.5.7
 
 Table of Contents:
 
