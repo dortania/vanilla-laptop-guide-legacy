@@ -1,8 +1,11 @@
-# Preparing an offline installer (macOS only)
+# Preparing a Full macOS Installer (requires macOS)
 
+This procedure describes how to create a "full macOS installer" that contains the 
+entire operating system, with no further downloads necessary. 
 What you need:
 
-* A macOS installer.app, from the App Store
+* A macOS computer
+* A full macOS installer.app, downloaded from the App Store (instructions below)
 * [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg)
   * You can download a [pre-built release](https://github.com/acidanthera/OpenCorePkg/releases) (recommended, comes with needed EFI drivers)
   * Or build it manually with `./macbuild.tool`
@@ -17,9 +20,10 @@ What you need:
 
 To start we'll want to grab ourselves a copy of macOS, you can skip this and head to formatting the USB if you're just making a bootable OpenCore stick and not an installer. For everyone else, you can either download macOS from the App Store or with gibMacOS
 
-## Downloading macOS
-
-Now lets grab [gibMacOS](https://github.com/corpnewt/gibMacOS) and run the `gibMacOS.command`:
+## Downloading macOS Installer
+Use the [gibMacOS](https://github.com/corpnewt/gibMacOS) 
+(see the [Recovery Installer page for details](./online-installer.md) 
+and run the `gibMacOS.command`:
 
 ![](/images/preparations/offline-installer/gib.png)
 
@@ -39,12 +43,19 @@ Once it's done, you can find it with the rest of the files. I recommend moving i
 
 ![](/images/preparations/offline-installer/gib-done.png)
 
-## Setting up the installer
+## Preparing the USB Drive
 
-Now we'll be formatting the USB to prep for both the macOS installer and OpenCore. We'll want to use macOS Extended(HFS+) with a GUID partition map. What this will do is create 2 partitions. The main `MyVolume` and a second called `EFI` which is used as a boot partition where your firmware will check for boot files.
+Now format the USB drive. 
+Use macOS Disk Utility to erase the entire USB drive, 
+and give it the name `MyVolume`, 
+using `Mac OS Extended(Journaled)` and `GUID Partition Map`. 
 
 ![Formatting the USB](/images/preparations/offline-installer/format-usb.png)
 
+This creates 2 partitions: one named `MyVolume` and a second (hidden) one called `EFI` 
+which is where your firmware checks for boot files.
+
+## Copying macOS onto the USB Drive
 Next run the `createinstallmedia` command provided by [Apple](https://support.apple.com/en-us/HT201372), note that the command is made for USB's formatted with the name `MyVolume`:
 
 ```text
@@ -55,12 +66,16 @@ This will take some time so may want to grab a coffee or continue reading the gu
 
 You can also replace the `createinstallmedia` path with that of where your installer's located, same idea with the drive name.
 
-## Setting up OpenCore's EFI environment
+## Mounting the EFI partition
 
-Setting up OpenCore's EFI environment is simple, all you need to do is mount our EFI system partition. This is automatically made when we format with GUID but is unmounted by default, this is where our friend [MountEFI](https://github.com/corpnewt/MountEFI) comes in:
+Before you can proceed, you must mount the EFI system partition that was automatically created when formatting with GUID. 
+That partition is unmounted by default.
+This is where our friend [MountEFI](https://github.com/corpnewt/MountEFI) comes in:
 
 ![MountEFI](/images/preparations/offline-installer/mount-efi-usb.png)
 
-You'll notice that once we open the EFI partition, it's empty. This is where the fun begins.
+You'll notice that once we open the EFI partition, it's empty. 
 
 ![Empty EFI partition](/images/preparations/offline-installer/base-efi.png)
+
+You are ready to continue and [add OpenCore files to the USB installer.](./opencore-efi.md)

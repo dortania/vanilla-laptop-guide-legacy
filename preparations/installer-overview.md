@@ -1,19 +1,36 @@
-# Installer creation
+# Installer Overview
 
-So what components do we need to create a bootable USB?
-We need:
+What components do we need to create a bootable USB installer?
 
-* A macOS installer.app (or recovery image for internet install)
-* A bootloader (For this guide, we'll be focusing on OpenCore)
+* A USB drive - at least 4 GBytes (or 16 GBytes) - see below.
+* A bootloader - for this guide, we'll be focusing on OpenCore
+* A Full macOS installer.app or Recovery image for internet install
 
-The installer can be split into 2 categories: Full macOS installers and Recovery Installers
 
-* **Full macOS installers** are completely contained and require no network connection. They're generally 8GB+ and require you to have macOS running on something (Windows and Linux do not natively support writing HFS+, and we won't be going over the hacky ways to do so)
-* **Recovery Installers** are a very small part of the normal macOS installer, only containing very core essentials to boot and the rest of the OS being downloaded once you boot it. This requires no HFS+ write support so it can be easily created on Linux, Windows and even Android if you so desire.
+**USB Drive** can be a garden-variety USB 2.0 or better USB drive 
+has at least 16 GBytes (for the Full/offline Installer) 
+or 4 GBytes (for the Recovery/online installer).
 
-And for the bootloader, this is what we use to trick macOS into thinking it's running on a genuine Mac, by patching many parts of both our system and macOS. For this guide, we'll be using [OpenCore](https://github.com/acidanthera/OpenCorePkg/releases). OpenCore is just one of many bootloaders in the hack world - what makes this one special is:
+**Bootloader software** tricks macOS into thinking it's running on a genuine Mac, 
+by supplying software patches for the non-Mac hardware. 
+This guide describes [OpenCore](https://github.com/acidanthera/OpenCorePkg/releases) 
+although the USB installer created here could be used for other bootloaders (such as Clover). 
+What makes OpenCore special is:
 
 * Support much more sophisticated system patching meaning better overall stability with updates
 * Uses modern kext injection being OS agnostic, compared to the hacky injections used by its predecessors (i.e. Clover)
 * Implements much better overall security and native support for FileVault
 * Architected and maintained by the great [vit9696](https://github.com/vit9696), and co-written by [Download-Fritz](https://github.com/Download-Fritz)
+
+**macOS Installer** can be one of two alternatives: Full or Recovery Installer.
+
+* **Full macOS installers** contain the entire macOS image and require no network connection 
+(so it can be "offline"). 
+These images are generally 8GBytes or more, so your USB drive should be at least 16 GBytes. 
+You must have a macOS computer to create the Full installer. 
+(There are hacky ways to make Windows and Linux write HFS+, but we won't be going over them.)
+* **Recovery Installers** contain only the core essentials to boot macOS on your computer. 
+You then must be "online" to download the remainder of macOS and complete this "internet recovery" installation. 
+This guide provides instructions for creating recovery installers on Linux, Windows and even Android.
+
+**Next Step:** [Create a Full Installer](./offline-installer.md) *or* [Create a Recovery Installer](./online-installer.md)
