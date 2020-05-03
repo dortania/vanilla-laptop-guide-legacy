@@ -527,7 +527,7 @@ Only drivers present here should be:
 
 **Audio**: Related to AudioDxe settings, for us we'll be ignoring(leave as default). This is unrelated to audio support in macOS
 
-* For further use of AudioDxe and the Audio section, please see the Post Install page: [Add GUI and Bootchime](/post-install/README.md)
+* For further use of AudioDxe and the Audio section, please see the Post Install page: [Add GUI and Boot-chime](/post-install/README.md)
 
 **Input**: Related to boot.efi keyboard pass-through used for FileVault and Hotkey support
 
