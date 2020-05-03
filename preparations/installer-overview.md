@@ -16,4 +16,4 @@ And for the bootloader, this is what we use to trick macOS into thinking it's ru
 * Support much more sophisticated system patching meaning better overall stability with updates
 * Uses modern kext injection being OS agnostic, compared to the hacky injections used by its predecessors (i.e. Clover)
 * Implements much better overall security and native support for FileVault
-* Created and maintained by the godfather of Hackintoshing, [vit9696](https://github.com/vit9696), and co-written by [Download-Fritz](https://github.com/Download-Fritz)
+* Architected and maintained by the great [vit9696](https://github.com/vit9696), and co-written by [Download-Fritz](https://github.com/Download-Fritz)

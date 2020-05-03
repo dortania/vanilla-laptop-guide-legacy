@@ -1,0 +1,23 @@
+{
+  "name": "vanilla-laptop-guide",
+  "version": "1.0.0",
+  "description": "Guide to put macOS on unsupported devices",
+  "main": "index.js",
+  "scripts": {
+    "testLint": "echo \"Linting...\" && markdownlint *",
+    "testSpell": "spellchecker --plugins spell indefinite-article repeated-words syntax-urls --dictionaries ./dictionary/*.txt --files '**/*.md'",
+    "test": "npm run testLint --silent && npm run testSpell --silent",
+    "fixLint": "npm run testLint --silent -- -f",
+    "sortDictionary": "node ./scripts/sortDict.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dortania/vanilla-laptop-guide.git"
+  },
+  "author": "Dortania",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dortania/vanilla-laptop-guide/issues"
+  },
+  "homepage": "https://github.com/dortania/vanilla-laptop-guide#readme"
+}

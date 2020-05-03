@@ -52,43 +52,31 @@ This is where you'll add SSDTs for your system, these are very important to **bo
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
 
-* [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)
-  * Allows for native CPU power management, Clover alternative would be under `Acpi -> GenerateOptions -> PluginType`. Do note that this SSDT is made for systems where `AppleACPICPU` attaches `CPU0`, though some ACPI tables have theirs starting at `PR00` so adjust accordingly. Seeing what device has AppleACPICPU connected first in [IORegistryExplorer](https://github.com/toleda/audio_ALCInjection/raw/master/IORegistryExplorer_v2.1.zip) can also give you a hint
-* [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)
-  * Adds brightness control support
-* [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)
-  * Used for enabling Windows features in macOS, mainly needed for I2C controllers, **this is not needed if you're using SSDT-GPIO**
-* [SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)
-  * Creates a stub so VoodooI2C can connect
+| Required_SSDTs | Description |
+| :--- | :--- |
+| **[SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)** | Allows for native CPU power management on Haswell and newer |
+| **[SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. This SSDT also has a second function, USBX. This is used for forcing USB power properties, requires SSDT-EC so this just jumbles them together. |
+| **[SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)** | Creates a stub so VoodooI2C can connect, for those having troubles getting VoodooI2C working can try [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml) instead |
+| **[SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)** | Adds brightness control support |
 
-Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/ACPI.
+Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/OC/ACPI.
 
 For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/) **page.** Compiled SSDTs have a **.aml** extension(Assembled) and will go into the `EFI/OC/ACPI` folder and **must** be specified in your config under `ACPI -> Add` as well.
 
 **Block:**
 
-This blocks certain ACPI tabes from loading, for us we can ignore this
+This blocks certain ACPI tables from loading, for us we can ignore this
 
 **Patch**:
 
-This section allows us to dynamically modify parts of the ACPI \(DSDT, SSDT, etc.\) via OpenCore. For us, we'll need a couple:
+This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we'll need the following:
 
-* EC Rename
-  * Needed for Catalina support as it doesn't like the standard one found on most PCs, follow the [Fixing Embedded Controllers Guide](https://dortania.github.io/Getting-Started-With-ACPI/) on how to determine what EC you have and apply the appropriate patches
 * OSI rename
   * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT, **this is not needed if you're using SSDT-GPIO**
 
-| Comment | String | Change XXXX to EC |
-| :--- | :--- | :--- |
-| Enabled | String | YES |
-| Count | Number | 0 |
-| Limit | Nuber | 0 |
-| Find | Data | xxxxxxxx |
-| Replace | Data | 45435f5f |
-
 | Comment | String | Change _OSI to XOSI |
 | :--- | :--- | :--- |
-| Enabled | String | YES |
+| Enabled | Boolean | YES |
 | Count | Number | 0 |
 | Limit | Nuber | 0 |
 | Find | Data | 5f4f5349 |
@@ -117,7 +105,7 @@ This section is dedicated to quirks relating to boot.efi patching with OpenRunti
 
 **MmioWhitelist**:
 
-This section is allowing spaces to be passthrough to macOS that are generally ignored, useful when paired with `DevirtualiseMmio`
+This section is allowing spaces to be pass-through to macOS that are generally ignored, useful when paired with `DevirtualiseMmio`
 
 **Quirks**:
 
@@ -138,11 +126,11 @@ Settings relating to boot.efi patching and firmware fixes, ones we need to chang
 * **EnableWriteUnprotector**: YES
   * Removes write protection from CR0 register during their execution
 * **ForceExitBootServices**: NO
-  * Ensures ExitBootServices calls succeeds even when MemoryMap has changed, don't use unless necessary
-* **ProtectMemoryRegion**: NO
-  * Needed for fixing artefacts and sleep-wake issues, generally only needed on very old firmwares
+  * Ensures ExitBootServices calls succeeds even when the memory map has changed, don't use unless necessary
+* **ProtectMemoryRegions**: NO
+  * Needed for fixing artifacts and sleep-wake issues, generally only needed on very old firmwares
 * **ProtectSecureBoot**: NO
-  * Fixes secureboot keys on MacPro5,1 and Insyde firmwares
+  * Fixes Secure Boot keys on MacPro5,1 and Insyde firmwares
 * **ProtectUefiServices**: NO
   * Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and newer Coffee Lake systems
 * **ProvideCustomSlide**: YES
@@ -232,11 +220,11 @@ The table below may seem daunting but it's really not, the main things we need t
 
 * Applies AppleALC audio injection, you'll need to do your own research on which codec your motherboard has and match it with AppleALC's layout. [AppleALC Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs).
 
-For us, we'll be using the boot-arg `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present. More info on this is covered in the [Post-Install Page](/post-install/README.md)
+For us, we'll be using the boot argument `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present. More info on this is covered in the [Post-Install Page](/post-install/README.md)
 
 **Block**: Removes device properties from the map, for us we can ignore this
 
-Fun Fact: The reason the byte order is swapped is due to [Endianness](https://en.wikipedia.org/wiki/Endianness), specifically Little Endians that modern CPUs use for ordering bytes
+Fun Fact: The reason the byte order is swapped is because most modern processors are [Little Endian](https://en.wikipedia.org/wiki/Endianness). The more you know!
 
 ## Kernel
 
@@ -319,7 +307,7 @@ The reason being is that UsbInjectAll reimplements builtin macOS functionality w
 * **ConsoleAttributes**: `0`
   * Sets OpenCore's UI color, won't be covered here but see 8.3.8 of [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf) for more info
 * **PickerAttributes**: `0`
-  * Used for setting custom picker attributes, won't be covered here but see 8.3.8 of [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf) for more info
+  * Used for setting custom picker attributes, use of this setting will be covered in [Post-Install](/extras/gui.md)
 * **PickerAudioAssist**: NO
   * Used for enabling VoiceOver like support in the picker, unless you want your hack talking to you keep this disabled
 * **PollAppleHotKeys**: NO
@@ -365,7 +353,7 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
   * We won't be dealing vaulting so we can ignore, **you won't boot with this set to Secure**
   * This is a word, it is not optional to omit this setting. You will regret it if you don't set it to `Optional`, note that it is case-sensitive
 * **ScanPolicy**: `0`
-  * `0` allows you to see all drives available, please refer to [Security](/post-install/security.md) section for further details. **Will not boot USBs with this set to default**
+  * `0` allows you to see all drives available, please refer to [Security](/post-install/security.md) section for further details. **Will not boot USB devices with this set to default**
 
 **Tools** Used for running OC debugging tools like the shell, ProperTree's snapshot function will add these for you. For us, we won't be using any tools
 
@@ -399,25 +387,33 @@ Won't be covered here, see 8.6 of [Configuration.pdf](https://github.com/acidant
 
 7C436110-AB2A-4BBB-A880-FE41995C9F82 (System Integrity Protection bitmask)
 
-* **boot-args**:
-  * **-v** - this enables verbose mode, which shows all the behind-the-scenes text that scrolls by as you're booting instead of the Apple logo and progress bar. It's invaluable to any Hackintosher, as it gives you an inside look at the boot process, and can help you identify issues, problem kexts, etc.
-  * **keepsyms=1** - this is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself.
-  * **debug=0x100**- this disables macOS's watchdog which helps prevents a reboot on a kernel panic. That way you can *hopefully* glean some useful info and follow the breadcrumbs to get past the issues.
-  * **alcid=1** - used for setting layout-id for AppleALC, see [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system. More info on this is covered in the [Post-Install Page](/post-install/README.md)
-  * **-wegnoegpu** - Disables all other GPUs besides the integrated GPU, needed as the dGPUs in laptops are not supported
+* **General Purpose boot-args**:
+
+| boot-args | Description |
+| :--- | :--- |
+| **-v** | This enables verbose mode, which shows all the behind-the-scenes text that scrolls by as you're booting instead of the Apple logo and progress bar. It's invaluable to any Hackintosher, as it gives you an inside look at the boot process, and can help you identify issues, problem kexts, etc. |
+| **debug=0x100** | This disables macOS's watchdog which helps prevents a reboot on a kernel panic. That way you can *hopefully* glean some useful info and follow the breadcrumbs to get past the issues. |
+| **keepsyms=1** | This is a companion setting to debug=0x100 that tells the OS to also print the symbols on a kernel panic. That can give some more helpful insight as to what's causing the panic itself. |
+| **alcid=1** | Used for setting layout-id for AppleALC, see [supported codecs](https://github.com/acidanthera/applealc/wiki/supported-codecs) to figure out which layout to use for your specific system. More info on this is covered in the [Post-Install Page](/post-install/audio.md) |
+
+* **GPU-Specific boot-args**:
+
+| boot-args | Description |
+| :--- | :--- |
+| **-wegnoegpu** | Used for disabling all other GPUs than the integrated Intel iGPU, useful for those wanting to run newer versions of macOS where their dGPU isn't supported |
 
 * **csr-active-config**: Settings for SIP, generally recommended to manually change this within Recovery partition with `csrutil` via the recovery partition
 
 csr-active-config is set to `00000000` which enables System Integrity Protection. You can choose a number of other options to enable/disable sections of SIP. Some common ones are as follows:
 
 * `00000000` - SIP completely enabled
-* `03000000` - Allow unsigned kexts and writing to protected fs locations
+* `03000000` - Allow unsigned kexts and writing to protected file system locations
 * `E7030000` - SIP completely disabled
 
 Recommended to leave enabled for best security practices
 
 * **nvda\_drv**: &lt;>
-  * For enabling Nvidia WebDrivers, set to 31 if running a [Maxwell or Pascal GPU](https://github.com/khronokernel/Catalina-GPU-Buyers-Guide/blob/master/README.md#Unsupported-nVidia-GPUs). This is the same as setting nvda\_drv=1 but instead we translate it from [text to hex](https://www.browserling.com/tools/hex-to-text), Clover equivalent is `NvidiaWeb`. **AMD, Intel and Kepler GPU users should delete this section.**
+  * For enabling Nvidia Web Drivers, set to 31 if running a [Maxwell or Pascal GPU](https://github.com/khronokernel/Catalina-GPU-Buyers-Guide/blob/master/README.md#Unsupported-nVidia-GPUs). This is the same as setting nvda\_drv=1 but instead we translate it from [text to hex](https://www.browserling.com/tools/hex-to-text), Clover equivalent is `NvidiaWeb`. **AMD, Intel and Kepler GPU users should delete this section.**
 * **prev-lang:kbd**: &lt;>
   * Needed for non-latin keyboards in the format of `lang-COUNTRY:keyboard`, recommended to keep blank though you can specify it(**Default in Sample config is Russian**):
   * American: `en-US:0`(`656e2d55533a30` in HEX)
@@ -446,7 +442,7 @@ Recommended to leave enabled for best security practices
 
 * Enables writing to flash memory for all added variables.
 
-## Platforminfo
+## PlatformInfo
 
 ![PlatformInfo](/images/config/config-laptop.plist/kaby-lake/smbios.png)
 
@@ -479,7 +475,7 @@ The `Serial` part gets copied to Generic -> SystemSerialNumber.
 
 The `Board Serial` part gets copied to Generic -> MLB.
 
-The `SmUUID` part gets copied toto Generic -> SystemUUID.
+The `SmUUID` part gets copied to Generic -> SystemUUID.
 
 We set Generic -> ROM to either an Apple ROM (dumped from a real Mac), your NIC MAC address, or any random MAC address (could be just 6 random bytes, for this guide we'll use `11223300 0000`. After install follow the [Fixing iServices](/post-install/iservices.md) page on how to find your real MAC Address)
 
@@ -489,14 +485,14 @@ We set Generic -> ROM to either an Apple ROM (dumped from a real Mac), your NIC 
 
 **Automatic**: YES
 
-* Generates Platforminfo based on Generic section instead of DataHub, NVRAM, and SMBIOS sections
+* Generates PlatformInfo based on Generic section instead of DataHub, NVRAM, and SMBIOS sections
 
 **Generic**:
 
 * **SpoofVendor**: YES
   * Swaps vendor field for Acidanthera, generally not safe to use Apple as a vendor in most case
 * **AdviseWindows**: NO
-  * Used for when the EFI partition isn't first on the windows drive
+  * Used for when the EFI partition isn't first on the Windows drive
 
 **UpdateDataHub**: YES
 
@@ -552,7 +548,7 @@ Only drivers present here should be:
 
 * For further use of AudioDxe and the Audio section, please see the Post Install page: [Add GUI and Bootchime](/post-install/README.md)
 
-**Input**: Related to boot.efi keyboard passthrough used for FileVault and Hotkey support
+**Input**: Related to boot.efi keyboard pass-through used for FileVault and Hotkey support
 
 * **KeyFiltering**: NO
   * Verifies and discards uninitialized data, mainly prevalent on 7 series Gigabyte boards
@@ -602,11 +598,11 @@ Only drivers present here should be:
 **Quirks**:
 
 * **ExitBootServicesDelay**: `0`
-  * Only required for very specific use cases like setting to `3000` - `5000` for ASUS Z87-Pro running FileVault2
+  * Only required for very specific use cases like setting to `3000` - `5000` for ASUS Z87-Pro running FileVault 2
 * **IgnoreInvalidFlexRatio**: NO
   * Fix for when MSR\_FLEX\_RATIO (0x194) can't be disabled in the BIOS, required for all pre-Skylake based systems
 * **ReleaseUsbOwnership**: YES
-  * Releases USB controller from firmware driver, needed for when your firmware doesn't support EHCI/XHCI Handoff. Most laptops have garbo firmwares so we'll need this as well
+  * Releases USB controller from firmware driver, needed for when your firmware doesn't support EHCI/XHCI Handoff. Most laptops have garbage firmwares so we'll need this as well
 * **RequestBootVarFallback**: YES
   * Request fallback of some Boot prefixed variables from `OC_VENDOR_VARIABLE_GUID` to `EFI_GLOBAL_VARIABLE_GUID`. Used for fixing boot options.
 * **RequestBootVarRouting**: YES
@@ -653,7 +649,7 @@ So thanks to the efforts of Ramus, we also have an amazing tool to help verify y
 * Fast Boot
 * VT-d (can be enabled if you set `DisableIoMapper` to YES)
 * CSM
-* Thunderbolt
+* Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)
 * Intel SGX
 * Intel Platform Trust
 * CFG Lock (MSR 0xE2 write protection)(**This must be off, if you can't find the option then enable both `AppleCpuPmCfgLock` and `AppleXcpmCfgLock` under Kernel -> Quirks. Your hack will not boot with CFG-Lock enabled**)

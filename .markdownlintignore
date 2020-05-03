@@ -1,4 +1,7 @@
 /node_modules/
 /_book/
-*.json
+**/*.json
 /Extras/
+**/*.txt
+**/*.js
+**/*.log

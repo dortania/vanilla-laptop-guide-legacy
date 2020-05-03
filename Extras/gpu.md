@@ -39,7 +39,7 @@
   | `framebuffer-con1-alldata` | Data | `02050000 00040000 07040000 03040000 00040000 81000000 04060000 00040000 81000000` | When using `all data` with a connector, either you give all information of that connector \(port-bused-type-flag\) or that port and the ones following it, like in this case. In this case, the ports in `04` are limited to `1`: `05030000 02000000 30020000` \(which corresponds to port 5, which is LVDS\) However on `03` there are 3 extra ports: `05030000 02000000 30000000` \(LVDS, con0, like `04`\) `02050000 00040000 07040000` \(DP, con1\) `03040000 00040000 81000000` \(DP, con2\) `04060000 00040000 81000000` \(DP, con3\) Since we changed the number of PortCount to `4` in a platform that has only 1, that means we need to define the 3 others \(and we that starting with con1 to the end\).  |
 
 * Some laptops from this era came with a mixed chipset setup, using Ivy Bridge CPUs with Sandy Bridge chipsets which creates issues with macOS since it expects a certain IMEI ID that it doesn't find and would get stuck at boot, to fix this we need to fake the IMEI's IDs in these models
-  * To know if you're affected check if your CPU is an intel Core ix-3xxx and your chipset is Hx6x \(for example a laptop with HM65 or HM67 with a Core i3-3110M\)
+  * To know if you're affected check if your CPU is an Intel Core ix-3xxx and your chipset is Hx6x \(for example a laptop with HM65 or HM67 with a Core i3-3110M\)
   * In your config add a new PciRoot device named `PciRoot(0x0)/Pci(0x16,0x0)`
     * Key: `device-id`
     * Type: Data
@@ -118,8 +118,8 @@
 
 #### Special Notes
 
-* For HD515, HD520, HD530 and HD540, you do not need to use `device-id` faking, they're natively recognised.
-  * I would recommend you keep the `AAPL,ig-platform-id` automatically recognised for each device-id by commenting/removing its entry in the config, otherwise it is recommended to choose `00001619`.
+* For HD515, HD520, HD530 and HD540, you do not need to use `device-id` faking, they're natively recognized.
+  * I would recommend you keep the `AAPL,ig-platform-id` automatically recognized for each device-id by commenting/removing its entry in the config, otherwise it is recommended to choose `00001619`.
 * For HD510 you may need to use `device-id`=`02190000` to fake its device-id.
   * You would need also to use `AAPL,ig-platform-id`=`00001B19` or `00001619`
 * For HD550 and P530 \(and potentially all HD P-series iGPUs\), you may need to use `device-id`=`16190000`\(recommended\) or `12190000` or `26190000` or `1b190000`

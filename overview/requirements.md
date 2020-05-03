@@ -10,13 +10,13 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
 3. _**[CRUCIAL]**_ **KNOW YOUR HARDWARE**
    * Your CPU name and generation
    * Your RAM size (and slots used if needed)
-   * Your GPUs (All of them, Intel, AMD, Nvidia. You may have 2 GPUs, only the Intel one will work, except in very rare cases.)
+   * Your GPUs (All of them, Intel, AMD, Nvidia. You may have 2 GPUs, only the Intel one will work, [except in very rare cases.](https://dortania.github.io/GPU-Buyers-Guide/misc/discrete-laptops.html))
    * Your storage devices (HDD/SSD, NVMe/AHCI/RAID/IDE configuration. Note: Only AHCI/SATA will work. Other configurations may be harder to get by. RST users need to disable it, it can be named Intel Rapid Storage, RST or RAID)
    * Your screen resolution
    * Your audio codec
    * Your laptop model
    * Your **Ethernet chipset**
-   * Your WLAN/BT chipset
+   * Your WLAN/Bluetooth chipset
 4. _**[CRUCIAL]**_ **A BASIC KNOWLEDGE OF COMMAND LINES AND HOW TO USE A TERMINAL/COMMAND PROMPT**
    * This is not just [CRUCIAL], this is the basis of this whole guide. Don't come crying to us because you don't know how to `cd` to a directory or delete a file.
 5. _**[CRUCIAL]**_ A machine that is compatible as seen in the _**Compatibility**_ section.
@@ -24,7 +24,6 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
    * 8GB USB if you're going to follow the offline method
    * 4GB USB if you're going to follow the online method
      * Note: if you have a rooted android phone, look for DriveDroid, and make sure you have a shared internal storage (no separate /data partition) - usually all phones made after 2012 should be like this, so if yours is fairly new it will handle it just fine.
-     * Note 2: **use a US B2.0 drive,** HDDs may not be a good choice. If you don't have any USB 2.0 drives, plug your USB into a USB 2.0 port if available, or use a USB extension cord that doesn't support USB 3.0; this way the USB 3.0 drive will run in USB 2.0 mode.
 7. _**[CRUCIAL]**_ An **Ethernet connection** (no WiFi dongles, Ethernet USB adapter may work depending on macOS support) and you must know your LAN card's model (and your internet speed)
    * You must either have a physical Ethernet port, or a compatible macOS Ethernet dongle/adapter. In case you have a compatible WiFi card, you can also use that, but it's not recommended.
    * For people who can't use ethernet but have an android phone, you can connect your android phone to WiFi and then tether it using USB.
@@ -47,9 +46,9 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
 ### For offline installer
 
 * A macOS environment:
-  * Hack
-  * Mac (recommended)
-  * VM (not really recommended, but if you have to, then you gotta use what you have)
+  * Hackintosh
+  * Macintosh (recommended)
+  * Virtual Machine (not really recommended, but if you have to, then you gotta use what you have)
 * 30GB of free space
 * **Python** 2.7 or greater (you already have that on macOS)
 * **ProperTree** [Recommended]: a simple tool to edit plist files, from /u/CorpNewt [https://github.com/corpnewt/ProperTree](https://github.com/corpnewt/ProperTree)
@@ -61,12 +60,12 @@ Before you start tinkering with your laptop, make sure you have prepared the fol
 * **Python** 2.7 or greater:
   * For Windows, get it from [https://www.python.org/downloads/windows/](https://www.python.org/downloads/windows/) and make sure you enable "Add to PATH" during the install
     * **DO NOT** use the Python release in the Microsoft Store, get it from the official website.
-  * For Linux users, install it, if you don't already already have it, with your distro's package manager.
+  * For Linux users, install it, if you don't already have it, with your distro's package manager.
   * For macOS users, you already have it installed.
 * **ProperTree** [Recommended]: a simple tool to edit plist files, from /u/CorpNewt ([https://github.com/corpnewt/ProperTree](https://github.com/corpnewt/ProperTree))
   * Or text editor: Notepad++, Sublime Text, VSCode...
     * Note: on October/fall 2018 Windows Update, the native notepad can work too. Older versions of windows must use a 3rd party text editor. If you don't know what this is, get a one of the text editors above.
 * **gibMacOS**: another sweet tool from /u/CorpNewt ([https://github.com/corpnewt/gibMacOS](https://github.com/corpnewt/gibMacOS))
-  * if you have git on windows use it to clone the repo
+  * if you have git on windows use it to clone the repository
   * if you don't, press `Clone or Download` button and download as Zip, extract it somewhere
 * Other software requirements will be downloaded throughout the guide (OS specific)

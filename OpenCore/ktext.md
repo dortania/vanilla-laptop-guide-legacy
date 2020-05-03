@@ -36,7 +36,7 @@ For a full list of compatible drivers, see 11.2 Properties in the [OpenCorePkg D
 
 A kext is a **k**ernel **ext**ension, you can think of this as a driver for macOS, these files will go into the Kexts folder in your EFI
 
-All kext listed below can be found **pre-compiled** in the [Kext Repo](http://kexts.goldfish64.com/). Kexts here are compiled each time there's a new commit.
+All kext listed below can be found **pre-compiled** in the [Kext Repository](http://kexts.goldfish64.com/). Kexts here are compiled each time there's a new commit.
 
 **Must haves**:
 
@@ -47,6 +47,8 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
   * A kext to patch many processes, required for AppleALC and WhateverGreen and recommended for VirtualSMC
 
 **VirtualSMC Plugins**:
+
+Note that these come in the release/debug downloads for VirtualSMC
 
 * SMCProcessor.kext
   * Used for monitoring CPU temperature
@@ -63,7 +65,7 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
 
 * [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases)
   * Used for graphics patching DRM, boardID, framebuffer fixes, etc, all GPUs benefit from this kext.
-  * Note the SSDT-PNLF.dsl file included is only required for laptops and AIOs, see * [Getting started with ACPI](/extras/acpi.md) for more info
+  * Note the SSDT-PNLF.dsl file included is only required for laptops and AIOs, see [Getting started with ACPI](/OpenCore/acpi.md) for more info
 
 **Audio**:
 
@@ -73,11 +75,13 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
 **Ethernet**:
 
 * [IntelMausiEthernet](https://github.com/Mieze/IntelMausiEthernet)
-  * Required for Intel NICs, chipsets that are based off of I211-AT will need the SmallTreeIntel82576 kext
+  * Required for Intel NICs, chipsets that are based off of I211 will need the SmallTreeIntel82576 kext
 * [AtherosE2200Ethernet](https://github.com/Mieze/AtherosE2200Ethernet/releases)
   * Required for Atheros and Killer NICs
-* [RealtekRTL8111](https://github.com/Mieze/RTL8111_driver_for_OS_X/releases)
-  * Required for Realtek NICs
+* [RealtekRTL8111](https://github.com/Mieze/RTL8111_driver_for_OS_X)
+  * For Realtek's Gigabit Ethernet
+* [LucyRTL8125Ethernet](https://github.com/Mieze/LucyRTL8125Ethernet)
+  * For Realtek's 2.5Gb Ethernet
 
 **USB**:
 
@@ -88,9 +92,9 @@ All kext listed below can be found **pre-compiled** in the [Kext Repo](http://ke
 **WiFi and Bluetooth**:
 
 * [AirportBrcmFixup](https://github.com/acidanthera/AirportBrcmFixup/releases)
-  * Used for patching non-Apple Broadcom cards, **will not work on intel, Killer, Realtek, etc**
+  * Used for patching non-Apple Broadcom cards, **will not work on Intel, Killer, Realtek, etc**
 * [BrcmPatchRAM](https://github.com/acidanthera/BrcmPatchRAM/releases)
-  * Used for uploading firmware on Broadcom bluetooth chipset, required for all non-Apple/Fenvi Airport cards.
+  * Used for uploading firmware on Broadcom Bluetooth chipset, required for all non-Apple/Fenvi Airport cards.
   * To be paired with BrcmFirmwareData.kext
     * BrcmPatchRAM3 for 10.14+ (must be paired with BrcmBluetoothInjector)
     * BrcmPatchRAM2 for 10.11-10.14
@@ -105,7 +109,7 @@ The order in `Kernel -> Add` should be:
 **Extra's**:
 
 * [VoodooTSCSync](https://bitbucket.org/RehabMan/VoodooTSCSync/downloads/)
-  * Needed for syncing TSC on some of Intel's HEDT and server motherboards, without this macOS may be extremely slow or even unbootable. Skylake-X should use TSCAdjustReset instead
+  * Needed for syncing TSC on some of Intel's HEDT and server motherboards, without this macOS may be extremely slow or even unbootable. Some of Asus's laptops need this kext but recommended to try without it first
 * [NVMeFix](https://github.com/acidanthera/NVMeFix/releases)
   * Used for fixing power management and initialization on non-Apple NVMe, requires macOS 10.14 or newer
 
@@ -114,6 +118,11 @@ The order in `Kernel -> Add` should be:
 * [VoodooPS2](https://github.com/acidanthera/VoodooPS2/releases)
   * Required for systems with PS2 keyboards and trackpads
   * Trackpad users should also pair this with [VoodooInput](https://github.com/acidanthera/VoodooInput/releases)(This must come before VoodooPS2 in your config.plist)
+  * Order for in Kernel -> Add should be:
+    1. VoodooInput (Found under VoodooPS2Controller.kext/Contents/PlugIns)
+    2. VoodooPS2Controller
+    3. Rest of the kexts found under VoodooPS2Controller.kext/Contents/PlugIns
+  * ProperTree will put these in the correct order automatically when using OC Snapshot - be a good idea to double check though.
 
 * [VoodooI2C](https://github.com/alexandred/VoodooI2C/releases)
   * Used for fixing I2C devices, found with some fancier touchpads and touchscreen machines
@@ -123,11 +132,16 @@ The order in `Kernel -> Add` should be:
     * VoodooI2CSynaptics - Implements support for Synaptic's proprietary devices.
     * VoodooI2CFTE - Implements support for the FTE1001 touchpad.
     * VoodooI2CUPDDEngine - Implements Touchbase driver support.
+  * Order for in Kernel -> Add should be:
+    1. VoodooGPIO, VoodooInput, and VoodooI2CServices in any order (Found under VoodooI2C.kext/Contents/PlugIns)
+    2. VoodooI2C
+    3. Satellite/Plugin Kext listed above.
+  * ProperTree will put these in the correct order automatically when using OC Snapshot - be a good idea to double check though.
 
-To figure out what kind of keyboard and trackpad you have, check DeviceManager in Windows or `dmesg |grep input` in Linux
+To figure out what kind of keyboard and trackpad you have, check Device Manager in Windows or `dmesg |grep input` in Linux
 
 * [NoTouchID](https://github.com/al3xtjames/NoTouchID/releases)
-  * Recommended for SMBIOS that include a TouchID sensor to fix auth issues
+  * Recommended for SMBIOS that include a TouchID sensor to fix login issues
 
 Please refer to [Kexts.md](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Kexts.md) for a full list of supported kexts
 
@@ -135,14 +149,14 @@ Please refer to [Kexts.md](https://github.com/acidanthera/OpenCorePkg/blob/maste
 
 So you see all those SSDTs in the AcpiSamples folder and wonder whether you need any of them. For us, we will be going over what SSDTs you need in **your specific ACPI section of the config.plist**, as the SSDTs you need are platform specific. With some even system specific where they need to be configured and you can easily get lost if I give you a list of SSDTs to choose from now.
 
-[Getting started with ACPI](/extras/acpi.md) has an extended section on SSDTs including compiling them on different platforms.
+[Getting started with ACPI](/OpenCore/acpi.md) has an extended section on SSDTs including compiling them on different platforms.
 
 A quick TL;DR of needed SSDTs(This is source code, you will have to compile them into a .aml file):
 
 | SSDT | IvyBridge | Haswell | Broadwell | Skylake | KabyLake | CoffeeLake(8thGen) | Coffee/Comet/IceLake(9/10thGen) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **CPU** | [CPU-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)(Run in Post-Install) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) |
-| **EC** | [EC ACPI Patch](/Laptops/laptop-ec.md) | [EC ACPI Patch](/Laptops/laptop-ec.md) | [EC ACPI Patch](/Laptops/laptop-ec.md) | [EC ACPI Patch](/Laptops/laptop-ec.md) + [SSDT-USBX](https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) | [EC ACPI Patch](/Laptops/laptop-ec.md) + [SSDT-USBX](https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) | [EC ACPI Patch](/Laptops/laptop-ec.md) + [SSDT-USBX](https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) | [EC ACPI Patch](/Laptops/laptop-ec.md) + [SSDT-USBX](https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) |
+| **EC** | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) + [SSDT-USBX](https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) + [SSDT-USBX](https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) + [SSDT-USBX](https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) + [SSDT-USBX](https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) |
 | **Backlight** | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF-CFL](https://i.applelife.ru/2019/12/463488_SSDT-PNLFCFL.aml.zip) | [SSDT-PNLF-CFL](https://i.applelife.ru/2019/12/463488_SSDT-PNLFCFL.aml.zip) |
 | **I2C TrackPad** | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) |
 | **AWAC** | N/A | N/A | N/A | N/A | N/A | N/A | [SSDT-AWAC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl) |
