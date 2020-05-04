@@ -206,7 +206,7 @@
 
 #### Special Notes
 
-* For `UHD630` you may not need to fake the `device-id`  as long as it's `8086:9B3E`, if it's anything else, you may use `device-id`=`9B3E0000`
+* For `UHD630` you may not need to fake the `device-id`  as long as it's `8086:3E9B`, if it's anything else, you may use `device-id`=`9B3E0000`
 * For `UHD620` in a Comet Lake CPU **requires**:
   * `device-id`=`9B3E0000`
   * `AAPL,ig-platform-id`=`00009B3E`
