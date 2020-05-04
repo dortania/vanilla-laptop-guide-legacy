@@ -24,6 +24,7 @@ AppleALC's
 AppleHDA
 AppleIntelCPUPM
 AppleIntelCPUPowerManagement
+AppleRTC
 AppleSupportPkg
 AptioMemoryFix
 Asus
@@ -163,6 +164,7 @@ OpenCorePkg's
 OpenRuntime
 Optane
 Optimus
+OpenUsbKbDxe
 OtherOS
 P50
 P530
@@ -178,6 +180,7 @@ Plists
 Pre-Allocated
 ProperTree
 ProperTree's
+rEFInd
 RDRAND
 ROMs
 RST

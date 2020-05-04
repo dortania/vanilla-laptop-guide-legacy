@@ -19,12 +19,12 @@ This is not a very welcoming community for people who do not want to do some sel
 
 ## Process
 
-  1. [Making macOS installer (either through the offline or online installer)](/preparations/installer-overview.html)
-  2. [Install OpenCore bootloader](/preparations/opencore-efi.html)
-  3. [Gathering Kexts/Drivers](/OpenCore/ktext.html)
+  1. [Making macOS installer (either through the offline or online installer)](/preparations/installer-overview.md)
+  2. [Install OpenCore bootloader](/preparations/opencore-efi.md)
+  3. [Gathering Kexts/Drivers](/OpenCore/ktext.md)
   4. [Modifying ACPI](https://dortania.github.io/Getting-Started-With-ACPI/)
-  5. [Configuring OpenCore](/OpenCore/config.html)
-  6. [Installation](/installation/installation-process.html)
+  5. [Configuring OpenCore](/OpenCore/config.md)
+  6. [Installation](/installation/installation-process.md)
   7. [Post-Install](/post-install/)
     * Audio
     * Installing bootloader to hard drive
