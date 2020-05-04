@@ -635,7 +635,7 @@
                                 
                                 <h1 id="broadwell">Broadwell</h1>
 <ul>
-<li>Supported version: 0.5.7</li>
+<li>Supported version: 0.5.8</li>
 </ul>
 <p>Table of Contents:</p>
 <ul>
@@ -1074,6 +1074,10 @@
 <li>Needed to get around VT-D if either unable to disable in BIOS or needed for other operating systems, much better alternative to <code>dart=0</code> as SIP can stay on in Catalina</li>
 </ul>
 </li>
+<li><strong>DisableRtcChecksum</strong>: NO<ul>
+<li>Prevents AppleRTC from writing to primary checksum (0x58-0x59), required for users who either receive BIOS reset or are sent into Safe mode after reboot/shutdown</li>
+</ul>
+</li>
 <li><strong>DummyPowerManagement</strong>: NO<ul>
 <li>New alternative to NullCPUPowerManagement, required for all AMD CPU based systems as there&apos;s no native power management. Intel can ignore</li>
 </ul>
@@ -1470,41 +1474,41 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 <p>Only drivers present here should be:</p>
 <ul>
 <li>HfsPlus.efi</li>
-<li>ApfsDriverLoader.efi</li>
 <li>OpenRuntime.efi</li>
+</ul>
+<p><strong>APFS</strong>: Settings related to the APFS driver</p>
+<ul>
+<li><p><strong>EnableJumpstart</strong>: YES</p>
+<ul>
+<li>Allows us to load Apple&apos;s APFS driver</li>
+</ul>
+</li>
+<li><p><strong>HideVerbose</strong>: YES</p>
+<ul>
+<li>Hides APFS debugging info, generally not needed</li>
+</ul>
+</li>
+<li><p><strong>JumpstartHotPlug</strong>: NO</p>
+<ul>
+<li>Allows APFS hot-plug at the OpenCore boot menu, for us we&apos;ll ignore</li>
+</ul>
+</li>
+<li><p><strong>MinDate</strong>: <code>0</code></p>
+<ul>
+<li>Minimum date allowed for Apple&apos;s APFS to load, current default is set to 2020/01/01</li>
+<li>Setting to <code>-1</code> will allow any version of APFS to load, note this is highly discouraged for security reasons</li>
+</ul>
+</li>
+<li><p><strong>MinVersion</strong>: <code>0</code></p>
+<ul>
+<li>Minimum macOS version that OpenCore will load the APFS driver, current default is set to 10.13.6</li>
+<li>Setting to <code>-1</code> will allow any version of APFS to load, note this is highly discouraged for security reasons</li>
+</ul>
+</li>
 </ul>
 <p><strong>Audio</strong>: Related to AudioDxe settings, for us we&apos;ll be ignoring(leave as default). This is unrelated to audio support in macOS</p>
 <ul>
-<li><strong>AudioSupport</strong>: NO<ul>
-<li>Used for enabling the audio port out, this requires AudioOut</li>
-</ul>
-</li>
-<li><strong>AudioDevice</strong>: [Blank]<ul>
-<li>This will be the PciRoot of your audio device, <a href="https://github.com/acidanthera/gfxutil/releases" target="_blank">gfxutil</a> and debug log are great ways to find this</li>
-</ul>
-</li>
-<li><strong>AudioCodec</strong>: 0<ul>
-<li>Specify your audio codec address, can be found in either debug log or with under <code>IOHDACodecAddress</code> in IOService</li>
-</ul>
-</li>
-<li><strong>AudioOut</strong>: 0<ul>
-<li>Specifies which output is used, use the debug log to see what your board has</li>
-<li>Same idea, can be found in either debug log or with <a href="https://github.com/acidanthera/OpenCorePkg/releases" target="_blank">HdaCodecDump.efi</a></li>
-</ul>
-</li>
-<li><strong>MinimumVolume</strong>: 20<ul>
-<li>Default sound level for audio output</li>
-</ul>
-</li>
-<li><strong>PlayChime</strong>: NO<ul>
-<li>Emulates the iconic Mac startup sound</li>
-<li>This also requires <a href="https://github.com/acidanthera/OcBinaryData/blob/master/Resources/Audio/AXEFIAudio_VoiceOver_Boot.wav" target="_blank"><code>AXEFIAudio_VoiceOver_Boot.wav</code></a> under EFI/OC/Resources/Audio</li>
-</ul>
-</li>
-<li><strong>VolumeAmplifier</strong>: 0<ul>
-<li>Multiplication coefficient for system volume to raw volume linear translation from 0 to 1000, see <a href="https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf" target="_blank">Configuration.pdf</a> for more info on calculation</li>
-</ul>
-</li>
+<li>For further use of AudioDxe and the Audio section, please see the Post Install page: <a href="../../post-install/">Add GUI and Boot-chime</a></li>
 </ul>
 <p><strong>Input</strong>: Related to boot.efi keyboard pass-through used for FileVault and Hotkey support</p>
 <ul>
@@ -1585,24 +1589,9 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 </ul>
 </li>
 </ul>
-<p><strong>Protocols</strong>: (Most values can be ignored here as they&apos;re meant for real Macs/VMs)</p>
+<p><strong>ProtocolOverrides</strong>: Most values can be ignored here as they&apos;re meant for real Macs/VMs</p>
 <ul>
-<li><strong>AppleSmcIo</strong>: NO<ul>
-<li>Reinstalls Apple SMC I/O, this is the equivalent of VirtualSMC.efi which is only needed for users using FileVault</li>
-</ul>
-</li>
-<li><strong>FirmwareVolume</strong>: NO<ul>
-<li>Fixes UI regarding FileVault, set to YES for better FileVault compatibility</li>
-</ul>
-</li>
-<li><strong>HashServices</strong>: NO<ul>
-<li>Fixes incorrect cursor size when running FileVault, set to YES for better FileVault compatibility</li>
-</ul>
-</li>
-<li><strong>UnicodeCollation</strong>: NO<ul>
-<li>Some older firmware have broken Unicode collation, fixes UEFI shell compatibility on these systems(generally IvyBridge and older)</li>
-</ul>
-</li>
+<li>For FileVault users please see the Post Install page: <a href="../../post-install/">Security and FileVault</a></li>
 </ul>
 <p><strong>Quirks</strong>:</p>
 <ul>
@@ -1631,6 +1620,8 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
 </ul>
 </li>
 </ul>
+<p><strong>ReservedMemory</strong>:</p>
+<p>Used for exempting certain memory regions from OSes to use, mainly relevant for Sandy Bridge iGPUs or systems with faulty memory. Use of this quirk is not covered in this guide</p>
 <h2 id="cleaning-up">Cleaning up</h2>
 <p>And now you&apos;re ready to save and place it into your EFI under EFI/OC.</p>
 <p>For those having booting issues, please make sure to read the <a href="../troubleshooting/troubleshooting.md">Troubleshooting section</a> first and if your questions are still unanswered we have plenty of resources at your disposal:</p>
@@ -1714,7 +1705,7 @@ SmUUID:       7B227BEC-660D-405F-8E60-411B3E4EF055
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Broadwell","level":"3.3.3","depth":2,"next":{"title":"Skylake","level":"3.3.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},"previous":{"title":"Haswell","level":"3.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/broadwell.md","mtime":"2020-04-30T15:35:02.463Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-30T15:35:54.025Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Broadwell","level":"3.3.3","depth":2,"next":{"title":"Skylake","level":"3.3.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},"previous":{"title":"Haswell","level":"3.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/broadwell.md","mtime":"2020-05-04T13:23:56.040Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-04T13:24:48.702Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

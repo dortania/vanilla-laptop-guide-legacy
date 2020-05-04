@@ -635,7 +635,7 @@
                                 
                                 <h1 id="gathering-files">Gathering files</h1>
 <ul>
-<li>Supported version: 0.5.7</li>
+<li>Supported version: 0.5.8</li>
 </ul>
 <p>This section is for gathering miscellaneous files for booting macOS, we do expect you to know your hardware well before starting and hopefully made a Hackintosh before as we won&apos;t be deep diving in here.</p>
 <blockquote>
@@ -645,8 +645,8 @@
 <h2 id="firmware-drivers">Firmware Drivers</h2>
 <p>These are the drivers used by OpenCore, for the majority of systems you only need 3 .efi drivers to get up and running:</p>
 <ul>
-<li><a href="https://github.com/acidanthera/AppleSupportPkg/releases" target="_blank">ApfsDriverLoader.efi</a><ul>
-<li>Needed for seeing APFS volumes(ie. macOS)</li>
+<li><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"><del>ApfsDriverLoader.efi</del></a><ul>
+<li><del>Needed for seeing APFS volumes(ie. macOS)</del>. As of OpenCore 0.5.8, this driver is built in and configured via config.plist -&gt; UEFI -&gt; APFS</li>
 </ul>
 </li>
 <li><a href="https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi" target="_blank">HfsPlus.efi</a> <strong>or</strong> <a href="https://github.com/acidanthera/AppleSupportPkg/releases" target="_blank">VboxHfs.efi</a><ul>
@@ -868,10 +868,10 @@
 <td style="text-align:left"><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a></td>
 <td style="text-align:left"><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a></td>
 <td style="text-align:left"><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a></td>
-<td style="text-align:left"><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a> + <a href="https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml" target="_blank">SSDT-USBX</a></td>
-<td style="text-align:left"><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a> + <a href="https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml" target="_blank">SSDT-USBX</a></td>
-<td style="text-align:left"><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a> + <a href="https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml" target="_blank">SSDT-USBX</a></td>
-<td><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a> + <a href="https://github.com/khronokernel/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml" target="_blank">SSDT-USBX</a></td>
+<td style="text-align:left"><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a> + <a href="https://github.com/Dortania/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml" target="_blank">SSDT-USBX</a></td>
+<td style="text-align:left"><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a> + <a href="https://github.com/Dortania/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml" target="_blank">SSDT-USBX</a></td>
+<td style="text-align:left"><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a> + <a href="https://github.com/Dortania/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml" target="_blank">SSDT-USBX</a></td>
+<td><a href="https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html" target="_blank">SSDT-EC</a> + <a href="https://github.com/Dortania/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml" target="_blank">SSDT-USBX</a></td>
 </tr>
 <tr>
 <td style="text-align:left"><strong>Backlight</strong></td>
@@ -969,7 +969,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Gathering Files","level":"3.1","depth":1,"next":{"title":"Getting started with ACPI","level":"3.2","depth":1,"path":"OpenCore/acpi.md","ref":"OpenCore/acpi.md","articles":[]},"previous":{"title":"Setting Up OpenCore","level":"2.3","depth":1,"path":"preparations/opencore-efi.md","ref":"preparations/opencore-efi.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ktext.md","mtime":"2020-04-30T15:35:02.467Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-30T15:35:54.025Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Gathering Files","level":"3.1","depth":1,"next":{"title":"Getting started with ACPI","level":"3.2","depth":1,"path":"OpenCore/acpi.md","ref":"OpenCore/acpi.md","articles":[]},"previous":{"title":"Setting Up OpenCore","level":"2.3","depth":1,"path":"preparations/opencore-efi.md","ref":"preparations/opencore-efi.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"css":[],"js":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"showLevel":false,"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/ktext.md","mtime":"2020-05-04T13:23:56.040Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-04T13:24:48.702Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
