@@ -1,6 +1,6 @@
 # Coffee Lake
 
-* Supported version: 0.5.7
+* Supported version: 0.5.8
 
 Table of Contents:
 
@@ -14,7 +14,6 @@ Table of Contents:
 * [SMBIOS](/OpenCore/config-laptop.plist/coffee-lake.md#platforminfo)
 * [UEFI](/OpenCore/config-laptop.plist/coffee-lake.md#uefi)
 * [Cleaning up](/OpenCore/config-laptop.plist/coffee-lake.md#cleaning-up)
-* [Intel BIOS settings](/OpenCore/config-laptop.plist/coffee-lake.md#intel-bios-settings)
 
 ## Starting Point
 
@@ -184,7 +183,7 @@ The table below may seem daunting but it's really not, the main things we need t
 
 #### Special Notes
 
-* For `UHD630` you may not need to fake the `device-id`  as long as it's `8086:9B3E`, if it's anything else, you may use `device-id`=`9B3E0000`
+* For `UHD630` you may not need to fake the `device-id`  as long as it's `8086:3E9B`, if it's anything else, you may use `device-id`=`9B3E0000`
 * For `UHD620` in a Comet Lake CPU **requires**:
   * `device-id`=`9B3E0000`
   * `AAPL,ig-platform-id`=`00009B3E`
@@ -242,6 +241,8 @@ Settings relating to the kernel, for us we'll be enabling `AppleCpuPmCfgLock`, `
   * Performs GUID patching for UpdateSMBIOSMode Custom mode. Usually relevant for Dell laptops
 * **DisableIoMapper**: YES
   * Needed to get around VT-D if either unable to disable in BIOS or needed for other operating systems, much better alternative to `dart=0` as SIP can stay on in Catalina
+* **DisableRtcChecksum**: NO
+  * Prevents AppleRTC from writing to primary checksum (0x58-0x59), required for users who either receive BIOS reset or are sent into Safe mode after reboot/shutdown
 * **DummyPowerManagement**: NO
   * New alternative to NullCPUPowerManagement, required for all AMD CPU based systems as there's no native power management. Intel can ignore
 * **ExternalDiskIcons**: NO
@@ -316,6 +317,8 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
   * Allow `CTRL+Enter` and `CTRL+Index` to set default boot device in the picker
 * **AuthRestart**: NO:
   * Enables Authenticated restart for FileVault 2 so password is not required on reboot. Can be considered a security risk so optional
+* **BootProtect**: None
+  * Allows the use of Boostrap.efi inside EFI/OC/Bootstrap instead of BOOTx64.efi, useful for those wanting to either boot with rEFInd or avoid BOOTx64.efi overwrites from Windows. Proper use of this quirks is not be covered in this guide
 * **ExposeSensitiveData**: `6`
   * Shows more debug information, requires debug version of OpenCore
 * **Vault**: `Optional`
@@ -493,27 +496,30 @@ We set Generic -> ROM to either an Apple ROM (dumped from a real Mac), your NIC 
 Only drivers present here should be:
 
 * HfsPlus.efi
-* ApfsDriverLoader.efi
 * OpenRuntime.efi
+
+**APFS**: Settings related to the APFS driver
+
+* **EnableJumpstart**: YES
+  * Allows us to load Apple's APFS driver
+
+* **HideVerbose**: YES
+  * Hides APFS debugging info, generally not needed
+
+* **JumpstartHotPlug**: NO
+  * Allows APFS hot-plug at the OpenCore boot menu, for us we'll ignore
+
+* **MinDate**: `0`
+  * Minimum date allowed for Apple's APFS to load, current default is set to 2020/01/01
+  * Setting to `-1` will allow any version of APFS to load, note this is highly discouraged for security reasons
+
+* **MinVersion**: `0`
+  * Minimum macOS version that OpenCore will load the APFS driver, current default is set to 10.13.6
+  * Setting to `-1` will allow any version of APFS to load, note this is highly discouraged for security reasons
 
 **Audio**: Related to AudioDxe settings, for us we'll be ignoring(leave as default). This is unrelated to audio support in macOS
 
-* **AudioSupport**: NO
-  * Used for enabling the audio port out, this requires AudioOut
-* **AudioDevice**: [Blank]
-  * This will be the PciRoot of your audio device, [gfxutil](https://github.com/acidanthera/gfxutil/releases) and debug log are great ways to find this
-* **AudioCodec**: 0
-  * Specify your audio codec address, can be found in either debug log or with under `IOHDACodecAddress` in IOService
-* **AudioOut**: 0
-  * Specifies which output is used, use the debug log to see what your board has
-  * Same idea, can be found in either debug log or with [HdaCodecDump.efi](https://github.com/acidanthera/OpenCorePkg/releases)
-* **MinimumVolume**: 20
-  * Default sound level for audio output
-* **PlayChime**: NO
-  * Emulates the iconic Mac startup sound
-  * This also requires [`AXEFIAudio_VoiceOver_Boot.wav`](https://github.com/acidanthera/OcBinaryData/blob/master/Resources/Audio/AXEFIAudio_VoiceOver_Boot.wav) under EFI/OC/Resources/Audio
-* **VolumeAmplifier**: 0
-  * Multiplication coefficient for system volume to raw volume linear translation from 0 to 1000, see [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf) for more info on calculation
+* For further use of AudioDxe and the Audio section, please see the Post Install page: [Add GUI and Boot-chime](/post-install/README.md)
 
 **Input**: Related to boot.efi keyboard pass-through used for FileVault and Hotkey support
 
@@ -558,16 +564,9 @@ Only drivers present here should be:
 * **SanitiseClearScreen**: NO
   * Fixes High resolutions displays that display OpenCore in 1024x768, only relevant for users using `System` TextRenderer
 
-**Protocols**: (Most values can be ignored here as they're meant for real Macs/VMs)
+**ProtocolOverrides**: Most values can be ignored here as they're meant for real Macs/VMs
 
-* **AppleSmcIo**: NO
-  * Reinstalls Apple SMC I/O, this is the equivalent of VirtualSMC.efi which is only needed for users using FileVault
-* **FirmwareVolume**: NO
-  * Fixes UI regarding FileVault, set to YES for better FileVault compatibility
-* **HashServices**: NO
-  * Fixes incorrect cursor size when running FileVault, set to YES for better FileVault compatibility
-* **UnicodeCollation**: NO
-  * Some older firmware have broken Unicode collation, fixes UEFI shell compatibility on these systems(generally IvyBridge and older)
+* For FileVault users please see the Post Install page: [Security and FileVault](/post-install/README.md)
 
 **Quirks**:
 
@@ -583,6 +582,10 @@ Only drivers present here should be:
   * Redirects AptioMemoryFix from `EFI_GLOBAL_VARIABLE_GUID` to `OC\_VENDOR\_VARIABLE\_GUID`. Needed for when firmware tries to delete boot entries and is recommended to be enabled on all systems for correct update installation, Startup Disk control panel functioning, etc.
 * **UnblockFsConnect**: NO
   * Some firmware block partition handles by opening them in By Driver mode, which results in File System protocols being unable to install. Mainly relevant for HP systems when no drives are listed
+
+**ReservedMemory**:
+
+Used for exempting certain memory regions from OSes to use, mainly relevant for Sandy Bridge iGPUs or systems with faulty memory. Use of this quirk is not covered in this guide
 
 ## Cleaning up
 
