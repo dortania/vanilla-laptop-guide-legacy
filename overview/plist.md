@@ -83,4 +83,4 @@ OpenCore separates their config.plist into 8 sections - ACPI, Booter, DeviceProp
 | PlatformInfo | Where you set SMBIOS fields like model, serial number, MLB, etc.
 | UEFI | Where additional UEFI drivers are loaded, as well as where you can set up things like BootChime, OC's APFS driver, Text Output, and various other firmware quirks ) |
 
-It is highly recommended to look through the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blobl/master/Docs/Configuration.pdf). Once your system is set up, you should specifically look through the Misc and UEFI section to configure OpenCore as you like with settings such as `PollAppleHotKeys`.
+It is highly recommended to look through the [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf). Once your system is set up, you should specifically look through the Misc and UEFI section to configure OpenCore as you like with settings such as `PollAppleHotKeys`.

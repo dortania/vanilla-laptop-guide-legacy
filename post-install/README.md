@@ -16,7 +16,7 @@ Universal:
 * [Fixing Resolution and Verbose](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/verbose)
 * [Fixing iServices](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/iservices)
 * [Fixing USB](https://usb-map.gitbook.io/project/)
-* [Fixing Power Management](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.md)
+* [Fixing Power Management](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html)
 * [Battery Patching](https://www.tonymacx86.com/threads/guide-how-to-patch-dsdt-for-working-battery-status.116102/)
 
 Extras:

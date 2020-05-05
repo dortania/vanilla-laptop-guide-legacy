@@ -47,4 +47,4 @@
   * [Fixing Resolution and Verbose](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/verbose)
   * [Fixing iServices](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/iservices)
   * [Emulated NVRAM](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/nvram)
-  * [Fixing Power Management](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.md)
+  * [Fixing Power Management](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html)
