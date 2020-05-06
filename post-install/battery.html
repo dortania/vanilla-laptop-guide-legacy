@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Setting Up OpenCore · GitBook</title>
+        <title>Fixing Battery Status · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -66,10 +66,6 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../OpenCore/ktext.html" />
-    
-    
-    <link rel="prev" href="online-installer.html" />
     
 
     </head>
@@ -198,9 +194,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="installer-overview.html">
+        <li class="chapter " data-level="2.2" data-path="../preparations/installer-overview.html">
             
-                <a href="installer-overview.html">
+                <a href="../preparations/installer-overview.html">
             
                     
                     Installer creation
@@ -212,9 +208,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.2.1" data-path="offline-installer.html">
+        <li class="chapter " data-level="2.2.1" data-path="../preparations/offline-installer.html">
             
-                <a href="offline-installer.html">
+                <a href="../preparations/offline-installer.html">
             
                     
                     Preparing an offline installer
@@ -225,9 +221,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2.2" data-path="online-installer.html">
+        <li class="chapter " data-level="2.2.2" data-path="../preparations/online-installer.html">
             
-                <a href="online-installer.html">
+                <a href="../preparations/online-installer.html">
             
                     
                     Preparing an online installer
@@ -243,9 +239,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3" data-path="opencore-efi.html">
+        <li class="chapter " data-level="2.3" data-path="../preparations/opencore-efi.html">
             
-                <a href="opencore-efi.html">
+                <a href="../preparations/opencore-efi.html">
             
                     
                     Setting Up OpenCore
@@ -452,9 +448,9 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="../post-install/">
+        <li class="chapter " data-level="5.1" data-path="./">
             
-                <a href="../post-install/">
+                <a href="./">
             
                     
                     Post-Install
@@ -583,9 +579,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.1.10" data-path="../post-install/battery.html">
+        <li class="chapter active" data-level="5.1.10" data-path="battery.html">
             
-                <a href="../post-install/battery.html">
+                <a href="battery.html">
             
                     
                     Fixing Battery Status
@@ -631,7 +627,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Setting Up OpenCore</a>
+        <a href=".." >Fixing Battery Status</a>
     </h1>
 </div>
 
@@ -646,64 +642,23 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="setting-up-the-efi">Setting up the EFI</h1>
+                                <h1 id="battery-patching">Battery Patching</h1>
+<p>While at the moment battery patching is not something covered in this guide, we&apos;ll at least point you to some helpful resources and add some useful notes for when using them in OpenCore.</p>
+<h2 id="dsdt-patching">DSDT Patching</h2>
+<p>While custom DSDT injection should be avoided as to prevent issues with Windows and firmware updates, it can be quite helpful as a starting point since it&apos;s a bit easier to grasp and do yourself:</p>
+<p><strong><a href="https://www.tonymacx86.com/threads/guide-how-to-patch-dsdt-for-working-battery-status.116102/" target="_blank">Rehabman&apos;s how to patch DSDT for working battery status</a></strong></p>
 <ul>
-<li>Supported version: 0.5.8</li>
+<li><p>Note: When re-injecting your DSDT, it should be the first in the list of ACPI -&gt; Add in the config.plist. And also remember that the patched DSDT would also go into EFI/OC/ACPI</p>
+</li>
+<li><p>Note 2: Avoid using the MaciASL and iASL provided by Rehabman, they have been long neglected and so highly recommended grabbing a newer variant from Acidanthera: <a href="https://github.com/acidanthera/MaciASL/releases" target="_blank">MaciASL</a></p>
+</li>
 </ul>
-<p>To setup OpenCore&#x2019;s folder structure, you&#x2019;ll want to grab the EFI folder found in OpenCorePkg&apos;s releases page:</p>
-<p><img src="../images/preparations/opencore-efi/base-efi.png" alt="base EFI folder"></p>
-<p>Now something you&apos;ll notice is that it comes with a bunch of files in <code>Drivers</code> and <code>Tools</code> folder, we don&apos;t want most of these:</p>
+<h2 id="battery-hot-patching">Battery Hot-patching</h2>
+<p>Once you&apos;ve finally gotten your DSDT patched and battery working in macOS, it&apos;s time to finally create our very own hot-patches. How these differ from regular DSDT patching is that it&apos;s done on the fly with the DSDT allowing for greater flexibility with firmware updates:</p>
+<p><strong><a href="https://www.tonymacx86.com/threads/guide-using-clover-to-hotpatch-acpi.200137/" target="_blank">Rehabman&apos;s Guide to Using Clover to &quot;hotpatch&quot; ACPI</a></strong></p>
 <ul>
-<li><p><strong>Remove from Drivers:</strong></p>
-<ul>
-<li>OpenUsbKbDxe.efi<ul>
-<li>Used for OpenCore picker on <strong>legacy systems running DuetPkg</strong>, <a href="https://applelife.ru/threads/opencore-obsuzhdenie-i-ustanovka.2944066/page-176#post-856653" target="_blank">not recommended and even harmful on Ivy Bridge and newer</a></li>
+<li>Note: Specifically post #2 refers to battery hot-patching</li>
 </ul>
-</li>
-<li>UsbMouseDxe.efi<ul>
-<li>similar idea to OpenUsbKbDxe, should only be needed on legacy systems using DuetPkg</li>
-</ul>
-</li>
-<li>NvmExpressDxe.efi<ul>
-<li>Used for Haswell and older when no NVMe driver is built into the firmware</li>
-</ul>
-</li>
-<li>XhciDxe.efi<ul>
-<li>Used for Sandy Bridge and older when no XHCI driver is built into the firmware</li>
-</ul>
-</li>
-<li>HiiDatabase.efi<ul>
-<li>Used for fixing GUI support like OpenShell.efi on Sandy Bridge and older</li>
-</ul>
-</li>
-<li>OpenCanopy.efi<ul>
-<li>This is OpenCore&apos;s optional GUI, we&apos;ll be going over how to set this up in installer-guide so remove this for now</li>
-</ul>
-</li>
-<li>Ps2KeyboardDxe.efi + Ps2MouseDxe.efi<ul>
-<li>Pretty obvious when you need this, USB keyboard and mouse users don&apos;t need it</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Remove everything from Tools:</strong></p>
-<ul>
-<li>Way to many to list them all, but I recommend keeping OpenShell.efi for troubleshooting purposes</li>
-</ul>
-</li>
-</ul>
-<p>A cleaned up EFI:</p>
-<p><img src="../images/preparations/opencore-efi/clean-efi.png" alt="Clean EFI"></p>
-<p>Now you can place <strong>your</strong> necessary firmware drivers(.efi) from AppleSupportPkg into the <em>Drivers</em> folder and Kexts/ACPI into their respective folders. Please note that UEFI drivers from Clover are not supported with OpenCore!(EmuVariableUEFI, AptioMemoryFix, OsxAptioFixDrv, etc). Please see the <a href="https://github.com/dortania/Opencore-Desktop-Guide/blob/master/clover-conversion/clover-efi.md" target="_blank">Clover firmware driver conversion</a> for more info on supported drivers and those merged into OpenCore.</p>
-<p>Here&apos;s what a populated EFI <strong><em>can</em></strong> look like(yours will be different):</p>
-<p><img src="../images/preparations/opencore-efi/populated-efi.png" alt="Populated EFI folder"></p>
-<p><strong>Reminder</strong>:</p>
-<ul>
-<li>SSDTs and custom DSDTs(<code>.aml</code>) go in ACPI folder</li>
-<li>Kexts(<code>.kext</code>) go in Kexts folder</li>
-<li>Firmware drivers(<code>.efi</code>) go in the Drivers folder</li>
-</ul>
-<h2 id="now-head-to-gathering-files-to-get-the-needed-kexts-and-firmware-drivers">Now head to <a href="../ktext.md">Gathering Files</a> to get the needed kexts and firmware drivers</h2>
 
                                 
                                 </section>
@@ -731,14 +686,6 @@
 
             
                 
-                <a href="online-installer.html" class="navigation navigation-prev " aria-label="Previous page: Preparing an online installer">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="../OpenCore/ktext.html" class="navigation navigation-next " aria-label="Next page: Gathering Files">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -747,7 +694,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Setting Up OpenCore","level":"2.3","depth":1,"next":{"title":"Gathering Files","level":"3.1","depth":1,"path":"OpenCore/ktext.md","ref":"OpenCore/ktext.md","articles":[]},"previous":{"title":"Preparing an online installer","level":"2.2.2","depth":2,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/opencore-efi.md","mtime":"2020-05-06T02:06:11.520Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-06T02:07:06.212Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Fixing Battery Status","level":"5.1.10","depth":2,"previous":{"title":"Fixing Power Management","level":"5.1.9","depth":2,"url":"https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html","ref":"https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"post-install/battery.md","mtime":"2020-05-06T02:06:11.520Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-06T02:07:06.212Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
