@@ -27,7 +27,9 @@ AppleIntelCPUPowerManagement
 AppleRTC
 AppleSupportPkg
 AptioMemoryFix
+Architected
 Asus
+Asus's
 Atheros
 AtherosE2200Ethernet
 AudioDxe
@@ -87,6 +89,7 @@ GPUs
 GT2
 GUID
 GenSMBIOS
+GitBook
 HD
 HDDs
 HD[0-9]*
@@ -141,6 +144,7 @@ MacBookPro14
 MacBookPro[0-9]+
 MacPro5
 MacSerial
+MaciASL
 Mackie's
 MountEFI
 Multiboot
@@ -162,9 +166,9 @@ OpenCore's
 OpenCorePkg
 OpenCorePkg's
 OpenRuntime
+OpenUsbKbDxe
 Optane
 Optimus
-OpenUsbKbDxe
 OtherOS
 P50
 P530
@@ -180,7 +184,6 @@ Plists
 Pre-Allocated
 ProperTree
 ProperTree's
-rEFInd
 RDRAND
 ROMs
 RST
@@ -189,8 +192,10 @@ R[5|7]
 Radeon
 Ramus
 Realtek
+Realtek's
 RealtekRTL8111
 Rehabman
+Rehabman's
 Reinstalls
 Ryzen
 SATA
@@ -286,10 +291,12 @@ hacky
 hotplug
 i3-3110M
 i7
+iASL
 iGPU
 iGPUs
 iMac13
 iServices
+ie
 ie\.
 ig-platform-id
 ix-3xxx
@@ -299,6 +306,7 @@ kext(\.)?
 kexts
 lapic
 lappie
+linter
 macOS
 macOS's
 macOS(\.)?
@@ -313,8 +321,10 @@ pre-Skylake
 pre-built
 pre-compiled
 pre-made
+rEFInd
 reimplements
 renderer
+repo
 spacebar
 spellchecker-cli
 touchpad
@@ -323,9 +333,5 @@ trackpad
 trackpads
 unallocated
 unbootable
-webserver
-Realtek's
-Asus's
-Architected
 vit9696
-ie
+webserver
