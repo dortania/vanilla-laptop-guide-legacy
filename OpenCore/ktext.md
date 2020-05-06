@@ -10,12 +10,12 @@ See the [**supported hardware section**](https://github.com/dortania/Opencore-De
 
 ## Firmware Drivers
 
-These are the drivers used by OpenCore, for the majority of systems you only need 3 .efi drivers to get up and running:
+These are the drivers used by OpenCore, for the majority of systems you only need 2 .efi drivers to get up and running:
 
 * [~~ApfsDriverLoader.efi~~](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
   * ~~Needed for seeing APFS volumes(ie. macOS)~~. As of OpenCore 0.5.8, this driver is built in and configured via config.plist -> UEFI -> APFS
-* [HfsPlus.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi) **or** [VboxHfs.efi](https://github.com/acidanthera/AppleSupportPkg/releases)
-  * Needed for seeing HFS volumes(ie. macOS Installers and Recovery partitions/images). **Do not mix HFS drivers**
+* [HfsPlus.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi)
+  * Needed for seeing HFS volumes(ie. macOS Installers and Recovery partitions/images).
 * [OpenRuntime.efi](https://github.com/acidanthera/OpenCorePkg/releases)
   * Replacement for [AptioMemoryFix.efi](https://github.com/acidanthera/AptioFixPkg), used as an extension for OpenCore to help with patching boot.efi for NVRAM fixes and better memory management.
 
@@ -65,7 +65,7 @@ Note that these come in the release/debug downloads for VirtualSMC
 
 * [WhateverGreen](https://github.com/acidanthera/WhateverGreen/releases)
   * Used for graphics patching DRM, boardID, framebuffer fixes, etc, all GPUs benefit from this kext.
-  * Note the SSDT-PNLF.dsl file included is only required for laptops and AIOs, see [Getting started with ACPI](/OpenCore/acpi.md) for more info
+  * Note the SSDT-PNLF.dsl file included is only required for laptops and AIOs, see [Getting started with ACPI](https://dortania.github.io/Getting-Started-With-ACPI) for more info
 
 **Audio**:
 
@@ -149,7 +149,7 @@ Please refer to [Kexts.md](https://github.com/acidanthera/OpenCorePkg/blob/maste
 
 So you see all those SSDTs in the AcpiSamples folder and wonder whether you need any of them. For us, we will be going over what SSDTs you need in **your specific ACPI section of the config.plist**, as the SSDTs you need are platform specific. With some even system specific where they need to be configured and you can easily get lost if I give you a list of SSDTs to choose from now.
 
-[Getting started with ACPI](/OpenCore/acpi.md) has an extended section on SSDTs including compiling them on different platforms.
+[Getting started with ACPI](https://dortania.github.io/Getting-Started-With-ACPI) has an extended section on SSDTs including compiling them on different platforms.
 
 A quick TL;DR of needed SSDTs(This is source code, you will have to compile them into a .aml file):
 
