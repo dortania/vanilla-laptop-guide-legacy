@@ -26,7 +26,7 @@ The **macOS Installer** can be one of two options: a full installer or a recover
 * **Full macOS installers** contain the entire macOS installation files and require no network connection
 (so it can be installed offline).
 These images are generally 8 GB or more, so your USB drive should be at least 16 GB.
-You must have a macOS computer to create the Full installer.
+You must have a macOS computer to create the full installer.
 (There are hacky ways to make Windows and Linux write HFS+, but we won't be going over them.)
 * **Recovery Installers** contain only the core essentials to boot macOS on your computer.
 You then must be "online" to download the remainder of macOS and complete this "internet recovery" installation.
