@@ -2,9 +2,9 @@
 
 What components do we need to create a bootable USB installer?
 
-* A USB drive - at least 4 GB (or 16 GB) - see below.
+* A full macOS installer.app or recovery image for internet install
 * A bootloader - for this guide, we'll be focusing on OpenCore
-* A Full macOS installer.app or Recovery image for internet install
+* A USB drive - at least 4 GB for an internet install, and at least 8GB for a full installer
 
 **USB Drive** can be a garden-variety USB 2.0 or better USB drive
 has at least 16 GB (for the Full/offline Installer)
