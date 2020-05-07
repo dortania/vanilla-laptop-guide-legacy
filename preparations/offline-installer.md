@@ -22,7 +22,7 @@ What you need:
 
 To start we'll want to grab ourselves a copy of macOS, you can skip this and head to formatting the USB if you're just making a bootable OpenCore stick and not an installer. For everyone else, you can either download macOS from the App Store or with gibMacOS
 
-## Downloading macOS Installer
+## Downloading the macOS Installer with gibMacOS
 
 Use the [gibMacOS](https://github.com/corpnewt/gibMacOS)
 (see the [Recovery Installer page for details](./online-installer.md)
