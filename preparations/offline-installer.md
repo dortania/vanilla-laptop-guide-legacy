@@ -73,7 +73,7 @@ This will take some time so may want to grab a coffee or continue reading the gu
 
 ## Mounting the EFI partition
 
-Before you can proceed, you must mount the EFI system partition that was automatically created when formatting with GUID.
+Before you can proceed, you must mount the EFI system partition that was automatically created when we prepared the USB.
 That partition is unmounted by default.
 This is where our friend [MountEFI](https://github.com/corpnewt/MountEFI) comes in:
 
