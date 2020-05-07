@@ -10,7 +10,7 @@ What components do we need to create a bootable USB installer?
 has at least 16 GB (for the Full/offline Installer)
 or 4 GB (for the Recovery/online installer).
 
-**The bootloader software** tricks macOS into thinking it's running on a genuine Mac,
+**The bootloader** allows macOS to boot on hardware other than a supported Mac,
 by supplying software patches for the non-Mac hardware.
 This guide uses [OpenCore](https://github.com/acidanthera/OpenCorePkg/releases)
 although the USB installer created here could be used for other bootloaders (such as Clover).
