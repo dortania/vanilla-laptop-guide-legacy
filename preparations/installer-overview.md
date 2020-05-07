@@ -21,7 +21,7 @@ What makes OpenCore special is:
 * Implements much better overall security and native support for FileVault
 * Architected and maintained by the great [vit9696](https://github.com/vit9696), and co-written by [Download-Fritz](https://github.com/Download-Fritz)
 
-**macOS Installer** can be one of two alternatives: Full or Recovery Installer.
+The **macOS Installer** can be one of two options: a full installer or a recovery image.
 
 * **Full macOS installers** contain the entire macOS image and require no network connection
 (so it can be "offline").
