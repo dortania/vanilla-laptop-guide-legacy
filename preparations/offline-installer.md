@@ -3,7 +3,7 @@
 
 This procedure describes how to create a full macOS installer that contains the
 
-entire operating system, with no further downloads necessary.
+entire operating system, with no further downloads necessary to install.
 What you need:
 
 * A macOS computer
