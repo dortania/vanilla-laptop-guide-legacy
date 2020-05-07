@@ -1,4 +1,5 @@
-# Preparing a Full macOS Installer (requires macOS)
+# Preparing a full macOS Installer (requires macOS)
+
 
 This procedure describes how to create a "full macOS installer" that contains the
 entire operating system, with no further downloads necessary.
