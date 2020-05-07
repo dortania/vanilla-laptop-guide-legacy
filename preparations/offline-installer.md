@@ -26,7 +26,7 @@ To start we'll want to grab ourselves a copy of macOS, you can skip this and hea
 
 Use the [gibMacOS](https://github.com/corpnewt/gibMacOS)
 (see the [Recovery Installer page for details](./online-installer.md)
-and run the `gibMacOS.command`:
+and run `gibMacOS.command`:
 
 ![](/images/preparations/offline-installer/gib.png)
 
