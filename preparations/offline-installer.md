@@ -61,7 +61,7 @@ which is where your firmware checks for boot files.
 ## Copying macOS onto the USB Drive
 
 Next run the `createinstallmedia` command provided by [Apple](https://support.apple.com/en-us/HT201372),
-note that the command is made for USB's formatted with the name `MyVolume`:
+(be sure to adjust the volume name if it's not `MyVolume` and the path to the installer if it's not Catalina or not in the Applications folder):
 
 ```text
 sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
