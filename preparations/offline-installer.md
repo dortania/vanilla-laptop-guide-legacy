@@ -7,7 +7,7 @@ entire operating system, with no further downloads necessary to install.
 What you need:
 
 * A macOS computer
-* A full macOS installer.app, downloaded from the App Store (instructions below)
+* A full macOS installer.app, downloaded from the App Store or with gibMacOS (instructions below)
 * [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg)
   * You can download a [pre-built release](https://github.com/acidanthera/OpenCorePkg/releases) (recommended, comes with needed EFI drivers)
   * Or build it manually with `./macbuild.tool`
