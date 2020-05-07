@@ -28,7 +28,7 @@ The **macOS Installer** can be one of two options: a full installer or a recover
 These images are generally 8 GB or more, so your USB drive should be at least 16 GB.
 You must have a macOS computer to create the full installer.
 (There are hacky ways to make Windows and Linux write HFS+, but we won't be going over them.)
-* **Recovery Installers** contain only the core essentials to boot macOS on your computer.
+* **Recovery images** contain only the core essentials to boot macOS (Recovery) on your computer.
 You then must be "online" to download the remainder of macOS and complete this "internet recovery" installation.
 This guide provides instructions for creating recovery installers on Linux, Windows and even Android.
 
