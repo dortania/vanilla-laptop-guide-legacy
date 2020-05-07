@@ -23,7 +23,7 @@ What makes OpenCore special is:
 
 The **macOS Installer** can be one of two options: a full installer or a recovery image.
 
-* **Full macOS installers** contain the entire macOS image and require no network connection
+* **Full macOS installers** contain the entire macOS installation files and require no network connection
 (so it can be "offline").
 These images are generally 8 GB or more, so your USB drive should be at least 16 GB.
 You must have a macOS computer to create the Full installer.
