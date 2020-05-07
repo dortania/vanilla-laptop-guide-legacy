@@ -12,7 +12,7 @@ or 4 GB (for the Recovery/online installer).
 
 **The bootloader software** tricks macOS into thinking it's running on a genuine Mac,
 by supplying software patches for the non-Mac hardware.
-This guide describes [OpenCore](https://github.com/acidanthera/OpenCorePkg/releases)
+This guide uses [OpenCore](https://github.com/acidanthera/OpenCorePkg/releases)
 although the USB installer created here could be used for other bootloaders (such as Clover).
 What makes OpenCore special is:
 
