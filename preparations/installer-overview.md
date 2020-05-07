@@ -17,7 +17,7 @@ although the USB installer created here could be used for other bootloaders (suc
 What makes OpenCore special is:
 
 * Support much more sophisticated system patching meaning better overall stability with updates
-* Uses modern kext injection being OS agnostic, compared to the hacky injections used by its predecessors (i.e. Clover)
+* Uses modern kext injection being macOS version agnostic, compared to the hacky injections used by its predecessors (i.e. Clover)
 * Implements much better overall security and native support for FileVault
 * Architected and maintained by the great [vit9696](https://github.com/vit9696), and co-written by [Download-Fritz](https://github.com/Download-Fritz)
 
