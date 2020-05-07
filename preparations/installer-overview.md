@@ -29,7 +29,7 @@ These images are generally 8 GB or more, so your USB drive should be at least 16
 You must have a macOS computer to create the full installer.
 (There are hacky ways to make Windows and Linux write HFS+, but we won't be going over them.)
 * **Recovery images** contain only the core essentials to boot macOS (Recovery) on your computer.
-You then must be "online" to download the remainder of macOS and complete this "internet recovery" installation.
+You then must be connected to a network (with a network adapter supported in macOS) to download the remainder of macOS and complete the installation.
 This guide provides instructions for creating recovery installers on Linux, Windows and even Android.
 
 **Next Step:** [Create a Full Installer](./offline-installer.md) *or* [Create a Recovery Installer](./online-installer.md)
