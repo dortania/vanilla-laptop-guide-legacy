@@ -70,7 +70,6 @@ sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstall
 This will take some time so may want to grab a coffee or continue reading the guide.
 (To be realistic, you shouldn't be following this guide step by step without reading the whole thing first.)
 
-You can also replace the `createinstallmedia` path with that of where your installer's located, same idea with the drive name.
 
 ## Mounting the EFI partition
 
