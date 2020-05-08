@@ -74,7 +74,7 @@ Note that these come in the release/debug downloads for VirtualSMC
 
 **Ethernet**:
 
-* [IntelMausiEthernet](https://github.com/Mieze/IntelMausiEthernet)
+* [IntelMausi](https://github.com/acidanthera/IntelMausi/releases)
   * Required for Intel NICs, chipsets that are based off of I211 will need the SmallTreeIntel82576 kext
 * [AtherosE2200Ethernet](https://github.com/Mieze/AtherosE2200Ethernet/releases)
   * Required for Atheros and Killer NICs
