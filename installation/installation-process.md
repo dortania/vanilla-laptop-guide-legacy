@@ -9,21 +9,6 @@ Now that you've finished setting up OpenCore, you're finally able to boot, main 
 * And a copy of the [troubleshooting page](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html)
 * And a ton of patience
 
-## Double checking your work
-
-One last thing we should go over before booting is how your EFI is setup:
-
-Good EFI          |  Bad EFI
-:-------------------------:|:-------------------------:
-![](/images/installation/install-md/good-efi.png)  |  ![](/images/installation/install-md/bad-efi.png)
-* EFI folder found on EFI partition | * EFI folder missing
-* ACPI Files are compiled(.aml) | * ACPI Files are not compiled(.dsl)
-* Removed unneeded Drivers(.efi) | * Leaves default Drivers
-* Removed unneeded Tools(.efi) | * Leaves default Tools
-* All files in the Kexts folder end in .kext | * Includes source code and folders
-* config.plist found under EFI/OC | * Neither renamed or placed the .plist in right location
-* Only uses kexts that are needed | * Downloaded every kext listed
-
 ## Recommended BIOS Settings
 
 With many OEMs you're likely going to be heavily limited in your options, if you can try to find these options and enable them:
@@ -48,9 +33,25 @@ With many OEMs you're likely going to be heavily limited in your options, if you
   * If OpenCore doesn't show up, set this to OtherOS
 * DVMT Pre-Allocated(iGPU Memory): 64MB
 
+## Double checking your work
+
+One last thing we should go over before booting is how your EFI is setup:
+
+Good EFI          |  Bad EFI
+:-------------------------:|:-------------------------:
+![](/images/installation/install-md/good-efi.png)  |  ![](/images/installation/install-md/bad-efi.png)
+* EFI folder found on EFI partition | * EFI folder missing
+* ACPI Files are compiled(.aml) | * ACPI Files are not compiled(.dsl)
+* DSDT is not included | * DSDT is included
+* Removed unneeded Drivers(.efi) | * Leaves default Drivers
+* Removed unneeded Tools(.efi) | * Leaves default Tools
+* All files in the Kexts folder end in .kext | * Includes source code and folders
+* config.plist found under EFI/OC | * Neither renamed or placed the .plist in right location
+* Only uses kexts that are needed | * Downloaded every kext listed
+
 ## Booting the OpenCore USB
 
-So you're not ready to finally put the USB stick into your computer and boot off of it, remember that your laptop will still default to the internal drive with Windows so you'll need to enter the BIOS or boot menu and select the USB. You'll need to check in the user manual or use a bit of google to find out what Fn key accesses the BIOS and boot menu(ie. Esc, F2, F10 or F12)
+So you're now ready to finally put the USB stick into your computer and boot off of it, remember that your laptop will still default to the internal drive with Windows so you'll need to enter the BIOS or boot menu and select the USB. You'll need to check in the user manual or use a bit of google to find out what Fn key accesses the BIOS and boot menu(ie. Esc, F2, F10 or F12)
 
 Once you boot the USB, you'll likely be greeted to the following boot options:
 
