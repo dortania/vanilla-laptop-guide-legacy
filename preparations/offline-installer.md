@@ -1,6 +1,5 @@
 # Preparing a full macOS Installer (requires macOS)
 
-
 This procedure describes how to create a full macOS installer that contains the
 
 entire operating system, with no further downloads necessary to install.
@@ -71,7 +70,6 @@ sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstall
 
 This will take some time so may want to grab a coffee or continue reading the guide.
 (To be realistic, you shouldn't be following this guide step by step without reading the whole thing first.)
-
 
 ## Mounting the EFI partition
 

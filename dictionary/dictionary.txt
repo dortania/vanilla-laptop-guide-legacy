@@ -75,13 +75,17 @@ EfiReservedMemoryType
 EmuVariableUEFI
 Endian
 Endianness
+Esc
 ExitBootServices
+F10
+F12
 FAT32
 FTE1001
 FW
 FakeSMC
 Fenvi
 FileVault
+Fn
 Framebuffer
 GPIO
 GPT
@@ -119,6 +123,7 @@ IOService
 IceLake
 Icelake
 Insyde
+IntelMausi
 IntelMausiEthernet
 IvyBridge
 Journaled

@@ -55,7 +55,7 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
 | Required_SSDTs | Description |
 | :--- | :--- |
 | **[SSDT-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)** | Needed for proper CPU power management, you will need to run Pike's ssdtPRGen.sh script to generate this file. This will be run in [post install](/post-install/README.md). |
-| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** |  Creates a fake EC for macOS, **needed for all Catalina users** and recommended for other versions of macOS. A pre-built can be found here if you have issues: [SSDT-EC-LAPTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-EC-LAPTOP.aml) |
+| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. A pre-built can be found here if you have issues: [SSDT-EC-LAPTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-EC-LAPTOP.aml) |
 | **[SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)** | Creates a stub so VoodooI2C can connect, for those having troubles getting VoodooI2C working can try [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml) instead |
 | **[SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)** | Adds brightness control support |
 
@@ -185,16 +185,16 @@ The table below may seem daunting but it's really not, the main things we need t
 * device-id
   * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries are the recommended entries to use
+ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Intel HD Graphics 4000 | 66010001 | 01006601 | 4 | 96MB | 24MB |  LVDSx1 HDMIx1 DPx2 |
 | Intel HD Graphics 4000 | 66010002 | 02006601 | 1 | 64MB | 24MB |  LVDSx1 |
 | **Intel HD Graphics 4000 <sup>1</sup>** * | 66010003 | 03006601 | 4 | 64MB | 16MB |  LVDSx1 DPx3 |
-| **Intel HD Graphics 4000 <sup>2</sup>** | 66010004 | 04006601 | 1 | 32MB | 16MB |  LVDSx1 |
+| **Intel HD Graphics 4000 <sup>2</sup>** * | 66010004 | 04006601 | 1 | 32MB | 16MB |  LVDSx1 |
 | Intel HD Graphics 4000 | 66010008 | 08006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 4000 <sup>3</sup>** | 66010009 | 09006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 4000 <sup>3</sup>** * | 66010009 | 09006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
 
 #### Special Notes
 

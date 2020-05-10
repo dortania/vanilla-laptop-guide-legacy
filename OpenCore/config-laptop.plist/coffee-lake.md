@@ -166,14 +166,14 @@ The table below may seem daunting but it's really not, the main things we need t
 * device-id
   * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries are the recommended entries to use
+ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Intel UHD Graphics 630 | 003E0000 | 0000003E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel UHD Graphics 630 | 923E0000 | 0000923E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel UHD Graphics 630 | 923E0009 | 0900923E | 3 | 57MB | 0MB |  LVDSx1 DUMMYx2 |
-| **Intel UHD Graphics 630** | 9B3E0000 | 00009B3E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| **Intel UHD Graphics 630** * | 9B3E0000 | 00009B3E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel UHD Graphics 630 | 9B3E0006 | 06009B3E | 1 | 38MB | 0MB |  LVDSx1 DUMMYx2 |
 | Intel UHD Graphics 630 | 9B3E0009 | 09009B3E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel Iris Plus Graphics 655 | A53E0000 | 0000A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |

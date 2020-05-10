@@ -170,13 +170,13 @@ The table below may seem daunting but it's really not, the main things we need t
 * device-id
   * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries are the recommended entries to use
+ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Iris Plus | 8A510000 | 0000518A | 6 | 64MB | 0MB |  LVDSx1 DPx5 |
 | Iris Plus | 8A5C0000 | 00005C8A | 6 | 64MB | 0MB |  LVDSx1 DPx5 |
-| **Iris Plus** | 8A520000 | 0000528A | 6 | 64MB | 0MB |  LVDSx1 DPx5 |
+| **Iris Plus** * | 8A520000 | 0000528A | 6 | 64MB | 0MB |  LVDSx1 DPx5 |
 | Iris Plus | 8A5A0000 | 00005A8A | 6 | 64MB | 0MB |  LVDSx1 DPx5 |
 
 #### Special Notes
