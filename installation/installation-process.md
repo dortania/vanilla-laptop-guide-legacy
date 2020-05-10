@@ -44,7 +44,6 @@ Good EFI          |  Bad EFI
 * ACPI Files are compiled(.aml) | * ACPI Files are not compiled(.dsl)
 * DSDT is not included | * DSDT is included
 * Removed unneeded Drivers(.efi) | * Leaves default Drivers
-* Removed unneeded Tools(.efi) | * Leaves default Tools
 * All files in the Kexts folder end in .kext | * Includes source code and folders
 * config.plist found under EFI/OC | * Neither renamed or placed the .plist in right location
 * Only uses kexts that are needed | * Downloaded every kext listed
@@ -60,7 +59,7 @@ Once you boot the USB, you'll likely be greeted to the following boot options:
 3. OpenShell.efi
 4. Reset NVRAM
 
-For use, **Option 2.** is the one we want. Depending how the installer was made, it may report as either **"macOS Base System (External)"** if created in Linux or Windows and **"Install macOS Catalina (External)"** if created in macOS.
+For use, **Option 2.** is the one we want. Depending how the installer was made, it may report as either **"macOS Base System (External)"** if Recovery Installer based and **"Install macOS Catalina (External)"** if full installer based.
 
 ## macOS Installer
 
