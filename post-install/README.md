@@ -15,7 +15,7 @@ Universal:
 * [Fixing CFG Lock](https://dortania.github.io/OpenCore-Desktop-Guide//extras/msr-lock)
 * [Fixing Resolution and Verbose](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/verbose)
 * [Fixing iServices](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/iservices)
-* [Fixing USB](https://usb-map.gitbook.io/project/)
+* [Fixing USB](https://dortania.github.io/USB-Map-Guide/)
 * [Fixing Power Management](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html)
 * [Fixing Battery Status](/post-install/battery.md)
 
