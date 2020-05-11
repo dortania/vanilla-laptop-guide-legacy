@@ -680,6 +680,60 @@
 </li>
 <li>DVMT Pre-Allocated(iGPU Memory): 64MB</li>
 </ul>
+<h2 id="double-checking-your-work">Double checking your work</h2>
+<p>One last thing we should go over before booting is how your EFI is setup:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Good EFI</th>
+<th style="text-align:center">Bad EFI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="../images/installation/install-md/good-efi.png" alt=""></td>
+<td style="text-align:center"><img src="../images/installation/install-md/bad-efi.png" alt=""></td>
+</tr>
+<tr>
+<td style="text-align:center">* EFI folder found on EFI partition</td>
+<td style="text-align:center">* EFI folder missing</td>
+</tr>
+<tr>
+<td style="text-align:center">* ACPI Files are compiled(.aml)</td>
+<td style="text-align:center">* ACPI Files are not compiled(.dsl)</td>
+</tr>
+<tr>
+<td style="text-align:center">* DSDT is not included</td>
+<td style="text-align:center">* DSDT is included</td>
+</tr>
+<tr>
+<td style="text-align:center">* Removed unneeded Drivers(.efi)</td>
+<td style="text-align:center">* Leaves default Drivers</td>
+</tr>
+<tr>
+<td style="text-align:center">* All files in the Kexts folder end in .kext</td>
+<td style="text-align:center">* Includes source code and folders</td>
+</tr>
+<tr>
+<td style="text-align:center">* config.plist found under EFI/OC</td>
+<td style="text-align:center">* Neither renamed or placed the .plist in right location</td>
+</tr>
+<tr>
+<td style="text-align:center">* Only uses kexts that are needed</td>
+<td style="text-align:center">* Downloaded every kext listed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="booting-the-opencore-usb">Booting the OpenCore USB</h2>
+<p>So you&apos;re now ready to finally put the USB stick into your computer and boot off of it, remember that your laptop will still default to the internal drive with Windows so you&apos;ll need to enter the BIOS or boot menu and select the USB. You&apos;ll need to check in the user manual or use a bit of google to find out what Fn key accesses the BIOS and boot menu(ie. Esc, F2, F10 or F12)</p>
+<p>Once you boot the USB, you&apos;ll likely be greeted to the following boot options:</p>
+<ol>
+<li>Windows</li>
+<li>macOS Base System (External) / Install macOS Catalina (External)</li>
+<li>OpenShell.efi</li>
+<li>Reset NVRAM</li>
+</ol>
+<p>For use, <strong>Option 2.</strong> is the one we want. Depending how the installer was made, it may report as either <strong>&quot;macOS Base System (External)&quot;</strong> if Recovery Installer based and <strong>&quot;Install macOS Catalina (External)&quot;</strong> if full installer based.</p>
 <h2 id="macos-installer">macOS Installer</h2>
 <p>So you&apos;ve finally got the installer booted, got through the verbose and hit the installer! Now that you&apos;ve gotten this far,  the main things to keep in mind:</p>
 <ul>
@@ -738,7 +792,7 @@ You will want to go through the Post-Installation pages to finish setting up you
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation Process","level":"4.1","depth":1,"next":{"title":"Troubleshooting","level":"4.2","depth":1,"url":"https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html","ref":"https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html","articles":[]},"previous":{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"installation/installation-process.md","mtime":"2020-05-07T17:16:14.435Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-07T17:17:15.334Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation Process","level":"4.1","depth":1,"next":{"title":"Troubleshooting","level":"4.2","depth":1,"url":"https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html","ref":"https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html","articles":[]},"previous":{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"installation/installation-process.md","mtime":"2020-05-11T01:00:21.912Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-05-11T01:01:16.420Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
