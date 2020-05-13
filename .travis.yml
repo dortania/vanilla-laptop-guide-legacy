@@ -1,14 +1,8 @@
 language: node_js
 cache:
   npm: false
-      - node
-      - lts/*
-      - 13
-      - 11
-      - 10
 jobs:
   include:
-    - stage: Node
     - name: "Build and Push"
       node_js: node
       script: 
@@ -36,7 +30,6 @@ jobs:
       script: 
       - npm run spellcheck
       
-    - stage: lts/*
     - name: "Build and Push"
       node_js: lts/*
       script: 
@@ -64,7 +57,6 @@ jobs:
       script: 
       - npm run spellcheck
       
-    - stage: 13
     - name: "Build and Push"
       node_js: 13
       script: 
@@ -92,7 +84,6 @@ jobs:
       script: 
       - npm run spellcheck
       
-    - stage: 11
     - name: "Build and Push"
       node_js: node
       script: 
@@ -120,7 +111,6 @@ jobs:
       script: 
       - npm run spellcheck
       
-    - stage: 10
     - name: "Build and Push"
       node_js: 10
       script: 
