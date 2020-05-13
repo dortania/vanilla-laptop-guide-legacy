@@ -1,5 +1,10 @@
 language: node_js
-node_js: node
+node_js:
+- node
+- lts/*
+- 13
+- 11
+- 10
 cache:
   npm: false
 jobs:
