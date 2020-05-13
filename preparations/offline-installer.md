@@ -1,25 +1,31 @@
 # Preparing a full macOS Installer (requires macOS)
 
 This procedure describes how to create a full macOS installer that contains the
-
 entire operating system, with no further downloads necessary to install.
 What you need:
 
 * A macOS computer
+* 16 GB USB drive or larger
 * A full macOS installer.app, downloaded from the App Store or with gibMacOS (instructions below)
 * [OpenCorePkg](https://github.com/acidanthera/OpenCorePkg)
   * You can download a [pre-built release](https://github.com/acidanthera/OpenCorePkg/releases) (recommended, comes with needed EFI drivers)
   * Or build it manually with `./macbuild.tool`
-  * You want the DBG (debug) build, as it makes it easier to debug issues. Afterwards, you can switch to a REL (release) build.
+  * Use the DBG (debug) build, as it makes it easier to debug issues. Afterwards, you can switch to a REL (release) build.
 * [AppleSupportPkg](https://github.com/acidanthera/AppleSupportPkg)
   * Same as above, except usually you don't need the debug version as usually there aren't any issues.
 * A plist editor (you should already have one by now. ie. [ProperTree](https://github.com/corpnewt/ProperTree))
 
 ##### Note for legacy users
 
-* If you want to use OpenCore on a system without UEFI, please follow the [Legacy Install](/extras/legacy.md) section first, after you can continue following the **Base folder structure** section
+* It is possible to use OpenCore if your computer doesn't support UEFI.
+Please follow the [Legacy Install](../Extras/legacy.md)
+<!-- missing page? -->
+section first, after you can continue following the **Base folder structure** section
 
-To start we'll want to grab ourselves a copy of macOS, you can skip this and head to formatting the USB if you're just making a bootable OpenCore stick and not an installer. For everyone else, you can either download macOS from the App Store or with gibMacOS
+To start we'll grab a copy of the macOS Installer -
+either download macOS from the App Store or use gibMacOS.
+(If you're just making a bootable OpenCore stick and not an installer,
+you can skip downloading macOS and head to [Preparing the USB.](./#))
 
 ## Downloading the macOS Installer with gibMacOS
 
@@ -37,7 +43,7 @@ For this example we'll choose 1:
 This is going to take a while as we're downloading the entire 8GB+ macOS installer,
 so highly recommend reading the rest of the guide while you wait.
 
-Once finished, we'll next want to run the `BuildmacOSInstallApp.command`:
+Once finished, run the `BuildmacOSInstallApp.command`:
 
 ![](/images/preparations/offline-installer/gib-location.png)
 
@@ -49,7 +55,7 @@ Once it's done, you can find it with the rest of the files. I recommend moving i
 
 ## Preparing the USB Drive
 
-Now we will be formatting the USB drive.
+Now format the USB drive.
 Use macOS Disk Utility to erase the entire USB drive (click View > Show All Devices, then select your USB drive),
 and give it the name `MyVolume`,
 using `Mac OS Extended (Journaled)` and `GUID Partition Map`.
