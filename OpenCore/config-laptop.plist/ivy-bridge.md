@@ -224,7 +224,7 @@ The table below may seem daunting but it's really not, the main things we need t
 
 * Some laptops from this era came with a mixed chipset setup, using Ivy Bridge CPUs with Sandy Bridge chipsets which creates issues with macOS since it expects a certain IMEI ID that it doesn't find and would get stuck at boot, to fix this we need to fake the IMEI's IDs in these models
 
-  * To know if you're affected check if your CPU is an Intel Core ix-3xxx and your chipset is Hx6x (for example a laptop with HM65 or HM67 with a Core i3-3110M) through tools like Aida64.
+  * To know if you're affected check if your CPU is an Intel Core ix-3xxx and your chipset is Hx6x (for example a laptop with HM65 or HM67 with a Core i3-3110M) through tools like AIDA64.
   * In your config add a new PciRoot device named `PciRoot(0x0)/Pci(0x16,0x0)`
     * Key: `device-id`
     * Type: Data
