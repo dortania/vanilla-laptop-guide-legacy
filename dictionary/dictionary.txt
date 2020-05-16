@@ -16,6 +16,7 @@ AWAC
 Above4GDecoding
 Acidanthera
 AcpiSamples
+Aida64
 AirportAtheros40
 AirportBrcmFixup
 AppleACPICPU
@@ -32,6 +33,7 @@ Asus
 Asus's
 Atheros
 AtherosE2200Ethernet
+Attribution-NonCommercial-ShareAlike
 AudioDxe
 BGRT
 BT
@@ -311,6 +313,7 @@ kext(\.)?
 kexts
 lapic
 lappie
+licensor
 linter
 macOS
 macOS's
