@@ -14,7 +14,7 @@ These are the drivers used by OpenCore, for the majority of systems you only nee
 
 * [~~ApfsDriverLoader.efi~~](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
   * ~~Needed for seeing APFS volumes(ie. macOS)~~. As of OpenCore 0.5.8, this driver is built in and configured via config.plist -> UEFI -> APFS
-* [HfsPlus.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi) **or** [VboxHfs.efi](https://github.com/acidanthera/AppleSupportPkg/releases)
+* [HfsPlus.efi](https://github.com/acidanthera/OcBinaryData/blob/master/Drivers/HfsPlus.efi) **or** [VboxHfs.efi](https://github.com/acidanthera/OpenCorePkg/releases)
   * Needed for seeing HFS volumes(ie. macOS Installers and Recovery partitions/images). **Do not mix HFS drivers**
 * [OpenRuntime.efi](https://github.com/acidanthera/OpenCorePkg/releases)
   * Replacement for [AptioMemoryFix.efi](https://github.com/acidanthera/AptioFixPkg), used as an extension for OpenCore to help with patching boot.efi for NVRAM fixes and better memory management.
