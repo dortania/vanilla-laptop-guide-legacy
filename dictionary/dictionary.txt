@@ -16,7 +16,6 @@ AWAC
 Above4GDecoding
 Acidanthera
 AcpiSamples
-Aida64
 AirportAtheros40
 AirportBrcmFixup
 AppleACPICPU
