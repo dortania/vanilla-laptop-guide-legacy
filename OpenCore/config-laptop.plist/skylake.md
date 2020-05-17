@@ -48,14 +48,14 @@ Now with those downloaded, we can get to really get started:
 
 **Add:**
 
-This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://usb-map.gitbook.io/project/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
+This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://dortania.github.io/USB-Map-Guide/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
 
 | Required_SSDTs | Description |
 | :--- | :--- |
-| **[SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)** | Allows for native CPU power management on Haswell and newer |
-| **[SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. This SSDT also has a second function, USBX. This is used for forcing USB power properties, requires SSDT-EC so this just jumbles them together. |
+| **[SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)** | Allows for native CPU power management on Haswell and newer. A pre-built can be found here if you have issues: [SSDT-PLUG-DRTNIA](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-PLUG-DRTNIA.aml) |
+| **[SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. This SSDT also has a second function, USBX. This is used for forcing USB power properties, requires SSDT-EC so this just jumbles them together. A pre-built can be found here if you have issues: [SSDT-EC-USBX-DESKTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-EC-USBX-DESKTOP.aml) |
 | **[SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)** | Creates a stub so VoodooI2C can connect, for those having troubles getting VoodooI2C working can try [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml) instead |
 | **[SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)** | Adds brightness control support |
 
@@ -177,18 +177,18 @@ The table below may seem daunting but it's really not, the main things we need t
 * device-id
   * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries are the recommended entries to use
+ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Intel HD Graphics 530 | 12190000 | 00001219 | 3 | 34MB | 21MB |  DUMMY1 DPx2 |
-| **Intel HD Graphics 520** | 16190000 | 00001619 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 520** * | 16190000 | 00001619 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
 | Intel HD Graphics 520 | 16190002 | 02001619 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | **Intel HD Graphics 530** * | 1b190000 | 00001b19 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
 | Intel HD Graphics 530 | 1b190006 | 06001b19 | 1 | 38MB | 0MB |  LVDSx1 |
 | Intel HD Graphics 515 | 1e190000 | 00001e19 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
 | Intel HD Graphics 515 | 1e190003 | 03001e19 | 3 | 40MB | 0MB |  LVDSx1 DPx2 |
-| **Intel Iris Graphics 540** | 26190000 | 00002619 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| **Intel Iris Graphics 540** * | 26190000 | 00002619 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 540 | 26190002 | 02002619 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 540 | 26190004 | 04002619 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 540 | 26190007 | 07002619 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
@@ -288,7 +288,7 @@ Settings relating to the kernel, for us we'll be enabling `AppleCpuPmCfgLock`, `
 * **ThirdPartyDrives**: NO
   * Enables TRIM, not needed for NVMe but AHCI based drives may require this. Please check under system report to see if your drive supports TRIM
 * **XhciPortLimit**: YES
-  * This is actually the 15 port limit patch, don't rely on it as it's not a guaranteed solution for fixing USB. Please create a [USB map](https://usb-map.gitbook.io/project/) when possible.
+  * This is actually the 15 port limit patch, don't rely on it as it's not a guaranteed solution for fixing USB. Please create a [USB map](https://dortania.github.io/USB-Map-Guide/) when possible.
 
 The reason being is that UsbInjectAll reimplements builtin macOS functionality without proper current tuning. It is much cleaner to just describe your ports in a single plist-only kext, which will not waste runtime memory and such
 
@@ -350,7 +350,7 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
 * **BlacklistAppleUpdate**: True
   * Ignores Apple's firmware updater, recommended to enable as to avoid issues with installs and updates
 * **BootProtect**: None
-  * Allows the use of Boostrap.efi inside EFI/OC/Bootstrap instead of BOOTx64.efi, useful for those wanting to either boot with rEFInd or avoid BOOTx64.efi overwrites from Windows. Proper use of this quirks is not be covered in this guide
+  * Allows the use of Bootstrap.efi inside EFI/OC/Bootstrap instead of BOOTx64.efi, useful for those wanting to either boot with rEFInd or avoid BOOTx64.efi overwrites from Windows. Proper use of this quirks is not be covered in this guide
 * **ExposeSensitiveData**: `6`
   * Shows more debug information, requires debug version of OpenCore
 * **Vault**: `Optional`
@@ -623,7 +623,7 @@ Used for exempting certain memory regions from OSes to use, mainly relevant for 
 
 And now you're ready to save and place it into your EFI under EFI/OC.
 
-For those having booting issues, please make sure to read the [Troubleshooting section](../troubleshooting/troubleshooting.md) first and if your questions are still unanswered we have plenty of resources at your disposal:
+For those having booting issues, please make sure to read the [Troubleshooting section](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html) first and if your questions are still unanswered we have plenty of resources at your disposal:
 
 * [r/Hackintosh Subreddit](https://www.reddit.com/r/hackintosh/)
 * [r/Hackintosh Discord](https://discord.gg/2QYd7ZT)

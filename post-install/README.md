@@ -15,9 +15,9 @@ Universal:
 * [Fixing CFG Lock](https://dortania.github.io/OpenCore-Desktop-Guide//extras/msr-lock)
 * [Fixing Resolution and Verbose](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/verbose)
 * [Fixing iServices](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/iservices)
-* [Fixing USB](https://usb-map.gitbook.io/project/)
-* [Fixing Power Management](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.md)
-* [Battery Patching](https://www.tonymacx86.com/threads/guide-how-to-patch-dsdt-for-working-battery-status.116102/)
+* [Fixing USB](https://dortania.github.io/USB-Map-Guide/)
+* [Fixing Power Management](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html)
+* [Fixing Battery Status](/post-install/battery.md)
 
 Extras:
 

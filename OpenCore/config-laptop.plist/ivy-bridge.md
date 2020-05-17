@@ -48,15 +48,15 @@ Now with those downloaded, we can get to really get started:
 
 **Add:**
 
-This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://usb-map.gitbook.io/project/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
+This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://dortania.github.io/USB-Map-Guide/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
 
 | Required_SSDTs | Description |
 | :--- | :--- |
 | **[SSDT-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)** | Needed for proper CPU power management, you will need to run Pike's ssdtPRGen.sh script to generate this file. This will be run in [post install](/post-install/README.md). |
-| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. |
-| **[SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)** | Creates a stub so VoodooI2C can connect, for those having troubles getting VoodooI2C working can try [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml) instead |
+| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. A pre-built can be found here if you have issues: [SSDT-EC-LAPTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-EC-LAPTOP.aml) |
+| **[SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)** | Makes all _OSI calls specific to Windows work for macOS (Darwin) Identifier. This may help enabling some features like XHCI and others. |
 | **[SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)** | Adds brightness control support |
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/OC/ACPI.
@@ -65,7 +65,7 @@ For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs,
 
 **Delete:**
 
-This blocks certain ACPI tables from loading, for us we really care about this. Main reason is that Apple's XCPM does not support IvyBridge all to well and can cause AppleIntelCPUPowerManagement panics on boot. To avoid this we make our own PM SSDT in [Post-Install](/post-install/README.md) and drop the old tables:
+This blocks certain ACPI tables from loading, for us we really care about this. Main reason is that Apple's XCPM does not support IvyBridge all too well and can cause AppleIntelCPUPowerManagement panics on boot. To avoid this we make our own PM SSDT in [Post-Install](/post-install/README.md) and drop the old tables:
 
 | Key | Type | Value |
 | :--- | :--- | :--- |
@@ -90,7 +90,7 @@ This blocks certain ACPI tables from loading, for us we really care about this. 
 This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we'll need the following:
 
 * OSI rename
-  * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT, **this is not needed if you're using SSDT-GPIO**
+  * This is required when using SSDT-XOSI as we redirect all OSI calls to this SSDT**
 
 | Comment | String | Change _OSI to XOSI |
 | :--- | :--- | :--- |
@@ -156,7 +156,7 @@ Settings relating to boot.efi patching and firmware fixes, one we need to change
 * **RebuildAppleMemoryMap**: YES
   * Generates Memory Map compatible with macOS, can break on some laptop OEM firmwares so if you receive early boot failures disable this
 * **SetupVirtualMap**: YES
-  * Fixes SetVirtualAddresses calls to virtual addresses
+  * Fixes SetVirtualAddresses calls to virtual addresses. If you set it to `NO`, macOS may not boot in certain hardware
 * **SignalAppleOS**: NO
   * Tricks the hardware into thinking its always booting macOS, mainly beneficial for MacBook Pro's with dGPUs as booting Windows won't allow for the iGPU to be used
 * **SyncRuntimePermissions**: NO
@@ -185,26 +185,26 @@ The table below may seem daunting but it's really not, the main things we need t
 * device-id
   * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries are the recommended entries to use
+ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Intel HD Graphics 4000 | 66010001 | 01006601 | 4 | 96MB | 24MB |  LVDSx1 HDMIx1 DPx2 |
 | Intel HD Graphics 4000 | 66010002 | 02006601 | 1 | 64MB | 24MB |  LVDSx1 |
 | **Intel HD Graphics 4000 <sup>1</sup>** * | 66010003 | 03006601 | 4 | 64MB | 16MB |  LVDSx1 DPx3 |
-| **Intel HD Graphics 4000 <sup>2</sup>** | 66010004 | 04006601 | 1 | 32MB | 16MB |  LVDSx1 |
+| **Intel HD Graphics 4000 <sup>2</sup>** * | 66010004 | 04006601 | 1 | 32MB | 16MB |  LVDSx1 |
 | Intel HD Graphics 4000 | 66010008 | 08006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 4000 <sup>3</sup>** | 66010009 | 09006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 4000 <sup>3</sup>** * | 66010009 | 09006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
 
 #### Special Notes
 
 * For these cards, no `device-id` property is required.
 
-* <sup>1</sup> : to be used with 1366 by 768 displays or lower (main)
+* <sup>1</sup> : to be used with **1366 by 768** displays or lower (main)
 
-* <sup>2</sup> : to be used with 1600 by 900 displays or higher (main)
+* <sup>2</sup> : to be used with **1600 by 900** displays or higher (main)
 
-* <sup>3</sup> : to be used with some devices that have `eDP` connected monitor (contrary to classical LVDS), must be tested with <sup>1</sup> and <sup>2</sup> first then try this.
+* <sup>3</sup> : to be used with some devices that have `eDP` connected monitor (contrary to classical LVDS), must be tested with <sup>1</sup> and <sup>2</sup> first before trying this.
 
 * VGA is *not* supported (unless it's running through a DP to VGA internal adapter, which apparently only rare devices will see it as DP and not VGA, it's all about luck.)
 
@@ -220,9 +220,11 @@ The table below may seem daunting but it's really not, the main things we need t
 | `framebuffer-con1-enable`  | Number | `1`                                                          | This will enable patching on *connector1* of the driver. (Which is the second connector after con0, which is the eDP/LVDS one) |
 | `framebuffer-con1-alldata` | Data   | `02050000 00040000 07040000 03040000 00040000 81000000 04060000 00040000 81000000` | When using `all data` with a connector, either you give all information of that connector (port-bused-type-flag) or that port and the ones following it, like in this case.<br />In this case, the ports in `04` are limited to `1`:<br />`05030000 02000000 30020000` (which corresponds to port 5, which is LVDS)<br />However on `03` there are 3 extra ports:<br />`05030000 02000000 30000000` (LVDS, con0, like `04`)<br/>`02050000 00040000 07040000` (DP, con1)<br/>`03040000 00040000 81000000` (DP, con2)<br/>`04060000 00040000 81000000` (DP, con3)<br />Since we changed the number of PortCount to `4` in a platform that has only 1, that means we need to define the 3 others (and we that starting with con1 to the end).<br /> |
 
+**Sandy/IvyBridge Hybrids:**
+
 * Some laptops from this era came with a mixed chipset setup, using Ivy Bridge CPUs with Sandy Bridge chipsets which creates issues with macOS since it expects a certain IMEI ID that it doesn't find and would get stuck at boot, to fix this we need to fake the IMEI's IDs in these models
 
-  * To know if you're affected check if your CPU is an Intel Core ix-3xxx and your chipset is Hx6x (for example a laptop with HM65 or HM67 with a Core i3-3110M)
+  * To know if you're affected check if your CPU is an Intel Core ix-3xxx and your chipset is Hx6x (for example a laptop with HM65 or HM67 with a Core i3-3110M) through tools like AIDA64.
   * In your config add a new PciRoot device named `PciRoot(0x0)/Pci(0x16,0x0)`
     * Key: `device-id`
     * Type: Data
@@ -298,7 +300,7 @@ Settings relating to the kernel, for us we'll be enabling `AppleCpuPmCfgLock`, `
 * **ThirdPartyDrives**: NO
   * Enables TRIM, not needed for NVMe but AHCI based drives may require this. Please check under system report to see if your drive supports TRIM
 * **XhciPortLimit**: YES
-  * This is actually the 15 port limit patch, don't rely on it as it's not a guaranteed solution for fixing USB. Please create a [USB map](https://usb-map.gitbook.io/project/) when possible.
+  * This is actually the 15 port limit patch, don't rely on it as it's not a guaranteed solution for fixing USB. Please create a [USB map](https://dortania.github.io/USB-Map-Guide/) when possible.
 
 The reason being is that UsbInjectAll reimplements builtin macOS functionality without proper current tuning. It is much cleaner to just describe your ports in a single plist-only kext, which will not waste runtime memory and such
 
@@ -360,7 +362,7 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
 * **BlacklistAppleUpdate**: True
   * Ignores Apple's firmware updater, recommended to enable as to avoid issues with installs and updates
 * **BootProtect**: None
-  * Allows the use of Boostrap.efi inside EFI/OC/Bootstrap instead of BOOTx64.efi, useful for those wanting to either boot with rEFInd or avoid BOOTx64.efi overwrites from Windows. Proper use of this quirks is not be covered in this guide
+  * Allows the use of Bootstrap.efi inside EFI/OC/Bootstrap instead of BOOTx64.efi, useful for those wanting to either boot with rEFInd or avoid BOOTx64.efi overwrites from Windows. Proper use of this quirks is not be covered in this guide
 * **ExposeSensitiveData**: `6`
   * Shows more debug information, requires debug version of OpenCore
 * **Vault**: `Optional`
@@ -633,7 +635,7 @@ Used for exempting certain memory regions from OSes to use, mainly relevant for 
 
 And now you're ready to save and place it into your EFI under EFI/OC.
 
-For those having booting issues, please make sure to read the [Troubleshooting section](../troubleshooting/troubleshooting.md) first and if your questions are still unanswered we have plenty of resources at your disposal:
+For those having booting issues, please make sure to read the [Troubleshooting section](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html) first and if your questions are still unanswered we have plenty of resources at your disposal:
 
 * [r/Hackintosh Subreddit](https://www.reddit.com/r/hackintosh/)
 * [r/Hackintosh Discord](https://discord.gg/2QYd7ZT)
@@ -652,19 +654,21 @@ So thanks to the efforts of Ramus, we also have an amazing tool to help verify y
 
 ## Intel BIOS settings
 
+These are the main options to check for, if you can't find it or an equivalent for it, just skip it.
+
 **Disable:**
 
 * Fast Boot
 * VT-d (can be enabled if you set `DisableIoMapper` to YES)
-* CSM
-* Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)
+* CSM (or Legacy Support, or Hybrid Boot)
+* Thunderbolt (For initial install, as Thunderbolt can cause issues if not setup correctly, if available)
 * Intel SGX
 * Intel Platform Trust
 * CFG Lock (MSR 0xE2 write protection)(**This must be off, if you can't find the option then enable both `AppleCpuPmCfgLock` and `AppleXcpmCfgLock` under Kernel -> Quirks. Your hack will not boot with CFG-Lock enabled**)
 
 **Enable:**
 
-* VT-x
+* VT-x (Virtualization Support)
 * Above 4G decoding
 * Hyper-Threading
 * Execute Disable Bit

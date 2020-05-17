@@ -16,6 +16,7 @@ AWAC
 Above4GDecoding
 Acidanthera
 AcpiSamples
+AIDA64
 AirportAtheros40
 AirportBrcmFixup
 AppleACPICPU
@@ -75,13 +76,17 @@ EfiReservedMemoryType
 EmuVariableUEFI
 Endian
 Endianness
+Esc
 ExitBootServices
+F10
+F12
 FAT32
 FTE1001
 FW
 FakeSMC
 Fenvi
 FileVault
+Fn
 Framebuffer
 GPIO
 GPT
@@ -119,6 +124,7 @@ IOService
 IceLake
 Icelake
 Insyde
+IntelMausi
 IntelMausiEthernet
 IvyBridge
 Journaled
@@ -144,6 +150,7 @@ MacBookPro14
 MacBookPro[0-9]+
 MacPro5
 MacSerial
+MaciASL
 Mackie's
 MountEFI
 Multiboot
@@ -194,6 +201,7 @@ Realtek
 Realtek's
 RealtekRTL8111
 Rehabman
+Rehabman's
 Reinstalls
 Ryzen
 SATA
@@ -289,6 +297,7 @@ hacky
 hotplug
 i3-3110M
 i7
+iASL
 iGPU
 iGPUs
 iMac13

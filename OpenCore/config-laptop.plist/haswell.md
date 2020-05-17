@@ -48,14 +48,14 @@ Now with those downloaded, we can get to really get started:
 
 **Add:**
 
-This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://usb-map.gitbook.io/project/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
+This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://dortania.github.io/USB-Map-Guide/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
 
 For us we'll need a couple of SSDTs to bring back functionality that Clover provided:
 
 | Required_SSDTs | Description |
 | :--- | :--- |
-| **[SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)** | Allows for native CPU power management on Haswell and newer |
-| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. |
+| **[SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)** | Allows for native CPU power management on Haswell and newer. A pre-built can be found here if you have issues: [SSDT-PLUG-DRTNIA](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-PLUG-DRTNIA.aml) |
+| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. A pre-built can be found here if you have issues: [SSDT-EC-LAPTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-EC-LAPTOP.aml) |
 | **[SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)** | Creates a stub so VoodooI2C can connect, for those having troubles getting VoodooI2C working can try [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml) instead |
 | **[SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)** | Adds brightness control support |
 
@@ -167,13 +167,13 @@ The table below may seem daunting but it's really not, the main things we need t
 * device-id
   * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries are the recommended entries to use
+ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Intel HD Graphics 4400 | 160a000c | 0c00160a | 3 | 64MB | 34MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 5000 <sup>1</sup>** | 260a0005 | 0500260a | 3 | 32MB | 19MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 5000 <sup>2</sup>** | 260a0006 | 0600260a | 3 | 32MB | 19MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 5000 <sup>1</sup>** * | 260a0005 | 0500260a | 3 | 32MB | 19MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 5000 <sup>2</sup>** * | 260a0006 | 0600260a | 3 | 32MB | 19MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 5100 | 2e0a0008 | 08002e0a | 3 | 64MB | 34MB |  LVDSx1 DPx2 |
 | Intel Iris Pro Graphics 5200 | 260d0007 | 0700260d | 4 | 64MB | 34MB |  LVDSx1 DPx2 HDMIx1 |
 | Intel Iris Pro Graphics 5200 | 260d0009 | 0900260d | 1 | 64MB | 34MB |  LVDSx1 |
@@ -261,7 +261,7 @@ Settings relating to the kernel, for us we'll be enabling `AppleCpuPmCfgLock`, `
 * **ThirdPartyDrives**: NO
   * Enables TRIM, not needed for NVMe but AHCI based drives may require this. Please check under system report to see if your drive supports TRIM
 * **XhciPortLimit**: YES
-  * This is actually the 15 port limit patch, don't rely on it as it's not a guaranteed solution for fixing USB. Please create a [USB map](https://usb-map.gitbook.io/project/) when possible.
+  * This is actually the 15 port limit patch, don't rely on it as it's not a guaranteed solution for fixing USB. Please create a [USB map](https://dortania.github.io/USB-Map-Guide/) when possible.
 
 The reason being is that UsbInjectAll reimplements builtin macOS functionality without proper current tuning. It is much cleaner to just describe your ports in a single plist-only kext, which will not waste runtime memory and such
 
@@ -323,7 +323,7 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
 * **BlacklistAppleUpdate**: True
   * Ignores Apple's firmware updater, recommended to enable as to avoid issues with installs and updates
 * **BootProtect**: None
-  * Allows the use of Boostrap.efi inside EFI/OC/Bootstrap instead of BOOTx64.efi, useful for those wanting to either boot with rEFInd or avoid BOOTx64.efi overwrites from Windows. Proper use of this quirks is not be covered in this guide
+  * Allows the use of Bootstrap.efi inside EFI/OC/Bootstrap instead of BOOTx64.efi, useful for those wanting to either boot with rEFInd or avoid BOOTx64.efi overwrites from Windows. Proper use of this quirks is not be covered in this guide
 * **ExposeSensitiveData**: `6`
   * Shows more debug information, requires debug version of OpenCore
 * **Vault**: `Optional`
@@ -601,7 +601,7 @@ Used for exempting certain memory regions from OSes to use, mainly relevant for 
 
 And now you're ready to save and place it into your EFI under EFI/OC.
 
-For those having booting issues, please make sure to read the [Troubleshooting section](../troubleshooting/troubleshooting.md) first and if your questions are still unanswered we have plenty of resources at your disposal:
+For those having booting issues, please make sure to read the [Troubleshooting section](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html) first and if your questions are still unanswered we have plenty of resources at your disposal:
 
 * [r/Hackintosh Subreddit](https://www.reddit.com/r/hackintosh/)
 * [r/Hackintosh Discord](https://discord.gg/2QYd7ZT)

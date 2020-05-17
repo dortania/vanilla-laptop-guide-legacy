@@ -1,10 +1,11 @@
-# Preparing an online installer (macOS/Windows/Linux)
+# Preparing a Recovery installer on Windows/Linux/macOS
 
-This requires a working internet connection on the target machine! If you're using WiFi, that means that the WiFi card must be compatible with **macOS**. It is possible to use HoRNDIS to tether with an Android phone if needed.
+An *online Recovery installer* installs only core elements of macOS, then downloads the full OS from the Apple servers.
+This requires a working internet connection - usually Ethernet - on the target machine.
+If you want to use WiFi, ensure your target machine's WiFi card is compatible with **macOS**.
+(It is possible to use HoRNDIS to tether with an Android phone if needed.)
 
-Using gibMacOS, you can download the recovery image directly from Apple's servers and put it on a USB. Once booted up, this image can download the macOS installer on to the target hard drive.
-
-[Old Internet-Install Guide](https://internet-install.gitbook.io/macos-internet-install/preparing-your-installer/preparing-your-installer-media)
+*[We temporarily include a link to the (Clover-based) [Internet-Install Guide](https://internet-install.gitbook.io/macos-internet-install/preparing-your-installer/preparing-your-installer-media) for reference.]*
 
 Requirements:
 
@@ -14,7 +15,8 @@ Requirements:
     * NOTE: If the .bat fails to run, you can run `python <file.py>`.
   * For Linux, install it through whatever package manager your distro uses
   * macOS already includes Python
-* [gibMacOS](https://github.com/corpnewt/gibMacOS)
+* [**gibMacOS software**](https://github.com/corpnewt/gibMacOS)
+downloads your desired macOS image directly from Apple servers (to ensure authenticity).
   * Clone using git (`git clone https://github.com/CorpNewt/gibmacos.git`)
     _OR_
   * Click `Clone or download` in the top right and `Download ZIP`, then unzip.
@@ -26,7 +28,7 @@ Requirements:
 
 1. Run gibMacOS
     * On Windows, run `gibMacOS.bat`. If it does not recognize Python, you can also run `python gibMacOS.command`
-    * Linux/macOS - directly run gibMacOS.command
+    * Linux/macOS - directly run `gibMacOS.command`
 2. Toggle Recovery-Only by entering R and pressing Enter. Make sure it says `Toggle Recovery-Only (Currently on)`
     * This reduces the download size as we only need the recovery package (500 MB) rather than the full release (7-8 GB)
 3. Select the release you want to download. In this case, we're downloading 10.15.4, or the latest release of macOS Catalina. It does not matter if `FULL Install` is at the end or not.
@@ -37,7 +39,9 @@ Requirements:
 
 ### Windows
 
-OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore, so we only need to format the USB to one FAT32 partition and drop it in. This does require 7-Zip installed.
+OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore,
+so we only need to format the USB to one FAT32 partition and drop it in.
+This does require 7-Zip to be installed.
 
 1. Right click the Start Button on your task bar and select `Disk Management`.
 2. You should see all of your partitions and disks. On the bottom half, you'll see your devices. Find your USB.
@@ -53,7 +57,7 @@ OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore, so we onl
 7. Open RecoveryHDMeta.dmg (or similar named dmg) then open the folder contained.
 8. You should see BaseSystem.dmg and BaseSystem.chunklist. Drag/copy these to the `com.apple.recovery.boot` folder on your USB.
     ![BaseSystem screenshot](/images/preparations/BaseSystemWinders.jpg)
-9. You are ready to continue on and put OpenCore on the USB.
+9. You are ready to continue and [add OpenCore files to the USB installer.](./opencore-efi.md)
 
 ### Linux
 
@@ -82,7 +86,7 @@ This will go over using gdisk, though you can use other utilities that you are c
     ![RecoveryHDMetaDmg.pkg extraction](/images/preparations/LinooxExtract.jpg)
     ![File listing](/images/preparations/LinooxLS.jpg)
 10. Once you find `BaseSystem.dmg` and `BaseSystem.chunklist`, copy these to `com.apple.recovery.boot` on the USB.
-11. You are ready to continue and download/configure OpenCore
+11. You are ready to continue and [add OpenCore files to the USB installer.](./opencore-efi.md)
 
 ### macOS
 
@@ -98,4 +102,4 @@ This will go over using gdisk, though you can use other utilities that you are c
     5. Quit Disk Utility
 5. Open the USB and create a folder called `com.apple.recovery.boot`.
 6. Go to the image you mounted earlier and find `BaseSystem.dmg` and `BaseSystem.chunklist`. Copy these both to the `com.apple.recovery.boot` folder.
-7. You are ready to continue and put OpenCore on the USB.
+7. You are ready to continue and [add OpenCore files to the USB installer.](./opencore-efi.md)
