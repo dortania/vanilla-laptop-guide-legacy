@@ -4,6 +4,9 @@
         "fontsettings": {
             "theme":  "night",
             "family": "sans"
+        },
+        "addcssjs": {
+            "js": ["scripts/search.js"]
         }
     },
     "links": {
