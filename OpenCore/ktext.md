@@ -44,7 +44,7 @@ All kext listed below can be found **pre-compiled** in the [Kext Repository](htt
   * Emulates the SMC chip found on real macs, without this macOS will not boot
   * Alternative is FakeSMC which can have better or worse support, most commonly used on legacy hardware.
 * [Lilu](https://github.com/vit9696/Lilu/releases)
-  * A kext to patch many processes, required for AppleALC and WhateverGreen and recommended for VirtualSMC
+  * A kext to patch many processes, required for AppleALC, WhateverGreen, VirtualSMC and many other kexts. Without Lilu, they will not work.
 
 **VirtualSMC Plugins**:
 
@@ -85,7 +85,7 @@ Note that these come in the release/debug downloads for VirtualSMC
 
 **USB**:
 
-* [USBInjectAll](https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/)
+* [OS-X-USB-Inject-All](https://github.com/Sniki/OS-X-USB-Inject-All/releases)
   * Used for injecting Intel USB controllers on systems without defined USB ports in ACPI
   * Not needed on Skylake and newer
 
