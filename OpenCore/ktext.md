@@ -85,7 +85,7 @@ Note that these come in the release/debug downloads for VirtualSMC
 
 **USB**:
 
-* [OS-X-USB-Inject-All](https://github.com/Sniki/OS-X-USB-Inject-All/releases)
+* [USBInjectAll](https://github.com/Sniki/OS-X-USB-Inject-All/releases)
   * Used for injecting Intel USB controllers on systems without defined USB ports in ACPI
   * Not needed on Skylake and newer
 
