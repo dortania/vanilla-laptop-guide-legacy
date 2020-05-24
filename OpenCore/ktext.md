@@ -44,7 +44,7 @@ All kext listed below can be found **pre-compiled** in the [Kext Repository](htt
   * Emulates the SMC chip found on real macs, without this macOS will not boot
   * Alternative is FakeSMC which can have better or worse support, most commonly used on legacy hardware.
 * [Lilu](https://github.com/vit9696/Lilu/releases)
-  * A kext to patch many processes, required for AppleALC, WhateverGreen, VirtualSMC and many other kexts. Without Lilu, they will not work.
+  * A kext to patch kexts, processes, frameworks, and libraries; required for AppleALC, WhateverGreen, VirtualSMC, and many other kexts. Without Lilu, they will not work.
 
 **VirtualSMC Plugins**:
 
