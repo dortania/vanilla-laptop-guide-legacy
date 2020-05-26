@@ -80,7 +80,7 @@ This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.
 | :--- | :--- | :--- |
 | Enabled | Boolean | YES |
 | Count | Number | 0 |
-| Limit | Nuber | 0 |
+| Limit | Number | 0 |
 | Find | Data | 5f4f5349 |
 | Replace | Data | 584f5349 |
 
