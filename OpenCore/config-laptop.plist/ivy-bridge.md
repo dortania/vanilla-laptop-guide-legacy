@@ -70,7 +70,7 @@ This blocks certain ACPI tables from loading, for us we really care about this. 
 | Key | Type | Value |
 | :--- | :--- | :--- |
 | All | Boolean | YES |
-| Comment | String | Drop CpuPm |
+| Comment | String | Delete CpuPm |
 | Enabled | Boolean | YES |
 | OemTableId | Data | 437075506d000000 |
 | TableLength | Number | 0 |
@@ -79,7 +79,7 @@ This blocks certain ACPI tables from loading, for us we really care about this. 
 | Key | Type | Value |
 | :--- | :--- | :--- |
 | All | Boolean | YES |
-| Comment | String | Drop Cpu0Ist |
+| Comment | String | Delete Cpu0Ist |
 | Enabled | Boolean | YES |
 | OemTableId | Data | 4370753049737400 |
 | TableLength | Number | 0 |
