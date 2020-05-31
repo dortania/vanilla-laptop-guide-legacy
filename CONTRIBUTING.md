@@ -10,7 +10,13 @@ This is a community run guide which is not officially endorsed by Acidanthera. P
 
 ## How to Contribute
 
-Generally contributions are made through PRs (Pull Requests). The best way to test your commits and make sure they are formatted correctly is downloading `nodejs`, cloning the repo, and running `npm install` to install dependencies. Included within the package.json are several tasks for testing, which can be ran with `npm run <task name>`:
+Contributions are made through PRs (Pull Requests) on Github.com. You must test your commits and make sure they are formatted correctly before we will accept them.
+
+To run the tests, download `nodejs`, clone this repo, and run `npm install` to install dependencies.
+The package.json file contains several tasks for testing and building the guide.
+To test your Pull Request, use `npm run test`.
+
+Other scripts in this repository are:
 
 * `npm run build` - Install GitBook (and dependencies) and build the guide
 * `npm run serve` - Install GitBook (and dependencies), build the guide, and set up a local webserver to view the guide

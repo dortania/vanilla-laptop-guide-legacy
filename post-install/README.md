@@ -2,23 +2,14 @@
 
 * Supported version: 0.5.8
 
-So you've finally finished installing macOS with OpenCore but know there's still some things to clean up, well you've come to the right place! Note that most links here will send you to our sister guide, the [OpenCore Desktop Guide](https://dortania.github.io/OpenCore-Desktop-Guide/) as to keep things nicely synchronized. All info linked here will apply just the same as it would for a desktop, and any differences will be noted.
+You've finally finished installing macOS on the internal drive.
+Congratulations!
 
-## Checklist
+There are still some things to clean up. They include:
 
-Universal:
+1. [Post Install steps](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/) from the
+[OpenCore Desktop Guide.](https://dortania.github.io/OpenCore-Desktop-Guide/)
+(We list those tasks only in the sister guide to prevent duplication.)
 
-* [Enabling FileVault and other security features](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/security)
-* [Fixing Audio](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/audio)
-* [Booting without USB](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/oc2hdd)
-* [Updating OpenCore, kexts and macOS](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/update)
-* [Fixing CFG Lock](https://dortania.github.io/OpenCore-Desktop-Guide//extras/msr-lock)
-* [Fixing Resolution and Verbose](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/verbose)
-* [Fixing iServices](https://dortania.github.io/OpenCore-Desktop-Guide//post-install/iservices)
-* [Fixing USB](https://dortania.github.io/USB-Map-Guide/)
-* [Fixing Power Management](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html)
-* [Fixing Battery Status](/post-install/battery.md)
-
-Extras:
-
-* [GUI and Boot Chime](https://dortania.github.io/OpenCore-Desktop-Guide/extras/gui.html)
+2. [Fixing Battery Status](./post-install/battery.md) Since desktop computers don't rely on a battery,
+the Desktop Guide doesn't describe patching the battery status.

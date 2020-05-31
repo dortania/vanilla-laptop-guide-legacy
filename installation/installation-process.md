@@ -1,17 +1,52 @@
-# Installation Process
+# Installing macOS on the Internal Drive
 
-Now that you've finished setting up OpenCore, you're finally able to boot, main things to keep in mind:
+Now that you've finished copying the OpenCore and installer files to the
+USB drive, you can now install the OS on your Hackintosh.
+The main things to keep in mind:
 
-* Make sure the laptop is connected to the charger
-  * If the battery isn't properly patched for macOS support, it can cause weird behaviors. To avoid headaches, make sure to have your device plugged in
-* Enable BIOS settings optimal for macOS
+* Connect the laptop to the charger.
+If the battery isn't properly patched for macOS support, it can cause weird behaviors.
+To avoid headaches, plug in your device
 * Read up on the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
-* And a copy of the [troubleshooting page](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html)
-* And a ton of patience
+if you want multiple OS's on the disk
+* Keep a copy of the [troubleshooting page](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html) handy
+* Summon a ton of patience
+
+## Double checking your USB Drive
+
+A final look at your EFI setup:
+
+| Good EFI          |  Bad EFI |
+:-------------------------:|:-------------------------:
+![](/images/installation/install-md/good-efi.png)  |  ![](/images/installation/install-md/bad-efi.png) |
+|  **EFI folder found on EFI partition** | *EFI folder missing* |
+|  **ACPI Files are compiled (.aml)** | *ACPI Files are not compiled (.dsl)* |
+|  **DSDT is not included** | *DSDT is included* |
+|  **Removed unneeded Drivers (.efi)** | *Retains all default Drivers* |
+|  **Only files with `.kext` suffix in the Kexts folder** | *Includes source code and folders* |
+|  **`config.plist` found in /EFI/OC folder** | *Neither renamed or placed the .plist in right location* |
+|  **Only includes required kexts** | *Downloaded every kext listed* |
+
+## Set the Boot Options
+
+Before you boot the target computer, check the user manual or Google a bit to find
+the function (Fn) key to access the BIOS and boot menu:
+it's commonly one of these keys: Esc, F2, F10 or F12.
+
+Now put the USB stick into the target computer and **start it up!**
+
+Immediately and repeatedly press the Fn key (from above) until you see
+the computer boot up and display a "Boot Options" page.
+(This page goes by many names: Boot Options, Boot Menu, BIOS Setup, etc. but provides the same capabilities,
+even though the settings are in different places on various computers.)
 
 ## Recommended BIOS Settings
 
-With many OEMs you're likely going to be heavily limited in your options, if you can try to find these options and enable them:
+From the Boot Options page, you now must find and disable/enable the following settings.
+With many BIOS settings your options may be heavily limited.
+
+> *What do these "heavy limits" actually imply for people?
+Is it a problem? Or do they set as many as they can, and forge ahead? -richb*
 
 **Disable:**
 
@@ -33,47 +68,66 @@ With many OEMs you're likely going to be heavily limited in your options, if you
   * If OpenCore doesn't show up, set this to OtherOS
 * DVMT Pre-Allocated(iGPU Memory): 64MB
 
-## Double checking your work
+## Booting the OpenCore USB Drive
 
-One last thing we should go over before booting is how your EFI is setup:
+> *Is a second boot required before proceeding with this step? -richb*
 
-Good EFI          |  Bad EFI
-:-------------------------:|:-------------------------:
-![](/images/installation/install-md/good-efi.png)  |  ![](/images/installation/install-md/bad-efi.png)
-* EFI folder found on EFI partition | * EFI folder missing
-* ACPI Files are compiled(.aml) | * ACPI Files are not compiled(.dsl)
-* DSDT is not included | * DSDT is included
-* Removed unneeded Drivers(.efi) | * Leaves default Drivers
-* All files in the Kexts folder end in .kext | * Includes source code and folders
-* config.plist found under EFI/OC | * Neither renamed or placed the .plist in right location
-* Only uses kexts that are needed | * Downloaded every kext listed
+After setting the Boot Options (above), the laptop will still default to booting from the internal drive (with Windows, for now).
 
-## Booting the OpenCore USB
-
-So you're now ready to finally put the USB stick into your computer and boot off of it, remember that your laptop will still default to the internal drive with Windows so you'll need to enter the BIOS or boot menu and select the USB. You'll need to check in the user manual or use a bit of google to find out what Fn key accesses the BIOS and boot menu(ie. Esc, F2, F10 or F12)
-
-Once you boot the USB, you'll likely be greeted to the following boot options:
+At the Boot Options page, you'll likely be greeted with the following boot options:
 
 1. Windows
-2. macOS Base System (External) / Install macOS Catalina (External)
+2. macOS Base System (External) *or* Install macOS Catalina (External)
 3. OpenShell.efi
 4. Reset NVRAM
 
-For use, **Option 2.** is the one we want. Depending how the installer was made, it may report as either **"macOS Base System (External)"** if Recovery Installer based and **"Install macOS Catalina (External)"** if full installer based.
+Use **Option 2.**
+Depending how the installer was made, it may be listed as either
+**"macOS Base System (External)"** (Recovery Installer) or
+**"Install macOS Catalina (External)"** (full installer).
 
-## macOS Installer
+Choose **Option 2** and you will see the computer begin to boot up.
+You will likely see hundreds of log entries scroll past on the screen.
+This is OK: it is helpful for troubleshooting if the computer doesn't start right up.
+(Once the computer is fully working, you can turn off this *verbose* mode.)
 
-So you've finally got the installer booted, got through the verbose and hit the installer! Now that you've gotten this far,  the main things to keep in mind:
+If you now see the macOS installer, this is a major accomplishment!
 
-* Drives you wish to install macOS on **must** be both of GUID partition Scheme **and** APFS
-  * High Sierra on HDD and all Sierra users will need to use macOS Journaled(HFS+)
-* The drive **must** also have a 200MB partition
-  * By default, macOS will setup freshly formatted drives with 200MB
-  * See the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/) for more info on partitioning a Windows Drive
+The next steps are formatting the internal drive, and then installing macOS.
 
-Once you start the installation, you will want to wait until the lappie restarts. You will once again want to boot into OpenCore, but rather than selecting your USB installer/recovery - you will want to select the macOS installer on the hard drive to continue installation. You should get an apple logo, and after a few minutes you should get a timer at the bottom saying "x minutes remaining". This may be a good time to get a drink or snack as this will take a while. It may restart a couple more times, but if all goes well, it should finally plop you at the "Setup your Mac screen"
+## Formatting the internal drive
+
+From the macOS Installer, use **Disk Utility** to format the internal drive of the laptop.
+
+* macOS **requires** GUID Partition Table (GPT) scheme.
+  * Catalina, Mojave, and High Sierra (10.13 to 10.15) **default** to using APFS
+  * High Sierra on spinning hard drives (not SSD) and all Sierra users will need to use macOS Journaled (HFS+)
+* The drive **must** also have a 200MB partition.
+By default, macOS Disk Utility sets up freshly formatted GPT drives with this 200MB partition.
+* If you wish to have multiple operating systems on the drive,
+see the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
+for more info on partitioning a drive for Windows.
+
+After formatting the internal drive, quit **Disk Utility** to go back to the main Installer.
+
+## Installing macOS
+
+Begin the macOS installation to the (newly-formatted) internal drive in the obvious way.
+
+The normal macOS installation process will cause the laptop to restart, possibly several times.
+The computer will boot into OpenCore, but rather than selecting your USB installer/recovery,
+select the macOS installer on the hard drive to continue installation.
+You should get an Apple logo, and after a few minutes you should get a timer at the bottom saying "x minutes remaining".
+This may be a good time to get a drink or snack as this will take a while.
+The computer may restart a couple more times, but if all goes well, it should finally see the "Setup your Mac screen"
+
+> *Should the following advice be part of the initial setup?
+It seems that it simplifies the newcomer's life -
+the restarts can be unattended although slightly slower.
+After they get the Hackintosh running, if they get tired of waiting the 5-10 seconds,
+they'll be smart enough to know they can Google to remove the timeout... -richb*
 
 * You may want to set OpenCore to be your first boot option and set `Misc->Boot->Timeout` to something like 5-10 seconds to automatically have it go through the installer.
 
 You're in! 🎉
-You will want to go through the Post-Installation pages to finish setting up your laptop.
+Go through the [Post-Installation](../post-install/README.md) pages to finish setting up your laptop.

@@ -2,12 +2,12 @@
 
 * Supported version: 0.5.8
 
-To setup OpenCore’s folder structure, you’ll want to start with the EFI folder found in OpenCorePkg's releases page
+To setup OpenCore’s folder structure, start with the EFI folder found in OpenCorePkg's releases page
 then add, remove, or replace the base set with files that are essential to your hardware.
 
 ![base EFI folder](/images/preparations/opencore-efi/base-efi.png)
 
-Now something you'll notice is that it comes with a bunch of files in `Drivers` and `Tools` folder, we don't want most of these:
+You'll notice a bunch of files in `Drivers` and `Tools` folder. Remove most of these:
 
 * **Remove from Drivers:**
   * OpenUsbKbDxe.efi

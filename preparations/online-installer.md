@@ -9,9 +9,9 @@ If you want to use WiFi, ensure your target machine's WiFi card is compatible wi
 
 Requirements:
 
-* 4 GB USB or greater
+* 4 GB USB drive or greater
 * [Python 2.7 or greater](https://www.python.org/downloads/)
-  * For Windows, make sure when installing that "add to PATH" is enabled in the installer.
+  * For Windows, enable "add to PATH" when installing Python.
     * NOTE: If the .bat fails to run, you can run `python <file.py>`.
   * For Linux, install it through whatever package manager your distro uses
   * macOS already includes Python
@@ -29,7 +29,7 @@ downloads your desired macOS image directly from Apple servers (to ensure authen
 1. Run gibMacOS
     * On Windows, run `gibMacOS.bat`. If it does not recognize Python, you can also run `python gibMacOS.command`
     * Linux/macOS - directly run `gibMacOS.command`
-2. Toggle Recovery-Only by entering R and pressing Enter. Make sure it says `Toggle Recovery-Only (Currently on)`
+2. Toggle Recovery-Only by entering R and pressing Enter. Confirm that it says `Toggle Recovery-Only (Currently on)`
     * This reduces the download size as we only need the recovery package (500 MB) rather than the full release (7-8 GB)
 3. Select the release you want to download. In this case, we're downloading 10.15.4, or the latest release of macOS Catalina. It does not matter if `FULL Install` is at the end or not.
     ![gibMacOS screenshot](/images/preparations/gibMacOS.jpg)
@@ -45,9 +45,9 @@ This does require 7-Zip to be installed.
 
 1. Right click the Start Button on your task bar and select `Disk Management`.
 2. You should see all of your partitions and disks. On the bottom half, you'll see your devices. Find your USB.
-3. You'll want to format the USB to have a FAT32 partition.
-    * If you have multiple partitions on the USB, right click each partition and click `Delete Volume` for your USB (**This will remove data, make sure you have backups and only remove partitions from your USB**)
-        * Right click the unallocated space and create a new simple volume. Make sure it is FAT32 and at least a gigabyte or two big. Name it "EFI".
+3. Format the USB to have a FAT32 partition.
+    * If you have multiple partitions on the USB, right click each partition and click `Delete Volume` for your USB (**This will remove data, ensure you have backups and only remove partitions from your USB**)
+        * Right click the unallocated space and create a new simple volume. Format it as FAT32 and at least a gigabyte. Name it "EFI".
     * Otherwise, right click the partition on the USB and click `Format` and set it to FAT32.
     ![Disk Management right click menu](/images/preparations/DiskManagement.jpg)
 4. In File Explorer, go to your USB and create a new folder at the root called `com.apple.recovery.boot`.
@@ -66,7 +66,7 @@ This will go over using gdisk, though you can use other utilities that you are c
 1. Run `lsblk` and note your USB device
 2. Run `sudo gdisk /dev/<your USB block>`
     1. Enter `p` to print your block's partitions (and verify it's the correct USB)
-    2. Enter `o` to clear the partition table and make a new GPT one
+    2. Enter `o` to clear the partition table and make a new GPT partition table
     3. Create a partition by entering `n`
         * Partition Number: Default (Leave blank for default)
         * First Sector: Default
@@ -79,7 +79,7 @@ This will go over using gdisk, though you can use other utilities that you are c
 5. Mount the USB by running `mount /dev/<your partition> /mnt`
 6. `cd` to your USB by running `cd /mnt` and create a folder with `mkdir com.apple.recovery.boot`. This will be where we put the Recovery image.
 7. `cd` to the .pkg you downloaded under `macOS downloads` in the gibMacOS folder
-8. Make sure `p7zip-full` is installed
+8. You will need `p7zip-full` - ensure it is installed
     * `sudo apt install p7zip-full` for Ubuntu/Ubuntu based
     * `sudo pacman -S p7zip` for Arch
 9. Run `7z e -txar *.pkg *.dmg; 7z e *.dmg */Base*`. This extracts the recovery from the pkg by extracting the initial update package, then extracting the BaseSystem damage.
