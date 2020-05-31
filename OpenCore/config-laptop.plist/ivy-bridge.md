@@ -55,9 +55,9 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
 | Required_SSDTs | Description |
 | :--- | :--- |
 | **[SSDT-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)** | Needed for proper CPU power management, you will need to run Pike's ssdtPRGen.sh script to generate this file. This will be run in [post install](/post-install/README.md). |
-| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. A pre-built can be found here if you have issues: [SSDT-EC-LAPTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-EC-LAPTOP.aml) |
-| **[SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml)** | Makes all _OSI calls specific to Windows work for macOS (Darwin) Identifier. This may help enabling some features like XHCI and others. |
-| **[SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)** | Adds brightness control support |
+| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. A pre-built can be found here if you have issues: [SSDT-EC-LAPTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-EC-LAPTOP.aml) |
+| **[SSDT-XOSI](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-XOSI.aml)** | Makes all _OSI calls specific to Windows work for macOS (Darwin) Identifier. This may help enabling some features like XHCI and others. |
+| **[SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)** | Adds brightness control support. A pre-built can be found here if you have issues: [SSDT-PNLF](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-PNLF.aml) |
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/OC/ACPI.
 
@@ -70,7 +70,7 @@ This blocks certain ACPI tables from loading, for us we really care about this. 
 | Key | Type | Value |
 | :--- | :--- | :--- |
 | All | Boolean | YES |
-| Comment | String | Drop CpuPm |
+| Comment | String | Delete CpuPm |
 | Enabled | Boolean | YES |
 | OemTableId | Data | 437075506d000000 |
 | TableLength | Number | 0 |
@@ -79,7 +79,7 @@ This blocks certain ACPI tables from loading, for us we really care about this. 
 | Key | Type | Value |
 | :--- | :--- | :--- |
 | All | Boolean | YES |
-| Comment | String | Drop Cpu0Ist |
+| Comment | String | Delete Cpu0Ist |
 | Enabled | Boolean | YES |
 | OemTableId | Data | 4370753049737400 |
 | TableLength | Number | 0 |
@@ -96,7 +96,7 @@ This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.
 | :--- | :--- | :--- |
 | Enabled | Boolean | YES |
 | Count | Number | 0 |
-| Limit | Nuber | 0 |
+| Limit | Number | 0 |
 | Find | Data | 5f4f5349 |
 | Replace | Data | 584f5349 |
 
