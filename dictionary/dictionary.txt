@@ -10,13 +10,13 @@
 64MB
 AAPL
 AHCI
+AIDA64
 AIOs
 ASUS
 AWAC
 Above4GDecoding
 Acidanthera
 AcpiSamples
-AIDA64
 AirportAtheros40
 AirportBrcmFixup
 AppleACPICPU
@@ -204,6 +204,7 @@ Rehabman
 Rehabman's
 Reinstalls
 Ryzen
+S3
 SATA
 SGX
 SMC
@@ -245,6 +246,7 @@ VoodooInput
 VoodooPS2
 VoodooPS2Controller
 VoodooTSCSync
+VoodooTsc
 WHFR
 WIP
 WLAN
