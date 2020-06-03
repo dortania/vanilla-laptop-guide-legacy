@@ -4,6 +4,11 @@
         "fontsettings": {
             "theme":  "night",
             "family": "sans"
+        },
+        "addcssjs": {
+            "css": [
+              "build-files/styles/website.css"
+            ]
         }
     },
     "links": {
