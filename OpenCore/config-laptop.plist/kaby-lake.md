@@ -227,7 +227,7 @@ The table below may seem daunting but it's really not, the main things we need t
 
 For us, we'll be using the boot argument `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present. More info on this is covered in the [Post-Install Page](/post-install/README.md)
 
-### Block 
+### Block
 
 Removes device properties from the map, for us we can ignore this
 
@@ -237,7 +237,7 @@ Fun Fact: The reason the byte order is swapped is because most modern processors
 
 ![Kernel](/images/config/config-universal/kernel.png)
 
-### Add 
+### Add
 
 Here's where you specify which kexts to load, order matters here so make sure Lilu.kext is always first! Other higher priority kexts come after Lilu such as VirtualSMC, AppleALC, WhateverGreen, etc. A reminder that [ProperTree](https://github.com/corpnewt/ProperTree) users can run **Cmd/Ctrl + Shift + R** to add all their kexts in the correct order without manually typing each kext out.
 
@@ -253,18 +253,18 @@ Here's where you specify which kexts to load, order matters here so make sure Li
   * Path to the `info.plist` hidden within the kext
   * ex: `Contents/Info.plist`
 
-### Emulate 
+### Emulate
 
 Needed for spoofing unsupported CPUs like Pentiums and Celerons
 
 * **CpuidMask**: Leave this blank
 * **CpuidData**: Leave this blank
 
-### Block 
+### Block
 
 Blocks certain kexts from loading. Not relevant for us.
 
-### Patch 
+### Patch
 
 Patches both the kernel and kexts.
 
