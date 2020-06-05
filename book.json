@@ -1,10 +1,13 @@
  {
-    "plugins": ["theme-default", "-lunr", "-search", "search-plus", "addcssjs", "medium-zoom"],
+    "plugins": ["theme-default", "-lunr", "-search", "search-plus", "addcssjs", "medium-zoom", "anchor-navigation-ex"],
     "pluginsConfig": {
         "fontsettings": {
             "theme":  "night",
             "family": "sans"
         }
+    },
+    "anchor-navigation-ex": {
+	"multipleH1": false
     },
     "links": {
         "sharing": {
