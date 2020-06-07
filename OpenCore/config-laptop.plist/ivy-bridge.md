@@ -100,7 +100,7 @@ This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.
 | Find | Data | 5f4f5349 |
 | Replace | Data | 584f5349 |
 
-### Quirk
+### Quirks
 
 Settings relating to ACPI, leave everything here as default.
 
@@ -241,7 +241,7 @@ The table below may seem daunting but it's really not, the main things we need t
 
 For us, we'll be using the boot argument `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present. More info on this is covered in the [Post-Install Page](/post-install/README.md)
 
-### Block
+### Delete
 
 Removes device properties from the map, for us we can ignore this
 

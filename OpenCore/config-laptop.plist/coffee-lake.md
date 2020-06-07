@@ -81,7 +81,7 @@ This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.
 | Find | Data | 5f4f5349 |
 | Replace | Data | 584f5349 |
 
-### Quirk
+### Quirks
 
 Settings relating to ACPI, leave everything here as default.
 
@@ -201,7 +201,7 @@ For us, we'll be using the boot argument `alcid=xxx` instead to accomplish this.
 
 Fun Fact: The reason the byte order is swapped is because most modern processors are [Little Endian](https://en.wikipedia.org/wiki/Endianness). The more you know!
 
-### Block
+### Delete
 
 Removes device properties from the map, for us we can ignore this
 
