@@ -189,8 +189,8 @@ The table below may seem daunting but it's really not, the main things we need t
   * `device-id`=`1b590000` or `16590000`
   * `AAPL,ig-platform-id`=`00001659` or `00001b59` (you can try whichever works the best, some even try to cross the device-id and the ig-platform-id)
     * For HD620 users, they can skip the part above (unless you get issues)
-* For `UHD620` users, you **must** use:
-  * `device-id`=`87C00000`
+* For `UHD620` users we recommend the following values:
+  * `device-id`=`16590000`
   * `AAPL,ig-platform-id`=`0000C087`
     * **Note:** `UHD630` ***IS NOT*** KabyLake, it's CoffeeLake (check next section).
 * For all HD6\*\* (`UHD` users are not concerned), there are some small issues with output where plugging anything would cause a lock up (kernel panic), here are some patches to mitigate that (credit Rehabman):
