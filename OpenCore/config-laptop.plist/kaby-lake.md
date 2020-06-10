@@ -191,8 +191,8 @@ The table below may seem daunting but it's really not, the main things we need t
   * `device-id`=`1b590000` or `16590000`
   * `AAPL,ig-platform-id`=`00001659` or `00001b59` (you can try whichever works the best, some even try to cross the device-id and the ig-platform-id)
     * For HD620 users, they can skip the part above (unless you get issues)
-* For `UHD620` users, you **must** use:
-  * `device-id`=`87C00000`
+* For `UHD620` users we recommend the following values:
+  * `device-id`=`16590000`
   * `AAPL,ig-platform-id`=`0000C087`
     * **Note:** `UHD630` ***IS NOT*** KabyLake, it's CoffeeLake (check next section).
 * For all HD6\*\* (`UHD` users are not concerned), there are some small issues with output where plugging anything would cause a lock up (kernel panic), here are some patches to mitigate that (credit Rehabman):
@@ -333,7 +333,7 @@ Settings for boot screen (Leave everything as default).
     * `Cmd+S`: Boot in Single-user mode
     * `Option/Alt`: Shows boot picker when `ShowPicker` set to `NO`, an alternative is `ESC` key
 * **TakeoffDelay**: `0`
-  * Used to add a delay for hotkeys when OpenCore is a bit to fast to register, 5000-10000 microseconds is the preferred range for users with broken hotkeys support  
+  * Used to add a delay for hotkeys when OpenCore is a bit too fast to register, 5000-10000 microseconds is the preferred range for users with broken hotkeys support  
 * **Timeout**: `5`
   * This sets how long OpenCore will wait until it automatically boots from the default selection
 
