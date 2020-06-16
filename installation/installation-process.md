@@ -23,7 +23,7 @@ With many OEMs you're likely going to be heavily limited in your options, if you
 * Intel Platform Trust
 * CFG Lock (MSR 0xE2 write protection)
 
-**Enable:**
+### Enable
 
 * VT-x
 * Above 4G decoding

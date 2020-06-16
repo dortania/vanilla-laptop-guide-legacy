@@ -702,7 +702,7 @@ These are the main options to check for, if you can't find it or an equivalent f
 * Intel Platform Trust
 * CFG Lock (MSR 0xE2 write protection)(**This must be off, if you can't find the option then enable both `AppleCpuPmCfgLock` and `AppleXcpmCfgLock` under Kernel -> Quirks. Your hack will not boot with CFG-Lock enabled**)
 
-**Enable:**
+### Enable
 
 * VT-x (Virtualization Support)
 * Above 4G decoding
