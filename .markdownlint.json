@@ -4,6 +4,5 @@
 	"no-alt-text": false,
 	"no-inline-html": false,
 	"header-increment": false,
-    "MD013": false,
-    "MD024": false
+        "no-duplicate-header": false
 }

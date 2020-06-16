@@ -13,7 +13,7 @@ Now that you've finished setting up OpenCore, you're finally able to boot, main 
 
 With many OEMs you're likely going to be heavily limited in your options, if you can try to find these options and enable them:
 
-##### Disable
+#### Disable
 
 * Fast Boot
 * Secure Boot

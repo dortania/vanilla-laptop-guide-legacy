@@ -220,7 +220,7 @@ The table below may seem daunting but it's really not, the main things we need t
 
 #### PciRoot(0x0)/Pci(0x1b,0x0)
 
-`Layout-id`
+`layout-id`
 
 * Applies AppleALC audio injection, you'll need to do your own research on which codec your motherboard has and match it with AppleALC's layout. [AppleALC Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs).
 * You can delete this property outright as it's unused for us at this time
@@ -683,7 +683,7 @@ So thanks to the efforts of Ramus, we also have an amazing tool to help verify y
 
 ## Intel BIOS settings
 
-##### Disable
+#### Disable
 
 * Fast Boot
 * Secure Boot
