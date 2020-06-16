@@ -172,7 +172,7 @@ Sets device properties from a map.
 
 #### PciRoot(0x0)/Pci(0x2,0x0)
 
-This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for fixing certain iGPU properties like `ig-platform-id`. The way we get the proper value for this is to look at the framebuffer we intend to use, then swap the pairs of hex bytes.
+This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for setting important iGPU properties. 
 
 The table below may seem daunting but it's really not, the main things we need to take away from it are:
 
@@ -245,7 +245,7 @@ For us, we'll be using the boot argument `alcid=xxx` instead to accomplish this.
 
 Removes device properties from the map, for us we can ignore this
 
-Fun Fact: The reason the byte order is swapped is because most modern processors are [Little Endian](https://en.wikipedia.org/wiki/Endianness). The more you know!
+
 
 ## Kernel
 
@@ -693,7 +693,7 @@ So thanks to the efforts of Ramus, we also have an amazing tool to help verify y
 
 These are the main options to check for, if you can't find it or an equivalent for it, just skip it.
 
-#### Disable
+### Disable
 
 * Fast Boot
 * Secure Boot
