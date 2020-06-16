@@ -156,7 +156,7 @@ Sets device properties from a map.
 
 #### PciRoot(0x0)/Pci(0x2,0x0)
 
-This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for setting important iGPU properties. 
+This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for setting important iGPU properties.
 
 The table below may seem daunting but it's really not, the main things we need to take away from it are:
 
@@ -206,8 +206,6 @@ The table below may seem daunting but it's really not, the main things we need t
 * You can delete this property outright as it's unused for us at this time
 
 For us, we'll be using the boot argument `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present. More info on this is covered in the [Post-Install Page](/post-install/README.md)
-
-
 
 ### Delete
 
