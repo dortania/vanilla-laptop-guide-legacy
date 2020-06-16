@@ -55,9 +55,9 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
 | Required_SSDTs | Description |
 | :--- | :--- |
 | **[SSDT-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)** | Needed for proper CPU power management, you will need to run Pike's ssdtPRGen.sh script to generate this file. This will be run in [post install](/post-install/README.md). |
-| **[SSDT-EC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users with a defined PNP0C09** and recommended for other versions of macOS. A pre-built can be found here if you have issues: [SSDT-EC-LAPTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-EC-LAPTOP.aml) |
+| **[SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/)** | Creates a fake embedded controller for macOS, **needed for all Catalina users with a defined PNP0C09** and recommended for other versions of macOS. A pre-built can be found here if you have issues: [SSDT-EC-LAPTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-EC-LAPTOP.aml) |
 | **[SSDT-XOSI](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-XOSI.aml)** | Makes all _OSI calls specific to Windows work for macOS (Darwin) Identifier. This may help enabling some features like XHCI and others. |
-| **[SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl)** | Adds brightness control support. A pre-built can be found here if you have issues: [SSDT-PNLF](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-PNLF.aml) |
+| **[SSDT-PNLF](https://dortania.github.io/Getting-Started-With-ACPI/)** | Adds brightness control support. A pre-built can be found here if you have issues: [SSDT-PNLF](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-PNLF.aml) |
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/OC/ACPI.
 
@@ -693,9 +693,10 @@ So thanks to the efforts of Ramus, we also have an amazing tool to help verify y
 
 These are the main options to check for, if you can't find it or an equivalent for it, just skip it.
 
-**Disable:**
+##### Disable
 
 * Fast Boot
+* Secure Boot
 * VT-d (can be enabled if you set `DisableIoMapper` to YES)
 * CSM (or Legacy Support, or Hybrid Boot)
 * Thunderbolt (For initial install, as Thunderbolt can cause issues if not setup correctly, if available)
