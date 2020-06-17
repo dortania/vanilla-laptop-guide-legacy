@@ -42,5 +42,8 @@
   "bugs": {
     "url": "https://github.com/dortania/vanilla-laptop-guide/issues"
   },
-  "homepage": "https://github.com/dortania/vanilla-laptop-guide#readme"
+  "homepage": "https://github.com/dortania/vanilla-laptop-guide#readme",
+  "dependencies": {
+    "gitbook-plugin-anchor-navigation-ex": "^1.0.14"
+  }
 }

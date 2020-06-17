@@ -26,6 +26,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -644,7 +648,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="installation-process">Installation Process</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#installation-process"><b>1. </b>Installation Process</a></li><ul><li><span class="title-icon "></span><a href="#recommended-bios-settings"><b>1.1. </b>Recommended BIOS Settings</a></li><ul><li><span class="title-icon "></span><a href="#disable"><b>1.1.1. </b>Disable</a></li><li><span class="title-icon "></span><a href="#enable"><b>1.1.2. </b>Enable</a></li></ul><li><span class="title-icon "></span><a href="#double-checking-your-work"><b>1.2. </b>Double checking your work</a></li><li><span class="title-icon "></span><a href="#booting-the-opencore-usb"><b>1.3. </b>Booting the OpenCore USB</a></li><li><span class="title-icon "></span><a href="#macos-installer"><b>1.4. </b>macOS Installer</a></li></ul></ul></div><a href="#installation-process" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="installation-process"><a name="installation-process" class="anchor-navigation-ex-anchor" href="#installation-process"><i class="fa fa-link" aria-hidden="true"></i></a>1. Installation Process</h1>
 <p>Now that you&apos;ve finished setting up OpenCore, you&apos;re finally able to boot, main things to keep in mind:</p>
 <ul>
 <li>Make sure the laptop is connected to the charger<ul>
@@ -656,18 +660,19 @@
 <li>And a copy of the <a href="https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html" target="_blank">troubleshooting page</a></li>
 <li>And a ton of patience</li>
 </ul>
-<h2 id="recommended-bios-settings">Recommended BIOS Settings</h2>
+<h2 id="recommended-bios-settings"><a name="recommended-bios-settings" class="anchor-navigation-ex-anchor" href="#recommended-bios-settings"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. Recommended BIOS Settings</h2>
 <p>With many OEMs you&apos;re likely going to be heavily limited in your options, if you can try to find these options and enable them:</p>
-<p><strong>Disable:</strong></p>
+<h3 id="disable"><a name="disable" class="anchor-navigation-ex-anchor" href="#disable"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.1. Disable</h3>
 <ul>
 <li>Fast Boot</li>
+<li>Secure Boot</li>
 <li>VT-d (can be enabled if you set <code>DisableIoMapper</code> to YES)</li>
 <li>Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)</li>
 <li>Intel SGX</li>
 <li>Intel Platform Trust</li>
 <li>CFG Lock (MSR 0xE2 write protection)</li>
 </ul>
-<p><strong>Enable:</strong></p>
+<h3 id="enable"><a name="enable" class="anchor-navigation-ex-anchor" href="#enable"><i class="fa fa-link" aria-hidden="true"></i></a>1.1.2. Enable</h3>
 <ul>
 <li>VT-x</li>
 <li>Above 4G decoding</li>
@@ -680,7 +685,7 @@
 </li>
 <li>DVMT Pre-Allocated(iGPU Memory): 64MB</li>
 </ul>
-<h2 id="double-checking-your-work">Double checking your work</h2>
+<h2 id="double-checking-your-work"><a name="double-checking-your-work" class="anchor-navigation-ex-anchor" href="#double-checking-your-work"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. Double checking your work</h2>
 <p>One last thing we should go over before booting is how your EFI is setup:</p>
 <table>
 <thead>
@@ -724,7 +729,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="booting-the-opencore-usb">Booting the OpenCore USB</h2>
+<h2 id="booting-the-opencore-usb"><a name="booting-the-opencore-usb" class="anchor-navigation-ex-anchor" href="#booting-the-opencore-usb"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. Booting the OpenCore USB</h2>
 <p>So you&apos;re now ready to finally put the USB stick into your computer and boot off of it, remember that your laptop will still default to the internal drive with Windows so you&apos;ll need to enter the BIOS or boot menu and select the USB. You&apos;ll need to check in the user manual or use a bit of google to find out what Fn key accesses the BIOS and boot menu(ie. Esc, F2, F10 or F12)</p>
 <p>Once you boot the USB, you&apos;ll likely be greeted to the following boot options:</p>
 <ol>
@@ -734,7 +739,7 @@
 <li>Reset NVRAM</li>
 </ol>
 <p>For use, <strong>Option 2.</strong> is the one we want. Depending how the installer was made, it may report as either <strong>&quot;macOS Base System (External)&quot;</strong> if Recovery Installer based and <strong>&quot;Install macOS Catalina (External)&quot;</strong> if full installer based.</p>
-<h2 id="macos-installer">macOS Installer</h2>
+<h2 id="macos-installer"><a name="macos-installer" class="anchor-navigation-ex-anchor" href="#macos-installer"><i class="fa fa-link" aria-hidden="true"></i></a>1.4. macOS Installer</h2>
 <p>So you&apos;ve finally got the installer booted, got through the verbose and hit the installer! Now that you&apos;ve gotten this far,  the main things to keep in mind:</p>
 <ul>
 <li>Drives you wish to install macOS on <strong>must</strong> be both of GUID partition Scheme <strong>and</strong> APFS<ul>
@@ -792,7 +797,7 @@ You will want to go through the Post-Installation pages to finish setting up you
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installation Process","level":"4.1","depth":1,"next":{"title":"Troubleshooting","level":"4.2","depth":1,"url":"https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html","ref":"https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html","articles":[]},"previous":{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"installation/installation-process.md","mtime":"2020-06-10T00:30:09.691Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-10T00:31:02.169Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installation Process","level":"4.1","depth":1,"next":{"title":"Troubleshooting","level":"4.2","depth":1,"url":"https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html","ref":"https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html","articles":[]},"previous":{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"anchor-navigation-ex":{"multipleH1":false},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"installation/installation-process.md","mtime":"2020-06-17T20:14:59.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-17T20:16:00.007Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

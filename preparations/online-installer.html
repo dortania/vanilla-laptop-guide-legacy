@@ -26,6 +26,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -646,7 +650,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="preparing-a-recovery-installer-on-windowslinuxmacos">Preparing a Recovery installer on Windows/Linux/macOS</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#preparing-a-recovery-installer-on-windowslinuxmacos"><b>1. </b>Preparing a Recovery installer on Windows/Linux/macOS</a></li><ul><li><span class="title-icon "></span><a href="#getting-the-recovery-package"><b>1.1. </b>Getting the Recovery Package</a></li><li><span class="title-icon "></span><a href="#putting-macos-on-a-usb"><b>1.2. </b>Putting macOS on a USB</a></li><ul><li><span class="title-icon "></span><a href="#windows"><b>1.2.1. </b>Windows</a></li><li><span class="title-icon "></span><a href="#linux"><b>1.2.2. </b>Linux</a></li><li><span class="title-icon "></span><a href="#macos"><b>1.2.3. </b>macOS</a></li></ul></ul></ul></div><a href="#preparing-a-recovery-installer-on-windowslinuxmacos" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="preparing-a-recovery-installer-on-windowslinuxmacos"><a name="preparing-a-recovery-installer-on-windowslinuxmacos" class="anchor-navigation-ex-anchor" href="#preparing-a-recovery-installer-on-windowslinuxmacos"><i class="fa fa-link" aria-hidden="true"></i></a>1. Preparing a Recovery installer on Windows/Linux/macOS</h1>
 <p>An <em>online Recovery installer</em> installs only core elements of macOS, then downloads the full OS from the Apple servers.
 This requires a working internet connection - usually Ethernet - on the target machine.
 If you want to use WiFi, ensure your target machine&apos;s WiFi card is compatible with <strong>macOS</strong>.
@@ -677,7 +681,7 @@ downloads your desired macOS image directly from Apple servers (to ensure authen
 </ul>
 </li>
 </ul>
-<h2 id="getting-the-recovery-package">Getting the Recovery Package</h2>
+<h2 id="getting-the-recovery-package"><a name="getting-the-recovery-package" class="anchor-navigation-ex-anchor" href="#getting-the-recovery-package"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. Getting the Recovery Package</h2>
 <ol>
 <li>Run gibMacOS<ul>
 <li>On Windows, run <code>gibMacOS.bat</code>. If it does not recognize Python, you can also run <code>python gibMacOS.command</code></li>
@@ -692,8 +696,8 @@ downloads your desired macOS image directly from Apple servers (to ensure authen
  <img src="../images/preparations/gibMacOS.jpg" alt="gibMacOS screenshot"></li>
 <li>You can exit out of gibMacOS once it&apos;s done downloading.</li>
 </ol>
-<h2 id="putting-macos-on-a-usb">Putting macOS on a USB</h2>
-<h3 id="windows">Windows</h3>
+<h2 id="putting-macos-on-a-usb"><a name="putting-macos-on-a-usb" class="anchor-navigation-ex-anchor" href="#putting-macos-on-a-usb"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. Putting macOS on a USB</h2>
+<h3 id="windows"><a name="windows" class="anchor-navigation-ex-anchor" href="#windows"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.1. Windows</h3>
 <p>OpenCore allows us to put the BaseSystem.dmg on the USB with OpenCore,
 so we only need to format the USB to one FAT32 partition and drop it in.
 This does require 7-Zip to be installed.</p>
@@ -718,7 +722,7 @@ This does require 7-Zip to be installed.</p>
  <img src="../images/preparations/BaseSystemWinders.jpg" alt="BaseSystem screenshot"></li>
 <li>You are ready to continue and <a href="opencore-efi.html">add OpenCore files to the USB installer.</a></li>
 </ol>
-<h3 id="linux">Linux</h3>
+<h3 id="linux"><a name="linux" class="anchor-navigation-ex-anchor" href="#linux"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.2. Linux</h3>
 <p>This will go over using gdisk, though you can use other utilities that you are comfortable using. This will create the necessary partitions on the USB.</p>
 <ol>
 <li>Run <code>lsblk</code> and note your USB device</li>
@@ -752,7 +756,7 @@ This does require 7-Zip to be installed.</p>
 <li>Once you find <code>BaseSystem.dmg</code> and <code>BaseSystem.chunklist</code>, copy these to <code>com.apple.recovery.boot</code> on the USB.</li>
 <li>You are ready to continue and <a href="opencore-efi.html">add OpenCore files to the USB installer.</a></li>
 </ol>
-<h3 id="macos">macOS</h3>
+<h3 id="macos"><a name="macos" class="anchor-navigation-ex-anchor" href="#macos"><i class="fa fa-link" aria-hidden="true"></i></a>1.2.3. macOS</h3>
 <ol>
 <li>In Finder, find the Recovery package under <code>macOS Downloads</code>. You may need to enable file name extensions under <code>Finder &gt; Preferences &gt; Advanced</code>.</li>
 <li>Rename the extension from <code>.pkg</code> to <code>.dmg</code></li>
@@ -815,7 +819,7 @@ This does require 7-Zip to be installed.</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Preparing an online installer","level":"2.2.2","depth":2,"next":{"title":"Setting Up OpenCore","level":"2.3","depth":1,"path":"preparations/opencore-efi.md","ref":"preparations/opencore-efi.md","articles":[]},"previous":{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/online-installer.md","mtime":"2020-06-10T00:30:09.691Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-10T00:31:02.169Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Preparing an online installer","level":"2.2.2","depth":2,"next":{"title":"Setting Up OpenCore","level":"2.3","depth":1,"path":"preparations/opencore-efi.md","ref":"preparations/opencore-efi.md","articles":[]},"previous":{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"anchor-navigation-ex":{"multipleH1":false},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/online-installer.md","mtime":"2020-06-17T20:14:59.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-17T20:16:00.007Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

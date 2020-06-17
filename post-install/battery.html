@@ -26,6 +26,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -642,9 +646,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="battery-patching">Battery Patching</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#battery-patching"><b>1. </b>Battery Patching</a></li><ul><li><span class="title-icon "></span><a href="#dsdt-patching"><b>1.1. </b>DSDT Patching</a></li><li><span class="title-icon "></span><a href="#battery-hot-patching"><b>1.2. </b>Battery Hot-patching</a></li></ul></ul></div><a href="#battery-patching" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="battery-patching"><a name="battery-patching" class="anchor-navigation-ex-anchor" href="#battery-patching"><i class="fa fa-link" aria-hidden="true"></i></a>1. Battery Patching</h1>
 <p>While at the moment battery patching is not something covered in this guide, we&apos;ll at least point you to some helpful resources and add some useful notes for when using them in OpenCore.</p>
-<h2 id="dsdt-patching">DSDT Patching</h2>
+<h2 id="dsdt-patching"><a name="dsdt-patching" class="anchor-navigation-ex-anchor" href="#dsdt-patching"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. DSDT Patching</h2>
 <p>While custom DSDT injection should be avoided as to prevent issues with Windows and firmware updates, it can be quite helpful as a starting point since it&apos;s a bit easier to grasp and do yourself:</p>
 <p><strong><a href="https://www.tonymacx86.com/threads/guide-how-to-patch-dsdt-for-working-battery-status.116102/" target="_blank">Rehabman&apos;s how to patch DSDT for working battery status</a></strong></p>
 <ul>
@@ -653,7 +657,7 @@
 <li><p>Note 2: Avoid using the MaciASL and iASL provided by Rehabman, they have been long neglected and so highly recommended grabbing a newer variant from Acidanthera: <a href="https://github.com/acidanthera/MaciASL/releases" target="_blank">MaciASL</a></p>
 </li>
 </ul>
-<h2 id="battery-hot-patching">Battery Hot-patching</h2>
+<h2 id="battery-hot-patching"><a name="battery-hot-patching" class="anchor-navigation-ex-anchor" href="#battery-hot-patching"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. Battery Hot-patching</h2>
 <p>Once you&apos;ve finally gotten your DSDT patched and battery working in macOS, it&apos;s time to finally create our very own hot-patches. How these differ from regular DSDT patching is that it&apos;s done on the fly with the DSDT allowing for greater flexibility with firmware updates:</p>
 <p><strong><a href="https://www.tonymacx86.com/threads/guide-using-clover-to-hotpatch-acpi.200137/" target="_blank">Rehabman&apos;s Guide to Using Clover to &quot;hotpatch&quot; ACPI</a></strong></p>
 <ul>
@@ -694,7 +698,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Fixing Battery Status","level":"5.1.10","depth":2,"previous":{"title":"Fixing Power Management","level":"5.1.9","depth":2,"url":"https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html","ref":"https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"post-install/battery.md","mtime":"2020-06-10T00:30:09.691Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-10T00:31:02.169Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Fixing Battery Status","level":"5.1.10","depth":2,"previous":{"title":"Fixing Power Management","level":"5.1.9","depth":2,"url":"https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html","ref":"https://dortania.github.io/OpenCore-Desktop-Guide/post-install/pm.html","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"anchor-navigation-ex":{"multipleH1":false},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"post-install/battery.md","mtime":"2020-06-17T20:14:59.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-17T20:16:00.007Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

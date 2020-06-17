@@ -26,6 +26,10 @@
                 
             
                 
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -646,7 +650,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="preparing-a-full-macos-installer-requires-macos">Preparing a full macOS Installer (requires macOS)</h1>
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#preparing-a-full-macos-installer-requires-macos"><b>1. </b>Preparing a full macOS Installer (requires macOS)</a></li><ul><li><span class="title-icon "></span><a href="#downloading-the-macos-installer-with-gibmacos"><b>1.1. </b>Downloading the macOS Installer with gibMacOS</a></li><li><span class="title-icon "></span><a href="#preparing-the-usb-drive"><b>1.2. </b>Preparing the USB Drive</a></li><li><span class="title-icon "></span><a href="#copying-macos-onto-the-usb-drive"><b>1.3. </b>Copying macOS onto the USB Drive</a></li><li><span class="title-icon "></span><a href="#mounting-the-efi-partition"><b>1.4. </b>Mounting the EFI partition</a></li></ul></ul></div><a href="#preparing-a-full-macos-installer-requires-macos" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="preparing-a-full-macos-installer-requires-macos"><a name="preparing-a-full-macos-installer-requires-macos" class="anchor-navigation-ex-anchor" href="#preparing-a-full-macos-installer-requires-macos"><i class="fa fa-link" aria-hidden="true"></i></a>1. Preparing a full macOS Installer (requires macOS)</h1>
 <p>This procedure describes how to create a full macOS installer that contains the</p>
 <p>entire operating system, with no further downloads necessary to install.
 What you need:</p>
@@ -665,12 +669,12 @@ What you need:</p>
 </li>
 <li>A plist editor (you should already have one by now. ie. <a href="https://github.com/corpnewt/ProperTree" target="_blank">ProperTree</a>)</li>
 </ul>
-<h5 id="note-for-legacy-users">Note for legacy users</h5>
+<h5 id="note-for-legacy-users"><a name="note-for-legacy-users" class="anchor-navigation-ex-anchor" href="#note-for-legacy-users"><i class="fa fa-link" aria-hidden="true"></i></a>Note for legacy users</h5>
 <ul>
-<li>If you want to use OpenCore on a system without UEFI, please follow the <a href="../extras/legacy.md">Legacy Install</a> section first, after you can continue following the <strong>Base folder structure</strong> section</li>
+<li>If you want to use OpenCore on a system without UEFI, please follow the <a href="https://dortania.github.io/OpenCore-Desktop-Guide/extras/legacy.html" target="_blank">Legacy Install</a> section first, after you can continue following the <strong>Base folder structure</strong> section</li>
 </ul>
 <p>To start we&apos;ll want to grab ourselves a copy of macOS, you can skip this and head to formatting the USB if you&apos;re just making a bootable OpenCore stick and not an installer. For everyone else, you can either download macOS from the App Store or with gibMacOS</p>
-<h2 id="downloading-the-macos-installer-with-gibmacos">Downloading the macOS Installer with gibMacOS</h2>
+<h2 id="downloading-the-macos-installer-with-gibmacos"><a name="downloading-the-macos-installer-with-gibmacos" class="anchor-navigation-ex-anchor" href="#downloading-the-macos-installer-with-gibmacos"><i class="fa fa-link" aria-hidden="true"></i></a>1.1. Downloading the macOS Installer with gibMacOS</h2>
 <p>Use the <a href="https://github.com/corpnewt/gibMacOS" target="_blank">gibMacOS</a>
 (see the <a href="online-installer.html">Recovery Installer page for details</a>
 and run <code>gibMacOS.command</code>:</p>
@@ -685,7 +689,7 @@ so highly recommend reading the rest of the guide while you wait.</p>
 <p>It&apos;s gonna ask for the macOS installer files, at the moment they&apos;re in pieces in the <code>macOS Downloads</code> folder found in gibMacOS</p>
 <p>Once it&apos;s done, you can find it with the rest of the files. I recommend moving it to your applications folder to make things a bit easier with the next section.</p>
 <p><img src="../images/preparations/offline-installer/gib-done.png" alt=""></p>
-<h2 id="preparing-the-usb-drive">Preparing the USB Drive</h2>
+<h2 id="preparing-the-usb-drive"><a name="preparing-the-usb-drive" class="anchor-navigation-ex-anchor" href="#preparing-the-usb-drive"><i class="fa fa-link" aria-hidden="true"></i></a>1.2. Preparing the USB Drive</h2>
 <p>Now we will be formatting the USB drive.
 Use macOS Disk Utility to erase the entire USB drive (click View &gt; Show All Devices, then select your USB drive),
 and give it the name <code>MyVolume</code>,
@@ -693,14 +697,14 @@ using <code>Mac OS Extended (Journaled)</code> and <code>GUID Partition Map</cod
 <p><img src="../images/preparations/offline-installer/format-usb.png" alt="Formatting the USB"></p>
 <p>This creates 2 partitions: one named <code>MyVolume</code> and a second (hidden) one called <code>EFI</code>
 which is where your firmware checks for boot files.</p>
-<h2 id="copying-macos-onto-the-usb-drive">Copying macOS onto the USB Drive</h2>
+<h2 id="copying-macos-onto-the-usb-drive"><a name="copying-macos-onto-the-usb-drive" class="anchor-navigation-ex-anchor" href="#copying-macos-onto-the-usb-drive"><i class="fa fa-link" aria-hidden="true"></i></a>1.3. Copying macOS onto the USB Drive</h2>
 <p>Next run the <code>createinstallmedia</code> command provided by <a href="https://support.apple.com/en-us/HT201372" target="_blank">Apple</a>,
 (be sure to adjust the volume name if it&apos;s not <code>MyVolume</code> and the path to the installer if it&apos;s not Catalina or not in the Applications folder):</p>
 <pre><code class="lang-text">sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
 </code></pre>
 <p>This will take some time so may want to grab a coffee or continue reading the guide.
 (To be realistic, you shouldn&apos;t be following this guide step by step without reading the whole thing first.)</p>
-<h2 id="mounting-the-efi-partition">Mounting the EFI partition</h2>
+<h2 id="mounting-the-efi-partition"><a name="mounting-the-efi-partition" class="anchor-navigation-ex-anchor" href="#mounting-the-efi-partition"><i class="fa fa-link" aria-hidden="true"></i></a>1.4. Mounting the EFI partition</h2>
 <p>Before you can proceed, you must mount the EFI system partition that was automatically created when we prepared the USB.
 That partition is unmounted by default.
 This is where our friend <a href="https://github.com/corpnewt/MountEFI" target="_blank">MountEFI</a> comes in:</p>
@@ -751,7 +755,7 @@ This is where our friend <a href="https://github.com/corpnewt/MountEFI" target="
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"next":{"title":"Preparing an online installer","level":"2.2.2","depth":2,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]},"previous":{"title":"Installer creation","level":"2.2","depth":1,"path":"preparations/installer-overview.md","ref":"preparations/installer-overview.md","articles":[{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},{"title":"Preparing an online installer","level":"2.2.2","depth":2,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/offline-installer.md","mtime":"2020-06-10T00:30:09.691Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-10T00:31:02.169Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"next":{"title":"Preparing an online installer","level":"2.2.2","depth":2,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]},"previous":{"title":"Installer creation","level":"2.2","depth":1,"path":"preparations/installer-overview.md","ref":"preparations/installer-overview.md","articles":[{"title":"Preparing an offline installer","level":"2.2.1","depth":2,"path":"preparations/offline-installer.md","ref":"preparations/offline-installer.md","articles":[]},{"title":"Preparing an online installer","level":"2.2.2","depth":2,"path":"preparations/online-installer.md","ref":"preparations/online-installer.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"anchor-navigation-ex":{"multipleH1":false},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"preparations/offline-installer.md","mtime":"2020-06-17T20:14:59.021Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-17T20:16:00.007Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
