@@ -2,19 +2,7 @@
 
 * Supported version: 0.5.9
 
-Table of Contents:
-
-* [Starting Point](/OpenCore/config-laptop.plist/icelake.md#starting-point)
-* [ACPI](/OpenCore/config-laptop.plist/icelake.md#acpi)
-* [Booter](/OpenCore/config-laptop.plist/icelake.md#booter)
-* [DeviceProperties](/OpenCore/config-laptop.plist/icelake.md#deviceproperties)
-* [Kernel](/OpenCore/config-laptop.plist/icelake.md#kernel)
-* [Misc](/OpenCore/config-laptop.plist/icelake.md#misc)
-* [NVRAM](/OpenCore/config-laptop.plist/icelake.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/icelake.md#platforminfo)
-* [UEFI](/OpenCore/config-laptop.plist/icelake.md#uefi)
-* [Cleaning up](/OpenCore/config-laptop.plist/icelake.md#cleaning-up)
-* [Intel BIOS settings](/OpenCore/config-laptop.plist/icelake.md#intel-bios-settings)
+<extoc></extoc>
 
 ## Starting Point
 
