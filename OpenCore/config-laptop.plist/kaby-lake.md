@@ -164,13 +164,13 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 #### Configuration Notes
 
+* **Note:** `UHD630` ***IS NOT*** KabyLake, it's CoffeeLake (check next section).
 * For `HD615`, `HD630`, `HD640` and `HD650` it is not needed to use a `device-id`. However, due to many issues with different setups it is recommended to use:
   * `device-id`=`1b590000` or `16590000`
   * `AAPL,ig-platform-id`=`00001659` or `00001b59` (you can try whichever works the best, some even try to cross the device-id and the ig-platform-id)
 * For `UHD620` users we recommend the following values:
   * `device-id`=`16590000`
   * `AAPL,ig-platform-id`=`0000C087`
-    * **Note:** `UHD630` ***IS NOT*** KabyLake, it's CoffeeLake (check next section).
 * For all HD6\*\* (`UHD` users are not concerned), there are some small issues with output where plugging anything would cause a lock up (kernel panic), here are some patches to mitigate that (credit Rehabman):
   * 0306 to 0105 (will probably explain what it does one day)
 
