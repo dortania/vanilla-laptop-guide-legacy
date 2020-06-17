@@ -2,19 +2,7 @@
 
 * Supported version: 0.5.9
 
-Table of Contents:
-
-* [Starting Point](/OpenCore/config-laptop.plist/skylake.md#starting-point)
-* [ACPI](/OpenCore/config-laptop.plist/skylake.md#acpi)
-* [Booter](/OpenCore/config-laptop.plist/skylake.md#booter)
-* [DeviceProperties](/OpenCore/config-laptop.plist/skylake.md#deviceproperties)
-* [Kernel](/OpenCore/config-laptop.plist/skylake.md#kernel)
-* [Misc](/OpenCore/config-laptop.plist/skylake.md#misc)
-* [NVRAM](/OpenCore/config-laptop.plist/skylake.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/skylake.md#platforminfo)
-* [UEFI](/OpenCore/config-laptop.plist/skylake.md#uefi)
-* [Cleaning up](/OpenCore/config-laptop.plist/skylake.md#cleaning-up)
-* [Intel BIOS settings](/OpenCore/config-laptop.plist/skylake.md#intel-bios-settings)
+<extoc></extoc>
 
 ## Starting Point
 

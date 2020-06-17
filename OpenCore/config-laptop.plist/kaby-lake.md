@@ -2,19 +2,7 @@
 
 * Supported version: 0.5.9
 
-Table of Contents:
-
-* [Starting Point](/OpenCore/config-laptop.plist/kaby-lake.md#starting-point)
-* [ACPI](/OpenCore/config-laptop.plist/kaby-lake.md#acpi)
-* [Booter](/OpenCore/config-laptop.plist/kaby-lake.md#booter)
-* [DeviceProperties](/OpenCore/config-laptop.plist/kaby-lake.md#deviceproperties)
-* [Kernel](/OpenCore/config-laptop.plist/kaby-lake.md#kernel)
-* [Misc](/OpenCore/config-laptop.plist/kaby-lake.md#misc)
-* [NVRAM](/OpenCore/config-laptop.plist/kaby-lake.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/kaby-lake.md#platforminfo)
-* [UEFI](/OpenCore/config-laptop.plist/kaby-lake.md#uefi)
-* [Cleaning up](/OpenCore/config-laptop.plist/kaby-lake.md#cleaning-up)
-* [Intel BIOS settings](/OpenCore/config-laptop.plist/kaby-lake.md#intel-bios-settings)
+<extoc></extoc>
 
 ## Starting Point
 
