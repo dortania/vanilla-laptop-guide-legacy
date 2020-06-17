@@ -1,6 +1,9 @@
 (15|16)h
 (No)?TouchID
 .aml
+0x0
+0x1b
+0x2
 0xE2
 1024x768
 2200S
@@ -184,6 +187,7 @@ PListPath
 PM981
 PRs
 PS2
+Pci
 PciRoot
 Plist
 Plists

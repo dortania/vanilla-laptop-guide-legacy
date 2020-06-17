@@ -13,16 +13,17 @@ Now that you've finished setting up OpenCore, you're finally able to boot, main 
 
 With many OEMs you're likely going to be heavily limited in your options, if you can try to find these options and enable them:
 
-**Disable:**
+### Disable
 
 * Fast Boot
+* Secure Boot
 * VT-d (can be enabled if you set `DisableIoMapper` to YES)
 * Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)
 * Intel SGX
 * Intel Platform Trust
 * CFG Lock (MSR 0xE2 write protection)
 
-**Enable:**
+### Enable
 
 * VT-x
 * Above 4G decoding
