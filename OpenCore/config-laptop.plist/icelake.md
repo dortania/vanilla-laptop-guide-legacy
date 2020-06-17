@@ -146,9 +146,10 @@ When setting up your iGPU, the table below should help with finding the right va
 * **Port Count + Connectors**
   * The number of displays and what types are supported
 
-Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:  
-1. When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough  
-2. If you boot and you get no graphics acceleration (7mb VRAM and solid background for dock), then you likely need to set device-id as well  
+Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:
+
+1. When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough
+2. If you boot and you get no graphics acceleration (7MB VRAM and solid background for dock), then you likely need to set device-id as well
 
 Note that highlighted entries with a star(*) are the recommended entries to use:
 

@@ -142,9 +142,10 @@ When setting up your iGPU, the table below should help with finding the right va
 * **Port Count + Connectors**
   * The number of displays and what types are supported
 
-Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:  
-1. When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough  
-2. If you boot and you get no graphics acceleration (7mb VRAM and solid background for dock), then you likely need to set device-id as well  
+Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:
+
+1. When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough
+2. If you boot and you get no graphics acceleration (7MB VRAM and solid background for dock), then you likely need to set device-id as well
 
 Note that highlighted entries with a star(*) are the recommended entries to use:
 
@@ -165,7 +166,7 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
   * The device-id of these devices *should* be supported already by the native macOS drivers.
 * <sup>2</sup>: to be used usually with HD4200, HD4400 and HD4600.
   * You **must** use `device-id` = `12040000`
-* It is **recommended** to set the cursor byte size for **all iGPUs** as many will experiance graphical glitches otherwise:
+* It is **recommended** to set the cursor byte size for **all iGPUs** as many will experience graphical glitches otherwise:
   * `framebuffer-patch-enable` = `1` (as a Number)
   * `framebuffer-cursor` = `00009000` (as Data)
     * We change the cursor byte from 6MB (00006000) to 9MB because of some glitches.
