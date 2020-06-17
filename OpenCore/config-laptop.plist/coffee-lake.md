@@ -2,18 +2,7 @@
 
 * Supported version: 0.5.9
 
-Table of Contents:
-
-* [Starting Point](/OpenCore/config-laptop.plist/coffee-lake.md#starting-point)
-* [ACPI](/OpenCore/config-laptop.plist/coffee-lake.md#acpi)
-* [Booter](/OpenCore/config-laptop.plist/coffee-lake.md#booter)
-* [DeviceProperties](/OpenCore/config-laptop.plist/coffee-lake.md#deviceproperties)
-* [Kernel](/OpenCore/config-laptop.plist/coffee-lake.md#kernel)
-* [Misc](/OpenCore/config-laptop.plist/coffee-lake.md#misc)
-* [NVRAM](/OpenCore/config-laptop.plist/coffee-lake.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/coffee-lake.md#platforminfo)
-* [UEFI](/OpenCore/config-laptop.plist/coffee-lake.md#uefi)
-* [Cleaning up](/OpenCore/config-laptop.plist/coffee-lake.md#cleaning-up)
+<extoc></extoc>
 
 ## Starting Point
 

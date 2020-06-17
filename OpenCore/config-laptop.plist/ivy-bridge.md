@@ -2,19 +2,7 @@
 
 * Supported version: 0.5.9
 
-Table of Contents:
-
-* [Starting Point](/OpenCore/config-laptop.plist/ivy-bridge.md#starting-point)
-* [ACPI](/OpenCore/config-laptop.plist/ivy-bridge.md#acpi)
-* [Booter](/OpenCore/config-laptop.plist/ivy-bridge.md#booter)
-* [DeviceProperties](/OpenCore/config-laptop.plist/ivy-bridge.md#deviceproperties)
-* [Kernel](/OpenCore/config-laptop.plist/ivy-bridge.md#kernel)
-* [Misc](/OpenCore/config-laptop.plist/ivy-bridge.md#misc)
-* [NVRAM](/OpenCore/config-laptop.plist/ivy-bridge.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/ivy-bridge.md#platforminfo)
-* [UEFI](/OpenCore/config-laptop.plist/ivy-bridge.md#uefi)
-* [Cleaning up](/OpenCore/config-laptop.plist/ivy-bridge.md#cleaning-up)
-* [Intel BIOS settings](/OpenCore/config-laptop.plist/ivy-bridge.md#intel-bios-settings)
+<extoc></extoc>
 
 ## Starting Point
 
