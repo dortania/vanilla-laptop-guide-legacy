@@ -11,16 +11,15 @@ What you need:
   * You can download a [pre-built release](https://github.com/acidanthera/OpenCorePkg/releases) (recommended, comes with needed EFI drivers)
   * Or build it manually with `./macbuild.tool`
   * Use the DBG (debug) build, as it makes it easier to debug issues. Afterwards, you can switch to a REL (release) build.
-* [AppleSupportPkg](https://github.com/acidanthera/AppleSupportPkg)
-  * Same as above, except usually you don't need the debug version as usually there aren't any issues.
+* *Is AppleSupportPkg required anymore?* <strike>[AppleSupportPkg](https://github.com/acidanthera/AppleSupportPkg)</strike> 
+<strike>  * Same as above, except usually you don't need the debug version as usually there aren't any issues.</strike> 
 * A plist editor (you should already have one by now. ie. [ProperTree](https://github.com/corpnewt/ProperTree))
 
 ##### Note for legacy users
 
 * It is possible to use OpenCore if your computer doesn't support UEFI.
-Please follow the [Legacy Install](../Extras/legacy.md)
-<!-- missing page? -->
-section first, after you can continue following the **Base folder structure** section
+Please follow the [Legacy Install](https://dortania.github.io/OpenCore-Desktop-Guide/extras/legacy.html)
+section first, after that you can follow the **Base folder structure** section.
 
 To start we'll grab a copy of the macOS Installer -
 either download macOS from the App Store or use gibMacOS.
