@@ -1,6 +1,6 @@
 # Gathering files
 
-* Supported version: 0.5.8
+* Supported version: 0.5.9
 
 This section is for gathering miscellaneous files for booting macOS, we do expect you to know your hardware well before starting and hopefully made a Hackintosh before as we won't be deep diving in here.
 
@@ -44,7 +44,7 @@ All kext listed below can be found **pre-compiled** in the [Kext Repository](htt
   * Emulates the SMC chip found on real macs, without this macOS will not boot
   * Alternative is FakeSMC which can have better or worse support, most commonly used on legacy hardware.
 * [Lilu](https://github.com/vit9696/Lilu/releases)
-  * A kext to patch many processes, required for AppleALC and WhateverGreen and recommended for VirtualSMC
+  * A kext to patch kexts, processes, frameworks, and libraries; required for AppleALC, WhateverGreen, VirtualSMC, and many other kexts. Without Lilu, they will not work.
 
 **VirtualSMC Plugins**:
 
@@ -85,7 +85,7 @@ Note that these come in the release/debug downloads for VirtualSMC
 
 **USB**:
 
-* [USBInjectAll](https://bitbucket.org/RehabMan/os-x-usb-inject-all/downloads/)
+* [USBInjectAll](https://github.com/Sniki/OS-X-USB-Inject-All/releases)
   * Used for injecting Intel USB controllers on systems without defined USB ports in ACPI
   * Not needed on Skylake and newer
 
@@ -155,12 +155,12 @@ A quick TL;DR of needed SSDTs(This is source code, you will have to compile them
 
 | SSDT | IvyBridge | Haswell | Broadwell | Skylake | KabyLake | CoffeeLake(8thGen) | Coffee/Comet/IceLake(9/10thGen) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **CPU** | [CPU-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)(Run in Post-Install) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) | [SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl) |
+| **CPU** | [CPU-PM](https://github.com/Piker-Alpha/ssdtPRGen.sh)(Run in Post-Install) | [SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/) |
 | **EC** | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) + [SSDT-USBX](https://github.com/Dortania/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) + [SSDT-USBX](https://github.com/Dortania/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) + [SSDT-USBX](https://github.com/Dortania/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) | [SSDT-EC](https://dortania.github.io/Getting-Started-With-ACPI/Universal/ec-fix.html) + [SSDT-USBX](https://github.com/Dortania/USB-Map-Guide/blob/master/extra-files/SSDT-USBX.aml) |
-| **Backlight** | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/SSDT-PNLF.dsl) | [SSDT-PNLF-CFL](https://i.applelife.ru/2019/12/463488_SSDT-PNLFCFL.aml.zip) | [SSDT-PNLF-CFL](https://i.applelife.ru/2019/12/463488_SSDT-PNLFCFL.aml.zip) |
+| **Backlight** | [SSDT-PNLF](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PNLF](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PNLF](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PNLF](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PNLF](https://dortania.github.io/Getting-Started-With-ACPI/) | [SSDT-PNLF-CFL](https://i.applelife.ru/2019/12/463488_SSDT-PNLFCFL.aml.zip) | [SSDT-PNLF-CFL](https://i.applelife.ru/2019/12/463488_SSDT-PNLFCFL.aml.zip) |
 | **I2C TrackPad** | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) | [SSDT-GPI0](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-GPIO.aml) |
-| **AWAC** | N/A | N/A | N/A | N/A | N/A | N/A | [SSDT-AWAC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-AWAC.dsl) |
-| **NVRAM** | N/A | N/A | N/A | N/A | N/A | N/A | [SSDT-PMC](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PMC.dsl) |
+| **AWAC** | N/A | N/A | N/A | N/A | N/A | N/A | [SSDT-AWAC](https://dortania.github.io/Getting-Started-With-ACPI/) |
+| **NVRAM** | N/A | N/A | N/A | N/A | N/A | N/A | [SSDT-PMC](https://dortania.github.io/Getting-Started-With-ACPI/) |
 | **IRQ Patch** | [IRQ SSDT](https://github.com/corpnewt/SSDTTime) | [IRQ SSDT](https://github.com/corpnewt/SSDTTime) | [IRQ SSDT](https://github.com/corpnewt/SSDTTime) | N/A | N/A | N/A | N/A |
 
 ## Now head over to [Getting Started With ACPI](https://dortania.github.io/Getting-Started-With-ACPI/)

@@ -1,6 +1,9 @@
 (15|16)h
 (No)?TouchID
 .aml
+0x0
+0x1b
+0x2
 0xE2
 1024x768
 2200S
@@ -10,13 +13,13 @@
 64MB
 AAPL
 AHCI
+AIDA64
 AIOs
 ASUS
 AWAC
 Above4GDecoding
 Acidanthera
 AcpiSamples
-Aida64
 AIDA64
 AirportAtheros40
 AirportBrcmFixup
@@ -186,6 +189,7 @@ PListPath
 PM981
 PRs
 PS2
+Pci
 PciRoot
 Plist
 Plists
@@ -206,6 +210,7 @@ Rehabman
 Rehabman's
 Reinstalls
 Ryzen
+S3
 SATA
 SGX
 SMC
@@ -247,6 +252,7 @@ VoodooInput
 VoodooPS2
 VoodooPS2Controller
 VoodooTSCSync
+VoodooTsc
 WHFR
 WIP
 WLAN

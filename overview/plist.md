@@ -76,7 +76,7 @@ OpenCore separates their config.plist into 8 sections - ACPI, Booter, DeviceProp
 | --- | --- |
 | ACPI | Where you add, remove, or binary patch ACPI tables. |
 | Booter | Controls OpenRuntime.efi and OC's AppleBootCompatibility code for modifying the environment in which macOS boots in. This is generally what your editing if your getting boot failures in macOS's boot.efi |
-| DeviceProperties | Add properties to devices - usually used for ig-platform-id on iGPUs, as well as device-id or other settings. Many kexts also look here for options (like alc-layout-id for AppleALC) |
+| DeviceProperties | Add properties to devices - usually used for ig-platform-id on iGPUs, as well as device-id or other settings. Many kexts also look here for options (like layout-id for AppleALC) |
 | Kernel | Add, patch, and block Kexts from loading. In addition, there are various quirks used for built-in kernel patches that are a part of OpenCore |
 | Misc | Various options for OpenCore that don't really fit anywhere else. There is where security and debug settings reside |
 | NVRAM | Add or block NVRAM entries. This is where boot-args are set. In addition, there is where you set up fake NVRAM if needed |
