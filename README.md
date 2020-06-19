@@ -19,7 +19,7 @@ Never rely on your Hackintosh unless you completely understand what you're doing
 If you need a daily driver MacBook, we recommend looking at the used market on eBay, Facebook, etc.
 For those who are masochists, want a challenge, or want to see how far you can get, this guide is for you!
 
-This guide is a work in progress, and describes the OpenCore 0.5.8 bootloader,
+This guide is a work in progress, and describes the OpenCore 0.5.9 bootloader,
 which is current as of May 2020.
 
 ## Before you begin
