@@ -5,7 +5,7 @@ USB drive, you can now install the OS on your Hackintosh.
 The main things to keep in mind:
 
 * Connect the laptop to the charger.
-If the battery isn't properly patched for macOS support, it can cause weird behaviors.
+If the battery isn't properly patched for macOS support, it can cause weird behavior.
 To avoid headaches, plug in your device
 * Read up on the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
 if you want multiple OS's on the disk
