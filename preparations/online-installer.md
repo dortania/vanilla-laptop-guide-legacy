@@ -80,7 +80,7 @@ This will go over using gdisk, though you can use other utilities that you are c
 6. `cd` to your USB by running `cd /mnt` and create a folder with `mkdir com.apple.recovery.boot`. This will be where we put the Recovery image.
 7. `cd` to the .pkg you downloaded under `macOS downloads` in the gibMacOS folder
 8. You will need `p7zip-full` - ensure it is installed
-    * `sudo apt install p7zip-full` for Ubuntu/Ubuntu based
+    * `sudo apt install p7zip-full` for Ubuntu/Ubuntu based distros
     * `sudo pacman -S p7zip` for Arch
 9. Run `7z e -txar *.pkg *.dmg; 7z e *.dmg */Base*`. This extracts the recovery from the pkg by extracting the initial update package, then extracting the BaseSystem damage.
     ![RecoveryHDMetaDmg.pkg extraction](/images/preparations/LinooxExtract.jpg)
