@@ -40,7 +40,7 @@ For this example we'll choose 1:
 This is going to take a while as we're downloading the entire 8GB+ macOS installer,
 so highly recommend reading the rest of the guide while you wait.
 
-Once finished, run the `BuildmacOSInstallApp.command`:
+Once finished, run `BuildmacOSInstallApp.command`:
 
 ![](/images/preparations/offline-installer/gib-location.png)
 
