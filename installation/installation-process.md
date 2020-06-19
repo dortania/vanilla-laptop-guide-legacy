@@ -6,7 +6,7 @@ The main things to keep in mind:
 
 * Connect the laptop to the charger.
 If the battery isn't properly patched for macOS support, it can cause weird behavior.
-To avoid headaches, plug in your device
+To avoid headaches, plug in your device.
 * Read up on the [Multiboot Guide](https://hackintosh-multiboot.gitbook.io/hackintosh-multiboot/)
 if you want multiple OS's on the disk
 * Keep a copy of the [troubleshooting page](https://dortania.github.io/OpenCore-Desktop-Guide/troubleshooting/troubleshooting.html) handy
