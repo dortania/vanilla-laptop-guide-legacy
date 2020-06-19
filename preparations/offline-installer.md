@@ -52,7 +52,7 @@ Once it's done, you can find it with the rest of the files. I recommend moving i
 
 ## Preparing the USB Drive
 
-Now format the USB drive.
+Now, format the USB drive.
 Use macOS Disk Utility to erase the entire USB drive (click View > Show All Devices, then select your USB drive),
 and give it the name `MyVolume`,
 using `Mac OS Extended (Journaled)` and `GUID Partition Map`.
