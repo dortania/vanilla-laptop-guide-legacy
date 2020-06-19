@@ -11,8 +11,6 @@ What you need:
   * You can download a [pre-built release](https://github.com/acidanthera/OpenCorePkg/releases) (recommended, comes with needed EFI drivers)
   * Or build it manually with `./macbuild.tool`
   * Use the DBG (debug) build, as it makes it easier to debug issues. Afterwards, you can switch to a REL (release) build.
-* *Is AppleSupportPkg required anymore?* <strike>[AppleSupportPkg](https://github.com/acidanthera/AppleSupportPkg)</strike> 
-<strike>  * Same as above, except usually you don't need the debug version as usually there aren't any issues.</strike> 
 * A plist editor (you should already have one by now. ie. [ProperTree](https://github.com/corpnewt/ProperTree))
 
 ##### Note for legacy users
