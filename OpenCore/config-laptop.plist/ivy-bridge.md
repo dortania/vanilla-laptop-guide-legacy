@@ -176,7 +176,7 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 * VGA is *not* supported (unless it's running through a DP to VGA internal adapter, which apparently only rare devices will see it as DP and not VGA, it's all about luck.)
 
-* If using `04006601` as your ig-platform-id, you may need to add these extra parameters as it has only one output otherwise, which is not enough for external DP/HDMI (credit to Rehabman)
+* If you're using `04006601` as your ig-platform-id, you may need to add the following parameters to fix external outputs as otherwise you will only have one output. (Credit to Rehabman)
 
 | Key | Type | Value | Explanation |
 | :--- | :--- | :--- | :--- |
