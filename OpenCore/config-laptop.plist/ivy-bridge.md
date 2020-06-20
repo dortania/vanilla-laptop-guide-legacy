@@ -137,20 +137,23 @@ Sets device properties from a map.
 
 This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for setting important iGPU properties.
 
-The table below may seem daunting but it's really not, the main things we need to take away from it are:
+When setting up your iGPU, the table below should help with finding the right values to set. Here is an explanation of some values:
 
-* Type of iGPU
-  * To most closely match your setup
-* AAPL,ig-platform-id
-  * This is what's used for setting up our iGPU so the drivers function correctly
-* Stolen Memory
+* **Device-id**
+  * The actual Device ID used by the graphics drivers to figure out if it's an iGPU. If your iGPU isn't natively supported, you can add `device-id` to fake it as a native iGPU  
+* **AAPL,ig-platform-id**
+  * This is used internally for setting up the iGPU
+* **Stolen Memory**
   * The minimum amount of iGPU memory required for the framebuffer to work correctly
-* Port Count + Connectors
+* **Port Count + Connectors**
   * The number of displays and what types are supported
-* device-id
-  * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries with a star(*) are the recommended entries to use:
+Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:
+
+1. When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough
+2. If you boot and you get no graphics acceleration (7MB VRAM and solid background for dock), then you likely need to set device-id as well
+
+Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -161,7 +164,7 @@ The table below may seem daunting but it's really not, the main things we need t
 | Intel HD Graphics 4000 | 66010008 | 08006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
 | **Intel HD Graphics 4000 <sup>3</sup>** * | 66010009 | 09006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
 
-#### Special Notes
+#### Configuration Notes
 
 * For these cards, no `device-id` property is required.
 
@@ -173,7 +176,7 @@ The table below may seem daunting but it's really not, the main things we need t
 
 * VGA is *not* supported (unless it's running through a DP to VGA internal adapter, which apparently only rare devices will see it as DP and not VGA, it's all about luck.)
 
-* For `04006601` platform, as you can tell, it has only one output, which is not enough for external connectors (HDMI/DP), you may need to add these extra parameters (credit to Rehabman)
+* If you're using `04006601` as your ig-platform-id, you may need to add the following parameters to fix external outputs as otherwise you will only have one output. (Credit to Rehabman)
 
 | Key | Type | Value | Explanation |
 | :--- | :--- | :--- | :--- |

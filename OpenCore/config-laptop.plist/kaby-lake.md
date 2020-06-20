@@ -119,20 +119,23 @@ Sets device properties from a map.
 
 This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for setting important iGPU properties.
 
-The table below may seem daunting but it's really not, the main things we need to take away from it are:
+When setting up your iGPU, the table below should help with finding the right values to set. Here is an explanation of some values:
 
-* Type of iGPU
-  * To most closely match your setup
-* AAPL,ig-platform-id
-  * This is what's used for setting up our iGPU so the drivers function correctly
-* Stolen Memory
+* **Device-id**
+  * The actual Device ID used by the graphics drivers to figure out if it's an iGPU. If your iGPU isn't natively supported, you can add `device-id` to fake it as a native iGPU  
+* **AAPL,ig-platform-id**
+  * This is used internally for setting up the iGPU
+* **Stolen Memory**
   * The minimum amount of iGPU memory required for the framebuffer to work correctly
-* Port Count + Connectors
+* **Port Count + Connectors**
   * The number of displays and what types are supported
-* device-id
-  * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries with a star(*) are the recommended entries to use:
+Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:
+
+1. When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough
+2. If you boot and you get no graphics acceleration (7MB VRAM and solid background for dock), then you likely need to set device-id as well
+
+Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -148,16 +151,15 @@ The table below may seem daunting but it's really not, the main things we need t
 | **Intel UHD Graphics 617** * | C0870000 | 0000C087 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
 | Intel UHD Graphics 617 | C0870005 | 0500C087 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 
-#### Special Notes
+#### Configuration Notes
 
-* For `HD615`, `HD620`, `HD630`, `HD640` and `HD650` it is not needed to use a `device-id`, however due to many issues with different setups it is recommended to use:
+* **Note:** `UHD630` ***IS NOT*** KabyLake, it's CoffeeLake (check next section).
+* For `HD615`, `HD630`, `HD640` and `HD650` it is not needed to use a `device-id`. However, due to many issues with different setups it is recommended to use:
   * `device-id`=`1b590000` or `16590000`
   * `AAPL,ig-platform-id`=`00001659` or `00001b59` (you can try whichever works the best, some even try to cross the device-id and the ig-platform-id)
-    * For HD620 users, they can skip the part above (unless you get issues)
 * For `UHD620` users we recommend the following values:
   * `device-id`=`16590000`
   * `AAPL,ig-platform-id`=`0000C087`
-    * **Note:** `UHD630` ***IS NOT*** KabyLake, it's CoffeeLake (check next section).
 * For all HD6\*\* (`UHD` users are not concerned), there are some small issues with output where plugging anything would cause a lock up (kernel panic), here are some patches to mitigate that (credit Rehabman):
   * 0306 to 0105 (will probably explain what it does one day)
 

@@ -242,6 +242,7 @@ USBInjectAll
 UsbInjectAll
 VM
 VMs
+VRAM
 VSCode
 VirtualSMC
 VoiceOver

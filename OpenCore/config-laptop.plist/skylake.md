@@ -117,22 +117,23 @@ Sets device properties from a map.
 
 #### PciRoot(0x0)/Pci(0x2,0x0)
 
-This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for setting important iGPU properties.
+When setting up your iGPU, the table below should help with finding the right values to set. Here is an explanation of some values:
 
-The table below may seem daunting but it's really not, the main things we need to take away from it are:
-
-* Type of iGPU
-  * To most closely match your setup
-* AAPL,ig-platform-id
-  * This is what's used for setting up our iGPU so the drivers function correctly
-* Stolen Memory
+* **Device-id**
+  * The actual Device ID used by the graphics drivers to figure out if it's an iGPU. If your iGPU isn't natively supported, you can add `device-id` to fake it as a native iGPU  
+* **AAPL,ig-platform-id**
+  * This is used internally for setting up the iGPU
+* **Stolen Memory**
   * The minimum amount of iGPU memory required for the framebuffer to work correctly
-* Port Count + Connectors
+* **Port Count + Connectors**
   * The number of displays and what types are supported
-* device-id
-  * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries with a star(*) are the recommended entries to use:
+Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:
+
+1. When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough
+2. If you boot and you get no graphics acceleration (7MB VRAM and solid background for dock), then you likely need to set device-id as well
+
+Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -152,19 +153,19 @@ The table below may seem daunting but it's really not, the main things we need t
 | Intel Iris Pro Graphics 580 | 3b190000 | 00003b19 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
 | Intel Iris Pro Graphics 580 | 3b190005 | 05003b19 | 4 | 34MB | 21MB |  LVDSx1 DPx3 |
 
-#### Special Notes
+#### Configuration Notes
 
-* For HD515, HD520, HD530 and HD540, you do not need to use `device-id` faking, they're natively recognized.
-  * I would recommend you keep the `AAPL,ig-platform-id` automatically recognized for each device-id by commenting/removing its entry in the config, otherwise it is recommended to choose `00001619`.
-* For HD510 you may need to use `device-id`=`02190000` to fake its device-id.
-  * You would need also to use `AAPL,ig-platform-id`=`00001B19` or `00001619`
-* For HD550 and P530 (and potentially all HD P-series iGPUs), you may need to use `device-id`=`16190000`(recommended) or `12190000` or `26190000` or `1b190000`
-  * The choice of device-id may help with usable screen on boot up and on wake.
-    * For example Lenovo ThinkPad P50 with Xeon CPU will only properly work with `1619`.
-    * For example Dell Precision 7710 with i7 CPU has issues when set to `1619`, using `1b19` or something else may help.
-    * It is also recommended using `2619` with Xeon iGPUs.
-  * You may also pair it with a proper `AAPL,ig-platform-id`=`00001619`(recommended) or `00001219` or `00002619` or `00001b19`
-
+* For HD515, HD520, HD530 and HD540, you do not need to set `device-id` as they are natively recognized.
+  * We recommend not setting `AAPL,ig-platform-id` at all by commenting/removing its entry in the config. If you need to set one, start with `00001619`.
+* For HD510 you may need to use the following values:
+  * `device-id`=`02190000` to fake its device-id.
+  * `AAPL,ig-platform-id`=`00001B19` or `00001619`
+* For HD550 and P530 (and potentially all HD P-series iGPUs), you may need to use `device-id`=`16190000`(recommended), `12190000`, `26190000` or `1b190000`
+  * The choice of device-id may help with usable screen on boot up and on wake. Some examples:
+    * Lenovo ThinkPad P50 with Xeon CPU will only properly work with `16190000`.
+    * Dell Precision 7710 with i7 CPUs have issues when set to `16190000`. Using `1b19000` or other value may help.
+  * For Xeon iGPUs, it's recommended to use `26190000` with Xeon iGPUs.
+  * You should pair these iGPUs with `AAPL,ig-platform-id`=`00001619`(recommended), `00001219`, `00002619` or `00001b19`
 * In some cases where you cannot set the DVMT-prealloc of these cards to 64MB higher in your UEFI Setup, you may get a kernel panic. Usually they're configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties
 
 | Key | Type | Value |

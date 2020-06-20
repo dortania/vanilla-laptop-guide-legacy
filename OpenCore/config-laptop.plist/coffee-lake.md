@@ -119,20 +119,23 @@ Sets device properties from a map.
 
 This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for setting important iGPU properties.
 
-The table below may seem daunting but it's really not, the main things we need to take away from it are:
+When setting up your iGPU, the table below should help with finding the right values to set. Here is an explanation of some values:
 
-* Type of iGPU
-  * To most closely match your setup
-* AAPL,ig-platform-id
-  * This is what's used for setting up our iGPU so the drivers function correctly
-* Stolen Memory
+* **Device-id**
+  * The actual Device ID used by the graphics drivers to figure out if it's an iGPU. If your iGPU isn't natively supported, you can add `device-id` to fake it as a native iGPU  
+* **AAPL,ig-platform-id**
+  * This is used internally for setting up the iGPU
+* **Stolen Memory**
   * The minimum amount of iGPU memory required for the framebuffer to work correctly
-* Port Count + Connectors
+* **Port Count + Connectors**
   * The number of displays and what types are supported
-* device-id
-  * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries with a star(*) are the recommended entries to use:
+Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:
+
+1. When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough
+2. If you boot and you get no graphics acceleration (7MB VRAM and solid background for dock), then you likely need to set device-id as well
+
+Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -147,10 +150,11 @@ The table below may seem daunting but it's really not, the main things we need t
 | Intel UHD Graphics 630 | A53E0005 | 0500A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel Iris Plus Graphics 655 | A53E0009 | 0900A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 
-#### Special Notes
+#### Configuration Notes
 
-* For `UHD630` you may not need to fake the `device-id`  as long as it's `8086:3E9B`, if it's anything else, you may use `device-id`=`9B3E0000`
-* For `UHD620` in a Comet Lake CPU **requires**:
+* For `UHD630` you likely do not need to fake the `device-id` as it is already `8086:3E9B`. If it's anything else, you may use `device-id`=`9B3E0000`
+  * You can check under Device Manager in Windows by bring up the iGPU, opening properties, selecting details, and clicking Hardware IDs.
+* An `UHD620` in a Comet Lake CPU **requires**:
   * `device-id`=`9B3E0000`
   * `AAPL,ig-platform-id`=`00009B3E`
 
