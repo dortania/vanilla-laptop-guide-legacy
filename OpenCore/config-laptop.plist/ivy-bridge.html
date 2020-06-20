@@ -896,31 +896,31 @@
 <p>Sets device properties from a map.</p>
 <h4 id="pciroot0x0pci0x20x0"><a name="pciroot0x0pci0x20x0" class="anchor-navigation-ex-anchor" href="#pciroot0x0pci0x20x0"><i class="fa fa-link" aria-hidden="true"></i></a>PciRoot(0x0)/Pci(0x2,0x0)</h4>
 <p>This section is set up via WhateverGreen&apos;s <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md" target="_blank">Framebuffer Patching Guide</a> and is used for setting important iGPU properties.</p>
-<p>The table below may seem daunting but it&apos;s really not, the main things we need to take away from it are:</p>
+<p>When setting up your iGPU, the table below should help with finding the right values to set. Here is an explanation of some values:</p>
 <ul>
-<li>Type of iGPU<ul>
-<li>To most closely match your setup</li>
+<li><strong>Device-id</strong><ul>
+<li>The actual Device ID used by the graphics drivers to figure out if it&apos;s an iGPU. If your iGPU isn&apos;t natively supported, you can add <code>device-id</code> to fake it as a native iGPU  </li>
 </ul>
 </li>
-<li>AAPL,ig-platform-id<ul>
-<li>This is what&apos;s used for setting up our iGPU so the drivers function correctly</li>
+<li><strong>AAPL,ig-platform-id</strong><ul>
+<li>This is used internally for setting up the iGPU</li>
 </ul>
 </li>
-<li>Stolen Memory<ul>
+<li><strong>Stolen Memory</strong><ul>
 <li>The minimum amount of iGPU memory required for the framebuffer to work correctly</li>
 </ul>
 </li>
-<li>Port Count + Connectors<ul>
+<li><strong>Port Count + Connectors</strong><ul>
 <li>The number of displays and what types are supported</li>
 </ul>
 </li>
-<li><p>device-id</p>
-<ul>
-<li>The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn&apos;t natively supported you can add this property to correct it</li>
 </ul>
+<p>Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:</p>
+<ol>
+<li>When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough</li>
+<li>If you boot and you get no graphics acceleration (7MB VRAM and solid background for dock), then you likely need to set device-id as well</li>
+</ol>
 <p>Note that highlighted entries with a star(*) are the recommended entries to use:</p>
-</li>
-</ul>
 <table>
 <thead>
 <tr>
@@ -990,7 +990,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="special-notes"><a name="special-notes" class="anchor-navigation-ex-anchor" href="#special-notes"><i class="fa fa-link" aria-hidden="true"></i></a>Special Notes</h4>
+<h4 id="configuration-notes"><a name="configuration-notes" class="anchor-navigation-ex-anchor" href="#configuration-notes"><i class="fa fa-link" aria-hidden="true"></i></a>Configuration Notes</h4>
 <ul>
 <li><p>For these cards, no <code>device-id</code> property is required.</p>
 </li>
@@ -1002,7 +1002,7 @@
 </li>
 <li><p>VGA is <em>not</em> supported (unless it&apos;s running through a DP to VGA internal adapter, which apparently only rare devices will see it as DP and not VGA, it&apos;s all about luck.)</p>
 </li>
-<li><p>For <code>04006601</code> platform, as you can tell, it has only one output, which is not enough for external connectors (HDMI/DP), you may need to add these extra parameters (credit to Rehabman)</p>
+<li><p>If you&apos;re using <code>04006601</code> as your ig-platform-id, you may need to add the following parameters to fix external outputs as otherwise you will only have one output. (Credit to Rehabman)</p>
 </li>
 </ul>
 <table>
@@ -1643,7 +1643,7 @@ SmUUID:       A154B586-874B-4E57-A1FF-9D6E503E4580
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"3.3.1","depth":2,"next":{"title":"Haswell","level":"3.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},"previous":{"title":"OpenCore config","level":"3.3","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"3.3.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"3.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"3.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"3.3.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"3.3.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"3.3.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"3.3.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"anchor-navigation-ex":{"multipleH1":false},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/ivy-bridge.md","mtime":"2020-06-18T19:51:07.616Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-18T19:52:11.781Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Ivy Bridge","level":"3.3.1","depth":2,"next":{"title":"Haswell","level":"3.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},"previous":{"title":"OpenCore config","level":"3.3","depth":1,"path":"OpenCore/config.md","ref":"OpenCore/config.md","articles":[{"title":"Ivy Bridge","level":"3.3.1","depth":2,"path":"OpenCore/config-laptop.plist/ivy-bridge.md","ref":"OpenCore/config-laptop.plist/ivy-bridge.md","articles":[]},{"title":"Haswell","level":"3.3.2","depth":2,"path":"OpenCore/config-laptop.plist/haswell.md","ref":"OpenCore/config-laptop.plist/haswell.md","articles":[]},{"title":"Broadwell","level":"3.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},{"title":"Skylake","level":"3.3.4","depth":2,"path":"OpenCore/config-laptop.plist/skylake.md","ref":"OpenCore/config-laptop.plist/skylake.md","articles":[]},{"title":"Kaby Lake","level":"3.3.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},{"title":"Coffee Lake(8th Gen)","level":"3.3.6","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake.md","ref":"OpenCore/config-laptop.plist/coffee-lake.md","articles":[]},{"title":"Coffee Lake Plus(9th Gen)","level":"3.3.7","depth":2,"path":"OpenCore/config-laptop.plist/coffee-lake-plus.md","ref":"OpenCore/config-laptop.plist/coffee-lake-plus.md","articles":[]},{"title":"Icelake","level":"3.3.8","depth":2,"path":"OpenCore/config-laptop.plist/icelake.md","ref":"OpenCore/config-laptop.plist/icelake.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"anchor-navigation-ex":{"multipleH1":false},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/ivy-bridge.md","mtime":"2020-06-20T15:07:04.880Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-20T15:08:04.151Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

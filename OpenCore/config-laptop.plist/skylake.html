@@ -813,32 +813,31 @@
 <h3 id="add_1"><a name="add_1" class="anchor-navigation-ex-anchor" href="#add_1"><i class="fa fa-link" aria-hidden="true"></i></a>1.4.1. Add</h3>
 <p>Sets device properties from a map.</p>
 <h4 id="pciroot0x0pci0x20x0"><a name="pciroot0x0pci0x20x0" class="anchor-navigation-ex-anchor" href="#pciroot0x0pci0x20x0"><i class="fa fa-link" aria-hidden="true"></i></a>PciRoot(0x0)/Pci(0x2,0x0)</h4>
-<p>This section is set up via WhateverGreen&apos;s <a href="https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md" target="_blank">Framebuffer Patching Guide</a> and is used for setting important iGPU properties.</p>
-<p>The table below may seem daunting but it&apos;s really not, the main things we need to take away from it are:</p>
+<p>When setting up your iGPU, the table below should help with finding the right values to set. Here is an explanation of some values:</p>
 <ul>
-<li>Type of iGPU<ul>
-<li>To most closely match your setup</li>
+<li><strong>Device-id</strong><ul>
+<li>The actual Device ID used by the graphics drivers to figure out if it&apos;s an iGPU. If your iGPU isn&apos;t natively supported, you can add <code>device-id</code> to fake it as a native iGPU  </li>
 </ul>
 </li>
-<li>AAPL,ig-platform-id<ul>
-<li>This is what&apos;s used for setting up our iGPU so the drivers function correctly</li>
+<li><strong>AAPL,ig-platform-id</strong><ul>
+<li>This is used internally for setting up the iGPU</li>
 </ul>
 </li>
-<li>Stolen Memory<ul>
+<li><strong>Stolen Memory</strong><ul>
 <li>The minimum amount of iGPU memory required for the framebuffer to work correctly</li>
 </ul>
 </li>
-<li>Port Count + Connectors<ul>
+<li><strong>Port Count + Connectors</strong><ul>
 <li>The number of displays and what types are supported</li>
 </ul>
 </li>
-<li><p>device-id</p>
-<ul>
-<li>The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn&apos;t natively supported you can add this property to correct it</li>
 </ul>
+<p>Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:</p>
+<ol>
+<li>When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough</li>
+<li>If you boot and you get no graphics acceleration (7MB VRAM and solid background for dock), then you likely need to set device-id as well</li>
+</ol>
 <p>Note that highlighted entries with a star(*) are the recommended entries to use:</p>
-</li>
-</ul>
 <table>
 <thead>
 <tr>
@@ -989,29 +988,28 @@
 </tr>
 </tbody>
 </table>
-<h4 id="special-notes"><a name="special-notes" class="anchor-navigation-ex-anchor" href="#special-notes"><i class="fa fa-link" aria-hidden="true"></i></a>Special Notes</h4>
+<h4 id="configuration-notes"><a name="configuration-notes" class="anchor-navigation-ex-anchor" href="#configuration-notes"><i class="fa fa-link" aria-hidden="true"></i></a>Configuration Notes</h4>
 <ul>
-<li>For HD515, HD520, HD530 and HD540, you do not need to use <code>device-id</code> faking, they&apos;re natively recognized.<ul>
-<li>I would recommend you keep the <code>AAPL,ig-platform-id</code> automatically recognized for each device-id by commenting/removing its entry in the config, otherwise it is recommended to choose <code>00001619</code>.</li>
+<li>For HD515, HD520, HD530 and HD540, you do not need to set <code>device-id</code> as they are natively recognized.<ul>
+<li>We recommend not setting <code>AAPL,ig-platform-id</code> at all by commenting/removing its entry in the config. If you need to set one, start with <code>00001619</code>.</li>
 </ul>
 </li>
-<li>For HD510 you may need to use <code>device-id</code>=<code>02190000</code> to fake its device-id.<ul>
-<li>You would need also to use <code>AAPL,ig-platform-id</code>=<code>00001B19</code> or <code>00001619</code></li>
+<li>For HD510 you may need to use the following values:<ul>
+<li><code>device-id</code>=<code>02190000</code> to fake its device-id.</li>
+<li><code>AAPL,ig-platform-id</code>=<code>00001B19</code> or <code>00001619</code></li>
 </ul>
 </li>
-<li><p>For HD550 and P530 (and potentially all HD P-series iGPUs), you may need to use <code>device-id</code>=<code>16190000</code>(recommended) or <code>12190000</code> or <code>26190000</code> or <code>1b190000</code></p>
-<ul>
-<li>The choice of device-id may help with usable screen on boot up and on wake.<ul>
-<li>For example Lenovo ThinkPad P50 with Xeon CPU will only properly work with <code>1619</code>.</li>
-<li>For example Dell Precision 7710 with i7 CPU has issues when set to <code>1619</code>, using <code>1b19</code> or something else may help.</li>
-<li>It is also recommended using <code>2619</code> with Xeon iGPUs.</li>
+<li>For HD550 and P530 (and potentially all HD P-series iGPUs), you may need to use <code>device-id</code>=<code>16190000</code>(recommended), <code>12190000</code>, <code>26190000</code> or <code>1b190000</code><ul>
+<li>The choice of device-id may help with usable screen on boot up and on wake. Some examples:<ul>
+<li>Lenovo ThinkPad P50 with Xeon CPU will only properly work with <code>16190000</code>.</li>
+<li>Dell Precision 7710 with i7 CPUs have issues when set to <code>16190000</code>. Using <code>1b19000</code> or other value may help.</li>
 </ul>
 </li>
-<li>You may also pair it with a proper <code>AAPL,ig-platform-id</code>=<code>00001619</code>(recommended) or <code>00001219</code> or <code>00002619</code> or <code>00001b19</code></li>
+<li>For Xeon iGPUs, it&apos;s recommended to use <code>26190000</code> with Xeon iGPUs.</li>
+<li>You should pair these iGPUs with <code>AAPL,ig-platform-id</code>=<code>00001619</code>(recommended), <code>00001219</code>, <code>00002619</code> or <code>00001b19</code></li>
 </ul>
 </li>
-<li><p>In some cases where you cannot set the DVMT-prealloc of these cards to 64MB higher in your UEFI Setup, you may get a kernel panic. Usually they&apos;re configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties</p>
-</li>
+<li>In some cases where you cannot set the DVMT-prealloc of these cards to 64MB higher in your UEFI Setup, you may get a kernel panic. Usually they&apos;re configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties</li>
 </ul>
 <table>
 <thead>
@@ -1615,7 +1613,7 @@ SmUUID:       3508AD44-B67D-4AD7-A109-7955130A1033
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Skylake","level":"3.3.4","depth":2,"next":{"title":"Kaby Lake","level":"3.3.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},"previous":{"title":"Broadwell","level":"3.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"anchor-navigation-ex":{"multipleH1":false},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/skylake.md","mtime":"2020-06-18T19:51:07.616Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-18T19:52:11.781Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Skylake","level":"3.3.4","depth":2,"next":{"title":"Kaby Lake","level":"3.3.5","depth":2,"path":"OpenCore/config-laptop.plist/kaby-lake.md","ref":"OpenCore/config-laptop.plist/kaby-lake.md","articles":[]},"previous":{"title":"Broadwell","level":"3.3.3","depth":2,"path":"OpenCore/config-laptop.plist/broadwell.md","ref":"OpenCore/config-laptop.plist/broadwell.md","articles":[]},"dir":"ltr"},"config":{"plugins":["theme-default","-lunr","-search","search-plus","addcssjs","medium-zoom","anchor-navigation-ex"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"fontsettings":{"theme":"night","family":"sans","size":2},"search-plus":{},"addcssjs":{"js":[],"css":[]},"medium-zoom":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"highlight":{},"sharing":{"facebook":false,"twitter":false,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":[]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","medium-zoom":{"margin":24,"background":"#363b40","scrollOffset":0},"pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":12,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"anchor-navigation-ex":{"multipleH1":false},"variables":{},"links":{"sharing":{"google":false,"facebook":false,"twitter":false,"weibo":false,"all":false}},"gitbook":"*"},"file":{"path":"OpenCore/config-laptop.plist/skylake.md","mtime":"2020-06-20T15:07:04.880Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-20T15:08:04.151Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
