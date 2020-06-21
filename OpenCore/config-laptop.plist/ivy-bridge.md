@@ -157,12 +157,12 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 4000 | 66010001 | 01006601 | 4 | 96MB | 24MB |  LVDSx1 HDMIx1 DPx2 |
-| Intel HD Graphics 4000 | 66010002 | 02006601 | 1 | 64MB | 24MB |  LVDSx1 |
-| **Intel HD Graphics 4000 <sup>1</sup>** * | 66010003 | 03006601 | 4 | 64MB | 16MB |  LVDSx1 DPx3 |
-| **Intel HD Graphics 4000 <sup>2</sup>** * | 66010004 | 04006601 | 1 | 32MB | 16MB |  LVDSx1 |
-| Intel HD Graphics 4000 | 66010008 | 08006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 4000 <sup>3</sup>** * | 66010009 | 09006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 4000 | 66010000 | 01006601 | 4 | 96MB | 24MB |  LVDSx1 HDMIx1 DPx2 |
+| Intel HD Graphics 4000 | 66010000 | 02006601 | 1 | 64MB | 24MB |  LVDSx1 |
+| **Intel HD Graphics 4000 <sup>1</sup>** * | 66010000 | 03006601 | 4 | 64MB | 16MB |  LVDSx1 DPx3 |
+| **Intel HD Graphics 4000 <sup>2</sup>** * | 66010000 | 04006601 | 1 | 32MB | 16MB |  LVDSx1 |
+| Intel HD Graphics 4000 | 66010000 | 08006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 4000 <sup>3</sup>** * | 66010000 | 09006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
 
 #### Configuration Notes
 

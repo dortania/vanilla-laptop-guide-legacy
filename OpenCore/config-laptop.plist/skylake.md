@@ -139,19 +139,19 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Intel HD Graphics 530 | 12190000 | 00001219 | 3 | 34MB | 21MB |  DUMMY1 DPx2 |
 | **Intel HD Graphics 520** * | 16190000 | 00001619 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 520 | 16190002 | 02001619 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 520 | 16190000 | 02001619 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | **Intel HD Graphics 530** * | 1b190000 | 00001b19 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 530 | 1b190006 | 06001b19 | 1 | 38MB | 0MB |  LVDSx1 |
+| Intel HD Graphics 530 | 1b190000 | 06001b19 | 1 | 38MB | 0MB |  LVDSx1 |
 | Intel HD Graphics 515 | 1e190000 | 00001e19 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 515 | 1e190003 | 03001e19 | 3 | 40MB | 0MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 515 | 1e190000 | 03001e19 | 3 | 40MB | 0MB |  LVDSx1 DPx2 |
 | **Intel Iris Graphics 540** * | 26190000 | 00002619 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel Iris Graphics 540 | 26190002 | 02002619 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel Iris Graphics 540 | 26190004 | 04002619 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
-| Intel Iris Graphics 540 | 26190007 | 07002619 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 540 | 26190000 | 02002619 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 540 | 26190000 | 04002619 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 540 | 26190000 | 07002619 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 550 | 27190000 | 00002719 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel Iris Graphics 550 | 27190004 | 04002719 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 550 | 27190000 | 04002719 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel Iris Pro Graphics 580 | 3b190000 | 00003b19 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel Iris Pro Graphics 580 | 3b190005 | 05003b19 | 4 | 34MB | 21MB |  LVDSx1 DPx3 |
+| Intel Iris Pro Graphics 580 | 3b190000 | 05003b19 | 4 | 34MB | 21MB |  LVDSx1 DPx3 |
 
 #### Configuration Notes
 
