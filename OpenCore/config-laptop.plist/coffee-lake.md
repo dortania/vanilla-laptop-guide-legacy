@@ -141,14 +141,14 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Intel UHD Graphics 630 | 003E0000 | 0000003E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel UHD Graphics 630 | 923E0000 | 0000923E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel UHD Graphics 630 | 923E0009 | 0900923E | 3 | 57MB | 0MB |  LVDSx1 DUMMYx2 |
+| Intel UHD Graphics 630 | 923E0000 | 0900923E | 3 | 57MB | 0MB |  LVDSx1 DUMMYx2 |
 | **Intel UHD Graphics 630** * | 9B3E0000 | 00009B3E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel UHD Graphics 630 | 9B3E0006 | 06009B3E | 1 | 38MB | 0MB |  LVDSx1 DUMMYx2 |
-| Intel UHD Graphics 630 | 9B3E0009 | 09009B3E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel UHD Graphics 630 | 9B3E0000 | 06009B3E | 1 | 38MB | 0MB |  LVDSx1 DUMMYx2 |
+| Intel UHD Graphics 630 | 9B3E0000 | 09009B3E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel Iris Plus Graphics 655 | A53E0000 | 0000A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel Iris Plus Graphics 655 | A53E0004 | 0400A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel UHD Graphics 630 | A53E0005 | 0500A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel Iris Plus Graphics 655 | A53E0009 | 0900A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 655 | A53E0000 | 0400A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel UHD Graphics 630 | A53E0000 | 0500A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 655 | A53E0000 | 0900A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 
 #### Configuration Notes
 
