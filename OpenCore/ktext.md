@@ -108,7 +108,7 @@ The order in `Kernel -> Add` should be:
 
 **Extra's**:
 
-* [VoodooTSCSync](https://bitbucket.org/RehabMan/VoodooTSCSync/downloads/)
+* [CpuTscSync](https://github.com/lvs1974/CpuTscSync)
   * Needed for syncing TSC on some of Intel's HEDT and server motherboards, without this macOS may be extremely slow or even unbootable. Some of Asus's laptops need this kext but recommended to try without it first
 * [NVMeFix](https://github.com/acidanthera/NVMeFix/releases)
   * Used for fixing power management and initialization on non-Apple NVMe, requires macOS 10.14 or newer
