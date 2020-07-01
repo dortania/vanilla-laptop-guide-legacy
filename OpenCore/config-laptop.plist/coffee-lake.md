@@ -1,19 +1,8 @@
 # Coffee Lake
 
-* Supported version: 0.5.8
+* Supported version: 0.5.9
 
-Table of Contents:
-
-* [Starting Point](/OpenCore/config-laptop.plist/coffee-lake.md#starting-point)
-* [ACPI](/OpenCore/config-laptop.plist/coffee-lake.md#acpi)
-* [Booter](/OpenCore/config-laptop.plist/coffee-lake.md#booter)
-* [DeviceProperties](/OpenCore/config-laptop.plist/coffee-lake.md#deviceproperties)
-* [Kernel](/OpenCore/config-laptop.plist/coffee-lake.md#kernel)
-* [Misc](/OpenCore/config-laptop.plist/coffee-lake.md#misc)
-* [NVRAM](/OpenCore/config-laptop.plist/coffee-lake.md#nvram)
-* [SMBIOS](/OpenCore/config-laptop.plist/coffee-lake.md#platforminfo)
-* [UEFI](/OpenCore/config-laptop.plist/coffee-lake.md#uefi)
-* [Cleaning up](/OpenCore/config-laptop.plist/coffee-lake.md#cleaning-up)
+<extoc></extoc>
 
 ## Starting Point
 
@@ -45,7 +34,7 @@ Now with those downloaded, we can get to really get started:
 
 ![ACPI](/images/config/config-laptop.plist/coffeelake/acpi.png)
 
-**Add:**
+### Add
 
 This is where you'll add SSDTs for your system, these are very important to **booting macOS** and have many uses like [USB maps](https://dortania.github.io/USB-Map-Guide/), [disabling unsupported GPUs](/post-install/spoof.md) and such. And with our system, **its even required to boot**. Guide on making them found here: [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/)
 
@@ -53,20 +42,20 @@ For us we'll need a couple of SSDTs to bring back functionality that Clover prov
 
 | Required_SSDTs | Description |
 | :--- | :--- |
-| **[SSDT-PLUG](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-PLUG.dsl)** | Allows for native CPU power management on Haswell and newer. A pre-built can be found here if you have issues: [SSDT-PLUG-DRTNIA](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-PLUG-DRTNIA.aml) |
-| **[SSDT-EC-USBX](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/AcpiSamples/SSDT-EC-USBX.dsl)** | Creates a fake embedded controller for macOS, **needed for all Catalina users** and recommended for other versions of macOS. This SSDT also has a second function, USBX. This is used for forcing USB power properties, requires SSDT-EC so this just jumbles them together. A pre-built can be found here if you have issues: [SSDT-EC-USBX-DESKTOP](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-EC-USBX-DESKTOP.aml) |
-| **[SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/SSDT-GPI0.dsl)** | Creates a stub so VoodooI2C can connect, for those having troubles getting VoodooI2C working can try [SSDT-XOSI](https://github.com/hackintosh-guides/vanilla-laptop-guide/tree/master/Misc-files/SSDT-XOSI.aml) instead |
-| **[SSDT-PNLFCFL](https://i.applelife.ru/2019/12/463488_SSDT-PNLFCFL.aml.zip)** | Adds brightness control support |
+| **[SSDT-PLUG](https://dortania.github.io/Getting-Started-With-ACPI/)** | Allows for native CPU power management on Haswell and newer, see [Getting Started With ACPI Guide](https://dortania.github.io/Getting-Started-With-ACPI/) for more details. |
+| **[SSDT-EC-USBX](https://dortania.github.io/Getting-Started-With-ACPI/)** | Fixes both the embedded controller and USB power, see [Getting Started With ACPI Guide](https://dortania.github.io/Getting-Started-With-ACPI/) for more details. |
+| **[SSDT-GPIO](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/decompiled/SSDT-GPI0.dsl)** | Creates a stub so VoodooI2C can connect, for those having troubles getting VoodooI2C working can try [SSDT-XOSI](https://github.com/dortania/Getting-Started-With-ACPI/blob/master/extra-files/compiled/SSDT-XOSI.aml) instead |
+| **[SSDT-PNLF-CFL](https://dortania.github.io/Getting-Started-With-ACPI/)** | Fixes brightness control, see [Getting Started With ACPI Guide](https://dortania.github.io/Getting-Started-With-ACPI/) for more details. |
 
 Note that you **should not** add your generated `DSDT.aml` here, it is already in your firmware. So if present, remove the entry for it in your `config.plist` and under EFI/OC/ACPI.
 
 For those wanting a deeper dive into dumping your DSDT, how to make these SSDTs, and compiling them, please see the [**Getting started with ACPI**](https://dortania.github.io/Getting-Started-With-ACPI/) **page.** Compiled SSDTs have a **.aml** extension(Assembled) and will go into the `EFI/OC/ACPI` folder and **must** be specified in your config under `ACPI -> Add` as well.
 
-**Block:**
+### Delete
 
-This blocks certain ACPI tables from loading, for us we can ignore this
+This blocks certain ACPI tables from loading, for us we can ignore this.
 
-**Patch**:
+### Patch
 
 This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.) via OpenCore. For us, we'll need the following:
 
@@ -77,24 +66,13 @@ This section allows us to dynamically modify parts of the ACPI (DSDT, SSDT, etc.
 | :--- | :--- | :--- |
 | Enabled | Boolean | YES |
 | Count | Number | 0 |
-| Limit | Nuber | 0 |
+| Limit | Number | 0 |
 | Find | Data | 5f4f5349 |
 | Replace | Data | 584f5349 |
 
-**Quirk**:
+### Quirks
 
-Settings relating to ACPI, leave everything here as default.
-
-* **FadtEnableReset**: NO
-  * Enable reboot and shutdown on legacy hardware, not recommended unless needed
-* **NormalizeHeaders**: NO
-  * Cleanup ACPI header fields, only relevant for macOS High Sierra 10.13
-* **RebaseRegions**: NO
-  * Attempt to heuristically relocate ACPI memory regions, not needed unless custom DSDT is used.
-* **ResetHwSig**: NO
-  * Needed for hardware that fails to maintain hardware signature across the reboots and cause issues with waking from hibernation
-* **ResetLogoStatus**: NO
-  * Workaround for OEM Windows logo not drawing on systems with BGRT tables.
+Settings relating to ACPI, leave everything here as default as we have no use for these quirks.
 
 ## Booter
 
@@ -102,11 +80,11 @@ Settings relating to ACPI, leave everything here as default.
 
 This section is dedicated to quirks relating to boot.efi patching with OpenRuntime, the replacement for AptioMemoryFix.efi
 
-**MmioWhitelist**:
+### MmioWhitelist
 
 This section is allowing spaces to be pass-through to macOS that are generally ignored, useful when paired with `DevirtualiseMmio`
 
-**Quirks**:
+### Quirks
 
 Settings relating to boot.efi patching and firmware fixes, ones we need to change are `RebuildAppleMemoryMap`, `SyncRuntimePermissions` and `SetupVirtualMap`
 
@@ -114,95 +92,92 @@ Settings relating to boot.efi patching and firmware fixes, ones we need to chang
   * Fixes UEFI runtime services like date, time, NVRAM, power control, etc
 * **DevirtualiseMmio**: NO
   * Reduces Stolen Memory Footprint, expands options for `slide=N` values and generally useful especially on HEDT and Xeon systems
-* **DisableSingleUser**: NO
-  * Disables the use of `Cmd+S` and `-s`, this is closer to the behavior of T2 based machines
-* **DisableVariableWrite**: NO
-  * Needed for systems with non-functioning NVRAM, you can verify [here](/post-install/nvram.md) if yours works
-* **DiscardHibernateMap**: NO
-  * Reuse original hibernate memory map, only needed for certain legacy hardware
-* **EnableSafeModeSlide**: YES
-  * Allows for slide values to be used in Safe mode
-* **EnableWriteUnprotector**: YES
-  * Removes write protection from CR0 register during their execution
+
 * **ForceExitBootServices**: NO
   * Ensures ExitBootServices calls succeeds even when the memory map has changed, don't use unless necessary
 * **ProtectMemoryRegions**: NO
   * Needed for fixing artifacts and sleep-wake issues, generally only needed on very old firmwares
-* **ProtectSecureBoot**: NO
-  * Fixes Secure Boot keys on MacPro5,1 and Insyde firmwares
-* **ProtectUefiServices**: NO
-  * Protects UEFI services from being overridden by the firmware, mainly relevant for VMs, Icelake and newer Coffee Lake systems
+
 * **ProvideCustomSlide**: YES
   * If there's a conflicting slide value, this option forces macOS to use a pseudo-random value. Needed for those receiving `Only N/256 slide values are usable!` debug message
 * **RebuildAppleMemoryMap**: YES
   * Generates Memory Map compatible with macOS, can break on some laptop OEM firmwares so if you receive early boot failures disable this
 * **SetupVirtualMap**: YES
   * Fixes SetVirtualAddresses calls to virtual addresses
-* **SignalAppleOS**: NO
-  * Tricks the hardware into thinking its always booting macOS, mainly beneficial for MacBook Pro's with dGPUs as booting Windows won't allow for the iGPU to be used
-* **SyncRuntimePermissions**: YES
+**SyncRuntimePermissions**: YES
   * Fixes alignment with MAT tables and required to boot Windows and Linux with MAT tables, also recommended for macOS. Mainly relevant for Skylake and newer
 
 ## DeviceProperties
 
 ![DeviceProperties](/images/config/config-laptop.plist/coffeelake/DeviceProperties.png)
 
-**Add**: Sets device properties from a map.
+### Add
 
-`PciRoot(0x0)/Pci(0x2,0x0)`
+Sets device properties from a map.
 
-This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for fixing certain iGPU properties like `ig-platform-id`. The way we get the proper value for this is to look at the framebuffer we intend to use, then swap the pairs of hex bytes.
+#### PciRoot(0x0)/Pci(0x2,0x0)
 
-The table below may seem daunting but it's really not, the main things we need to take away from it are:
+This section is set up via WhateverGreen's [Framebuffer Patching Guide](https://github.com/acidanthera/WhateverGreen/blob/master/Manual/FAQ.IntelHD.en.md) and is used for setting important iGPU properties.
 
-* Type of iGPU
-  * To most closely match your setup
-* AAPL,ig-platform-id
-  * This is what's used for setting up our iGPU so the drivers function correctly
-* Stolen Memory
+When setting up your iGPU, the table below should help with finding the right values to set. Here is an explanation of some values:
+
+* **Device-id**
+  * The actual Device ID used by the graphics drivers to figure out if it's an iGPU. If your iGPU isn't natively supported, you can add `device-id` to fake it as a native iGPU  
+* **AAPL,ig-platform-id**
+  * This is used internally for setting up the iGPU
+* **Stolen Memory**
   * The minimum amount of iGPU memory required for the framebuffer to work correctly
-* Port Count + Connectors
+* **Port Count + Connectors**
   * The number of displays and what types are supported
-* device-id
-  * The actual Device ID used by IOKit(the drivers) for initial connection, if your iGPU isn't natively supported you can add this property to correct it
 
- Note that highlighted entries with a star(*) are the recommended entries to use:
+Generally follow these steps when setting up your iGPU properties. Follow the configuration notes below the table if they say anything different:
+
+1. When initially setting up your config.plist, only set AAPL,ig-platform-id - this is normally enough
+2. If you boot and you get no graphics acceleration (7MB VRAM and solid background for dock), then you likely need to set device-id as well
+
+Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | Intel UHD Graphics 630 | 003E0000 | 0000003E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel UHD Graphics 630 | 923E0000 | 0000923E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel UHD Graphics 630 | 923E0009 | 0900923E | 3 | 57MB | 0MB |  LVDSx1 DUMMYx2 |
+| Intel UHD Graphics 630 | 923E0000 | 0900923E | 3 | 57MB | 0MB |  LVDSx1 DUMMYx2 |
 | **Intel UHD Graphics 630** * | 9B3E0000 | 00009B3E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel UHD Graphics 630 | 9B3E0006 | 06009B3E | 1 | 38MB | 0MB |  LVDSx1 DUMMYx2 |
-| Intel UHD Graphics 630 | 9B3E0009 | 09009B3E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel UHD Graphics 630 | 9B3E0000 | 06009B3E | 1 | 38MB | 0MB |  LVDSx1 DUMMYx2 |
+| Intel UHD Graphics 630 | 9B3E0000 | 09009B3E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 | Intel Iris Plus Graphics 655 | A53E0000 | 0000A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel Iris Plus Graphics 655 | A53E0004 | 0400A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel UHD Graphics 630 | A53E0005 | 0500A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel Iris Plus Graphics 655 | A53E0009 | 0900A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 655 | A53E0000 | 0400A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel UHD Graphics 630 | A53E0000 | 0500A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 655 | A53E0000 | 0900A53E | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
 
-#### Special Notes
+#### Configuration Notes
 
-* For `UHD630` you may not need to fake the `device-id`  as long as it's `8086:3E9B`, if it's anything else, you may use `device-id`=`9B3E0000`
-* For `UHD620` in a Comet Lake CPU **requires**:
+* For `UHD630` you likely do not need to fake the `device-id` as it is already `8086:3E9B`. If it's anything else, you may use `device-id`=`9B3E0000`
+  * You can check under Device Manager in Windows by bring up the iGPU, opening properties, selecting details, and clicking Hardware IDs.
+* An `UHD620` in a Comet Lake CPU **requires**:
   * `device-id`=`9B3E0000`
   * `AAPL,ig-platform-id`=`00009B3E`
 
-`PciRoot(0x0)/Pci(0x1b,0x0)` -> `Layout-id`
+#### PciRoot(0x0)/Pci(0x1b,0x0)
+
+`layout-id`
 
 * Applies AppleALC audio injection, you'll need to do your own research on which codec your motherboard has and match it with AppleALC's layout. [AppleALC Supported Codecs](https://github.com/acidanthera/AppleALC/wiki/Supported-codecs).
+* You can delete this property outright as it's unused for us at this time
 
 For us, we'll be using the boot argument `alcid=xxx` instead to accomplish this. `alcid` will override all other layout-IDs present. More info on this is covered in the [Post-Install Page](/post-install/README.md)
 
-Fun Fact: The reason the byte order is swapped is because most modern processors are [Little Endian](https://en.wikipedia.org/wiki/Endianness). The more you know!
+### Delete
 
-**Block**: Removes device properties from the map, for us we can ignore this
+Removes device properties from the map, for us we can ignore this
 
 ## Kernel
 
 ![Kernel](/images/config/config-universal/kernel.png)
 
-**Add**: Here's where you specify which kexts to load, order matters here so make sure Lilu.kext is always first! Other higher priority kexts come after Lilu such as VirtualSMC, AppleALC, WhateverGreen, etc. A reminder that [ProperTree](https://github.com/corpnewt/ProperTree) users can run **Cmd/Ctrl + Shift + R** to add all their kexts in the correct order without manually typing each kext out.
+### Add
+
+Here's where you specify which kexts to load, order matters here so make sure Lilu.kext is always first! Other higher priority kexts come after Lilu such as VirtualSMC, AppleALC, WhateverGreen, etc. A reminder that [ProperTree](https://github.com/corpnewt/ProperTree) users can run **Cmd/Ctrl + Shift + R** to add all their kexts in the correct order without manually typing each kext out.
 
 * **BundlePath**
   * Name of the kext
@@ -216,16 +191,22 @@ Fun Fact: The reason the byte order is swapped is because most modern processors
   * Path to the `info.plist` hidden within the kext
   * ex: `Contents/Info.plist`
 
-**Emulate**: Needed for spoofing unsupported CPUs like Pentiums and Celerons
+### Emulate
+
+Needed for spoofing unsupported CPUs like Pentiums and Celerons
 
 * **CpuidMask**: Leave this blank
 * **CpuidData**: Leave this blank
 
-**Block**: Blocks kexts from loading. Not relevant for us
+### Block
 
-**Patch**: Patches both the kernel and kexts
+Blocks certain kexts from loading. Not relevant for us.
 
-**Quirks**:
+### Patch
+
+Patches both the kernel and kexts.
+
+### Quirks
 
 Settings relating to the kernel, for us we'll be enabling `AppleCpuPmCfgLock`, `AppleXcpmCfgLock`, `DisableIOMapper`,  `PanicNoKextDump`, `PowerTimeoutKernelPanic` and `XhciPortLimit`. Everything else should be left as default
 
@@ -233,20 +214,14 @@ Settings relating to the kernel, for us we'll be enabling `AppleCpuPmCfgLock`, `
   * Only needed when CFG-Lock can't be disabled in BIOS, Clover counterpart would be AppleIntelCPUPM. **Please verify you can disable CFG-Lock, most systems won't boot with it on so requiring use of this quirk**
 * **AppleXcpmCfgLock**: YES
   * Only needed when CFG-Lock can't be disabled in BIOS, Clover counterpart would be KernelPM. **Please verify you can disable CFG-Lock, most systems won't boot with it on so requiring use of this quirk**
-* **AppleXcpmExtraMsrs**: NO
-  * Disables multiple MSR access needed for unsupported CPUs like Pentiums and many Xeons.
-* **AppleXcpmForceBoost**: NO
-  * Forces maximum multiplier, only recommended to enable on scientific or media calculation machines that are constantly under load. Main Xeons benefit from this
+
 * **CustomSMBIOSGuid**: NO
   * Performs GUID patching for UpdateSMBIOSMode Custom mode. Usually relevant for Dell laptops
 * **DisableIoMapper**: YES
   * Needed to get around VT-D if either unable to disable in BIOS or needed for other operating systems, much better alternative to `dart=0` as SIP can stay on in Catalina
 * **DisableRtcChecksum**: NO
   * Prevents AppleRTC from writing to primary checksum (0x58-0x59), required for users who either receive BIOS reset or are sent into Safe mode after reboot/shutdown
-* **DummyPowerManagement**: NO
-  * New alternative to NullCPUPowerManagement, required for all AMD CPU based systems as there's no native power management. Intel can ignore
-* **ExternalDiskIcons**: NO
-  * External Icons Patch, for when internal drives are treated as external drives but can also make USB drives internal. For NVMe on Z87 and below you just add built-in property via DeviceProperties.
+
 * **IncreasePciBarSize**: NO
   * Increases 32-bit PCI bar size in IOPCIFamily from 1 to 4 GB, enabling Above4GDecoding in the BIOS is a much cleaner and safer approach. Some X99 boards may require this, you'll generally experience a kernel panic on IOPCIFamily if you need this
 * **LapicKernelPanic**: NO
@@ -255,8 +230,7 @@ Settings relating to the kernel, for us we'll be enabling `AppleCpuPmCfgLock`, `
   * Allows for reading kernel panics logs when kernel panics occur
 * **PowerTimeoutKernelPanic**: YES
   * Helps fix kernel panics relating to power changes with Apple drivers in macOS Catalina, most notably with digital audio.
-* **ThirdPartyDrives**: NO
-  * Enables TRIM, not needed for NVMe but AHCI based drives may require this. Please check under system report to see if your drive supports TRIM
+
 * **XhciPortLimit**: YES
   * This is actually the 15 port limit patch, don't rely on it as it's not a guaranteed solution for fixing USB. Please create a [USB map](https://dortania.github.io/USB-Map-Guide/) when possible.
 
@@ -266,38 +240,18 @@ The reason being is that UsbInjectAll reimplements builtin macOS functionality w
 
 ![Misc](/images/config/config-universal/misc.png)
 
-**Boot**: Settings for boot screen (Leave everything as default)
+### Boot
 
-* **HibernateMode**: None
-  * Best to avoid hibernation with Hackintoshes all together
-* **PickerMode**: `Builtin`
-  * Sets OpenCore to use the builtin picker
-* **HideAuxiliary**: NO
-  * Hides Recovery and other partitions unless spacebar is pressed, more closely matches real Mac behavior
-* **HideSelf**: YES
-  * Hides the EFI partition as a boot option in OC's boot picker
-* **ConsoleAttributes**: `0`
-  * Sets OpenCore's UI color, won't be covered here but see 8.3.8 of [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf) for more info
-* **PickerAttributes**: `0`
-  * Used for setting custom picker attributes, use of this setting will be covered in [Post-Install](/extras/gui.md)
-* **PickerAudioAssist**: NO
-  * Used for enabling VoiceOver like support in the picker, unless you want your hack talking to you keep this disabled
-* **PollAppleHotKeys**: NO
-  * Allows you to use Apple's hotkeys during boot, depending on the firmware you may need to use OpenUsbKbDxe.efi instead of OpenCore's builtin support. Do note that if you can select anything in OC's picker, disabling this option can help. Popular commands:
-    * `Cmd+V`: Enables verbose
-    * `Cmd+Opt+P+R`: Cleans NVRAM
-    * `Cmd+R`: Boots Recovery partition
-    * `Cmd+S`: Boot in Single-user mode
-    * `Option/Alt`: Shows boot picker when `ShowPicker` set to `NO`, an alternative is `ESC` key
-* **TakeoffDelay**: `0`
-  * Used to add a delay for hotkeys when OpenCore is a bit to fast to register, 5000-10000 microseconds is the preferred range for users with broken hotkeys support  
-* **Timeout**: `5`
-  * This sets how long OpenCore will wait until it automatically boots from the default selection
+Settings for boot screen (Leave everything as default).
 
-**Debug**: Helpful for debugging OpenCore boot issues(We'll be changing everything *but* `DisplayDelay`)
+### Debug
+
+Helpful for debugging OpenCore boot issues(We'll be changing everything *but* `DisplayDelay`).
 
 * **AppleDebug**: YES
   * Enables boot.efi logging, useful for debugging. Note this is only supported on 10.15.4 and newer
+* **ApplePanic**: YES
+  * Attempts to log kernel panics to disk
 * **DisableWatchDog**: YES
   * Disables the UEFI watchdog, can help with early boot issues
 * **Target**: `67`
@@ -307,7 +261,9 @@ The reason being is that UsbInjectAll reimplements builtin macOS functionality w
 
 These values are based of those calculated in [OpenCore debugging](/troubleshooting/debug.md)
 
-**Security**: Security is pretty self-explanatory, **do not skip**
+### Security
+
+Security is pretty self-explanatory, **do not skip**.
 
 We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
 
@@ -315,8 +271,10 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
   * Allows for NVRAM reset both in the boot picker and when pressing `Cmd+Opt+P+R`
 * **AllowSetDefault**: YES
   * Allow `CTRL+Enter` and `CTRL+Index` to set default boot device in the picker
-* **AuthRestart**: NO:
+* **AuthRestart**: NO
   * Enables Authenticated restart for FileVault 2 so password is not required on reboot. Can be considered a security risk so optional
+* **BlacklistAppleUpdate**: True
+  * Ignores Apple's firmware updater, recommended to enable as to avoid issues with installs and updates
 * **BootProtect**: None
   * Allows the use of Bootstrap.efi inside EFI/OC/Bootstrap instead of BOOTx64.efi, useful for those wanting to either boot with rEFInd or avoid BOOTx64.efi overwrites from Windows. Proper use of this quirks is not be covered in this guide
 * **ExposeSensitiveData**: `6`
@@ -325,9 +283,11 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
   * We won't be dealing vaulting so we can ignore, **you won't boot with this set to Secure**
   * This is a word, it is not optional to omit this setting. You will regret it if you don't set it to `Optional`, note that it is case-sensitive
 * **ScanPolicy**: `0`
-  * `0` allows you to see all drives available, please refer to [Security](/post-install/security.md) section for further details. **Will not boot USB devices with this set to default**
+  * `0` allows you to see all drives available, please refer to the desktop guide's [Security](https://dortania.github.io/OpenCore-Desktop-Guide/post-install/security.html) section for further details. **Will not boot USB devices with this set to default**
 
-**Tools** Used for running OC debugging tools like the shell, ProperTree's snapshot function will add these for you. For us, we won't be using any tools
+### Tools
+
+Used for running OC debugging tools like the shell, ProperTree's snapshot function will add these for you. For us, we won't be using any tools.
 
 * **Name**
   * Name shown in OpenCore
@@ -337,7 +297,9 @@ We'll be changing `AllowNvramReset`, `AllowSetDefault`, `Vault` and `ScanPolicy`
   * Path to file after the `Tools` folder
   * ex: [OpenShell.efi](https://github.com/acidanthera/OpenCorePkg/releases)
 
-**Entries**: Used for specifying irregular boot paths that can't be found naturally with OpenCore
+### Entries
+
+Used for specifying irregular boot paths that can't be found naturally with OpenCore.
 
 Won't be covered here, see 8.6 of [Configuration.pdf](https://github.com/acidanthera/OpenCorePkg/blob/master/Docs/Configuration.pdf) for more info
 
@@ -345,7 +307,7 @@ Won't be covered here, see 8.6 of [Configuration.pdf](https://github.com/acidant
 
 ![NVRAM](/images/config/config-universal/nvram.png)
 
-**Add**:
+### Add
 
 4D1EDE05-38C7-4A6A-9CC6-4BCCA8B38C14 (Booter Path, mainly used for UI Scaling)
 
@@ -396,7 +358,9 @@ Recommended to leave enabled for best security practices
 | :--- | :--- | :--- |
 | prev-lang:kbd | String | en-US:0 |
 
-**Block**: Forcibly rewrites NVRAM variables, do note that `Add` **will not overwrite** values already present in NVRAM so values like `boot-args` should be left alone.
+### Delete
+
+Forcibly rewrites NVRAM variables, do note that `Add` **will not overwrite** values already present in NVRAM so values like `boot-args` should be left alone.
 
 **LegacyEnable**: NO
 
@@ -460,7 +424,7 @@ We set Generic -> ROM to either an Apple ROM (dumped from a real Mac), your NIC 
 
 * Generates PlatformInfo based on Generic section instead of DataHub, NVRAM, and SMBIOS sections
 
-**Generic**:
+### Generic
 
 * **SpoofVendor**: YES
   * Swaps vendor field for Acidanthera, generally not safe to use Apple as a vendor in most case
@@ -491,37 +455,28 @@ We set Generic -> ROM to either an Apple ROM (dumped from a real Mac), your NIC 
 
 * Forces .efi drivers, change to NO will automatically connect added UEFI drivers. This can make booting slightly faster, but not all drivers connect themselves. E.g. certain file system drivers may not load.
 
-**Drivers**: Add your .efi drivers here
+### Drivers
+
+Add your .efi drivers here.
 
 Only drivers present here should be:
 
 * HfsPlus.efi
 * OpenRuntime.efi
 
-**APFS**: Settings related to the APFS driver
+### APFS
 
-* **EnableJumpstart**: YES
-  * Allows us to load Apple's APFS driver
+Settings related to the APFS driver, leave everything here as default.
 
-* **HideVerbose**: YES
-  * Hides APFS debugging info, generally not needed
+### Audio
 
-* **JumpstartHotPlug**: NO
-  * Allows APFS hot-plug at the OpenCore boot menu, for us we'll ignore
-
-* **MinDate**: `0`
-  * Minimum date allowed for Apple's APFS to load, current default is set to 2020/01/01
-  * Setting to `-1` will allow any version of APFS to load, note this is highly discouraged for security reasons
-
-* **MinVersion**: `0`
-  * Minimum macOS version that OpenCore will load the APFS driver, current default is set to 10.13.6
-  * Setting to `-1` will allow any version of APFS to load, note this is highly discouraged for security reasons
-
-**Audio**: Related to AudioDxe settings, for us we'll be ignoring(leave as default). This is unrelated to audio support in macOS
+Related to AudioDxe settings, for us we'll be ignoring(leave as default). This is unrelated to audio support in macOS.
 
 * For further use of AudioDxe and the Audio section, please see the Post Install page: [Add GUI and Boot-chime](/post-install/README.md)
 
-**Input**: Related to boot.efi keyboard pass-through used for FileVault and Hotkey support
+### Input
+
+Related to boot.efi keyboard pass-through used for FileVault and Hotkey support.
 
 * **KeyFiltering**: NO
   * Verifies and discards uninitialized data, mainly prevalent on 7 series Gigabyte boards
@@ -542,48 +497,28 @@ Only drivers present here should be:
 * **TimerResolution**: `50000`
   * Set architecture timer resolution, Asus Z87 boards use `60000` for the interface. Settings to `0` can also work for some
 
-**Output**: Relating to visual output
+### Output
 
-* **TextRenderer**: `BuiltinGraphics`
-  * Used for fixing resolution of OpenCore itself, `Resolution` must be set to `Max` to work correctly
-* **ConsoleMode**: [Blank]
-  * Specifies Console output size, best to keep it blank
-* **Resolution**: `Max`
-  * Sets OpenCore's resolution, `Max` will use the highest available resolution or can be specified (`WxH@Bpp (e.g. 1920x1080@32) or WxH (e.g. 1920x1080)`)
-* **ClearScreenOnModeSwitch**: NO
-  * Needed for when half of the previously drawn image remains, will force black screen before switching to TextMode. Do note that this is only required in cases when using `System` TextRenderer
-* **IgnoreTextInGraphics**: NO
-  * Fix for UI corruption when both text and graphics outputs, only relevant for users using `System` TextRenderer
-* **ProvideConsoleGop**: YES
-  * Enables GOP(Graphics output Protocol) which the macOS bootloader requires for console handle, **required for graphical output once the kernel takes over**
-* **DirectGopRendering**: NO
-  * Use builtin graphics output protocol renderer for console, mainly relevant for MacPro5,1 users
-* **ReconnectOnResChange**: NO
-* **ReplaceTabWithSpace**: NO
-  * Depending on the firmware, some system may need this to properly edit files in the UEFI shell when unable to handle Tabs. This swaps it for spaces instead-but majority can ignore it but do note that ConsoleControl set to True may be needed
-* **SanitiseClearScreen**: NO
-  * Fixes High resolutions displays that display OpenCore in 1024x768, only relevant for users using `System` TextRenderer
+Relating to OpenCore's visual output,  leave everything here as default as we have no use for these quirks.
 
-**ProtocolOverrides**: Most values can be ignored here as they're meant for real Macs/VMs
+### ProtocolOverrides
 
-* For FileVault users please see the Post Install page: [Security and FileVault](/post-install/README.md)
+Mainly relevant for Virtual machines, legacy macs and FileVault users. See here for more details: [Security and FileVault](/post-install/README.md)
 
-**Quirks**:
+### Quirks
 
-* **ExitBootServicesDelay**: `0`
-  * Only required for very specific use cases like setting to `3000` - `5000` for ASUS Z87-Pro running FileVault 2
-* **IgnoreInvalidFlexRatio**: NO
-  * Fix for when MSR\_FLEX\_RATIO (0x194) can't be disabled in the BIOS, required for all pre-Skylake based systems
+* **DeduplicateBootOrder**: YES
+  * Request fallback of some Boot prefixed variables from `OC_VENDOR_VARIABLE_GUID` to `EFI_GLOBAL_VARIABLE_GUID`. Used for fixing boot options.
+
 * **ReleaseUsbOwnership**: YES
   * Releases USB controller from firmware driver, needed for when your firmware doesn't support EHCI/XHCI Handoff. Most laptops have garbage firmwares so we'll need this as well
-* **RequestBootVarFallback**: YES
-  * Request fallback of some Boot prefixed variables from `OC_VENDOR_VARIABLE_GUID` to `EFI_GLOBAL_VARIABLE_GUID`. Used for fixing boot options.
 * **RequestBootVarRouting**: YES
   * Redirects AptioMemoryFix from `EFI_GLOBAL_VARIABLE_GUID` to `OC\_VENDOR\_VARIABLE\_GUID`. Needed for when firmware tries to delete boot entries and is recommended to be enabled on all systems for correct update installation, Startup Disk control panel functioning, etc.
+
 * **UnblockFsConnect**: NO
   * Some firmware block partition handles by opening them in By Driver mode, which results in File System protocols being unable to install. Mainly relevant for HP systems when no drives are listed
 
-**ReservedMemory**:
+### ReservedMemory
 
 Used for exempting certain memory regions from OSes to use, mainly relevant for Sandy Bridge iGPUs or systems with faulty memory. Use of this quirk is not covered in this guide
 
@@ -617,9 +552,10 @@ So thanks to the efforts of Ramus, we also have an amazing tool to help verify y
 
 ## Intel BIOS settings
 
-**Disable:**
+### Disable
 
 * Fast Boot
+* Secure Boot
 * VT-d (can be enabled if you set `DisableIoMapper` to YES)
 * CSM
 * Thunderbolt(For initial install, as Thunderbolt can cause issues if not setup correctly)
@@ -627,7 +563,7 @@ So thanks to the efforts of Ramus, we also have an amazing tool to help verify y
 * Intel Platform Trust
 * CFG Lock (MSR 0xE2 write protection)(**This must be off, if you can't find the option then enable both `AppleCpuPmCfgLock` and `AppleXcpmCfgLock` under Kernel -> Quirks. Your hack will not boot with CFG-Lock enabled**)
 
-**Enable:**
+### Enable
 
 * VT-x
 * Above 4G decoding

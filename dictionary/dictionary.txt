@@ -1,6 +1,9 @@
 (15|16)h
 (No)?TouchID
 .aml
+0x0
+0x1b
+0x2
 0xE2
 1024x768
 2200S
@@ -10,12 +13,14 @@
 64MB
 AAPL
 AHCI
+AIDA64
 AIOs
 ASUS
 AWAC
 Above4GDecoding
 Acidanthera
 AcpiSamples
+AIDA64
 AirportAtheros40
 AirportBrcmFixup
 AppleACPICPU
@@ -32,6 +37,7 @@ Asus
 Asus's
 Atheros
 AtherosE2200Ethernet
+Attribution-NonCommercial-ShareAlike
 AudioDxe
 BGRT
 BT
@@ -183,6 +189,7 @@ PListPath
 PM981
 PRs
 PS2
+Pci
 PciRoot
 Plist
 Plists
@@ -203,6 +210,7 @@ Rehabman
 Rehabman's
 Reinstalls
 Ryzen
+S3
 SATA
 SGX
 SMC
@@ -234,6 +242,7 @@ USBInjectAll
 UsbInjectAll
 VM
 VMs
+VRAM
 VSCode
 VirtualSMC
 VoiceOver
@@ -244,6 +253,7 @@ VoodooInput
 VoodooPS2
 VoodooPS2Controller
 VoodooTSCSync
+VoodooTsc
 WHFR
 WIP
 WLAN
@@ -311,6 +321,7 @@ kext(\.)?
 kexts
 lapic
 lappie
+licensor
 linter
 macOS
 macOS's
