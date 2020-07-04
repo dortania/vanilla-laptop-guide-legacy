@@ -20,7 +20,6 @@ AWAC
 Above4GDecoding
 Acidanthera
 AcpiSamples
-AIDA64
 AirportAtheros40
 AirportBrcmFixup
 AppleACPICPU
@@ -62,6 +61,7 @@ Config
 ConsoleControl
 CorpNewt
 CorpNewt's
+CpuTscSync
 Ctrl
 DBG
 DRM
