@@ -137,16 +137,16 @@ Generally follow these steps when setting up your iGPU properties. Follow the co
 
 Note that highlighted entries with a star(*) are the recommended entries to use:
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 4400 | 160a0000 | 0c00160a | 3 | 64MB | 34MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 5000 <sup>1</sup>** * | 260a0000 | 0500260a | 3 | 32MB | 19MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 5000 <sup>2</sup>** * | 260a0000 | 0600260a | 3 | 32MB | 19MB |  LVDSx1 DPx2 |
-| Intel Iris Graphics 5100 | 2e0a0000 | 08002e0a | 3 | 64MB | 34MB |  LVDSx1 DPx2 |
-| Intel Iris Pro Graphics 5200 | 260d0000 | 0700260d | 4 | 64MB | 34MB |  LVDSx1 DPx2 HDMIx1 |
-| Intel Iris Pro Graphics 5200 | 260d0000 | 0900260d | 1 | 64MB | 34MB |  LVDSx1 |
-| Intel Iris Pro Graphics 5200 | 260d0000 | 0e00260d | 4 | 96MB | 34MB |  LVDSx1 DPx2 HDMIx1 |
-| Intel Iris Pro Graphics 5200 | 260d0000 | 0f00260d | 1 | 96MB | 34MB |  LVDSx1 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Total Stolen Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Intel HD Graphics 4400 | 0a160000 | 0c00160a | 3 | 99MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 5000 <sup>1</sup>** * | 0a260000 | 0500260a | 3 | 52MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 5000 <sup>2</sup>** * | 0a260000 | 0600260a | 3 | 52MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 5100 | 0a2e0000 | 08002e0a | 3 | 99MB |  LVDSx1 DPx2 |
+| Intel Iris Pro Graphics 5200 | 0d260000 | 0700260d | 4 | 99MB |  LVDSx1 DPx2 HDMIx1 |
+| Intel Iris Pro Graphics 5200 | 0d260000 | 0900260d | 1 | 99MB |  LVDSx1 |
+| Intel Iris Pro Graphics 5200 | 0d260000 | 0e00260d | 4 | 131MB |  LVDSx1 DPx2 HDMIx1 |
+| Intel Iris Pro Graphics 5200 | 0d260000 | 0f00260d | 1 | 131MB |  LVDSx1 |
 
 #### Configuration Notes
 

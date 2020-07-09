@@ -137,19 +137,19 @@ Generally follow these steps when setting up your iGPU properties. Follow the co
 
 Note that highlighted entries with a star(*) are the recommended entries to use:
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Intel HD Graphics 620** * | 16590000 | 00001659 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 620 | 16590000 | 09001659 | 3 | 38MB | 0MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 630** * | 1b590000 | 00001b59 | 3 | 38MB | 21MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 630 | 1b590000 | 06001b59 | 1 | 38MB | 0MB |  LVDSx1 |
-| Intel HD Graphics 615 | 1e590000 | 00001e59 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 615 | 1e590000 | 01001e59 | 3 | 38MB | 0MB |  LVDSx1 DPx2 |
-| Intel Iris Plus Graphics 640 | 26590000 | 02002659 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel Iris Plus Graphics 650 | 27590000 | 04002759 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
-| Intel Iris Plus Graphics 650 | 27590000 | 09002759 | 3 | 38MB | 0MB |  LVDSx1 DPx2 |
-| **Intel UHD Graphics 617** * | C0870000 | 0000C087 | 3 | 34MB | 0MB |  LVDSx1 DPx2 |
-| Intel UHD Graphics 617 | C0870000 | 0500C087 | 3 | 57MB | 0MB |  LVDSx1 DPx2 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Total Stolen Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Intel HD Graphics 620** * | 59160000 | 00001659 | 3 | 35MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 620 | 59160000 | 09001659 | 3 | 39MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 630** * | 591b0000 | 00001b59 | 3 | 39MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 630 | 591b0000 | 06001b59 | 1 | 39MB |  LVDSx1 |
+| Intel HD Graphics 615 | 591e0000 | 00001e59 | 3 | 35MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 615 | 591e0000 | 01001e59 | 3 | 39MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 640 | 59260000 | 02002659 | 3 | 58MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 650 | 59270000 | 04002759 | 3 | 58MB |  LVDSx1 DPx2 |
+| Intel Iris Plus Graphics 650 | 59270000 | 09002759 | 3 | 39MB |  LVDSx1 DPx2 |
+| **Intel UHD Graphics 617** * | 87C00000 | 0000C087 | 3 | 35MB |  LVDSx1 DPx2 |
+| Intel UHD Graphics 617 | 87C00000 | 0500C087 | 3 | 58MB |  LVDSx1 DPx2 |
 
 #### Configuration Notes
 

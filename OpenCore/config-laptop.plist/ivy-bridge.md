@@ -155,14 +155,14 @@ Generally follow these steps when setting up your iGPU properties. Follow the co
 
 Note that highlighted entries with a star(*) are the recommended entries to use:
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 4000 | 66010000 | 01006601 | 4 | 96MB | 24MB |  LVDSx1 HDMIx1 DPx2 |
-| Intel HD Graphics 4000 | 66010000 | 02006601 | 1 | 64MB | 24MB |  LVDSx1 |
-| **Intel HD Graphics 4000 <sup>1</sup>** * | 66010000 | 03006601 | 4 | 64MB | 16MB |  LVDSx1 DPx3 |
-| **Intel HD Graphics 4000 <sup>2</sup>** * | 66010000 | 04006601 | 1 | 32MB | 16MB |  LVDSx1 |
-| Intel HD Graphics 4000 | 66010000 | 08006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 4000 <sup>3</sup>** * | 66010000 | 09006601 | 3 | 64MB | 16MB |  LVDSx1 DPx2 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Total Stolen Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Intel HD Graphics 4000 | 01660000 | 01006601 | 4 | 24MB |  LVDSx1 HDMIx1 DPx2 |
+| Intel HD Graphics 4000 | 01660000 | 02006601 | 1 | 24MB |  LVDSx1 |
+| **Intel HD Graphics 4000 <sup>1</sup>** * | 01660000 | 03006601 | 4 | 16MB |  LVDSx1 DPx3 |
+| **Intel HD Graphics 4000 <sup>2</sup>** * | 01660000 | 04006601 | 1 | 16MB |  LVDSx1 |
+| Intel HD Graphics 4000 | 01660000 | 08006601 | 3 | 16MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 4000 <sup>3</sup>** * | 01660000 | 09006601 | 3 | 16MB |  LVDSx1 DPx2 |
 
 #### Configuration Notes
 
