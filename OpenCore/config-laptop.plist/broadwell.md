@@ -152,7 +152,7 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 * For HD5300, HD5500 and HD6000, you do not have to specify any `device-id`
 
-* For HD5600 you need `device-id` faked to `26160000`
+* For HD5600 you need `device-id` faked to `16260000`
 
 * In some cases where you cannot set the DVMT-prealloc of these cards to 96MB higher in your UEFI Setup, you may get a kernel panic. Usually they're configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties
 

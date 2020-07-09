@@ -158,12 +158,12 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 * For HD515, HD520, HD530 and HD540, you do not need to set `device-id` as they are natively recognized.
   * We recommend not setting `AAPL,ig-platform-id` at all by commenting/removing its entry in the config. If you need to set one, start with `00001619`.
 * For HD510 you may need to use the following values:
-  * `device-id`=`02190000` to fake its device-id.
+  * `device-id`=`19020000` to fake its device-id.
   * `AAPL,ig-platform-id`=`00001B19` or `00001619`
-* For HD550 and P530 (and potentially all HD P-series iGPUs), you may need to use `device-id`=`16190000`(recommended), `12190000`, `26190000` or `1b190000`
+* For HD550 and P530 (and potentially all HD P-series iGPUs), you may need to use `device-id`=`19160000`(recommended), `19120000`, `19260000` or `191b0000`
   * The choice of device-id may help with usable screen on boot up and on wake. Some examples:
-    * Lenovo ThinkPad P50 with Xeon CPU will only properly work with `16190000`.
-    * Dell Precision 7710 with i7 CPUs have issues when set to `16190000`. Using `1b19000` or other value may help.
+    * Lenovo ThinkPad P50 with Xeon CPU will only properly work with `19160000`.
+    * Dell Precision 7710 with i7 CPUs have issues when set to `19160000`. Using `191b000` or other value may help.
   * For Xeon iGPUs, it's recommended to use `26190000` with Xeon iGPUs.
   * You should pair these iGPUs with `AAPL,ig-platform-id`=`00001619`(recommended), `00001219`, `00002619` or `00001b19`
 * In some cases where you cannot set the DVMT-prealloc of these cards to 64MB higher in your UEFI Setup, you may get a kernel panic. Usually they're configured for 32MB of DVMT-prealloc, in that case these values are added to your iGPU Properties

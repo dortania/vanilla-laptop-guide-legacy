@@ -145,7 +145,6 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 | Intel HD Graphics 630 | 591B0000 | 06001B59 | 1 | 39MB |  LVDSx1 |
 | Intel HD Graphics 615 | 591E0000 | 00001E59 | 3 | 35MB |  LVDSx1 DPx2 |
 | Intel HD Graphics 615 | 591E0000 | 01001E59 | 3 | 39MB |  LVDSx1 DPx2 |
-| Intel Iris Plus Graphics 640 | 59260000 | 02002659 | 3 | 58MB |  LVDSx1 DPx2 |
 | Intel Iris Plus Graphics 650 | 59270000 | 04002759 | 3 | 58MB |  LVDSx1 DPx2 |
 | Intel Iris Plus Graphics 650 | 59270000 | 09002759 | 3 | 39MB |  LVDSx1 DPx2 |
 | **Intel UHD Graphics 617** * | 87C00000 | 0000C087 | 3 | 35MB |  LVDSx1 DPx2 |
@@ -155,10 +154,10 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 * **Note:** `UHD630` ***IS NOT*** KabyLake, it's CoffeeLake (check next section).
 * For `HD615`, `HD630`, `HD640` and `HD650` it is not needed to use a `device-id`. However, due to many issues with different setups it is recommended to use:
-  * `device-id`=`1b590000` or `16590000`
+  * `device-id`=`591b0000` or `59160000`
   * `AAPL,ig-platform-id`=`00001659` or `00001b59` (you can try whichever works the best, some even try to cross the device-id and the ig-platform-id)
 * For `UHD620` users we recommend the following values:
-  * `device-id`=`16590000`
+  * `device-id`=`59160000`
   * `AAPL,ig-platform-id`=`0000C087`
 * For all HD6\*\* (`UHD` users are not concerned), there are some small issues with output where plugging anything would cause a lock up (kernel panic), here are some patches to mitigate that (credit Rehabman):
   * 0306 to 0105 (will probably explain what it does one day)

@@ -157,10 +157,10 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 #### Configuration Notes
 
-* For `UHD630` you likely do not need to fake the `device-id` as it is already `8086:3E9B`. If it's anything else, you may use `device-id`=`9B3E0000`
+* For `UHD630` you likely do not need to fake the `device-id` as it is already `8086:3E9B`. If it's anything else, you may use `device-id`=`3E9B0000`
   * You can check under Device Manager in Windows by bring up the iGPU, opening properties, selecting details, and clicking Hardware IDs.
 * An `UHD620` in a Comet Lake CPU **requires**:
-  * `device-id`=`9B3E0000`
+  * `device-id`=`3E9B0000`
   * `AAPL,ig-platform-id`=`00009B3E`
 
 #### PciRoot(0x0)/Pci(0x1b,0x0)
