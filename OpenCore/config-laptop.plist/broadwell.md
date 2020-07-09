@@ -137,16 +137,16 @@ Generally follow these steps when setting up your iGPU properties. Follow the co
 
 Note that highlighted entries with a star(*) are the recommended entries to use:
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 5600 | 12160000 | 03001216 | 4 | 34MB | 21MB |  LVDSx1 DPx2 HDMIx1 |
-| Intel HD Graphics 5500 | 16160000 | 02001616 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 5300 | 1e160000 | 01001e16 | 3 | 38MB | 21MB |  LVDSx1 DPx2 |
-| Intel Iris Pro Graphics 6200 | 22160000 | 02002216 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 6000 | 26160000 | 02002616 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 6000 | 26160000 | 05002616 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 6000** * | 26160000 | 06002616 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
-| Intel Iris Graphics 6100 | 2b160000 | 02002b16 | 3 | 34MB | 21MB |  LVDSx1 DPx2 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Total Stolen Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Intel HD Graphics 5600 | 16120000 | 03001216 | 4 | 56MB |  LVDSx1 DPx2 HDMIx1 |
+| Intel HD Graphics 5500 | 16160000 | 02001616 | 3 | 56MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 5300 | 161E0000 | 01001E16 | 3 | 60MB |  LVDSx1 DPx2 |
+| Intel Iris Pro Graphics 6200 | 16220000 | 02002216 | 3 | 56MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 6000 | 16260000 | 02002616 | 3 | 56MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 6000 | 16260000 | 05002616 | 3 | 56MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 6000** * | 16260000 | 06002616 | 3 | 56MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 6100 | 162B0000 | 02002B16 | 3 | 56MB |  LVDSx1 DPx2 |
 
 ##### Configuration Notes
 

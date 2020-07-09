@@ -141,12 +141,12 @@ Generally follow these steps when setting up your iGPU properties. Follow the co
 
 Note that highlighted entries with a star(*) are the recommended entries to use:
 
-| iGPU | device-id | AAPL,ig-platform-id | Port Count | Stolen Memory | Framebuffer Memory | Connectors |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Iris Plus | 8A510000 | 0000518A | 6 | 64MB | 0MB |  LVDSx1 DPx5 |
-| Iris Plus | 8A5C0000 | 00005C8A | 6 | 64MB | 0MB |  LVDSx1 DPx5 |
-| **Iris Plus** * | 8A520000 | 0000528A | 6 | 64MB | 0MB |  LVDSx1 DPx5 |
-| Iris Plus | 8A5A0000 | 00005A8A | 6 | 64MB | 0MB |  LVDSx1 DPx5 |
+| iGPU | device-id | AAPL,ig-platform-id | Port Count | Total Stolen Memory | Connectors |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Iris Plus | 8A510000 | 0000518A | 6 | 193MB |  LVDSx1 DPx5 |
+| Iris Plus | 8A5C0000 | 00005C8A | 6 | 193MB |  LVDSx1 DPx5 |
+| **Iris Plus** * | 8A520000 | 0000528A | 6 | 193MB |  LVDSx1 DPx5 |
+| Iris Plus | 8A5A0000 | 00005A8A | 6 | 193MB |  LVDSx1 DPx5 |
 
 #### Configuration Notes
 
