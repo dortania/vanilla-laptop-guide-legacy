@@ -140,18 +140,18 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 | Intel HD Graphics 530 | 19120000 | 00001219 | 3 | 56MB |  DUMMY1 DPx2 |
 | **Intel HD Graphics 520** * | 19160000 | 00001619 | 3 | 56MB |  LVDSx1 DPx2 |
 | Intel HD Graphics 520 | 19160000 | 02001619 | 3 | 58MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 530** * | 191b0000 | 00001b19 | 3 | 56MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 530 | 191b0000 | 06001b19 | 1 | 39MB |  LVDSx1 |
-| Intel HD Graphics 515 | 191e0000 | 00001e19 | 3 | 56MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 515 | 191e0000 | 03001e19 | 3 | 41MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 530** * | 191B0000 | 00001B19 | 3 | 56MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 530 | 191B0000 | 06001B19 | 1 | 39MB |  LVDSx1 |
+| Intel HD Graphics 515 | 191E0000 | 00001E19 | 3 | 56MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 515 | 191E0000 | 03001E19 | 3 | 41MB |  LVDSx1 DPx2 |
 | **Intel Iris Graphics 540** * | 19260000 | 00002619 | 3 | 56MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 540 | 19260000 | 02002619 | 3 | 58MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 540 | 19260000 | 04002619 | 3 | 35MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 540 | 19260000 | 07002619 | 3 | 35MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 550 | 19270000 | 00002719 | 3 | 56MB |  LVDSx1 DPx2 |
 | Intel Iris Graphics 550 | 19270000 | 04002719 | 3 | 58MB |  LVDSx1 DPx2 |
-| Intel Iris Pro Graphics 580 | 193b0000 | 00003b19 | 3 | 56MB |  LVDSx1 DPx2 |
-| Intel Iris Pro Graphics 580 | 193b0000 | 05003b19 | 4 | 35MB |  LVDSx1 DPx3 |
+| Intel Iris Pro Graphics 580 | 193B0000 | 00003B19 | 3 | 56MB |  LVDSx1 DPx2 |
+| Intel Iris Pro Graphics 580 | 193B0000 | 05003B19 | 4 | 35MB |  LVDSx1 DPx3 |
 
 #### Configuration Notes
 

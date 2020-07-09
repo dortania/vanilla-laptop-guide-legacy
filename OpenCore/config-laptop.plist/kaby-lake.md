@@ -141,10 +141,10 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Intel HD Graphics 620** * | 59160000 | 00001659 | 3 | 35MB |  LVDSx1 DPx2 |
 | Intel HD Graphics 620 | 59160000 | 09001659 | 3 | 39MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 630** * | 591b0000 | 00001b59 | 3 | 39MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 630 | 591b0000 | 06001b59 | 1 | 39MB |  LVDSx1 |
-| Intel HD Graphics 615 | 591e0000 | 00001e59 | 3 | 35MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 615 | 591e0000 | 01001e59 | 3 | 39MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 630** * | 591B0000 | 00001B59 | 3 | 39MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 630 | 591B0000 | 06001B59 | 1 | 39MB |  LVDSx1 |
+| Intel HD Graphics 615 | 591E0000 | 00001E59 | 3 | 35MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 615 | 591E0000 | 01001E59 | 3 | 39MB |  LVDSx1 DPx2 |
 | Intel Iris Plus Graphics 640 | 59260000 | 02002659 | 3 | 58MB |  LVDSx1 DPx2 |
 | Intel Iris Plus Graphics 650 | 59270000 | 04002759 | 3 | 58MB |  LVDSx1 DPx2 |
 | Intel Iris Plus Graphics 650 | 59270000 | 09002759 | 3 | 39MB |  LVDSx1 DPx2 |

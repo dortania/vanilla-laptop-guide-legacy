@@ -141,12 +141,12 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | Intel HD Graphics 5600 | 16120000 | 03001216 | 4 | 56MB |  LVDSx1 DPx2 HDMIx1 |
 | Intel HD Graphics 5500 | 16160000 | 02001616 | 3 | 56MB |  LVDSx1 DPx2 |
-| Intel HD Graphics 5300 | 161e0000 | 01001e16 | 3 | 60MB |  LVDSx1 DPx2 |
+| Intel HD Graphics 5300 | 161E0000 | 01001E16 | 3 | 60MB |  LVDSx1 DPx2 |
 | Intel Iris Pro Graphics 6200 | 16220000 | 02002216 | 3 | 56MB |  LVDSx1 DPx2 |
 | Intel HD Graphics 6000 | 16260000 | 02002616 | 3 | 56MB |  LVDSx1 DPx2 |
 | Intel HD Graphics 6000 | 16260000 | 05002616 | 3 | 56MB |  LVDSx1 DPx2 |
 | **Intel HD Graphics 6000** * | 16260000 | 06002616 | 3 | 56MB |  LVDSx1 DPx2 |
-| Intel Iris Graphics 6100 | 162b0000 | 02002b16 | 3 | 56MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 6100 | 162B0000 | 02002B16 | 3 | 56MB |  LVDSx1 DPx2 |
 
 ##### Configuration Notes
 

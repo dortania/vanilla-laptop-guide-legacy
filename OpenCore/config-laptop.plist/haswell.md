@@ -139,14 +139,14 @@ Note that highlighted entries with a star(*) are the recommended entries to use:
 
 | iGPU | device-id | AAPL,ig-platform-id | Port Count | Total Stolen Memory | Connectors |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Intel HD Graphics 4400 | 0a160000 | 0c00160a | 3 | 99MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 5000 <sup>1</sup>** * | 0a260000 | 0500260a | 3 | 52MB |  LVDSx1 DPx2 |
-| **Intel HD Graphics 5000 <sup>2</sup>** * | 0a260000 | 0600260a | 3 | 52MB |  LVDSx1 DPx2 |
-| Intel Iris Graphics 5100 | 0a2e0000 | 08002e0a | 3 | 99MB |  LVDSx1 DPx2 |
-| Intel Iris Pro Graphics 5200 | 0d260000 | 0700260d | 4 | 99MB |  LVDSx1 DPx2 HDMIx1 |
-| Intel Iris Pro Graphics 5200 | 0d260000 | 0900260d | 1 | 99MB |  LVDSx1 |
-| Intel Iris Pro Graphics 5200 | 0d260000 | 0e00260d | 4 | 131MB |  LVDSx1 DPx2 HDMIx1 |
-| Intel Iris Pro Graphics 5200 | 0d260000 | 0f00260d | 1 | 131MB |  LVDSx1 |
+| Intel HD Graphics 4400 | 0A160000 | 0C00160A | 3 | 99MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 5000 <sup>1</sup>** * | 0A260000 | 0500260A | 3 | 52MB |  LVDSx1 DPx2 |
+| **Intel HD Graphics 5000 <sup>2</sup>** * | 0A260000 | 0600260A | 3 | 52MB |  LVDSx1 DPx2 |
+| Intel Iris Graphics 5100 | 0A2E0000 | 08002E0A | 3 | 99MB |  LVDSx1 DPx2 |
+| Intel Iris Pro Graphics 5200 | 0D260000 | 0700260D | 4 | 99MB |  LVDSx1 DPx2 HDMIx1 |
+| Intel Iris Pro Graphics 5200 | 0D260000 | 0900260D | 1 | 99MB |  LVDSx1 |
+| Intel Iris Pro Graphics 5200 | 0D260000 | 0E00260D | 4 | 131MB |  LVDSx1 DPx2 HDMIx1 |
+| Intel Iris Pro Graphics 5200 | 0D260000 | 0F00260D | 1 | 131MB |  LVDSx1 |
 
 #### Configuration Notes
 
